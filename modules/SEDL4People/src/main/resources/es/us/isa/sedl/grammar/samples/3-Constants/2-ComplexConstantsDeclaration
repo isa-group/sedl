@@ -1,0 +1,7 @@
+/****/
+Constants:
+	BodyTemperature : 36.5
+	TerminationCriterion : ’MaxTime(10000)’
+	Solver : 'CSP-JaCoB' //Solver used to evaluate the analysis operation
+	Termination_criterion : 'MaxMObjFuncEvaluations(5000)' // Termination criterion of the algorithm
+	RandomNumberGenerator: {desc:'Standard Java RND', class:'java.util.Random'} //we can have complex constants

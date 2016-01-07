@@ -1,0 +1,5 @@
+If a factor is of no particular interest in an experiment, 
+but could be useful in subsequent replications or its impact on the response is unknown,
+ it is called a extraneous variable (a.k.a. nuisance variable). 
+Extraneous variables must be ruled out or controlled in order to ensure the 
+validity of the experiment. 

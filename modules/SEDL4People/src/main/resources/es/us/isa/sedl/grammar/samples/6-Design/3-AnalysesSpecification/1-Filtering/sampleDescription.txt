@@ -1,0 +1,12 @@
+The datasets on which the analyses should be performed are specified in terms of three different operations:
+
+Projection (OF): A projection defines the set of variable measurements that a dataset will contain. 
+It is similar to the enumeration of columns after the SELECT in SQL queries. 
+When a single outcome variable is specified in the experiment, a projection by this variable is implicitly assumed. 
+
+Filtering (WHERE): This operation selects a subset of the results dataset based on the values of specific variables, in a very similar way as the WHERE clause in SQL. 
+
+Grouping (BY): Grouping operations define how the elements in different datasets will be arranged for comparison in statistical tests. 
+Its primary use is the specification of the blocks defined by blocking variables. 
+
+These operations can be nested following the order if this description: OF, WHERE, BY

@@ -1,0 +1,3 @@
+The outcome is the presumed result of the experiment, 
+and its value is used for testing the hypothesis of the experiment. 
+It measures or assesses the effect of factor(s).

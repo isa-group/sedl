@@ -1,0 +1,4 @@
+A descriptive hypothesis just describes the properties of the concepts it refers to.
+In our context, a descriptive hypothesis is defined based on an assertion on the population.
+This assertion can be expressed in an informal way as a natural language description of the hypothesis 
+of the experiment, or use a formal assertion such as an statistical hypothesis..

@@ -1,0 +1,2 @@
+The target population of an experiment is defined as the set of experimental objects to which we would like to generalize the conclusions obtained from the experiment, i.e., the subject of the hypothesis of the experiment. 
+

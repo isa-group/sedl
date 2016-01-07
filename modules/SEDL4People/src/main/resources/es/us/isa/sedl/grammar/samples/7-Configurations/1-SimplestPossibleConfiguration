@@ -1,0 +1,4 @@
+/** **/
+Configuration:
+C1:    // Identifier of the configuration
+   Procedure: // The most simple configuration has an empty conduction procedure

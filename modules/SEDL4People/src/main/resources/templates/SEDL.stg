@@ -1,0 +1,381 @@
+delimiters "$", "$"
+
+document(e) ::= <<
+$imports(e)$
+$experiment(e)$
+>>
+
+imports(e) ::= <<
+>>
+
+new_line()::= <<
+>>
+
+experiment(e) ::=<<
+$preamble(e)$
+    $notes(e.notes)$
+    $annotations(e.annotations)$
+    $population(e.design.population)$
+$constants(e)$
+$variables(e.design)$
+$hypotheses(e)$
+$design(e)$
+$configurations(e)$
+>>
+
+preamble(e) ::="EXPERIMENT:$e.name$ version:$e.version$"
+
+notesT(e)::=<<$if(e.notes)$Notes:$notes(e)$$endif$>>  
+
+notes(e)::=<<
+	$e.notes:note(); separator="\n"$
+>>
+
+note(n)::="$n$"
+
+annotationsT(e)::=<<$if(e.notes)$Annotations:$annotations(e)$$endif$>>  
+
+annotations(e)::=<<
+    $e.annotations; separator="\n"$
+>>
+
+population(p)::=<<
+$if(p.individualDescription)$Object:$p.individualDescription$$endif$
+$if(p.objectivePopulation)$Population:$p.objectivePopulation$$endif$
+$if(p.accesiblePopulation)$Accesible_Population:$p.accesiblePopulation$$endif$
+>>
+
+constants(e)::=<<
+$first(e.design.designParameters):ConstantBlock()$
+    $rest(e.design.designParameters):constant();separator="\n"$
+>>
+
+ConstantBlock(c)::=<<
+Constants:
+    $constant(c)$
+>>
+
+constant(c)::="$(c.class.simpleName)(c)$"
+
+ComplexParameter(c)::= <<$c.name$: { $c.parameters:ComplexConstant();separator=","$ } >>
+
+SimpleParameter(c)::="$c.name$:$c.value$"
+
+ComplexConstant(c)::="$c.name$:$c.value$"
+
+variables(design)::=<<
+Variables:
+    Factors:
+        $design.variables.controllableFactors:variable();separator="\n"$
+    $first(design.variables.nonControllableFactors):NCFactorsBlock()$
+        $rest(design.variables.nonControllableFactors):variable();separator="\n"$
+    Outcome:
+        $design.variables.outcomes:variable();separator="\n"$
+    $first(design.variables.extraneous):ExtraneousBlock()$
+        $rest(design.variables.extraneous):variable();separator="\n"$
+
+>>
+
+NCFactorsBlock(var)::=<<
+NCFactors:
+    $variable(var)$
+>>
+variable(v)::="$v.name$ $domain(v.domain)$ $unitsM(v)$"
+
+ExtraneousBlock(var)::=<<
+Extraneous:
+    $variable(var)$
+>>
+
+unitsM(v)::=<<$if(v.units)$$units(v.units)$$endif$>>  
+
+units(u)::="measured in $u$"
+
+domain(d)::="$(d.class.simpleName)(d)$"
+
+ExtensionDomain(d)::=<<enum $d.levels:level(); separator=", "$>>
+
+IntensionDomain(d)::=<<$d.constraint:constraint(); separator=" "$ >>
+
+constraint(c)::="$(c.class.simpleName)(c)$"
+
+FundamentalSetConstraint(c)::=" in $c.fundamentalSet$"
+
+IntervalConstraint(c)::="range [$c.min$,$c.max$]"
+
+level(l)::="$l$"
+
+hypotheses(e)::=<<Hypothesis:$e.hypotheses:{h|$hypothesis(h)$};separator="\n"$>>
+
+hypothesis(h)::="$(h.class.simpleName)(h)$"
+
+DifferentialHypothesis(h)::=<<$if(h.dependentVariable)$$explicitDH(h)$$else$$implicitDH(h)$$endif$>>
+
+implicitDH(h)::="Differential"
+
+explicitDH(h)::=<<$h.independentVariables:{v|$v$};separator=","$ impacts significantly on $h.dependentVariable$>>
+
+AssociationalHypothesis(h)::=<<$if(h.dependentVariable)$$explicitAH(h)$$else$$implicitAH(h)$$endif$>>
+
+expliciAH(h)::=<<$h.dependentVariable$ is $relation(h.relation)$ correlated with $h.independentVariables:{v|v};separator=","$>>
+
+relation(r)::="$(r.class.simpleName)(r)$"
+
+LinearRelation(r)::="linearly"
+
+LogisticRelation(r)::="logistically"
+
+MonotonicRelation(r)::=""
+
+impliciAH(h)::="Associational"
+
+DescriptiveHypothesis(h)::="Descriptive"
+
+design(e)::=<<
+Design:
+    $(e.design.experimentalDesign.class.simpleName)(e)$
+>>
+
+FullySpecifiedExperimentalDesign(e)::=<<
+    Sampling: $sampling(e.design)$
+    Assignment: $assignmentMethod(e.design.experimentalDesign.assignmentMethod)$
+    $if(e.design.experimentalDesign.blockingVariables)$Blocking: $blocking(e)$$endif$
+    Groups:
+        $e.design.experimentalDesign.groups;separator="\n"$
+    Protocol:$protocol(e.design.experimentalDesign.experimentalProtocol.scheme.value)$
+    Analyses: 
+        $e.design.experimentalDesign.intendedAnalyses:analyses();separator="\n"$                
+>>
+
+sampling(p)::=<%
+$if(p.samplingMethod.random)$
+Random
+$else$
+$if(p.samplingMethod.description)$
+Custom //$p.samplingMethod.description$
+$else$
+Custom
+$endif$
+$endif$
+%>
+
+assignmentMethod(a)::=<%
+$if(a.random)$
+Random
+$else$
+$if(a.description)$
+Custom //$a.description$
+$else$
+Custom
+$endif$
+$endif$
+%>
+
+blocking(e)::=<%
+    $e.design.experimentalDesign.blockingVariables:blockingVariable();separator=","$
+%>
+
+blockingVariable(v)::="$v$"
+
+sizing(s)::="sizing $s.value$"
+
+concreteGroup(g)::=<<
+
+    $g.name$:
+                $g.valuations:valuation(); separator=", " $ $sizing(g.sizing)$
+    
+>>
+
+valuation(v)::="$v.variable.name$$if(v.level)$:$v.level.value$$endif$"
+protocol(p)::="Random"
+
+analyses(a)::=<<
+    $a.id$:
+        $a.statistic:statistic();separator="\n"$
+>>
+
+statistic(s)::="$(s.class.simpleName)(s)$"
+
+NHST(s)::="$s.name$($dataSetSpecification(s.datasetSpecification)$,$s.alpha$)"
+
+CorrelationCoeficient(s)::="$s.name$($dataSetSpecification(s.datasetSpecification)$)"
+
+ConfidenceInterval(s)::="CI($dataSetSpecification(s.datasetSpecification)$,$s.confidenceLevel$)"
+
+Mean(s)::="Avg($dataSetSpecification(s.datasetSpecification)$)"
+
+Median(s)::="Median($dataSetSpecification(s.datasetSpecification)$)"
+
+Mode(s)::="Mode($dataSetSpecification(s.datasetSpecification)$)"
+
+StandardDeviation(s)::="StdDev($dataSetSpecification(s.datasetSpecification)$)"
+
+Variance(s)::="Variance($dataSetSpecification(s.datasetSpecification)$)"
+
+InterquartileRange(s)::="IQR($dataSetSpecification(s.datasetSpecification)$)"
+
+Range(s)::="Range($dataSetSpecification(s.datasetSpecification)$)"
+
+Ranking(s)::="Ranking($dataSetSpecification(s.datasetSpecification)$,$statistic(s.rankingCriterion)$)"
+
+dataSetSpecification(dss)::=<%
+    
+    $dss.filters:filter()$
+    
+    $dss.projections:projection()$
+%>
+
+dot(o)::="."
+
+filter(f)::="$(f.class.simpleName)(f)$ "
+
+ValuationFilter(vf)::=<<$if(vf.variableValuations)$where $vf.variableValuations:assignment();separator=","$$endif$>>
+
+GroupFilter(gf)::=<<by $gf.group$>>
+
+assignment(v)::="$v.variable.name$$if(v.level)$=$v.level.value$$endif$"
+
+projection(p)::="$(p.class.simpleName)(p)$ "
+
+GroupingProjection(gp)::=<< by $gp.projectedVariables;separator=","$>>
+
+Projection(p)::=<< of $p.projectedVariables;separator=","$>>
+
+configurations(e)::=<<
+$first(e.configurations):configurationsBlock()$
+    $e.configurations:configuration();separator="\n"$
+>>
+
+configurationsBlock(c)::="Configuration:"
+
+configuration(c)::=<<
+$configurationName(c.id)$
+    $context(c.context)$
+    $inputs(c.experimentalInputs)$
+    $outputs(c.experimentalOutputs)$
+    $setting(c.experimentalSetting)$
+    $procedure(c.experimentalProcedure)$
+    $runs(c.executions)$
+>>
+
+configurationName(id)::="$if(id)$$c.id$:$endif$" 
+
+inputs(is)::=<%
+    $first(is.inputDataSources):inputsBlock()$
+    $is.inputDataSources:input();separator="\n"$
+%>
+inputsBlock(i)::="Inputs: "
+input(i)::="$output(i)$"
+
+outputs(outs)::=<%
+    $first(outs.outputDataSources):outputsBlock()$
+    $outs.outputDataSources:output();separator="\n"$
+%>
+outputsBlock(o)::="Outputs: "
+output(o)::=<%
+$if(o.fileSpecification)$
+    $fileSpecification(o.fileSpecification)$
+$endif$
+$if(o.file)$
+    $file(o.file)$
+$endif$
+$if(o.role)$
+    role:$role(o)$
+    
+$endif$
+%>
+
+role(o)::="$(o.role)(o)$ "
+
+MAIN_RESULT(o)::="MainResult"
+ADDITIONAL_EVIDENCE(o)::="AdditionalEvidence"
+MISCELLANEOUS(o)::="Miscellaneous"
+
+file(f)::="File '$f.path$$f.name$' $fileFormatSpecification(f.fileFormatSpecification)$"
+
+fileFormatSpecification(ffs)::="$ffs.type$"
+
+fileSpecification(fs)::="$ffs.pathPattern$$ffs.namePattern$"
+
+setting(s)::=<<
+    Setting: 
+        $(s.requirements.class.simpleName)(s.requirements)$
+>>
+
+ComputationEnvironment(s)::="$softwarePlatform(s.softwarePlatform)$"
+
+softwarePlatform(s)::=<<
+$first(s.runtimes:runtimes())$ $s.runtimes:artifact();separator="\n"$
+$first(s.libraries:libraries())$ $s.libraries:artifact();separator=","$
+$operatingSystems(s.operatingSystem)$>>
+
+runtimes(rts)::="$if(rts)$Runtimes:$endif$"
+libraries(ls)::="$if(ls)$Libraries:$endif$"
+operatingSystems(os)::="$if(os)$OperatingSystem: $artifact(os)$$endif$"
+
+artifact(a)::="$a.name$ $a.version$"
+
+procedure(p)::=<<
+Procedure: 
+    $p.tasks:procedureTask();separator="\n"$
+>>
+
+procedureTask(t)::="$(t.class.simpleName)(t)$"
+
+CommandExperimentalTask(t)::=<<
+Command as $t.experimentalTaskType$ ($t.parameters;separator=","$):
+    '$t.name$'
+>>
+
+runs(rs)::=<%
+    $first(rs):runsBlock()$ $rs:run();separator="\n"$
+%>
+
+runsBlock(r)::="Runs: "
+run(r)::=<<
+    $r.id$: $start(r.start)$ $end(r.finish)$   
+        $executionResults(r.results)$
+        $executionAnalyses(r.analysisResults)$
+>>
+
+start(s)::="$if(s)$ Start: '$s$' $endif$"
+
+end(e)::="$if(e)$ End: '$e$' $endif$"
+
+executionResults(r)::=<<Result: $r:executionResultFile();separator="\n"$    >>
+executionResultFile(r)::="$file(r.file)$"
+
+executionAnalyses(as)::=<<Analyses: $as:analysesExecBlock();separator="\n"$>>
+
+analysesExecBlock(a)::=<<$a.id$: $a:exeFunction();separator=","$>>
+
+exeFunction(a)::="$(a.class.simpleName)(a)$"    
+
+DescriptiveStatisticValue(dsv)::="$dsv.descriptiveStatistic$$analysisConditions(dsv)$: $dsv.value$"
+
+analysisConditions(dsv)::=<%
+$if( dsv.datasetSpecification.filters || dsv.datasetSpecification.groupings)$
+($dsv.datasetSpecification.filters:analysisFilters();separator=","$
+$if( dsv.datasetSpecification.filters && dsv.datasetSpecification.groupings)$,$endif$
+$dsv.datasetSpecification.groupings:analysisGroupings();separator=","$)
+$endif$
+%>
+
+analysisFilters(f)::=<<$f.variableValuations:analysisFilterValuations();separator=","$>>
+analysisFilterValuations(v)::="$v.level.value$"
+analysisGroupings(g)::=<<$g.variable;separator=";"$>>
+
+PValue(pv)::=<%
+$pv.nHST$$analysisConditions(pv)$: Pvalue:$pv.value$
+$if(pv.description)$
+, description:'$pv.description$'
+$endif$
+$if(pv.freedomDegrees)$
+, freedom_degrees:$pv.freedomDegrees;separator=";"$
+$endif$
+$if(pv.significanceThreshold)$
+, sthreshold:$pv.significanceThreshold$
+$endif$
+%>
+
+context(a)::=<<>>

@@ -1,0 +1,26 @@
+/**
+ Example using the range operation
+**/
+
+EXPERIMENT:myExperiment version:1.0
+
+Variables:
+Factors:    // Please, change the values, domain and add the factors of your experiemnt
+    var1 enum 10,30,60,81,65,10,30,60,81,65
+    var2 enum 19,20,30,84,56,19,20,30,84,56
+Outcome:
+   outcome in R  // You should change the name of the outcomen variable to
+
+Hypothesis: Differential    // By default we assume a differential hypothesis, meaning
+                            // that the value of var1 has a significant effect on the
+                            // value of outome, i.e. it makes a difference.
+
+Design:
+ Sampling: Random   
+ Groups: by var1 sizing 30
+ Protocol: Random
+ Analyses:                  // By default we provide two set of analyses:
+    DescriptiveStatitics:   //   descriptive statistics about the results:
+        Range(var1)
+        Range(var1,var2)
+        Range(of var1 where var1 by var2)

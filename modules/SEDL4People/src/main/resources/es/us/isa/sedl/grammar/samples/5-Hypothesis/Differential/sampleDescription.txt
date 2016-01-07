@@ -1,0 +1,2 @@
+A differential hypothesis states that the values of a set I of variables (named independent variables) have an effect on the value of a set 
+D of variables (named dependent variables). Obviously D and I are disjoint.

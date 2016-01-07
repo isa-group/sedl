@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:SEDL.es.us.isa.sedl.core.context="http://isa.us.es/sedl/core/context" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.context" ecore:package="SEDL.es.us.isa.sedl.core.context" targetNamespace="http://isa.us.es/sedl/core/context">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
+  <xsd:element ecore:ignore="true" name="Person" type="SEDL.es.us.isa.sedl.core.context:Person"/>
+  <xsd:element ecore:ignore="true" name="Stakeholder" type="SEDL.es.us.isa.sedl.core.context:Stakeholder"/>
+  <xsd:element ecore:ignore="true" name="Organization" type="SEDL.es.us.isa.sedl.core.context:Organization"/>
+  <xsd:element ecore:ignore="true" name="Project" type="SEDL.es.us.isa.sedl.core.context:Project"/>
+  <xsd:element ecore:ignore="true" name="People" type="SEDL.es.us.isa.sedl.core.context:People"/>
+  <xsd:element ecore:ignore="true" name="Context" type="SEDL.es.us.isa.sedl.core.context:Context"/>
+  <xsd:complexType name="Person">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.context:Stakeholder">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.context:Organization" name="organization" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Stakeholder">
+    <xsd:annotation>
+      <xsd:documentation>Stakeholders are people or organizations involved in the experiment. They have a name, a nationality a role ()in the context of the experiment, or the project), an email, a physical address, etc.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="phone" nillable="true" type="types:String"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="types:String" use="required"/>
+        <xsd:attribute name="address" type="types:String" use="required"/>
+        <xsd:attribute name="email" type="types:String" use="required"/>
+        <xsd:attribute name="role" type="types:String" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Organization">
+    <xsd:annotation>
+      <xsd:documentation>Organizations are a specific type of stakeholder that can contain a set or members (persons) and other organizations.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.context:Stakeholder"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Project">
+    <xsd:annotation>
+      <xsd:documentation>Projects have a name, a code, an optional type (that could be used to define the EU FP project type or other taxonomy of projects), 
+					and an optional program (e.g the 7th FP), and an optional website (URL). 
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+        <xsd:attribute name="name" type="types:String" use="required"/>
+        <xsd:attribute name="code" type="types:String" use="required"/>
+        <xsd:attribute name="program" type="types:String" use="required"/>
+        <xsd:attribute name="type" type="types:String" use="required"/>
+        <xsd:attribute name="website" type="types:String" use="required"/>
+        <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.context:Stakeholder" name="participant" use="required">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="People">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="person" type="SEDL.es.us.isa.sedl.core.context:Person"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Context">
+    <xsd:annotation>
+      <xsd:documentation>The experimental context allows to describe the people, organizations, and projects involved in the experiment an their roles.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="projects" type="SEDL.es.us.isa.sedl.core.context:Project"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="organization" type="SEDL.es.us.isa.sedl.core.context:Organization"/>
+          <xsd:element ecore:resolveProxies="true" name="people" type="SEDL.es.us.isa.sedl.core.context:People"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

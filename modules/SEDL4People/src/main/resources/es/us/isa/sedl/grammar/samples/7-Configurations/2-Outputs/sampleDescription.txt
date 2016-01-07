@@ -1,0 +1,5 @@
+Experimental Outputs are a description of the expected output of the experiment. It contains a set of output data sources.
+
+ The ouputDatasource type is an element that denotes individual output item for the experiment.
+ It has been declared abstract to emphasize that it is an extension point, that must be used to define concrete types of 
+ output datasources. SEDL 1.0 provides a single types of specific  output datasource: the  outputFiles element. 

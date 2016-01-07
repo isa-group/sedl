@@ -1,0 +1,1 @@
+The values of a non-controllable factor are not changed during the study. 

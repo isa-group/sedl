@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SEDL:BasicExperiment id="idvalue0" metaid="" name=""
+	version="" xmlns:SEDL="http://moses.us.es/schemas/sedl/v1/"
+	xmlns:SEDL.Analysis="http://moses.us.es/schemas/sedl/v1/analysis"
+	xmlns:SEDL.Configuration="http://moses.us.es/schemas/sedl/v1/configuration"
+	xmlns:SEDL.Context="http://moses.us.es/schemas/sedl/v1/context"
+	xmlns:dsgn="http://moses.us.es/schemas/sedl/v1/design"
+	xmlns:SEDL.Execution="http://moses.us.es/schemas/sedl/v1/execution/"
+	xmlns:hyp="http://moses.us.es/schemas/sedl/v1/hypothesis"
+	xmlns:types="http://www.eclipse.org/uml2/4.0.0/Types" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://moses.us.es/schemas/sedl/v1/ ../schemas/SEDL.xsd ">		
+	<context id="idvalue1">
+		<people>
+			<person id="japarejo" address="" name="Jose Antonio Parejo Maestre" email="japarejo@gmail.com" role="Researcher"/>
+		</people>
+	</context>
+	<design >
+		<experimentalDesign xsi:type="dsgn:FullySpecifiedExperimentalDesign">
+			<experimentalAnalysisSpecifications/>
+			<assignmentMethod random="true" description=""/>
+		</experimentalDesign>				
+		<variables>
+			<variable name="petete" type="Scalar" xsi:type="dsgn:DependentVariable">
+				<domain xsi:type="dsgn:IntensionDomain">					
+				</domain>
+			</variable>
+			<variable name="Technique" type="Nominal" xsi:type="dsgn:ActiveIndependentVariable">
+				<domain xsi:type="dsgn:ExtensionDomain">
+					<level value="GRASP+PR(G6)"/>
+					<level value="GRASP+PR(G1)"/>
+					<level value="GRASP"/>
+					<level value="GA"/>
+					<level value="TS+SA"/>
+				</domain>
+			</variable>
+		</variables>	
+		<population individualDescription="" objectivePopulation="" accesiblePopulation=""/>	
+		<samplingMethod description="" random="true" />			
+	</design>
+	<hypothesis xsi:type="hyp:DifferentialHypothesis" dependentVariable="petete" independentVariables="Technique" id="idvalue2">
+	</hypothesis>
+</SEDL:BasicExperiment>

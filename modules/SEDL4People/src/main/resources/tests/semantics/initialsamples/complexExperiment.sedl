@@ -1,0 +1,57 @@
+/** 
+   #========================================#
+   #    Complex experiment comparing        #
+   #      two algorithms for FM generation  #
+   #========================================#   
+**/
+EXPERIMENT: ETHOM-E1a version: 1.0 rep: http://moses.us.es/E3
+	Object: 'Run of ETHOM for the parameters specified'
+	Population: 'Any run of ETHOM with a valid tuning for the parameters specified'
+Constants:
+	Solver : 'CSP-JaCoB' //Solver used to evaluate the analysis operation
+	Termination_criterion : 'MaxMObjFuncEvaluations(5000)' // Terminatio criterion of the algorithm
+	RandomNumberGenerator: {desc:'Standard Java RND', class:'java.util.Random'} //we can have complex constants
+Variables :
+	Factors: 
+	// This factor represents the specific algoritm used to generate the feature models (FMs)
+	FMGenerator enum 
+	            // Our Evolutionary Algorithm (we use the object notation of levels to specify all
+	            // the required parameters in order to automate replication)
+	            ETHOM(command: 'ETHOM', selection: 'Roulette-wheel',
+							crossover: 'One-point', infeasibilityTreatment: 'Repairing',
+							crossoverProb: 0.9, mutationProb: 0.0075, populationSize: 200 ),
+                // A random algorithm
+				RandomGen(command: 'RandomFMGenerator' )
+	Outcome: ObjectiveFunction in Z  // Best value of the obj. func. found
+Hypothesis : Differential
+Design :
+	Sampling : Random
+	Detailed_Design: Custom Assignment : Random  
+	Groups: by FMGenerator sizing 25
+	Protocol : Random
+	Analyses: // Use T-Tests or Wilcoxon ( a. k. a. Mann-Withney)
+		DescriptiveStatistics:
+		    Avg()
+		    Median()
+		    StdDev()
+        NormalityTests:
+            Shapiro-Wilk(,0.05)
+		Parametric-NHST:
+			TTest ( where FMGenerator by NFeatures,CTC , 0.05 )
+		Non-Parametric :
+			Wilcoxon ( where FMGenerator by NFeatures,CTC , 0.05 )
+Configuration:
+ C1 :
+	Outputs : File 'Results-ETHOM-1a.csv' 
+	// We can specify requirements for automated replication :
+	Setting: Runtimes: Java 1.6 
+			Libraries: FAMA 1.1.2, Betty 1.1.1, ETHOM 1.0
+	// We can specify commands that automate preprocessing, treatments, or postprocessing:
+	Procedure :
+			Command as Treatment ( FMGenerator, NFeatures , CTC ):
+				'java -jar ${FMGenerator.command} Results-ETHOM_1a.csv ${NFeatures} ${CTC} \
+				  ${Termination_criterion} ${Solver} ${FMGenerator.selection} \
+				  ${FMGenerator.crossover} ${FMGenerator.infeasibilityTreatment} \
+				  ${FMGenerator.CrossoverProb} ${FMGenerator.MutationProb} \
+				  ${FMGenerator.PopulationSize}' // If a property is not defined its value is 
+				                                // the empty string, thus the command will be executed!

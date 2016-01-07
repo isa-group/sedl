@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotationsmodel:AnnotatedModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:annotationsmodel="http://www.eclipse.org/emf/texo/annotations/model" xmlns:ormannotations="http://www.eclipse.org/emf/texo/orm/ormannotations">
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#/"/>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//SEDLBase"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation">
+        <mappedSuperclass/>
+      </eClassAnnotations>
+    </annotatedEClassifiers>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//SEDLEntity"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation">
+        <mappedSuperclass/>
+      </eClassAnnotations>
+      <annotatedEStructuralFeatures xsi:type="annotationsmodel:AnnotatedEAttribute">
+        <eAttribute href="SEDL.ecore#//SEDLEntity/Id"/>
+        <eAttributeAnnotations xsi:type="ormannotations:EAttributeORMAnnotation">
+          <id/>
+        </eAttributeAnnotations>
+      </annotatedEStructuralFeatures>
+    </annotatedEClassifiers>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Context"/>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Context/Context"/>
+      <annotatedEStructuralFeatures xsi:type="annotationsmodel:AnnotatedEReference">
+        <eReference href="SEDL.ecore#//Context/Context/people"/>
+        <eReferenceAnnotations xsi:type="ormannotations:EReferenceORMAnnotation"/>
+      </annotatedEStructuralFeatures>
+    </annotatedEClassifiers>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Context/Person"/>
+      <annotatedEStructuralFeatures xsi:type="annotationsmodel:AnnotatedEReference">
+        <eReference href="SEDL.ecore#//Context/Person/organization"/>
+        <eReferenceAnnotations xsi:type="ormannotations:EReferenceORMAnnotation">
+          <manyToOne/>
+        </eReferenceAnnotations>
+      </annotatedEStructuralFeatures>
+    </annotatedEClassifiers>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Context/Stakeholder"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation">
+        <mappedSuperclass/>
+      </eClassAnnotations>
+    </annotatedEClassifiers>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Analysis"/>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Execution"/>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Design"/>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Configuration"/>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Hypothesis"/>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Hypothesis/Hypothesis"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation">
+        <mappedSuperclass/>
+      </eClassAnnotations>
+    </annotatedEClassifiers>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Hypothesis/RelationalHypothesis"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation">
+        <mappedSuperclass/>
+      </eClassAnnotations>
+    </annotatedEClassifiers>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Hypothesis/DescriptiveHypothesis"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation"/>
+      <annotatedEStructuralFeatures xsi:type="annotationsmodel:AnnotatedEReference">
+        <eReference href="SEDL.ecore#//Hypothesis/DescriptiveHypothesis/assertion"/>
+        <eReferenceAnnotations xsi:type="ormannotations:EReferenceORMAnnotation">
+          <embedded/>
+        </eReferenceAnnotations>
+      </annotatedEStructuralFeatures>
+    </annotatedEClassifiers>
+    <annotatedEClassifiers xsi:type="annotationsmodel:AnnotatedEClass">
+      <eClass href="SEDL.ecore#//Hypothesis/Assertion"/>
+      <eClassAnnotations xsi:type="ormannotations:EClassORMAnnotation">
+        <embeddable/>
+      </eClassAnnotations>
+    </annotatedEClassifiers>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Analysis/Statistic"/>
+  </annotatedEPackages>
+  <annotatedEPackages>
+    <ePackage href="SEDL.ecore#//Analysis/DatasetSpecification"/>
+  </annotatedEPackages>
+</annotationsmodel:AnnotatedModel>

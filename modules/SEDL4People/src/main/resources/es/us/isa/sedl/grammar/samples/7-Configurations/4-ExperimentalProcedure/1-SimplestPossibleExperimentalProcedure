@@ -1,0 +1,8 @@
+/** 
+An extremely simple procedure with a single treatment that executes the command 
+corresponding to each algorithm. 
+(algorithm is a factor of the experiment, and its definition contains a property 
+named command, that is usedto execute it.)
+**/
+Procedure: 
+    Command as Treatment(algorithm): "$algorithm.command" // This treatment for the algorithm factor executes its corresponding command

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bindings xmlns="http://java.sun.com/xml/ns/jaxb"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"            
+            xsd:schemaLocation="http://java.sun.com/xml/ns/jaxb 
+                                http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+            xmlns:inheritance="http://jaxb2-commons.dev.java.net/basic/inheritance"
+            version="2.0">        
+    <globalBindings>        
+        <javaType name="java.util.Date" xmlType="xsd:dateTime"
+            parseMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.unmarshal"
+            printMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.marshalDateTime" />
+        <javaType name="java.util.Date" xmlType="xsd:date"
+            parseMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.unmarshal"
+            printMethod="es.us.isa.sedl.core.util.xml.XsdDateTimeConverter.marshalDate"     />
+        <!--<serializable uid="-4323643255422100" />
+        <superClass name="es.us.isa.moses.sedl.core.domain.DomainEntity" />       -->
+    </globalBindings>
+    <!--
+    <bindings node="xsd:complexType[@name='SEDLEntity']">
+            <inheritance:extends>es.us.isa.moses.sedlcore.DomainEntity</inheritance:extends>
+    </bindings>    -->
+    <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.design.xsd">
+        <bindings node="/xsd:schema/xsd:complexType[@name='Variables']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractVariables</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='Domain']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractDomain</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='Design']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractDesign</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='Variable']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractVariable</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='VariableValuation']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractVariableValuation</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='Level']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractLevel</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='ExtensionDomain']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractExtensionDomain</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='IntensionDomain']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractIntensionDomain</inheritance:extends>        
+        </bindings>         
+        <bindings node="/xsd:schema/xsd:complexType[@name='Constraint']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractConstraint</inheritance:extends>        
+        </bindings>         
+        <bindings node="/xsd:schema/xsd:complexType[@name='FundamentalSetConstraint']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractFundamentalSetConstraint</inheritance:extends>        
+        </bindings>         
+        <bindings node="/xsd:schema/xsd:complexType[@name='IntervalConstraint']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractIntervalConstraint</inheritance:extends>        
+        </bindings>         
+        <bindings node="/xsd:schema/xsd:complexType[@name='Group']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractGroup</inheritance:extends>        
+        </bindings>         
+    </bindings>
+    <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd">
+        <bindings node="/xsd:schema/xsd:complexType[@name='DatasetSpecification']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.datasetspecification.AbstractDatasetSpecification</inheritance:extends>        
+        </bindings>
+        <bindings node="/xsd:schema/xsd:complexType[@name='Filter']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.datasetspecification.AbstractFilter</inheritance:extends>        
+        </bindings>
+        <bindings node="/xsd:schema/xsd:complexType[@name='ValuationFilter']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.datasetspecification.AbstractValuationFilter</inheritance:extends>        
+        </bindings>
+        <bindings node="/xsd:schema/xsd:complexType[@name='GroupFilter']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.datasetspecification.AbstractGroupFilter</inheritance:extends>        
+        </bindings>
+        <bindings node="/xsd:schema/xsd:complexType[@name='Projection']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.datasetspecification.AbstractProjection</inheritance:extends>        
+        </bindings>
+        <bindings node="/xsd:schema/xsd:complexType[@name='GroupingProjection']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.datasetspecification.AbstractGroupingProjection</inheritance:extends>        
+        </bindings>
+    </bindings>
+    <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.analysis.statistic.xsd">
+        <bindings node="/xsd:schema/xsd:complexType[@name='StatisticalAnalysisSpec']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.AbstractStatisticalAnalysisSpec</inheritance:extends>        
+        </bindings> 
+        <bindings node="/xsd:schema/xsd:complexType[@name='ConfidenceInterval']">        
+            <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.AbstractConfidenceInterval</inheritance:extends>        
+        </bindings> 
+    </bindings>
+    <!--<bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.execution.xsd">
+        <bindings node="/xsd:schema/xsd:complexType[@name='Execution']">            
+            <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.AbstractExecution</inheritance:extends>        
+        </bindings>
+    </bindings>-->
+    <jaxb:bindings
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:annox="http://annox.dev.java.net"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/jaxb http://java.sun.com/xml/ns/jaxb/bindingschema_2_0.xsd"
+        jaxb:extensionBindingPrefixes="xjc annox"
+        version="2.1">    
+
+        <jaxb:bindings schemaLocation="../../../../../SEDL-MetaModel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.xsd" node="/xs:schema">
+            <jaxb:bindings node="xs:complexType[@name='BasicExperiment']">
+                <annox:annotateClass>@javax.xml.bind.annotation.XmlRootElement(name="BasicExperiment")</annox:annotateClass>
+            </jaxb:bindings>
+            <jaxb:bindings node="xs:complexType[@name='Experiment']">
+                <annox:annotateClass>@javax.xml.bind.annotation.XmlTransient</annox:annotateClass>
+            </jaxb:bindings>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+</bindings>

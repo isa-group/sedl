@@ -1,0 +1,8 @@
+An experimental tasks is a simple step of a sequential experimental procedure. 
+Experimental tasks are an  extension point of SEDL. In this sense, if no
+control flow or decision making structures are needed during the conduction of the experiments, 
+an execution scheme can be use to describe the experimental procedure, and user defined tasks can 
+be used to provide the information needed for a accurate and replicable experimental conduction description.
+
+A command is a experimental task that specifies a command to be executed in a OS shell. 
+A command has a name, a set of arguments, and an optional path where it will be executed.

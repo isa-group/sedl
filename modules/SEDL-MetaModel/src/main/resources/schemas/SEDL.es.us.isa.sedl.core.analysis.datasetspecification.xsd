@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.analysis.datasetspecification="http://isa.us.es/sedl/core/analysis/datasetspecification" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.analysis.datasetspecification" ecore:package="SEDL.es.us.isa.sedl.core.analysis.datasetspecification" targetNamespace="http://isa.us.es/sedl/core/analysis/datasetspecification">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
+  <xsd:element ecore:ignore="true" name="Filter" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Filter"/>
+  <xsd:element ecore:ignore="true" name="Projection" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Projection"/>
+  <xsd:element ecore:ignore="true" name="GroupFilter" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:GroupFilter"/>
+  <xsd:element ecore:ignore="true" name="ValuationFilter" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:ValuationFilter"/>
+  <xsd:element ecore:ignore="true" name="GroupingProjection" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:GroupingProjection"/>
+  <xsd:element ecore:ignore="true" name="DatasetSpecification" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
+  <xsd:complexType abstract="true" name="Filter"/>
+  <xsd:complexType name="Projection">
+    <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.design:Variable" name="projectedVariables" use="required">
+      <xsd:simpleType>
+        <xsd:list itemType="xsd:anyURI"/>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="GroupFilter">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Filter">
+        <xsd:attribute name="group" type="types:String" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ValuationFilter">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Filter">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="variableValuations" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="GroupingProjection">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Projection"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DatasetSpecification">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="projections" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Projection"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="filters" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:Filter"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

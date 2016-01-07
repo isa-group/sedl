@@ -1,0 +1,20 @@
+The protocol establishes the order in which the individual objects receives the treatments. 
+The experimental protocols supported in SEDL are random and custom. 
+Custom protocols can be defined using the extension points of the language.
+
+An experimental protocol describes  the sequences of treatments  and measurements
+to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
+either measurements or treatments.
+A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
+It is assumed that the step is performed on all the groups of the experiment.
+
+We support two different ways of specifying the experimental design: using a predefined experiment design (among a set of classical examples such as 
+Factorials, Latin Squares, Hyper-latin cubes, etc.), or defining a custom design.
+
+The assignment method describes how the individuals in the population of the experiment are associated to the groups. The use of a random assignment 
+ method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
+ demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
+ chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
+ uncontrolled variables, at baseline (provided that the study has adequate sample size).
+ In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
+ for assignment (as a string in natural language).

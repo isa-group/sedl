@@ -1,0 +1,38 @@
+/** #========================================#
+   #    Simple Experiment about a new        #
+   #      antipyretical drug                #
+   #========================================#   
+**/
+
+EXPERIMENT: AntipyreticalDrug version: 1.0 rep: http://moses.us.es/E3
+	Subjects:                                    // Experimental subjects, people promotes and conducts the experiment 
+        Jose_Antonio_Parejo (japarejo@us.es) from Univeristy_of_Sevilla as Responsible 	                                                      
+        Sergio_Segura_Rueda (ssegura@us.es) from Univeristy_of_Sevilla as Collaborator
+	Object: 'Feverish humans'                     // Definition of the experimental objects
+	Population:'Feverish humans from hospital X' // Accesible population
+Constants:
+	BodyTemperature : 36.5
+Variables :
+	Factors :
+		dose enum 200, 100, 0                          // expressed in mg
+		weight enum "40-60","60-80","80-100","100-120" // expressed in kg
+                sex enum "M", "F"
+	Outcome :
+		temperature  in R   // Measured in Centigrade degrees with a 
+		                    // High precission termometer
+Hypothesis: Differential
+Design :
+	Sampling : Random
+	Blocking: weight, sex 
+	Groups : by dose sizing 30
+	Protocol : Random
+	Analyses:
+		A1 :
+			ANOVA(of temperature by dose, 0.05)
+		A2 :
+			KruskalWalls(of temperature by dose, 0.05)
+Configuration:
+C0:
+	Outputs: File 'results.txt' 
+	Procedure : 
+		Command as Treatment ( dose ): ''// This experiment is not automated 

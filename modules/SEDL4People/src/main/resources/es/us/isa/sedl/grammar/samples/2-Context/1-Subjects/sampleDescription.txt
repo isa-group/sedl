@@ -1,0 +1,5 @@
+Experimental subjects (a.k.a. experimenters) are the people who apply the methods,
+techniques or treatments to the experimental objects. 
+
+Possible roles are Responsible and Collaborator.
+

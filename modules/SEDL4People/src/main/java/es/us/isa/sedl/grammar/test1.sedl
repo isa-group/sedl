@@ -1,0 +1,35 @@
+EXPERIMENT: Test-1 version 1.0 rep: http://moses.us.es/E3
+	Notes: 
+		'note 1'
+		'note 2'
+	Annotations:
+		'Annotation 1'
+		'Annotation 2'
+	Object: 'Run of ETHOM for the parameters specified'
+	Population: 'Any run of ETHOM with a valid tuning for the parameters specified'
+Constants:
+	Solver : 'SPLOT-BDD' //Solver used to evaluate the analysis operation
+	Termination_criterion : 'MaxMObjFuncEvaluations(5000)'
+	RandomNumberGenerator: {desc: 'Standard Java RND', class: 'java.util.Random'}
+Variables :
+	Factors :
+		CrossoverProb enum 0.7, 0.8, 0.9
+		MutationProb enum 0.005, 0.0075, 0.02
+		PopulationSize enum 50 , 100 , 200
+		Executions enum 2000 , 5000
+		UnNumero in Q
+	Outcome: ObjectiveFunction in Z // Best value of the obj. func. found
+Hypothesis: Differential
+Design :
+	Sampling : Random Assignment:Random Blocking:NFeatures, CTC
+	Detailed_Design: Custom Assignment:Random 
+	Groups : G-FB sizing 20, G-Placebo sizing 20
+	Protocol : Random
+	Analyses: // Use ANOVA or Friedman (with their corresponding PostHoc proc.)
+		A1 :
+			FactANOVAwRS( Filter( CrossoverProb, MutationProb, PopulationSize, Exectuions ).Proj(YYY) , 0.05)
+			ANOVA ( Filter( CrossoverProb , MutationProb , PopulationSize , Exectuions ) , 0.05)
+		A2 :
+			Friedman ( Filter( FMGenerator ).Grouping({fNFeatures,CTCg}).Proj(XXX), 0.05 )
+			Holm ( Filter( FMGenerator ).Grouping({fNFeatures,CTCg}), 0.05 )
+

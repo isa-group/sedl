@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment  id="QoSWSC_Experiment" name="QoSWSC_Experiment" version="1" 
+xmlns="http://moses.us.es/schemas/sedl/v1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:moedl="http://moses.us.es/schemas/moedl/v1.0/" 
+xsi:schemaLocation="http://moses.us.es/schemas/sedl/v1.0/ http://moses.us.es/schemas/sedl/v1.0//sedl.xsd 
+			http://moses.us.es/schemas/moedl/v1.0/ http://moses.us.es/schemas/moedl/v1.0/moedl.xsd">
+	<notes>
+		<h:h1> QoS-CWSB Experiment 1</h:h1>
+		This is a experiment on the performance of four different techniques for solving the QoS-aware Composite Web Service Binding (QoSCWSB) problem
+		in scenarios with strong time limitations (such as those found in rebinding scenarios, or when the optimization is performed at runtime).
+	</notes>		
+	<hypothesis>
+		<differential>
+			<variableReference id="optimizationTechnique"></variableReference>
+                        <variableReference id="GlobalQoS"></variableReference>
+		</differential>
+	</hypothesis>
+	<design>
+		<experimentalDesign xsi:type="moedl:methodsComparison" runs="20">
+			<moedl:problemType name="QoS-aware Composite Web Service Binding" shortName="QoSCWSB">
+				<moedl:problemInstances xsi:type="moedl:instancesEnumeration">			
+					<moedl:problemInstance Id="Problem0">
+						<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>72</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>55</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>220</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>0</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem1">
+											<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>89</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>46</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>92</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>2</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem2">
+											<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>51</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>34</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>170</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>4</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem3">
+						<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>25</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>15</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>75</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>2</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem4">
+											<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>82</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>51</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>102</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>1</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem5">
+												<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>47</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>3</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>68</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>0</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem6">
+						<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>79</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>42</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>252</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>1</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem7">
+												<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>12</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>7</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>63</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>3</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem8">
+						<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>54</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>37</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>74</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>4</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem9">
+											<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>24</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>18</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>144</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>4</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+					<moedl:problemInstance Id="Problem10">
+											<moedl:parameters>
+							<moedl:parameter>
+								<name>Activities</name>
+								<value>58</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Tasks</name>
+								<value>41</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Services</name>
+								<value>82</value>
+							</moedl:parameter>
+							<moedl:parameter>
+								<name>Constraints</name>
+								<value>4</value>
+							</moedl:parameter>
+						</moedl:parameters>
+					</moedl:problemInstance>
+				</moedl:problemInstances>
+			</moedl:problemType>
+			<moedl:methods xsi:type="moedl:methodsEnumeration">
+				<moedl:method Id="GA" name="Genetic Algorithm">
+                                </moedl:method>
+				<moedl:method Id="GRASP" name="GRASP (G6/G2)">
+                                </moedl:method>
+				<moedl:method Id="GPR" name="GRASP+PR">
+                                </moedl:method>
+				<moedl:method Id="HTSA" name="Hybrid TS/SA">
+                                </moedl:method>
+                        </moedl:methods>
+		</experimentalDesign>
+		<variables>			
+			<variable role="Dependent" name="GlobalQoS" kind="Scalar">
+				<levels>
+					<min>0</min>
+					<max>Infinity</max>
+				</levels>
+			</variable>
+		</variables>
+		<parameters></parameters>
+	</design>
+	<configurations>
+		<configuration>
+			<experimentalSetting>
+				<experimentalParameters>
+					<parameter xsi:type="moedl:methodConfiguration" techniqueId="GRASPR">
+						<moedl:parameter>
+							<name>alpha</name>
+							<value>0.25</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Greedy Function</name>
+							<value>G6</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Elite Solutions</name>
+							<value>5</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Paths</name>
+							<value>2</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Neighbours Explored per Path</name>
+							<value>50</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Initial GRASP Iters</name>
+							<value>50</value>
+						</moedl:parameter>
+					</parameter>
+					<parameter xsi:type="moedl:methodConfiguration" techniqueId="GRASP">
+						<moedl:parameter>
+							<name>alpha</name>
+							<value>0.25</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Greeedy Function</name>
+							<value>G1</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>LocalSearch</name>
+							<value>Steepeste Descent with 20% of random neighbour exploration</value>
+						</moedl:parameter>
+					</parameter>
+					<parameter xsi:type="moedl:methodConfiguration" techniqueId="GA">
+						<moedl:parameter>
+							<name>PopulationSize</name>
+							<value>1000</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Crossover Probability</name>
+							<value>0.7</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Mutation Probability</name>
+							<value>0.01</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Survival Policy</name>
+							<value>Elistist</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Crossover Selection</name>
+							<value>Roulette Wheel</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Initial Population</name>
+							<value>Randomly Generated</value>
+						</moedl:parameter>
+					</parameter>	
+					<parameter xsi:type="moedl:methodConfiguration" techniqueId="HTSA">
+						<moedl:parameter>
+							<name>Local Improvement</name>
+							<value>2 services exchange</value>
+						</moedl:parameter>						
+						<moedl:parameter>
+							<name>Acceptance Criteria</name>
+							<value>Improves all solutions found in this iteration</value>
+						</moedl:parameter>
+						<moedl:complexParameter id="Tabu Memory">
+						<moedl:parameter>
+							<name>Scheme</name>
+							<value>Recency</value>
+						</moedl:parameter>
+						<moedl:parameter>
+							<name>Size</name>
+							<value>100</value>
+						</moedl:parameter>
+						</moedl:complexParameter>
+					</parameter>				
+				</experimentalParameters>
+				<experimentalEnvironment xsi:type="computationEnvironment">
+                                        <hardwarePlatform></hardwarePlatform>
+					<operatingSystem name="Windows" version=">=95"/>
+					<runtimes>
+						<runtime name="Java VM" version=">=1.5"/>
+					</runtimes>				
+				</experimentalEnvironment>								
+			</experimentalSetting>
+			<experimentalInputs>
+				<input xsi:type="inputFile" filename="input/ProblemInstance0.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance1.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance2.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance3.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance4.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance5.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance6.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance7.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance8.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance9.qwsc"/>
+				<input xsi:type="inputFile" filename="input/ProblemInstance10.qwsc"/>
+			</experimentalInputs>
+			<experimentalOutputs>
+				<output xsi:type="outputFile" filename="results/results-$DATETIME$.txt">
+                                   <format xsi:type="csvFileFormat"></format>
+                                 </output>
+			</experimentalOutputs>
+		</configuration>
+	</configurations>
+	<executions>		
+		<execution start="2011-12-17T09:30:47.0Z" finish="2011-12-19T12:23:32.0Z">			
+			<experimentalResult xsi:type="moedl:optimizationResults">
+				<moedl:execution problemInstanceId="Problem0" techniqueId="GRASP">
+					<moedl:run result="2.734832" start="2011-12-17T09:30:47.0Z"></moedl:run>
+					<moedl:run result="2.736432" start="2011-12-17T09:30:57.0Z"></moedl:run>
+					<moedl:run result="2.737728" start="2011-12-17T09:31:07.0Z"></moedl:run>
+				 </moedl:execution>
+				<moedl:execution problemInstanceId="Problem0" techniqueId="GPR">
+					<moedl:run result="3.214" start="2011-12-17T09:30:47.0Z"></moedl:run>
+					<moedl:run result="3.214" start="2011-12-17T09:30:47.0Z"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem0" techniqueId="HTSA">
+					<moedl:run result="8.2121" start="2011-12-17T09:30:47.0Z"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem0" techniqueId="GA">
+					<moedl:run  result="3.29264"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem1" techniqueId="GRASP">
+					<moedl:run result="15.321"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem1" techniqueId="GPR">
+					<moedl:run  result="29.2374"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem1" techniqueId="HTSA">
+					<moedl:run result="32.712346"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem1" techniqueId="GA">
+					<moedl:run result="12.37462"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem2" techniqueId="GRASP">
+					<moedl:run result="0.234"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem2" techniqueId="GPR">
+					<moedl:run result="0.9732"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem2" techniqueId="HTSA">
+					<moedl:run result="0.6325"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem2" techniqueId="GA">
+					<moedl:run result="0.1264"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem3" techniqueId="GRASP">
+					<moedl:run result="12.932"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem3" techniqueId="GPR">
+					<moedl:run result="16.92735"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem3" techniqueId="HTSA">
+					<moedl:run result="17.3342"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem3" techniqueId="GA">
+					<moedl:run  result="12.234"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem4" techniqueId="GRASP">
+					<moedl:run result="341.432"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem4" techniqueId="GPR">
+					<moedl:run result="63423.21"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem4" techniqueId="HTSA">
+					<moedl:run result="432.4323"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem4" techniqueId="GA">
+					<moedl:run result="32.21"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem5" techniqueId="GRASP">
+					<moedl:run  result="32.92"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem5" techniqueId="GPR">
+					<moedl:run result="31.87"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem5" techniqueId="HTSA">
+					<moedl:run result="30.12"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem5" techniqueId="GA">
+					<moedl:run result="30.0321"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem6" techniqueId="GRASP">
+					<moedl:run result="2.21"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem6" techniqueId="GPR">
+					<moedl:run result="3.943"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem6" techniqueId="HTSA">
+					<moedl:run result="2.638"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem6" techniqueId="GA">
+					<moedl:run result="2.0123"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem7" techniqueId="GRASP">
+					<moedl:run result="1.8342"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem7" techniqueId="GPR">
+					<moedl:run  result="2.38362"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem7" techniqueId="HTSA">
+					<moedl:run result="1.8273"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem7" techniqueId="GA">
+					<moedl:run  result="1.5843"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem8" techniqueId="GRASP">
+					<moedl:run result="12.3823"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem8" techniqueId="GPR">
+					<moedl:run  result="15.4362"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem8" techniqueId="HTSA">
+					<moedl:run result="12.93746"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem8" techniqueId="GA">
+					<moedl:run result="11.23632"></moedl:run>
+				</moedl:execution> 
+				<moedl:execution problemInstanceId="Problem9" techniqueId="GRASP">
+					<moedl:run result="342.283"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem9" techniqueId="GPR">
+					<moedl:run result="297.32"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem9" techniqueId="HTSA">
+					<moedl:run result="289.578"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem9" techniqueId="GA">
+					<moedl:run  result="270.16342"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem10" techniqueId="GRASP">
+					<moedl:run  result="1.32"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem10" techniqueId="GPR">
+					<moedl:run  result="0.212"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem10" techniqueId="HTSA">
+					<moedl:run  result="0.3243"></moedl:run>
+				</moedl:execution>
+				<moedl:execution problemInstanceId="Problem10" techniqueId="GA">
+					<moedl:run  result="0.12342"></moedl:run>
+				</moedl:execution>
+			</experimentalResult>
+		</execution>
+	</executions>
+</experiment>

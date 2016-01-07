@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:SEDL.es.us.isa.sedl.core.hypothesis="http://isa.us.es/sedl/core/hypothesis" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.hypothesis" ecore:package="SEDL.es.us.isa.sedl.core.hypothesis" targetNamespace="http://isa.us.es/sedl/core/hypothesis">
+  <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
+  <xsd:element ecore:ignore="true" name="Hypothesis" type="SEDL.es.us.isa.sedl.core.hypothesis:Hypothesis"/>
+  <xsd:element ecore:ignore="true" name="DescriptiveHypothesis" type="SEDL.es.us.isa.sedl.core.hypothesis:DescriptiveHypothesis"/>
+  <xsd:element ecore:ignore="true" name="RelationalHypothesis" type="SEDL.es.us.isa.sedl.core.hypothesis:RelationalHypothesis"/>
+  <xsd:element ecore:ignore="true" name="AssociationalHypothesis" type="SEDL.es.us.isa.sedl.core.hypothesis:AssociationalHypothesis"/>
+  <xsd:element ecore:ignore="true" name="RelationSpecification" type="SEDL.es.us.isa.sedl.core.hypothesis:RelationSpecification"/>
+  <xsd:element ecore:ignore="true" name="DifferentialHypothesis" type="SEDL.es.us.isa.sedl.core.hypothesis:DifferentialHypothesis"/>
+  <xsd:element ecore:ignore="true" name="LinearRelation" type="SEDL.es.us.isa.sedl.core.hypothesis:LinearRelation"/>
+  <xsd:element ecore:ignore="true" name="MathematicalRelation" type="SEDL.es.us.isa.sedl.core.hypothesis:MathematicalRelation"/>
+  <xsd:element ecore:ignore="true" name="MonotonicRelation" type="SEDL.es.us.isa.sedl.core.hypothesis:MonotonicRelation"/>
+  <xsd:element ecore:ignore="true" name="LogisticRelation" type="SEDL.es.us.isa.sedl.core.hypothesis:LogisticRelation"/>
+  <xsd:element ecore:ignore="true" name="Assertion" type="SEDL.es.us.isa.sedl.core.hypothesis:Assertion"/>
+  <xsd:complexType abstract="true" name="Hypothesis">
+    <xsd:annotation>
+      <xsd:documentation>A scientific hypothesis is a testable assertion. We distinguish three different types of hypotheses: descriptive, associational, and differential. </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Outcome" name="dependentVariable" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DescriptiveHypothesis">
+    <xsd:annotation>
+      <xsd:documentation>A descriptive hypothesis just describes the properties of the concepts it refers to.
+ In our context, a descriptive hypothesis is defined based on an assertion on the population.
+This assertion can be expressed in an informal way as a natural language description of 
+the hypothesis of the experiment, or usen a formal assertion such as an statistical hypothesis..</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:Hypothesis">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="assertion" type="SEDL.es.us.isa.sedl.core.hypothesis:Assertion"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="RelationalHypothesis">
+    <xsd:annotation>
+      <xsd:documentation>A relational hypothesis describes a relation between two variables. It is worth noting that the use of variables instead of concepts allows the 
+				operationalization of the hypothesis (its situation in in the real world by specific rules of interpretation, that ultimately allow 
+				its testing by reference to the observable phenomena).
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:Hypothesis">
+        <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.design:Factor" name="independentVariables" use="required">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AssociationalHypothesis">
+    <xsd:annotation>
+      <xsd:documentation>An associational hypothesis states that the values of a set D of variables depends on the values of a different set of variables I according
+				to a specific relationship (usually expressed as a mathematical expression).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:RelationalHypothesis">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="relation" type="SEDL.es.us.isa.sedl.core.hypothesis:RelationSpecification"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RelationSpecification"/>
+  <xsd:complexType name="DifferentialHypothesis">
+    <xsd:annotation>
+      <xsd:documentation>A differential hypothesis states that the values of a set I of variables (named independent variables) have an effect on the value of a set 
+				D of variables (named dependent variables). Obviously D and I are disjoint.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:RelationalHypothesis"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="LinearRelation">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:MathematicalRelation"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MathematicalRelation">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:RelationSpecification"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="MonotonicRelation">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:MathematicalRelation"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="LogisticRelation">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:MathematicalRelation"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="Assertion"/>
+</xsd:schema>

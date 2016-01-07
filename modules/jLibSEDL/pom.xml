@@ -1,0 +1,98 @@
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.us.isa</groupId>
+        <artifactId>SEDL</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>./../../pom.xml</relativePath>
+    </parent>
+    <groupId>es.us.isa.sedl</groupId>
+    <artifactId>jLibSEDL</artifactId>    
+    <packaging>jar</packaging>
+
+    <name>jLibSEDL</name>
+    <description> A minimal library for SEDL documents management.</description>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <type>jar</type>
+        </dependency>                        
+        <!-- We use org.Reflections to find all classes extending or implementing
+        an given class or interface-->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.8</version>
+        </dependency>       
+        <!-- We depend on the core SEDL package and the specicific syntaxes:
+                JSON and SEDL4People -->
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDL-core</artifactId>
+            <version>${project.version}</version>            
+        </dependency>
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDL4JSON</artifactId>
+            <version>${project.version}</version>            
+        </dependency>
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDL4People</artifactId>
+            <version>${project.version}</version>            
+        </dependency>
+        <dependency>
+            <groupId>es.us.isa.sedl.modules</groupId>
+            <artifactId>SEDLModuleManager</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+    <build>
+       
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <compilerArgument>-XDignore.symbol.file=true</compilerArgument>
+                </configuration>
+            </plugin>     
+            <!-- We analyze classpath and save the metadata in order to enhance bootstrapint 
+                time when using reflections
+            <plugin>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections-maven</artifactId>
+                <version>0.9.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>reflections</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+            </plugin>           -->
+        </plugins> 
+        <!-- We enable filtering of resources to inject version info in a properties file -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>

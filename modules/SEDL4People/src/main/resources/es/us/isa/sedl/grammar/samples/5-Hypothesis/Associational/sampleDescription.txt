@@ -1,0 +1,2 @@
+An associational hypothesis states that the values of a set D of variables depends on the values of a different set of variables I according
+to a specific relationship (usually expressed as a mathematical expression). 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.classification="http://isa.us.es/sedl/core/classification" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.classification" ecore:package="SEDL.es.us.isa.sedl.core.classification" targetNamespace="http://isa.us.es/sedl/core/classification">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalClassification" type="SEDL.es.us.isa.sedl.core.classification:ExperimentalClassification"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalClassificationType" type="SEDL.es.us.isa.sedl.core.classification:ExperimentalClassificationType"/>
+  <xsd:complexType name="ExperimentalClassification">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="terms" nillable="true" type="types:String"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.classification:ExperimentalClassificationType" name="experimentalClassificationType" type="xsd:anyURI" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalClassificationType">
+    <xsd:attribute name="name" type="types:String" use="required"/>
+    <xsd:attribute name="description" type="types:String"/>
+    <xsd:attribute name="url" type="types:String"/>
+  </xsd:complexType>
+</xsd:schema>

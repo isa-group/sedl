@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>es.us.isa</groupId>
+	<artifactId>SEDL</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>SEDL (Scientific Experiments Description Language)</name>
+	<modules>
+		<module>modules/SEDL-MetaModel</module>
+		<module>modules/SEDL-core</module>		
+		<module>modules/jLibSEDL</module>
+		<module>modules/SEDL4People</module>
+                <module>modules/SEDL4JSON</module>
+                <!--<module>modules/SEDLAnalyzer</module>-->
+                <module>modules/SEDLModuleManager</module>
+		
+	</modules>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <spring.version>4.0.6.RELEASE</spring.version>
+	</properties>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>18.0</version>
+            </dependency>
+        </dependencies>
+</project>

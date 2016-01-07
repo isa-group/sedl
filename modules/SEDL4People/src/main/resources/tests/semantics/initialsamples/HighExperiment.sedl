@@ -1,0 +1,25 @@
+/**
+  Classical example of height differences between men and women
+**/
+
+EXPERIMENT: HeightExperiment version:1.0
+
+Variables:
+Factors:
+    sex enum "men","women"
+Outcome:
+   height in R  
+
+Hypothesis: Differential    
+
+Design:
+ Sampling: Random   
+ Groups: by sex sizing 25
+ Protocol: Random
+ Analyses:                  
+    DescriptiveStatitics:   
+        Avg()
+        Avg(sex)
+        StdDev()
+    NHST:                   
+        T-student(by sex ,0.05)

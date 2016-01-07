@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<experiment version="1" xmlns="http://moses.us.es/schemas/sedl/v1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://moses.us.es/schemas/sedl/v1.0/ D:\workspace\projects\MOSES\modules\SEDL\src\schemas\sedl.xsd" xmlns:h="http://www.w3.org/1999/xhtml">
+	<notes>
+		<h:h1>Sample medical experiment</h:h1>
+			This experiment describes a typical experiment.
+	</notes>
+	<design>
+		<experimentalDesign xsi:type="customExperimentDesign">
+			<assignmentMethod random="true"/>
+			<groups>
+				<group name="controlGroup">
+					<size xsi:type="constantSize" constant="10"/>
+				</group>
+				<group name="treatmentGroup">
+					<size xsi:type="constantSize" constant="10"></size>
+				</group>
+			</groups>
+			<experimentalProtocol>
+				<step xsi:type="treatment">
+					<variableValuation variable="treatment" level="active"/>											
+					<target groupId="treatmentGroup"/>											
+				</step>
+				<step xsi:type="measurement">
+					<variableReference id="illness"></variableReference>
+				</step>
+			</experimentalProtocol>
+		</experimentalDesign>
+		<variables>
+			<variable role="Indepent-Active" name="treatment" kind="Nominal">
+				<levels>
+					<level>null</level>
+					<level>active</level>
+				</levels>
+			</variable>
+			<variable role="Independent-Attribute" name="age" kind="Scalar">
+				<levels>
+					<minInclusive>18</minInclusive>
+					<maxInclusive>120</maxInclusive>
+				</levels>
+			</variable>
+			<variable role="Dependent" name="illness" kind="Ordinal">
+				<levels>
+					<level>healty</level>
+					<level>sick</level>
+					<level>critical</level>
+					<level>dead</level>
+				</levels>
+			</variable>
+		</variables>
+		<parameters>			
+		</parameters>
+	</design>
+	<listOfConfigurations>
+		<configuration>
+			<experimentalSetting>
+				<experimentalEnvironment xsi:type="computationEnvironment">
+					<operatingSystem name="" version=""/>
+				</experimentalEnvironment>
+			</experimentalSetting>
+			<experimentalInputs>	
+						<input xsi:type="inputFile" filename="NullGroupIndividualsData.txt"></input>
+						<input xsi:type="inputFile" filename="TreatmentGroupDinividualsdata.txt"></input>
+			</experimentalInputs>			
+			<experimentalOutputs>
+				<output xsi:type="outputFile" filename="results.txt"/>
+			</experimentalOutputs>
+		</configuration>
+	</listOfConfigurations>
+</experiment>

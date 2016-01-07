@@ -1,0 +1,9 @@
+The experimental context allows to describe the people, organizations, and projects involved in the experiment an their roles.
+
+Stakeholders are people or organizations involved in the experiment. They have a name, a nationality a role ()in the context of the experiment, or the project), an email, a physical address, etc.
+
+Organizations are a specific type of stakeholder that can contain a set or members (persons) and other organizations.
+
+Projects have a name, a code, an optional type (that could be used to define the EU FP project type or other taxonomy of projects), 
+and an optional program (e.g the 7th FP), and an optional website (URL). 
+

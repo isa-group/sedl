@@ -1,0 +1,6 @@
+Constants in SEDL are defined by an identifier and a value. 
+To declare a constant variable this must be declared after the reserved keyword 'Constants'
+ followed by a colon, we can declare several constants in this block separating the declaration of each 
+ on a separate line.
+ 
+ Constants are useful for: a) stating that you are controlling the experimental environment and fixing the value of a variable to a constant in the context of this experiment (thus experimenter trying to replicate your results would have the controlled variable into account and maintain its value constant); b) declaring a value that used several times around the experimental description (such as in several automated treatment commands or preprocessing), in a way that makes it easy to change such value globally along all the experiment

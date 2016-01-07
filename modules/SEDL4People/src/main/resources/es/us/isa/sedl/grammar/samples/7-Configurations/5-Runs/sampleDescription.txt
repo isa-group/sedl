@@ -1,0 +1,5 @@
+Configurations may include a set of so-called runs. A run represents a conduction of the experiment 
+using an specific configuration. Note that this is primordial to make experiments self-contained and to 
+enable the comparison of results in subsequent replications. An experimental run is described in terms of 
+the result dataset and the results of the analyses. Accordingly to the described in the previous section, 
+the results can be either of descriptive statistics or results of statistical tests.

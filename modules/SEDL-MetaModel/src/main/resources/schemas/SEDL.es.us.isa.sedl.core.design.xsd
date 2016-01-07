@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.design" ecore:package="SEDL.es.us.isa.sedl.core.design" targetNamespace="http://isa.us.es/sedl/core/design">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <!-- schemaLocation="" -->
+  <xsd:import namespace="http://isa.us.es/sedl/core/configuration" schemaLocation="SEDL.es.us.isa.sedl.core.configuration.xsd"/>
+  <xsd:element ecore:ignore="true" name="Design" type="SEDL.es.us.isa.sedl.core.design:Design"/>
+  <xsd:element ecore:ignore="true" name="Variables" type="SEDL.es.us.isa.sedl.core.design:Variables"/>
+  <xsd:element ecore:ignore="true" name="Population" type="SEDL.es.us.isa.sedl.core.design:Population"/>
+  <xsd:element ecore:ignore="true" name="SamplingMethod" type="SEDL.es.us.isa.sedl.core.design:SamplingMethod"/>
+  <xsd:element ecore:ignore="true" name="VariableValuation" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
+  <xsd:element ecore:ignore="true" name="Level" type="SEDL.es.us.isa.sedl.core.design:Level"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalDesign" type="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign"/>
+  <xsd:element ecore:ignore="true" name="AnalysisSpecification" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification"/>
+  <xsd:element ecore:ignore="true" name="Outcome" type="SEDL.es.us.isa.sedl.core.design:Outcome"/>
+  <xsd:element ecore:ignore="true" name="Factor" type="SEDL.es.us.isa.sedl.core.design:Factor"/>
+  <xsd:element ecore:ignore="true" name="NonControllableFactor" type="SEDL.es.us.isa.sedl.core.design:NonControllableFactor"/>
+  <xsd:element ecore:ignore="true" name="ControllableFactor" type="SEDL.es.us.isa.sedl.core.design:ControllableFactor"/>
+  <xsd:element ecore:ignore="true" name="Domain" type="SEDL.es.us.isa.sedl.core.design:Domain"/>
+  <xsd:element ecore:ignore="true" name="ExtensionDomain" type="SEDL.es.us.isa.sedl.core.design:ExtensionDomain"/>
+  <xsd:element ecore:ignore="true" name="Constraint" type="SEDL.es.us.isa.sedl.core.design:Constraint"/>
+  <xsd:element ecore:ignore="true" name="FullySpecifiedExperimentalDesign" type="SEDL.es.us.isa.sedl.core.design:FullySpecifiedExperimentalDesign"/>
+  <xsd:element ecore:ignore="true" name="AssignmentMethod" type="SEDL.es.us.isa.sedl.core.design:AssignmentMethod"/>
+  <xsd:element ecore:ignore="true" name="Group" type="SEDL.es.us.isa.sedl.core.design:Group"/>
+  <xsd:element ecore:ignore="true" name="Sizing" type="SEDL.es.us.isa.sedl.core.design:Sizing"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalProtocol" type="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocol"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalProtocolStep" type="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep"/>
+  <xsd:element ecore:ignore="true" name="ProtocolConstraint" type="SEDL.es.us.isa.sedl.core.design:ProtocolConstraint"/>
+  <xsd:element ecore:ignore="true" name="PredefinedExperimentalDesign" type="SEDL.es.us.isa.sedl.core.design:PredefinedExperimentalDesign"/>
+  <xsd:element ecore:ignore="true" name="Measurement" type="SEDL.es.us.isa.sedl.core.design:Measurement"/>
+  <xsd:element ecore:ignore="true" name="Treatment" type="SEDL.es.us.isa.sedl.core.design:Treatment"/>
+  <xsd:element ecore:ignore="true" name="Literal" type="SEDL.es.us.isa.sedl.core.design:Literal"/>
+  <xsd:element ecore:ignore="true" name="VariableSizing" type="SEDL.es.us.isa.sedl.core.design:VariableSizing"/>
+  <xsd:element ecore:ignore="true" name="SizingExpression" type="SEDL.es.us.isa.sedl.core.design:SizingExpression"/>
+  <xsd:element ecore:ignore="true" name="Nuisance" type="SEDL.es.us.isa.sedl.core.design:Nuisance"/>
+  <xsd:element ecore:ignore="true" name="Precedence" type="SEDL.es.us.isa.sedl.core.design:Precedence"/>
+  <xsd:element ecore:ignore="true" name="IntervalConstraint" type="SEDL.es.us.isa.sedl.core.design:IntervalConstraint"/>
+  <xsd:element ecore:ignore="true" name="FundamentalSetConstraint" type="SEDL.es.us.isa.sedl.core.design:FundamentalSetConstraint"/>
+  <xsd:element ecore:ignore="true" name="IntensionDomain" type="SEDL.es.us.isa.sedl.core.design:IntensionDomain"/>
+  <xsd:element ecore:ignore="true" name="Variable" type="SEDL.es.us.isa.sedl.core.design:Variable"/>
+  <xsd:complexType name="Design">
+    <xsd:annotation>
+      <xsd:documentation>A design specifies: the set of variables and constants (here called parameters) that are involved in an experiment, the populations of the experiment
+				 a description of the experimental individual, and the experimental design of the experiment. Note that the experimental desing describes the groups
+				that are created based on the population of the experiment and the sequence of treaments and measurements (named experimental protocol) that must be 
+				performed on each individual of each group in order to conduct the experiment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="variables" type="SEDL.es.us.isa.sedl.core.design:Variables"/>
+      <xsd:element ecore:resolveProxies="true" name="population" type="SEDL.es.us.isa.sedl.core.design:Population"/>
+      <xsd:element ecore:resolveProxies="true" name="samplingMethod" type="SEDL.es.us.isa.sedl.core.design:SamplingMethod"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="designParameters" type="SEDL.es.us.isa.sedl.core.configuration:Parameter"/>
+      <xsd:element ecore:resolveProxies="true" name="experimentalDesign" type="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Variables">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="variable" type="SEDL.es.us.isa.sedl.core.design:Variable"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Population">
+    <xsd:annotation>
+      <xsd:documentation>The population of an experiment is a description of the set of individual for which we
+				want to extract conclusions (the target population), an the set of individuals that we
+				 are going to use for sampling (the accesible population). The specific method used for
+				 selecting the actual set experimental individuals used is specified in the description
+				  of the population. Additionally, the population can contain a description of the
+				  experimental individuals (that can be people, algorithm runs, animals, objects or
+				  even computer programs).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="samplingMethod" type="SEDL.es.us.isa.sedl.core.design:SamplingMethod"/>
+    </xsd:sequence>
+    <xsd:attribute name="objectivePopulation" type="xsd:string" use="required"/>
+    <xsd:attribute name="individualDescription" type="xsd:string" use="required"/>
+    <xsd:attribute name="accesiblePopulation" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="SamplingMethod">
+    <xsd:annotation>
+      <xsd:documentation>
+				The sampling method describes how the experimental individuals used in our experiment are
+				chosen from the accesible population of individuals. It contains a boolean attribute, named
+				random that specifies the randomness of determinism of the selection procedure. Additionally,
+				the specific procedure used for sampling can be described using the description element.				    				        </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="description" type="xsd:string" use="required"/>
+    <xsd:attribute ecore:unsettable="false" name="random" type="xsd:boolean" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="VariableValuation">
+    <xsd:annotation>
+      <xsd:appinfo ecore:key="operations" source="http://www.eclipse.org/emf/2002/Ecore">
+        <operation name="Invariant" type="ecore:EBoolean">
+          <parameter name="diagnostics" type="ecore:EDiagnosticChain">
+            <annotation source="http://www.eclipse.org/emf/2002/GenModel">
+              <detail key="documentation">The chain of diagnostics to which problems are to be appended.</detail>
+            </annotation>
+          </parameter>
+          <parameter name="context" type="ecore:EMap{ecore:EJavaObject, ecore:EJavaObject}">
+            <annotation source="http://www.eclipse.org/emf/2002/GenModel">
+              <detail key="documentation">The cache of context-specific information.</detail>
+            </annotation>
+          </parameter>
+        </operation>
+      </xsd:appinfo>
+      <xsd:documentation>Variable valuations assign a specific level to the value of a variable.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="level" type="SEDL.es.us.isa.sedl.core.design:Level"/>
+      <xsd:element ecore:resolveProxies="true" name="variable" type="SEDL.es.us.isa.sedl.core.design:Variable"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Level">
+    <xsd:attribute name="value" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ExperimentalDesign">
+    <xsd:annotation>
+      <xsd:documentation>We support two different ways of specifying the experimental design: using a predefined experiment design (among a set of classical examples such as 
+				Factorials, Latin Squares, Hyper-latin cubes, etc.), or defining a cutom design.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="intendedAnalyses" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="AnalysisSpecification">
+    <xsd:attribute name="id" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Outcome">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Variable"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="Factor">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Variable"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="NonControllableFactor">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Factor"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ControllableFactor">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Factor"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="VariableKind">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Nominal"/>
+      <xsd:enumeration value="Ordinal"/>
+      <xsd:enumeration value="Scalar"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="Domain">
+    <xsd:annotation>
+      <xsd:appinfo ecore:key="operations" source="http://www.eclipse.org/emf/2002/Ecore">
+        <operation lowerBound="1" name="isFinite" ordered="false" type="xsd:boolean"/>
+      </xsd:appinfo>
+    </xsd:annotation>
+  </xsd:complexType>
+  <xsd:complexType name="ExtensionDomain">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Domain">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="levels" type="SEDL.es.us.isa.sedl.core.design:Level"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="Constraint"/>
+  <xsd:complexType name="FullySpecifiedExperimentalDesign">
+    <xsd:annotation>
+      <xsd:documentation>Custom experimental desgins must specify: the assignmet method used for grouping, the set of groups that are involved in the experiment, the 
+				experimental protocol (i.e. the specific sequence of treatments and measurements to be performed on each group of experimental individuals), and
+				the set of analyses to be performed on the results of the experiments.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="assignmentMethod" type="SEDL.es.us.isa.sedl.core.design:AssignmentMethod"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="groups" type="SEDL.es.us.isa.sedl.core.design:Group"/>
+          <xsd:element ecore:resolveProxies="true" name="experimentalProtocol" type="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocol"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.design:NonControllableFactor" name="blockingVariables">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AssignmentMethod">
+    <xsd:annotation>
+      <xsd:documentation>				The assignment method describes how the individuals in the population of the experiment are associated to the groups. The use of a random assignment 
+				method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
+				demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
+				chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
+				uncontrolled variables, at baseline (provided that the study has adequate sample size).
+				In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
+				for assignment (as a string in natural language).
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="description" type="xsd:string" use="required"/>
+    <xsd:attribute ecore:unsettable="false" name="random" type="xsd:boolean" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Group">
+    <xsd:annotation>
+      <xsd:documentation>A group is a set of experimental individuals that receive a sequence of treatments and 
+	whose values for the dependent variables are measured in a specific sequence.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="sizing" type="SEDL.es.us.isa.sedl.core.design:Sizing"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="valuations" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Sizing">
+    <xsd:annotation>
+      <xsd:documentation>A sizing describes the number of experimental individuals in the experiment. It can be a constant
+				size, but can also be an expression on the number of levels or value of some variables of
+				 the experiment.</xsd:documentation>
+    </xsd:annotation>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalProtocol">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="steps" type="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:unsettable="false" name="scheme" type="SEDL.es.us.isa.sedl.core.design:ProtocolScheme" use="required"/>
+    <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.design:ProtocolConstraint" name="constraints" use="required">
+      <xsd:simpleType>
+        <xsd:list itemType="xsd:anyURI"/>
+      </xsd:simpleType>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalProtocolStep">
+    <xsd:annotation>
+      <xsd:documentation>An experimental protocol describes  the sequences of treatments  and measurements
+				to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
+				either measurements or treatments.
+A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
+				It is assumed that the step is performed on all the groups of the experiment.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Group" name="group" type="xsd:anyURI" use="required"/>
+    <xsd:attribute ecore:name="Id" name="Id" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:simpleType name="ProtocolScheme">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Sequential"/>
+      <xsd:enumeration value="Random"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="ProtocolConstraint"/>
+  <xsd:complexType name="PredefinedExperimentalDesign">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Measurement">
+    <xsd:annotation>
+      <xsd:documentation>A measurement implies to obtain the current value of a set of variables on a set of groups.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep">
+        <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.design:Variable" name="variable" use="required">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Treatment">
+    <xsd:annotation>
+      <xsd:documentation>A treatment implies to perform an action that sets the value of an independent variable of
+				the experiment to a specific value. Consequently, the treatment must specify the levels of
+				the independent variables that are set.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="variableValuation" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Literal">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Sizing">
+        <xsd:attribute name="value" type="xsd:integer" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="VariableSizing">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Sizing">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="sizingExpression" type="SEDL.es.us.isa.sedl.core.design:SizingExpression"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SizingExpression"/>
+  <xsd:complexType name="Nuisance">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Variable"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Precedence">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:ProtocolConstraint">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep" name="former" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep" name="later" type="xsd:anyURI" use="required"/>
+        <xsd:attribute name="minDelay" type="xsd:integer" use="required"/>
+        <xsd:attribute name="maxDelay" type="xsd:integer" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="IntervalConstraint">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Constraint">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Level" name="min" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Level" name="max" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FundamentalSetConstraint">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Constraint">
+        <xsd:attribute ecore:unsettable="false" name="fundamentalSet" type="SEDL.es.us.isa.sedl.core.design:FundamentalSet" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="FundamentalSet">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="N"/>
+      <xsd:enumeration value="Z"/>
+      <xsd:enumeration value="R"/>
+      <xsd:enumeration value="I"/>
+      <xsd:enumeration value="B"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="IntensionDomain">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:Domain">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="constraint" type="SEDL.es.us.isa.sedl.core.design:Constraint"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="Variable">
+    <xsd:annotation>
+      <xsd:documentation>In SEDL an experimental variable always has a set of 
+				levels, that are the values that the variable could possibly have in the context
+				of the experiment. The set of levels of an experimental variable can be described by 
+				extension (i.e. by enumeting each possible value), or by intension (i.e. defining a
+				set of constraints tha determine the set of values, e.g. its maximum and minimum value).
+				Moreover, in SEDL an experimental variable has always a name (that must be unique in the
+				 experiment), a kind that can be Nominal (e.g. X,Y,Z), Ordinal (e.g. horrible, bad, fair,
+				  good), and Scalar (e.g. 1.1, 3, 5, 2.7), and a role.
+				 The role of a variable can be: Dependent; Independent-Active; Independent-Attributive; 
+				 and Extraneous.
+				Additionally, experimental variables can have an optional data type (that can be any
+				 simple XML-Schema type such as string, integer, etc.).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="domain" type="SEDL.es.us.isa.sedl.core.design:Domain"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:unsettable="false" name="kind" type="SEDL.es.us.isa.sedl.core.design:VariableKind" use="required"/>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+    <xsd:attribute name="units" type="xsd:string"/>
+  </xsd:complexType>
+</xsd:schema>

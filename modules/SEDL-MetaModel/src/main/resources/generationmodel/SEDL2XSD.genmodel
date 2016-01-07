@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/uml2/2.2.0/GenModel"
+    modelDirectory="SEDL-core/src/main/java/" modelPluginID="SEDL-MetaModel"
+    runtimeJar="true" forceOverwrite="true" modelName="SEDL2XSD" modelPluginClass=""
+    rootExtendsInterface="" rootExtendsClass="es.us.isa.sedl.core.util.BaseSEDLObject"
+    rootImplementsInterface="" suppressEMFMetaData="true" suppressInterfaces="true"
+    featureMapWrapperClass="" codeFormatting="true" commentFormatting="true" booleanFlagsField=""
+    importerID="org.eclipse.emf.importer.ecore" minimalReflectiveMethods="false" suppressContainment="true"
+    suppressNotification="true" complianceLevel="7.0" copyrightFields="false" publicConstructors="true"
+    colorProviders="true" language="" usedGenPackages="platform:/plugin/org.eclipse.uml2.types/model/Types.genmodel#//types"
+    interfaceNamePattern="" classNamePattern="" importOrganizing="true" factoryMethods="true"
+    pluralizedGetters="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/importer/org.eclipse.uml2.uml.ecore.importer">
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="UNION_PROPERTIES" value="REPORT"/>
+    <details key="DUPLICATE_FEATURES" value="DISCARD"/>
+    <details key="SUBSETTING_PROPERTIES" value="REPORT"/>
+    <details key="COMMENTS" value="PROCESS"/>
+    <details key="DUPLICATE_FEATURE_INHERITANCE" value="DISCARD"/>
+    <details key="DUPLICATE_OPERATIONS" value="DISCARD"/>
+    <details key="INVARIANT_CONSTRAINTS" value="PROCESS"/>
+    <details key="REDEFINING_PROPERTIES" value="REPORT"/>
+    <details key="ANNOTATION_DETAILS" value="PROCESS"/>
+    <details key="DUPLICATE_OPERATION_INHERITANCE" value="DISCARD"/>
+    <details key="REDEFINING_OPERATIONS" value="REPORT"/>
+    <details key="DERIVED_FEATURES" value="PROCESS"/>
+    <details key="OPERATION_BODIES" value="IGNORE"/>
+    <details key="CAMEL_CASE_NAMES" value="IGNORE"/>
+    <details key="SUPER_CLASS_ORDER" value="PROCESS"/>
+    <details key="VALIDATION_DELEGATES" value="IGNORE"/>
+    <details key="INVOCATION_DELEGATES" value="IGNORE"/>
+    <details key="UNTYPED_PROPERTIES" value="REPORT"/>
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="PROPERTY_DEFAULT_EXPRESSIONS" value="IGNORE"/>
+    <details key="NON_API_INVARIANTS" value="IGNORE"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="Types.xsd"/>
+      <details key="http://isa.us.es/sedl/core" value="SEDL.es.us.isa.sedl.core.xsd"/>
+      <details key="http://isa.us.es/sedl/core/classification" value="SEDL.es.us.isa.sedl.core.classification.xsd"/>
+      <details key="http://isa.us.es/sedl/core/execution" value="SEDL.es.us.isa.sedl.core.execution.xsd"/>
+      <details key="http://isa.us.es/sedl/core/design" value="SEDL.es.us.isa.sedl.core.design.xsd"/>
+      <details key="http://isa.us.es/sedl/core/configuration" value="SEDL.es.us.isa.sedl.core.configuration.xsd"/>
+      <details key="http://isa.us.es/sedl/core/context" value="SEDL.es.us.isa.sedl.core.context.xsd"/>
+      <details key="http://isa.us.es/sedl/core/hypothesis" value="SEDL.es.us.isa.sedl.core.hypothesis.xsd"/>
+      <details key="http://isa.us.es/sedl/core/configuration/fileformats" value="SEDL.es.us.isa.sedl.core.configuration.FileFormats.xsd"/>
+      <details key="http://isa.us.es/sedl/core/analysis" value="SEDL.es.us.isa.sedl.core.analysis.xsd"/>
+      <details key="http://isa.us.es/sedl/core/analysis/statistic" value="SEDL.es.us.isa.sedl.core.analysis.statistic.xsd"/>
+      <details key="http://isa.us.es/sedl/core/analysis/datasetspecification" value="SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="../schemas/"/>
+  </genAnnotations>
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.uml2.uml.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http://moses.us.es/schemas/sedl/v1/" value="SEDL.uml"/>
+    </genAnnotations>
+    <genAnnotations source="selectedReferencedPackages">
+      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+    <details key="SUBSETS_ANNOTATIONS" value="PROCESS"/>
+    <details key="UNION_ANNOTATIONS" value="PROCESS"/>
+    <details key="BODY_ANNOTATIONS" value="PROCESS"/>
+    <details key="OPPOSITE_ROLE_NAMES" value="IGNORE"/>
+    <details key="XMI_IDENTIFIERS" value="IGNORE"/>
+    <details key="ANNOTATION_DETAILS" value="IGNORE"/>
+    <details key="ECORE_TAGGED_VALUES" value="PROCESS"/>
+    <details key="DOCUMENTATION_ANNOTATIONS" value="PROCESS"/>
+    <details key="REDEFINES_ANNOTATIONS" value="PROCESS"/>
+  </genAnnotations>
+  <foreignModel>SEDL.ecore</foreignModel>
+  <genPackages xsi:type="genmodel:GenPackage" prefix="SEDL" disposableProviderFactory="true"
+      ecorePackage="SEDL.ecore#/">
+    <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+      <genAnnotations source="../schemas/SEDL.xsd">
+        <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+      </genAnnotations>
+    </genAnnotations>
+    <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.uml2.uml.ecore.exporter">
+      <genAnnotations source="SEDL.uml"/>
+    </genAnnotations>
+    <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Es" basePackage="SEDL"
+        disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es">
+      <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Us" basePackage="SEDL.es"
+          disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es/us">
+        <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Isa" basePackage="SEDL.es.us"
+            disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es/us/isa">
+          <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Sedl" basePackage="SEDL.es.us.isa"
+              disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es/us/isa/sedl">
+            <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Core" basePackage="SEDL.es.us.isa.sedl"
+                disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es/us/isa/sedl/core">
+              <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.xsd">
+                  <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                </genAnnotations>
+              </genAnnotations>
+              <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/SEDLEntity">
+                <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/SEDLEntity/id"/>
+              </genClasses>
+              <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/SEDLBase">
+                <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/SEDLBase/notes"/>
+                <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/SEDLBase/annotations"/>
+              </genClasses>
+              <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/BasicExperiment">
+                <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                    createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/BasicExperiment/context"/>
+                <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                    createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/BasicExperiment/hypotheses"/>
+                <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                    createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/BasicExperiment/design"/>
+                <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                    createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/BasicExperiment/configurations"/>
+              </genClasses>
+              <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/Experiment">
+                <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/Experiment/metaid"/>
+                <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/Experiment/name"/>
+                <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/Experiment/version"/>
+                <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                    propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/Experiment/classifications"/>
+              </genClasses>
+              <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/ExtensionPoint"/>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Classification"
+                  basePackage="SEDL.es.us.isa.sedl.core" disposableProviderFactory="true"
+                  ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/classification">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.classification.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassification">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassification/terms"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassification/experimentalClassificationType"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassificationType">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassificationType/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassificationType/description"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/classification/ExperimentalClassificationType/url"/>
+                </genClasses>
+              </nestedGenPackages>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Execution"
+                  basePackage="SEDL.es.us.isa.sedl.core" disposableProviderFactory="true"
+                  ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/execution">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.execution.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false"
+                    ecoreEnum="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnConstants">
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnConstants/ExperimentalSubjectId"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnConstants/Ignore"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnConstants/ExperimentalGroupId"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnConstants/Timestamp"/>
+                </genEnums>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/Execution">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/Execution/start"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/Execution/finish"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/Execution/log"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/Execution/results"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/Execution/analysisResults"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/Execution/experimentalSetting"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/Log">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/Log/lines"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/LogLine">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/LogLine/timestamp"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/LogLine/message"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ExperimentalResult"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ResultsFile">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/ResultsFile/variableMapping"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/ResultsFile/fileFormat"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/ResultsFile/file"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/DataMapping"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/FileFormat">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/FileFormat/encoding"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnBasedDataMapping"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/CSV"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/Excel">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/Excel/version"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/PlainText">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/PlainText/rowSeparator"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/PlainText/columnSeparator"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ByColumnLabel"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ByColumnIndex">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/ByColumnIndex/columnIndexToVariable"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnIndexMapper">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/ColumnIndexMapper/index"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ToVariable">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/execution/ToVariable/variable"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/execution/ToConstant">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/execution/ToConstant/columnConstants"/>
+                </genClasses>
+              </nestedGenPackages>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Analysis"
+                  basePackage="SEDL.es.us.isa.sedl.core" disposableProviderFactory="true"
+                  ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/analysis">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.analysis.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/AnalysisResult">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/AnalysisResult/datasetSpecification"/>
+                </genClasses>
+                <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Statistic"
+                    basePackage="SEDL.es.us.isa.sedl.core.analysis" disposableProviderFactory="true"
+                    ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic">
+                  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                    <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.analysis.statistic.xsd">
+                      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                    </genAnnotations>
+                  </genAnnotations>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Statistic">
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Statistic/datasetSpecification"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/StatisticalAnalysisSpec">
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/StatisticalAnalysisSpec/statistic"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Ranking">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Ranking/rankingCriterion"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Ranking/rankingVariable"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/DescriptiveStatistic"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/RankingResult">
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/RankingResult/ranks"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/StatisticalAnalysisResult"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Rank">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Rank/level"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CentralTendencyMeasure"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/InferentialStatistic">
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/InferentialStatistic/assumptions"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/StatisticalTestAssertion"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/VariabilityMeasure"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/StandardDeviation"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/InterquartileRange"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Range"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Mean"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Median"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/Mode"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/ConfidenceInterval">
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/ConfidenceInterval/confidenceLevel"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CorrelationCoeficient">
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CorrelationCoeficient/name"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/AssociationalAnalysis"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/TestOfHypothesis"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/NHST">
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/NHST/name"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/NHST/statisticalDistribution"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/NHST/alpha"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/PValue">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/PValue/nHST"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/PValue/value"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/PValue/freedomDegrees"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/PValue/significanceThreshold"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/PValue/description"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/DescriptiveStatisticValue">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/DescriptiveStatisticValue/descriptiveStatistic"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/DescriptiveStatisticValue/value"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/ConfidenceIntervalValue">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/ConfidenceIntervalValue/confidenceInterval"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/ConfidenceIntervalValue/min"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/ConfidenceIntervalValue/max"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CorrelationValue">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CorrelationValue/correlationCoeficient"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CorrelationValue/value"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/statistic/CorrelationValue/description"/>
+                  </genClasses>
+                </nestedGenPackages>
+                <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Datasetspecification"
+                    basePackage="SEDL.es.us.isa.sedl.core.analysis" disposableProviderFactory="true"
+                    ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification">
+                  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                    <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd">
+                      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                    </genAnnotations>
+                  </genAnnotations>
+                  <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/Filter"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/Projection">
+                    <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                        propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/Projection/projectedVariables"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/GroupFilter">
+                    <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                        ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/GroupFilter/group"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/ValuationFilter">
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/ValuationFilter/variableValuations"/>
+                  </genClasses>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/GroupingProjection"/>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/DatasetSpecification">
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/DatasetSpecification/projections"/>
+                    <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                        createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/analysis/datasetspecification/DatasetSpecification/filters"/>
+                  </genClasses>
+                </nestedGenPackages>
+              </nestedGenPackages>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Design" basePackage="SEDL.es.us.isa.sedl.core"
+                  disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/design">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.design.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false"
+                    ecoreEnum="SEDL.ecore#//es/us/isa/sedl/core/design/VariableKind">
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/VariableKind/Nominal"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/VariableKind/Ordinal"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/VariableKind/Scalar"/>
+                </genEnums>
+                <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false"
+                    ecoreEnum="SEDL.ecore#//es/us/isa/sedl/core/design/ProtocolScheme">
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/ProtocolScheme/Sequential"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/ProtocolScheme/Random"/>
+                </genEnums>
+                <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false"
+                    ecoreEnum="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSet">
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSet/N"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSet/Z"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSet/R"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSet/I"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSet/B"/>
+                </genEnums>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Design">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Design/variables"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Design/population"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Design/samplingMethod"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Design/designParameters"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Design/experimentalDesign"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Variables">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Variables/variable"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Population">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Population/objectivePopulation"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Population/individualDescription"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Population/accesiblePopulation"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Population/samplingMethod"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/SamplingMethod">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/SamplingMethod/description"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/SamplingMethod/random"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/VariableValuation">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/VariableValuation/level"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/VariableValuation/variable"/>
+                  <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="SEDL.ecore#//es/us/isa/sedl/core/design/VariableValuation/Invariant">
+                    <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="SEDL.ecore#//es/us/isa/sedl/core/design/VariableValuation/Invariant/diagnostics"/>
+                    <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="SEDL.ecore#//es/us/isa/sedl/core/design/VariableValuation/Invariant/context"/>
+                  </genOperations>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Level">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Level/value"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalDesign">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalDesign/intendedAnalyses"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/AnalysisSpecification">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/AnalysisSpecification/id"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Outcome"/>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Factor"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/NonControllableFactor"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/ControllableFactor"/>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Domain">
+                  <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="SEDL.ecore#//es/us/isa/sedl/core/design/Domain/isFinite"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/ExtensionDomain">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/ExtensionDomain/levels"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Constraint"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/FullySpecifiedExperimentalDesign">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/FullySpecifiedExperimentalDesign/assignmentMethod"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/FullySpecifiedExperimentalDesign/blockingVariables"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/FullySpecifiedExperimentalDesign/groups"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/FullySpecifiedExperimentalDesign/experimentalProtocol"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/AssignmentMethod">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/AssignmentMethod/description"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/AssignmentMethod/random"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Group">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Group/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Group/sizing"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Group/valuations"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Sizing"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocol">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocol/steps"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocol/scheme"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocol/constraints"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocolStep">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocolStep/group"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/ExperimentalProtocolStep/Id"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/ProtocolConstraint"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/PredefinedExperimentalDesign"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Measurement">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Measurement/variable"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Treatment">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Treatment/variableValuation"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Literal">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Literal/value"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/VariableSizing">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/VariableSizing/sizingExpression"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/SizingExpression"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Nuisance"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Precedence">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Precedence/former"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Precedence/later"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Precedence/minDelay"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Precedence/maxDelay"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/IntervalConstraint">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/IntervalConstraint/min"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/IntervalConstraint/max"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSetConstraint">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/FundamentalSetConstraint/fundamentalSet"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/IntensionDomain">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/IntensionDomain/constraint"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/design/Variable">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Variable/kind"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/design/Variable/domain"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Variable/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/design/Variable/units"/>
+                </genClasses>
+              </nestedGenPackages>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Configuration"
+                  basePackage="SEDL.es.us.isa.sedl.core" disposableProviderFactory="true"
+                  ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/configuration">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.configuration.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genEnums xsi:type="genmodel:GenEnum" typeSafeEnumCompatible="false"
+                    ecoreEnum="SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSourceRole">
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSourceRole/MainResult"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSourceRole/AdditionalEvidence"/>
+                  <genEnumLiterals xsi:type="genmodel:GenEnumLiteral" ecoreEnumLiteral="SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSourceRole/Miscellaneous"/>
+                </genEnums>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/context"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/experimentalProcedure"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/experimentalSetting"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/experimentalInputs"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/experimentalOutputs"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/parameters"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/Configuration/executions"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalProcedure">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalProcedure/tasks"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalTask">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalTask/experimentalTaskType"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalTaskType"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalSetting">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalSetting/requirements"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalEnvironment"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalInputs">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalInputs/inputDataSources"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/InputDataSource">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/InputDataSource/fileSpecification"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/InputDataSource/features"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/InputDataSource/file"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/FileSpecification">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/FileSpecification/namePattern"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/FileSpecification/pathPattern"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/FileSpecification/fileFormatSpecification"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/FileSpecification/context"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/FileSpecification/description"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/FileFormatSpecification">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="Readonly"
+                      createChild="false" ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/FileFormatSpecification/Type"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/File">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/File/fileformatspecification"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/File/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/File/path"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalOutputs">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ExperimentalOutputs/outputDataSources"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSource">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSource/role"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSource/fileSpecification"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/OutputDataSource/file"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/CommandExperimentalTask">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/CommandExperimentalTask/parameters"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/CommandExperimentalTask/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/CommandExperimentalTask/path"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ComplexParameter">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ComplexParameter/parameters"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ComputationEnvironment">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ComputationEnvironment/hardwarePlatform"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/ComputationEnvironment/softwarePlatform"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/HardwarePlatform">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/HardwarePlatform/description"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/SoftwarePlatform">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/SoftwarePlatform/runtimes"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/SoftwarePlatform/libraries"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/configuration/SoftwarePlatform/operatingSystem"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Runtime"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/ArtifactSpecification">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/ArtifactSpecification/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/ArtifactSpecification/version"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Library"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/OperatingSystem"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/SimpleParameter">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/SimpleParameter/value"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Preprocessing"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Treatment"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Measurement"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Postprocessing"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/TreatmentAndMeasurement"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/Parameter">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/configuration/Parameter/name"/>
+                </genClasses>
+                <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="FileFormats"
+                    basePackage="SEDL.es.us.isa.sedl.core.configuration" disposableProviderFactory="true"
+                    ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/configuration/FileFormats">
+                  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                    <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.configuration.FileFormats.xsd">
+                      <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                    </genAnnotations>
+                  </genAnnotations>
+                  <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/configuration/FileFormats/CSVFileFormat"/>
+                </nestedGenPackages>
+              </nestedGenPackages>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Context" basePackage="SEDL.es.us.isa.sedl.core"
+                  disposableProviderFactory="true" ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/context">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.context.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/context/Person">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/context/Person/organization"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/context/Stakeholder">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Stakeholder/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Stakeholder/address"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Stakeholder/email"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Stakeholder/role"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Stakeholder/phone"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/context/Organization"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/context/Project">
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Project/name"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Project/code"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Project/program"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Project/type"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" createChild="false"
+                      ecoreFeature="ecore:EAttribute SEDL.ecore#//es/us/isa/sedl/core/context/Project/website"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/context/Project/participant"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/context/People">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/context/People/person"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/context/Context">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/context/Context/projects"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/context/Context/organization"/>
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/context/Context/people"/>
+                </genClasses>
+              </nestedGenPackages>
+              <nestedGenPackages xsi:type="genmodel:GenPackage" prefix="Hypothesis"
+                  basePackage="SEDL.es.us.isa.sedl.core" disposableProviderFactory="true"
+                  ecorePackage="SEDL.ecore#//es/us/isa/sedl/core/hypothesis">
+                <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+                  <genAnnotations source="../schemas/SEDL.es.us.isa.sedl.core.hypothesis.xsd">
+                    <details key="http://www.eclipse.org/uml2/5.0.0/Types" value="../schemas/Types.xsd"/>
+                  </genAnnotations>
+                </genAnnotations>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/Hypothesis">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/hypothesis/Hypothesis/dependentVariable"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/DescriptiveHypothesis">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/hypothesis/DescriptiveHypothesis/assertion"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/RelationalHypothesis">
+                  <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
+                      propertySortChoices="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/hypothesis/RelationalHypothesis/independentVariables"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/AssociationalHypothesis">
+                  <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+                      createChild="true" ecoreFeature="ecore:EReference SEDL.ecore#//es/us/isa/sedl/core/hypothesis/AssociationalHypothesis/relation"/>
+                </genClasses>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/RelationSpecification"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/DifferentialHypothesis"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/LinearRelation"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/MathematicalRelation"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/MonotonicRelation"/>
+                <genClasses xsi:type="genmodel:GenClass" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/LogisticRelation"/>
+                <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="SEDL.ecore#//es/us/isa/sedl/core/hypothesis/Assertion"/>
+              </nestedGenPackages>
+            </nestedGenPackages>
+          </nestedGenPackages>
+        </nestedGenPackages>
+      </nestedGenPackages>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

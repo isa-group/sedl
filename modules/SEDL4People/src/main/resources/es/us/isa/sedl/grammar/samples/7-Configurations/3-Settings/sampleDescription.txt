@@ -1,0 +1,2 @@
+This extension point enables the description of the specific equipment required for experimental conduction in particular scientific environments. 
+For instance, this extension point could be used to create a DSL for experimental instruments in Physics, enabling the description of oscilloscopes with a minimum precision, a mass spectrograph, or particle accelerators with a minimum power.

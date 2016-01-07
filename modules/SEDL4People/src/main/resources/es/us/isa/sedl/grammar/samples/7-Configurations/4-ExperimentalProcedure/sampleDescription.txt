@@ -1,0 +1,1 @@
+The purpose of this extension point is to enable an accurate description of the procedure of execution of the experiment in different scientific areas. Currently, two DSLs are provided, one for executing computer based experiments as sequences of commands, and another for executing optimization tasks in MOFs.

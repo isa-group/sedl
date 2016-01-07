@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Experiment xmlns:ns2="http://moses.us.es/schemas/sedl/v1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns2:BasicExperiment" name="SimpleCommandExperiment" version="1.0.0-SNAPSHOT" id="SimpleCommandExperiment">
+    <configurations id="executableConfig">
+        <experimentalProcedure>
+            <tasks xmlns:cfg="http://moses.us.es/schemas/sedl/v1/configuration" xsi:type="cfg:CommandExperimentalTask" name="mkdir" path="">
+                <parameters>DONE</parameters>
+            </tasks>
+        </experimentalProcedure>
+    </configurations>
+</ns2:Experiment>

@@ -1,0 +1,13 @@
+The preamble of a SEDL document identifies the experiment and a set of properties.
+
+Reserved keyword EXPERIMENT followed by colon it is used to identify a SEDL Document, this content go before the identifier of the experiment. 
+Also a version, location URL and type of the experiment can be described in the preamble.
+
+Location URL links experiment description with the location of the full described experiment lab-pack. 
+URL must be follow the next pattern https://exemplar.us.es/<username>/<workspace>.
+
+Type allows SEDL extension modules perform specific additional checkouts for this kind of experiment, 
+improving the methodological support of EXEMPLAR. In other words, if you tell EXEMPLAR that your experiments 
+is of a particular type, the tool would be able to better help you to describe a appropriate analysis and check 
+that the experimental design used makes sense. 
+

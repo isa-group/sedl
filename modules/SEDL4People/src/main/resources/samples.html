@@ -1,0 +1,839 @@
+<div><h1><a role="button" data-toggle="collapse" href="#Preamble415416356" aria-expanded="false" aria-controls="Preamble415416356">Preamble</a></h1>
+<div id='Preamble415416356' class='collapse'><p>The preamble of a SEDL document identifies the experiment and a set of properties.
+
+Reserved keyword EXPERIMENT followed by colon it is used to identify a SEDL Document, this content go before the identifier of the experiment. 
+Also a version, location URL and type of the experiment can be described in the preamble.
+
+Location URL links experiment description with the location of the full described experiment lab-pack. 
+URL must be follow the next pattern https://exemplar.us.es/<username>/<workspace>.
+
+Type allows SEDL extension modules perform specific additional checkouts for this kind of experiment, 
+improving the methodological support of EXEMPLAR. In other words, if you tell EXEMPLAR that your experiments 
+is of a particular type, the tool would be able to better help you to describe a appropriate analysis and check 
+that the experimental design used makes sense.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampPreamble958839586" aria-expanded="false" aria-controls="idSampPreamble958839586">Show samples</a></button>
+<div id='idSampPreamble958839586' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idTheSi1406855105" aria-expanded="false" aria-controls="idTheSi1406855105">The Simplest Experimental Preamble</a></h5>
+<div id='idTheSi1406855105' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: theSimplestPreamble</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idPream1533084439" aria-expanded="false" aria-controls="idPream1533084439">Preamble With Version</a></h5>
+<div id='idPream1533084439' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: simplePreamble ver:1.0</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idPream1933379846" aria-expanded="false" aria-controls="idPream1933379846">Preamble With URL</a></h5>
+<div id='idPream1933379846' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: simplePreamble url: http://exemplar.us.es</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idPream-1809914932" aria-expanded="false" aria-controls="idPream-1809914932">Preamble With Version And URL</a></h5>
+<div id='idPream-1809914932' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: simplePreamble ver: 1.0 url: http://exemplar.us.es</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idPream-985909069" aria-expanded="false" aria-controls="idPream-985909069">Preamble With Experiment Type</a></h5>
+<div id='idPream-985909069' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: typedExperimentPreamble
+type: DM::Classification //It is supposed that the DM module has been imported</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h1><a role="button" data-toggle="collapse" href="#Context-1192502712" aria-expanded="false" aria-controls="Context-1192502712">Context</a></h1>
+<div id='Context-1192502712' class='collapse'><p>The experimental context allows to describe the people, organizations, and projects involved in the experiment an their roles.
+
+Stakeholders are people or organizations involved in the experiment. They have a name, a nationality a role ()in the context of the experiment, or the project), an email, a physical address, etc.
+
+Organizations are a specific type of stakeholder that can contain a set or members (persons) and other organizations.
+
+Projects have a name, a code, an optional type (that could be used to define the EU FP project type or other taxonomy of projects), 
+and an optional program (e.g the 7th FP), and an optional website (URL).</p>
+<div><h3><a role="button" data-toggle="collapse" href="#Subjects-231123826" aria-expanded="false" aria-controls="Subjects-231123826">Subjects</a></h3>
+<div id='Subjects-231123826' class='collapse'><p>Experimental subjects (a.k.a. experimenters) are the people who apply the methods,
+techniques or treatments to the experimental objects. 
+
+Possible roles are Responsible and Collaborator.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampSubjects-2042502556" aria-expanded="false" aria-controls="idSampSubjects-2042502556">Show samples</a></button>
+<div id='idSampSubjects-2042502556' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl-983223726" aria-expanded="false" aria-controls="idSimpl-983223726">Simple Subject</a></h5>
+<div id='idSimpl-983223726' class='collapse'><p class='description'>Simple subject: In this example Bart Simpson is the experimenter (we don't know if he is the responsible or a collaborator).</p>
+<pre id='editor' class='code'>Subjects:
+Bart Simpson</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSimpl-1200644118" aria-expanded="false" aria-controls="idSimpl-1200644118">Simple Subject With Role</a></h5>
+<div id='idSimpl-1200644118' class='collapse'><p class='description'>Simple subject with Role: Here Bart Simpson is the experimenter responsible of the experiment.</p>
+<pre id='editor' class='code'>Subjects:
+Bart Simpson as Responsible</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSubje1887935704" aria-expanded="false" aria-controls="idSubje1887935704">Subject With From</a></h5>
+<div id='idSubje1887935704' class='collapse'><p class='description'>Subject with From: Here Bart Simpson include his e-mail for contanct and he specifies that he is with an organization named “The Simpsons”, again he is responsible of this experiment.</p>
+<pre id='editor' class='code'>Subjects:
+Bart Simpson (bart@thesimpsons.com) from The Simpsons as Responsible</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idMulti310470856" aria-expanded="false" aria-controls="idMulti310470856">Multiple Subjects</a></h5>
+<div id='idMulti310470856' class='collapse'><p class='description'>Multiple Subjects: Here both Bart and Lisa work in the experiment as experimenters. Bart is the responsible of the experiment and Lisa is a collaborator</p>
+<pre id='editor' class='code'>Subjects:
+Bart Simpson (bart@thesimpsons.com) from The Simpsons as Responsible
+Lisa Simpson (lisa@thesimpsons.com) from The Simpsons as Collaborator</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Object-383737167" aria-expanded="false" aria-controls="Object-383737167">Object</a></h3>
+<div id='Object-383737167' class='collapse'><p>The first element to be defined in any experiment are the experimental objects 
+(a.k.a. experimental units). The experimental objects are the elements of interest 
+that participate in a particular experiment, for instance, humans are the typical objects in psychology experiments; 
+animals, vegetables, and bacterias are the typical objects in biological experiments; algorithm runs are typical objects in etc.”</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampObject-209826940" aria-expanded="false" aria-controls="idSampObject-209826940">Show samples</a></button>
+<div id='idSampObject-209826940' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idObjec1848614775" aria-expanded="false" aria-controls="idObjec1848614775">Objects Declaration</a></h5>
+<div id='idObjec1848614775' class='collapse'><p class='description'>The goal of this experiment is to test the effectiveness of a new antipyretic drug, thus we must experiment with feverish humans.
+This is a typical experimental object with humans, this and other samples are extracted from the book ""</p>
+<pre id='editor' class='code'>Object : ’Individuals with fever’</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idObjec-877146946" aria-expanded="false" aria-controls="idObjec-877146946">Objects Declaration Sample 2</a></h5>
+<div id='idObjec-877146946' class='collapse'><p class='description'>This study evaluated 15-min time limits on 10-item multiple-choice
+quizzes delivered over the Internet. Example extracted from the book
+"Research methods in applied Settings: An Integrated Approach to Design and Analysis"</p>
+<pre id='editor' class='code'>Object : ’Evaluate the effect of putting a time limit on "take home" quizzes.’</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Population1537072946" aria-expanded="false" aria-controls="Population1537072946">Population</a></h3>
+<div id='Population1537072946' class='collapse'><p>The target population of an experiment is defined as the set of experimental objects to which we would like to generalize the conclusions obtained from the experiment, i.e., the subject of the hypothesis of the experiment.</p>
+<div><h5><a role="button" data-toggle="collapse" href="#AccessiblePopulation1062007391" aria-expanded="false" aria-controls="AccessiblePopulation1062007391">Accessible Population</a></h5>
+<div id='AccessiblePopulation1062007391' class='collapse'><p>Since the target population of an experiment can be huge or even infinite, the researcher usually uses a sample of it in the experiment. The sampling of the target population can be divided in two phases. 
+First the accessible population (a.k.a. sampling frame) is defined. The accessible population is the set of experimental individuals that could participate in the experiment.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampAccessiblePopulation-502027366" aria-expanded="false" aria-controls="idSampAccessiblePopulation-502027366">Show samples</a></button>
+<div id='idSampAccessiblePopulation-502027366' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idPopulPopulationWithAccesiblePopulationDeclaration478938113" aria-expanded="false" aria-controls="idPopulPopulationWithAccesiblePopulationDeclaration478938113">Population With Accesible Population Declaration</a></h5>
+<div id='idPopulPopulationWithAccesiblePopulationDeclaration478938113' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Population : ’Any feverish person’
+Accessible_population : ’Feverish people in the Virgin of Rocio Hospital in Sevilla (Spain)’</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampPopulation-537869114" aria-expanded="false" aria-controls="idSampPopulation-537869114">Show samples</a></button>
+<div id='idSampPopulation-537869114' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl-495220657" aria-expanded="false" aria-controls="idSimpl-495220657">Simple Population Declaration</a></h5>
+<div id='idSimpl-495220657' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Population : ’Any feverish person’</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h1><a role="button" data-toggle="collapse" href="#Constants437757748" aria-expanded="false" aria-controls="Constants437757748">Constants</a></h1>
+<div id='Constants437757748' class='collapse'><p>Constants in SEDL are defined by an identifier and a value. 
+To declare a constant variable this must be declared after the reserved keyword 'Constants'
+ followed by a colon, we can declare several constants in this block separating the declaration of each 
+ on a separate line.
+ 
+ Constants are useful for: a) stating that you are controlling the experimental environment and fixing the value of a variable to a constant in the context of this experiment (thus experimenter trying to replicate your results would have the controlled variable into account and maintain its value constant); b) declaring a value that used several times around the experimental description (such as in several automated treatment commands or preprocessing), in a way that makes it easy to change such value globally along all the experiment</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampConstants1610668600" aria-expanded="false" aria-controls="idSampConstants1610668600">Show samples</a></button>
+<div id='idSampConstants1610668600' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl-848259797" aria-expanded="false" aria-controls="idSimpl-848259797">Simple Constants Declaration</a></h5>
+<div id='idSimpl-848259797' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Constants:
+BodyTemperature : 36.5
+G: 9.8
+PI: 3.14159
+e: 2.728282</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCompl534256491" aria-expanded="false" aria-controls="idCompl534256491">Complex Constants Declaration</a></h5>
+<div id='idCompl534256491' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Constants:
+BodyTemperature : 36.5
+TerminationCriterion : ’MaxTime(10000)’
+Solver : 'CSP-JaCoB' //Solver used to evaluate the analysis operation
+Termination_criterion : 'MaxMObjFuncEvaluations(5000)' // Termination criterion of the algorithm
+RandomNumberGenerator: {desc:'Standard Java RND', class:'java.util.Random'} //we can have complex constants</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h1><a role="button" data-toggle="collapse" href="#Variables-1154332423" aria-expanded="false" aria-controls="Variables-1154332423">Variables</a></h1>
+<div id='Variables-1154332423' class='collapse'><p>A variable is any factor, trait, or condition that can exist in differing amounts or types. An experiment, usually have four kinds of variables: 
+controllable factors, denoted as Factors (a.k.a. controlled independent variables, and Independent-Active variables). Are variables whose value is controlled and systematically varied by the researchers in the context of the experiment.
+non-controllable factors, denoted as NCFactors (a.k.a  uncontrollable independent variables, and independent-attributive variables). Those are variables whose value can change between observations but cannot be changed in the context of the experiment by the researchers. For instance, the sex, age or weight of the humans participating as experimental objects. You cannot change the value of such variables at will, but its value will change among the objects of the experiment.
+extraneous variables, denoted as Extraneous (a.k.a. Nuisances).  Those are variables that either you consider as noising factors that could introduce bias in the experiment results, or are irrelevant for the experiment but you want to track them and record its value for taking it into account in future research.
+outcomes, denoted as Outcomes (a.k.a dependent variables). Are variables that constitute the results of the experiment, on which the hypothesis and goal of the experiment are formulated. For instance, if we perform an experiment to test an antipyretic drug, the outcome variable would be the decrease in  temperature of patient’s body after 2 hours of treatment application.
+In SEDL, variables are defined by an identifier, a type and a domain. the default simple types are integer, real (float), boolean and enumerates (enum) that can be in turn ordered or not.  In SEDL an experimental variable always has domain defined as a set of levels, that are the values that the variable could possibly have in the context of the experiment. The set of levels of an experimental variable can be described by extension (i.e. by enumerating each possible value that the variable can take), or by intension (i.e. defining a set of constraints that determine the set of values, e.g. its maximum and minimum value). Moreover, in SEDL an experimental variable has always a name (that must be unique in the experiment), a kind that can be Nominal (e.g. X,Y,Z), Ordinal (e.g. horrible, bad, fair, good), and Scalar (e.g. 1.1, 3, 5, 2.7), and a role. The role of a variable can be: Factor; NCFactor; Outcome and Extraneous. Additionally, experimental variables can have an unit in which such variable is measured (its specification is optional).</p>
+<div><h3><a role="button" data-toggle="collapse" href="#Factors682496901" aria-expanded="false" aria-controls="Factors682496901">Factors</a></h3>
+<div id='Factors682496901' class='collapse'><p>A controllable factor (a.k.a. active independent variable) is a variable whose value is applied or given to the experimental objects. 
+The values of this kind of variable are usually controlled or manipulated in some way by the experimenter.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampFactors961602304" aria-expanded="false" aria-controls="idSampFactors961602304">Show samples</a></button>
+<div id='idSampFactors961602304' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idContrControllableFactorDeclaration-1442012859" aria-expanded="false" aria-controls="idContrControllableFactorDeclaration-1442012859">Controllable Factor Declaration</a></h5>
+<div id='idContrControllableFactorDeclaration-1442012859' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Factors :
+dose enum 200, 100, 0  MEASURED IN mg</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idMultiMultipleFactorsDeclaration276936138" aria-expanded="false" aria-controls="idMultiMultipleFactorsDeclaration276936138">Multiple Factors Declaration</a></h5>
+<div id='idMultiMultipleFactorsDeclaration276936138' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Factors :
+dose enum 200, 100, 0      MEASURED IN  mg
+weight enum "40-60","60-80","80-100","100-120"  MEASURED IN kg
+sex enum "M", "F"</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#NonControllableFactors-1507186389" aria-expanded="false" aria-controls="NonControllableFactors-1507186389">Non Controllable Factors</a></h3>
+<div id='NonControllableFactors-1507186389' class='collapse'><p>The values of a non-controllable factor are not changed during the study.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampNonControllableFactors689714782" aria-expanded="false" aria-controls="idSampNonControllableFactors689714782">Show samples</a></button>
+<div id='idSampNonControllableFactors689714782' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idNonCoNonControllableFactorDeclaration500459500" aria-expanded="false" aria-controls="idNonCoNonControllableFactorDeclaration500459500">Non Controllable Factor Declaration</a></h5>
+<div id='idNonCoNonControllableFactorDeclaration500459500' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>NCFactors:
+Instance enum ordered P0(File:’P1.qoswsc’), ... , P10(...)
+weight enum "40-60","60-80","80-100","100-120"  MEASURED IN kg
+sex enum "M", "F"
+age enum "0-5","5-12","12-18"  MEASURED IN years</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Outcomes1490239998" aria-expanded="false" aria-controls="Outcomes1490239998">Outcomes</a></h3>
+<div id='Outcomes1490239998' class='collapse'><p>The outcome is the presumed result of the experiment, 
+and its value is used for testing the hypothesis of the experiment. 
+It measures or assesses the effect of factor(s).</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampOutcomes-115532277" aria-expanded="false" aria-controls="idSampOutcomes-115532277">Show samples</a></button>
+<div id='idSampOutcomes-115532277' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idOutcoOutcomeVariable-1712023933" aria-expanded="false" aria-controls="idOutcoOutcomeVariable-1712023933">Outcome Variable</a></h5>
+<div id='idOutcoOutcomeVariable-1712023933' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Outcome :
+temperature  in R  MEASURED IN ºC</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Extraneous531726315" aria-expanded="false" aria-controls="Extraneous531726315">Extraneous</a></h3>
+<div id='Extraneous531726315' class='collapse'><p>If a factor is of no particular interest in an experiment, 
+but could be useful in subsequent replications or its impact on the response is unknown,
+ it is called a extraneous variable (a.k.a. nuisance variable). 
+Extraneous variables must be ruled out or controlled in order to ensure the 
+validity of the experiment.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampExtraneous-1244295044" aria-expanded="false" aria-controls="idSampExtraneous-1244295044">Show samples</a></button>
+<div id='idSampExtraneous-1244295044' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idExtraExtraneousVariable1342705045" aria-expanded="false" aria-controls="idExtraExtraneousVariable1342705045">Extraneous Variable</a></h5>
+<div id='idExtraExtraneousVariable1342705045' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Extraneous :
+age : integer (18 ,60)  MEASURED IN years
+weight : float (40 ,120)  MEASURED IN kg</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampVariables344197739" aria-expanded="false" aria-controls="idSampVariables344197739">Show samples</a></button>
+<div id='idSampVariables344197739' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl0-192001573" aria-expanded="false" aria-controls="idSimpl0-192001573">Simple Variable Declaration</a></h5>
+<div id='idSimpl0-192001573' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Variables :
+Factors :
+dose integer 200 MEASURED IN mg</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idVaria0-1896491087" aria-expanded="false" aria-controls="idVaria0-1896491087">Variable Declaration By Extension</a></h5>
+<div id='idVaria0-1896491087' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Variables :
+Factors :
+dose IN Z  MEASURED IN mg</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idVaria0276229954" aria-expanded="false" aria-controls="idVaria0276229954">Variable Declaration By Extension Complex</a></h5>
+<div id='idVaria0276229954' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Factors:
+// This factor represents the specific algoritm used to generate the feature models (FMs)
+FMGenerator enum
+// Our Evolutionary Algorithm (we use the object notation of levels to specify all
+// the required parameters in order to automate replication)
+ETHOM(command: 'ETHOM', selection: 'Roulette-wheel',
+crossover: 'One-point', infeasibilityTreatment: 'Repairing',
+crossoverProb: 0.9, mutationProb: 0.0075, populationSize: 200 ),
+// A random algorithm
+RandomGen(command: 'RandomFMGenerator' )
+Outcome: ObjectiveFunction in Z  // Best value of the obj. func. found</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idVaria0-724561451" aria-expanded="false" aria-controls="idVaria0-724561451">Variable Declaration By Intension</a></h5>
+<div id='idVaria0-724561451' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Variables :
+Factors :
+dose integer (0-200)  MEASURED IN mg</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCompl01909607923" aria-expanded="false" aria-controls="idCompl01909607923">Complex Variables Declaration</a></h5>
+<div id='idCompl01909607923' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Variables :
+Factors :
+dose enum 200, 100, 0   MEASURED IN mg
+NCFactors :
+weight enum "40-60","60-80","80-100","100-120"  MEASURED IN kg
+sex enum "M", "F"
+Outcome :
+temperature  in R   MEASURED IN ºC</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCompl0-1212600666" aria-expanded="false" aria-controls="idCompl0-1212600666">Complex Variables Declaration With Objects</a></h5>
+<div id='idCompl0-1212600666' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Variables :
+Factors:
+// This factor represents the specific algoritm used to generate the feature models (FMs)
+FMGenerator enum
+// Our Evolutionary Algorithm (we use the object notation of levels to specify all
+// the required parameters in order to automate replication)
+ETHOM(command: 'ETHOM', selection: 'Roulette-wheel',
+crossover: 'One-point', infeasibilityTreatment: 'Repairing',
+crossoverProb: 0.9, mutationProb: 0.0075, populationSize: 200 ),
+// A random algorithm
+RandomGen(command: 'RandomFMGenerator' )</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h1><a role="button" data-toggle="collapse" href="#Hypothesis-456642916" aria-expanded="false" aria-controls="Hypothesis-456642916">Hypothesis</a></h1>
+<div id='Hypothesis-456642916' class='collapse'><p>A scientific hypothesis is a testable assertion. We distinguish three different types of hypotheses: descriptive, associational, and differential. 
+
+The type of hypothesis of a SEDL experiment is specified either with a keyword indicating whether the hypothesis is differential, associational or descriptive, or stating the hypothesis explicitly (see examples).
+If the hypothesis is differential, it is assumed that the goal of the experiment is to confirm or disprove that the values of the controllable factors make a difference in the outcome. 
+Associational hypotheses are intended to confirm or disprove that the relationship between the controllable factor and the outcomes follows a specific mathematical relation. 
+Finally, descriptive hypotheses state that the value of the outcome has certain statistical properties.</p>
+<div><h3><a role="button" data-toggle="collapse" href="#Associational-1822364215" aria-expanded="false" aria-controls="Associational-1822364215">Associational</a></h3>
+<div id='Associational-1822364215' class='collapse'><p>An associational hypothesis states that the values of a set D of variables depends on the values of a different set of variables I according
+to a specific relationship (usually expressed as a mathematical expression).</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampAssociational484037717" aria-expanded="false" aria-controls="idSampAssociational484037717">Show samples</a></button>
+<div id='idSampAssociational484037717' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idExpliExplicitDeclaration-1020076309" aria-expanded="false" aria-controls="idExpliExplicitDeclaration-1020076309">Explicit Declaration</a></h5>
+<div id='idExpliExplicitDeclaration-1020076309' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : height IS CORRELATED WITH sex</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idExpliExplicitDeclarationLinearly1745447867" aria-expanded="false" aria-controls="idExpliExplicitDeclarationLinearly1745447867">Explicit Declaration Linearly</a></h5>
+<div id='idExpliExplicitDeclarationLinearly1745447867' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : height IS LINEARLY CORRELATED WITH sex</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idExpliExplicitDeclarationLogistically1170760380" aria-expanded="false" aria-controls="idExpliExplicitDeclarationLogistically1170760380">Explicit Declaration Logistically</a></h5>
+<div id='idExpliExplicitDeclarationLogistically1170760380' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : x IS LOGISTICALLY CORRELATED WITH a,b</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idImpliImplicitDeclaration248463810" aria-expanded="false" aria-controls="idImpliImplicitDeclaration248463810">Implicit Declaration</a></h5>
+<div id='idImpliImplicitDeclaration248463810' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : ASSOCIATIONAL</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Descriptive131208798" aria-expanded="false" aria-controls="Descriptive131208798">Descriptive</a></h3>
+<div id='Descriptive131208798' class='collapse'><p>A descriptive hypothesis just describes the properties of the concepts it refers to.
+In our context, a descriptive hypothesis is defined based on an assertion on the population.
+This assertion can be expressed in an informal way as a natural language description of the hypothesis 
+of the experiment, or use a formal assertion such as an statistical hypothesis..</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampDescriptive-1632001896" aria-expanded="false" aria-controls="idSampDescriptive-1632001896">Show samples</a></button>
+<div id='idSampDescriptive-1632001896' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idHypotHypothesisDeclaration-1144689176" aria-expanded="false" aria-controls="idHypotHypothesisDeclaration-1144689176">Hypothesis Declaration</a></h5>
+<div id='idHypotHypothesisDeclaration-1144689176' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : DESCRIPTIVE</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Differential-1744533150" aria-expanded="false" aria-controls="Differential-1744533150">Differential</a></h3>
+<div id='Differential-1744533150' class='collapse'><p>A differential hypothesis states that the values of a set I of variables (named independent variables) have an effect on the value of a set 
+D of variables (named dependent variables). Obviously D and I are disjoint.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampDifferential976535413" aria-expanded="false" aria-controls="idSampDifferential976535413">Show samples</a></button>
+<div id='idSampDifferential976535413' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idExpliExplicitDeclaration-1715873702" aria-expanded="false" aria-controls="idExpliExplicitDeclaration-1715873702">Explicit Declaration</a></h5>
+<div id='idExpliExplicitDeclaration-1715873702' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : sex IMPACTS ON height;</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idExpliExplicitDeclarationSignificantly1438827169" aria-expanded="false" aria-controls="idExpliExplicitDeclarationSignificantly1438827169">Explicit Declaration Significantly</a></h5>
+<div id='idExpliExplicitDeclarationSignificantly1438827169' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : factorList IMPACTS SIGNIFICANTLY ON height;</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idImpliImplicitDeclaration1995352923" aria-expanded="false" aria-controls="idImpliImplicitDeclaration1995352923">Implicit Declaration</a></h5>
+<div id='idImpliImplicitDeclaration1995352923' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Hypothesis : DIFFERENTIAL</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampHypothesis-1494054626" aria-expanded="false" aria-controls="idSampHypothesis-1494054626">Show samples</a></button>
+<div id='idSampHypothesis-1494054626' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idDescrDescriptiveHypothesis645479606" aria-expanded="false" aria-controls="idDescrDescriptiveHypothesis645479606">Descriptive Hypothesis</a></h5>
+<div id='idDescrDescriptiveHypothesis645479606' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: Antipyretics Desc Hyp 1 version 1.0 rep: http://moses.us.es/
+E3 ...
+Constants :
+dose :200 // measured in milligrams
+Variables :
+Outcomes: bodyTemperatureDecrease float // in Celsius degrees measured 2
+
+￼// hours after the administration
+￼Externeaous :
+age : integer (18 ,60) weight : float (40 ,120)
+Hypothesis : Descriptive
+Mean( bodyTemperatureDecrease )= 2.83</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h1><a role="button" data-toggle="collapse" href="#Design937174126" aria-expanded="false" aria-controls="Design937174126">Design</a></h1>
+<div id='Design937174126' class='collapse'><p>A design specifies: the set of variables and constants (here called parameters) that are involved in an experiment, the populations of the experiment
+a description of the experimental individual, and the experimental design of the experiment. Note that the experimental design describes the groups
+that are created based on the population of the experiment and the sequence of treatments and measurements (named experimental protocol) that must be 
+performed on each individual of each group in order to conduct the experiment.
+
+The design of a SEDL experiment includes information about the sampling, assignments, blocks, groups and the experimental protocol.</p>
+<div><h3><a role="button" data-toggle="collapse" href="#Sampling-1848951650" aria-expanded="false" aria-controls="Sampling-1848951650">Sampling</a></h3>
+<div id='Sampling-1848951650' class='collapse'><p>The sampling method describes how the experimental individuals used in our experiment are
+ chosen from the accesible population of individuals. It contains a boolean attribute, named
+ random that specifies the randomness of determinism of the selection procedure. Additionally,
+ the specific procedure used for sampling can be described using the description element.		
+ 
+ The supported sampling methods are random, random block and custom. If the sampling 
+method is random the objects are randomly selected from the population. If the
+sampling method is random block, the objects are randomly picked from the population 
+and assigned to the blocks until all blocks are complete. The number of blocks depends 
+on the non controllable factors used for blocking in the assignments. 
+Finally, custom samplings methods are also allowed using the extensions points of 
+the language. 
+
+The assignment method describes how the individuals in the population of the experiment are associated to the groups. The use of a random assignment 
+ method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
+ demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
+ chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
+ uncontrolled variables, at baseline (provided that the study has adequate sample size).
+ In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
+ for assignment (as a string in natural language).
+ 
+  A group is a set of experimental individuals that receive a sequence of treatments and 
+ whose values for the dependent variables are measured in a specific sequence.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampSampling1488945323" aria-expanded="false" aria-controls="idSampSampling1488945323">Show samples</a></button>
+<div id='idSampSampling1488945323' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSamplSamplingRandom1152496139" aria-expanded="false" aria-controls="idSamplSamplingRandom1152496139">Sampling Random</a></h5>
+<div id='idSamplSamplingRandom1152496139' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Sampling: Random</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSamplSamplingWithAssignment969365369" aria-expanded="false" aria-controls="idSamplSamplingWithAssignment969365369">Sampling With Assignment</a></h5>
+<div id='idSamplSamplingWithAssignment969365369' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Sampling : Random
+Assignment: Random
+Groups: height sizing 20</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSamplSamplingWithAssignmentAndBlocking1934110373" aria-expanded="false" aria-controls="idSamplSamplingWithAssignmentAndBlocking1934110373">Sampling With Assignment And Blocking</a></h5>
+<div id='idSamplSamplingWithAssignmentAndBlocking1934110373' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Sampling: Random
+Assignment: Random
+Groups: height sizing 20
+Blocking: size, height</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Protocol-1823824464" aria-expanded="false" aria-controls="Protocol-1823824464">Protocol</a></h3>
+<div id='Protocol-1823824464' class='collapse'><p>The protocol establishes the order in which the individual objects receives the treatments. 
+The experimental protocols supported in SEDL are random and custom. 
+Custom protocols can be defined using the extension points of the language.
+
+An experimental protocol describes  the sequences of treatments  and measurements
+to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
+either measurements or treatments.
+A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
+It is assumed that the step is performed on all the groups of the experiment.
+
+We support two different ways of specifying the experimental design: using a predefined experiment design (among a set of classical examples such as 
+Factorials, Latin Squares, Hyper-latin cubes, etc.), or defining a custom design.
+
+The assignment method describes how the individuals in the population of the experiment are associated to the groups. The use of a random assignment 
+ method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
+ demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
+ chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
+ uncontrolled variables, at baseline (provided that the study has adequate sample size).
+ In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
+ for assignment (as a string in natural language).</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampProtocol1186930820" aria-expanded="false" aria-controls="idSampProtocol1186930820">Show samples</a></button>
+<div id='idSampProtocol1186930820' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idCustoCustomProtocolDeclaration-794423115" aria-expanded="false" aria-controls="idCustoCustomProtocolDeclaration-794423115">Custom Protocol Declaration</a></h5>
+<div id='idCustoCustomProtocolDeclaration-794423115' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Design:
+Protocol: measurement</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idRandoRandomProtocolDeclaration1051293580" aria-expanded="false" aria-controls="idRandoRandomProtocolDeclaration1051293580">Random Protocol Declaration</a></h5>
+<div id='idRandoRandomProtocolDeclaration1051293580' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Design:
+Protocol: Random</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#AnalysesSpecification-893409292" aria-expanded="false" aria-controls="AnalysesSpecification-893409292">Analyses Specification</a></h3>
+<div id='AnalysesSpecification-893409292' class='collapse'><p></p>
+<div><h5><a role="button" data-toggle="collapse" href="#Filtering-324696532" aria-expanded="false" aria-controls="Filtering-324696532">Filtering</a></h5>
+<div id='Filtering-324696532' class='collapse'><p>The datasets on which the analyses should be performed are specified in terms of three different operations:
+
+Projection (OF): A projection defines the set of variable measurements that a dataset will contain. 
+It is similar to the enumeration of columns after the SELECT in SQL queries. 
+When a single outcome variable is specified in the experiment, a projection by this variable is implicitly assumed. 
+
+Filtering (WHERE): This operation selects a subset of the results dataset based on the values of specific variables, in a very similar way as the WHERE clause in SQL. 
+
+Grouping (BY): Grouping operations define how the elements in different datasets will be arranged for comparison in statistical tests. 
+Its primary use is the specification of the blocks defined by blocking variables. 
+
+These operations can be nested following the order if this description: OF, WHERE, BY</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampFiltering-993604677" aria-expanded="false" aria-controls="idSampFiltering-993604677">Show samples</a></button>
+<div id='idSampFiltering-993604677' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idGroup-912390254" aria-expanded="false" aria-controls="idGroup-912390254">Grouping</a></h5>
+<div id='idGroup-912390254' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>T-student(BY sex,0.05)</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idProje-1928772681" aria-expanded="false" aria-controls="idProje-1928772681">Projection</a></h5>
+<div id='idProje-1928772681' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>AVG(OF height)</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idProje-579896628" aria-expanded="false" aria-controls="idProje-579896628">Projection With Filter</a></h5>
+<div id='idProje-579896628' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>AVG(OF height WHERE sex="men")</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSimpl644552206" aria-expanded="false" aria-controls="idSimpl644552206">Simple Group Filter</a></h5>
+<div id='idSimpl644552206' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>AVG(sex="men")
+AVG(WHERE sex="men")</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idMulti263603989" aria-expanded="false" aria-controls="idMulti263603989">Multiple Group Filter</a></h5>
+<div id='idMulti263603989' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>AVG(WHERE sex="men",year=1985)</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idVaria709146556" aria-expanded="false" aria-controls="idVaria709146556">Variable Filter</a></h5>
+<div id='idVaria709146556' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>AVG(sex)
+AVG(WHERE sex)</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#DescriptiveStatistics595060175" aria-expanded="false" aria-controls="DescriptiveStatistics595060175">Descriptive Statistics</a></h5>
+<div id='DescriptiveStatistics595060175' class='collapse'><p>SEDL supports the specification of two types of statistical analyses on experimental datasets, descriptive statistics and statistical analyses.
+
+Regarding descriptive statistics, SEDL supports the specification of measures including mean, median, mode,
+standard deviation, range, inter-quartile range, and confi- dence intervals.
+And also rankings, which establish an order relation on the levels of a set of factors based on the value of a descriptive statistic, e.g. mean.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampDescriptiveStatistics-1975008261" aria-expanded="false" aria-controls="idSampDescriptiveStatistics-1975008261">Show samples</a></button>
+<div id='idSampDescriptiveStatistics-1975008261' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idCentrCentralTendencyMeasures-82902242" aria-expanded="false" aria-controls="idCentrCentralTendencyMeasures-82902242">Central Tendency Measures</a></h5>
+<div id='idCentrCentralTendencyMeasures-82902242' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>MEAN(dose)
+MEDIAN(dose)
+MODE(dose)</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idConfiConfidenceInterval-129230398" aria-expanded="false" aria-controls="idConfiConfidenceInterval-129230398">Confidence Interval</a></h5>
+<div id='idConfiConfidenceInterval-129230398' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>CI(dose)</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idRankiRankings1944957864" aria-expanded="false" aria-controls="idRankiRankings1944957864">Rankings</a></h5>
+<div id='idRankiRankings1944957864' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Ranking(Avg(dose))</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idVariaVariabilityMeasures-1463512051" aria-expanded="false" aria-controls="idVariaVariabilityMeasures-1463512051">Variability Measures</a></h5>
+<div id='idVariaVariabilityMeasures-1463512051' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>STDDEV(dose)
+VARIANCE(dose)
+IQR(dose)
+RANGE(dose)</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#StatisticalAnalyses447029770" aria-expanded="false" aria-controls="StatisticalAnalyses447029770">Statistical Analyses</a></h5>
+<div id='StatisticalAnalyses447029770' class='collapse'><p>Regarding statistical analyses, SEDL supports the specification of Null Hypothesis Significance Tests (NHST) and Correlation coefficients.. 
+In SEDL, NHST comprise of: the name of the specific test to be performed, the dataset on which the test should be performed, and the significance level α.
+The specific methods used to compute correlation are specified by name. 
+
+The analyses supported are:</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampStatisticalAnalyses590089675" aria-expanded="false" aria-controls="idSampStatisticalAnalyses590089675">Show samples</a></button>
+<div id='idSampStatisticalAnalyses590089675' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idCorreCorrelationalCoefficients1481906180" aria-expanded="false" aria-controls="idCorreCorrelationalCoefficients1481906180">Correlational Coefficients</a></h5>
+<div id='idCorreCorrelationalCoefficients1481906180' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Pearson(dose)
+BivariateRegression(dose)
+Spearman(dose)
+Kendall(dose)
+Cramer(dose)
+LogLinear(dose)</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idNullHNullHypothesisSignificativeTest-359606666" aria-expanded="false" aria-controls="idNullHNullHypothesisSignificativeTest-359606666">Null Hypothesis Significative Test</a></h5>
+<div id='idNullHNullHypothesisSignificativeTest-359606666' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Kolmogorov-Smirnov(dose, 0.05)
+Lilliefors(dose, 0.05)
+Shapiro-Wilk(dose, 0.05)
+Levene(dose, 0.05)
+T-student(dose, 0.05)
+Wilcoxon(dose, 0.05)
+McNemar(dose, 0.05)
+ANOVA(dose, 0.05)
+FactANOVAwRS(dose, 0.05)
+Friedman(dose, 0.05)
+Aligned Friedman(dose, 0.05)
+Iman & Davenport(dose, 0.05)
+Quade(dose, 0.05)
+Cochran Q(dose, 0.05)
+Bonferroni-Dunn(dose, 0.05)
+Holms(dose, 0.05)
+Hochberg(dose, 0.05)
+Hommel(dose, 0.05)
+Holland(dose, 0.05)
+Rom(dose, 0.05)
+Finner(dose, 0.05)
+Li(dose, 0.05)
+Shaffer(dose, 0.05)
+Nemenyi(dose, 0.05)
+TTest(dose, 0.05)
+SignTest(dose, 0.05)
+Chi Square(dose, 0.05)
+KruskalWalls(dose, 0.05)
+Fisher (dose, 0.05)
+Tukey(dose, 0.05)</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampAnalysesSpecification-301783901" aria-expanded="false" aria-controls="idSampAnalysesSpecification-301783901">Show samples</a></button>
+<div id='idSampAnalysesSpecification-301783901' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimplSimpleAnalysis-574933126" aria-expanded="false" aria-controls="idSimplSimpleAnalysis-574933126">Simple Analysis</a></h5>
+<div id='idSimplSimpleAnalysis-574933126' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Analyses :
+A1 :
+ANOVA(dose, 0.05)</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Groups442618561" aria-expanded="false" aria-controls="Groups442618561">Groups</a></h3>
+<div id='Groups442618561' class='collapse'><p>A group is a set of experimental individuals that receive a sequence of treatments and 
+ whose values for the dependent variables are measured in a specific sequence.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampGroups-274156074" aria-expanded="false" aria-controls="idSampGroups-274156074">Show samples</a></button>
+<div id='idSampGroups-274156074' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idGrous-373172314" aria-expanded="false" aria-controls="idGrous-373172314">Grousp Definition Based On A Single Factor</a></h5>
+<div id='idGrous-373172314' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Groups: by age sizing 20 // The set of groups to be created depend on the levels
+// of the variable Age, each group will have a size of
+// 20 individuals</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idGroup-2068016950" aria-expanded="false" aria-controls="idGroup-2068016950">Groups Definition Based On Several Factors</a></h5>
+<div id='idGroup-2068016950' class='collapse'><p class='description'>In this example the set of  groups to be created depend on the levels
+two factors variables, weight (non-controllable) and dose (controllable),
+meaning the range of weitght of the experimental individuals and the dose
+to be applied in the treatment. Each group will have a size of 20 individuals.</p>
+<pre id='editor' class='code'>Groups: by weight,dose sizing 20</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idLiter1174763546" aria-expanded="false" aria-controls="idLiter1174763546">Literal Groups Definition</a></h5>
+<div id='idLiter1174763546' class='collapse'><p class='description'>In this example, three groups of 20 individuals are created, where each group
+will have a different dose of the treatment.</p>
+<pre id='editor' class='code'>Groups: Placebo(dose:0) sizing 20, G20(dose:20) sizing 30, G40(dose:40) sizing 10</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h1><a role="button" data-toggle="collapse" href="#Configurations2097514727" aria-expanded="false" aria-controls="Configurations2097514727">Configurations</a></h1>
+<div id='Configurations2097514727' class='collapse'><p>A configuration is a description of the specific factors affecting a set of experimental 
+executions, along with the specific details about how will be provided
+ the inputs	and outputs of the experiment in that specific context. By dividing the set of 
+ factors affecting an experiment in design and configuration, we aim to maintain a general and
+  unique experiment design among experimental replications. 
+ In this sense, the experimental desigh should remain valid and consistent among replications in 
+ order to allow the comparison of results and the identification of relevant variables
+in the context of the variable by comparing the results of multiple executions with different 
+configurations.
+Additionally, the configuration can contain two optional elements: the experimental procedure, 
+that especifies how the experiment should be conducted in the specific environment of the 
+configuration, and a context of the configuration (since each replication of the experiment
+could be performed by different experimenters in different organizations).</p>
+<div><h3><a role="button" data-toggle="collapse" href="#Inputs-1506702174" aria-expanded="false" aria-controls="Inputs-1506702174">Inputs</a></h3>
+<div id='Inputs-1506702174' class='collapse'><p>Experimental Inputs are a description of the input data required for the execution of the experiment
+in the specific configuration. This description could be used to test the replicability of the experiment
+ in an specific environment, by checking the availability of those inputs. Currently it is composed of a set of inputDataSources. 
+
+The inputDatasource type is an element that denotes individual inputs for the experiment. 
+It has bee declared abstract to emphasize that it is an extension point, that must be used to define concrete 
+types of input datasources. SEDL 1.0 provides two different types of input datasources: files and URLs.        				 				  				 
+Since input datasources can be associated to specific levels of some variables it can contain an arbitrary 
+sequence of variable valuations.
+
+This extension point enables the use of alternative sources of input data for experiments such as public online datasets or experimental repositories</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampInputs581394346" aria-expanded="false" aria-controls="idSampInputs581394346">Show samples</a></button>
+<div id='idSampInputs581394346' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idInputInputs-1720543959" aria-expanded="false" aria-controls="idInputInputs-1720543959">Inputs</a></h5>
+<div id='idInputInputs-1720543959' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Inputs : File 'Data-ETHOM-1a.csv'</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Outputs-373872131" aria-expanded="false" aria-controls="Outputs-373872131">Outputs</a></h3>
+<div id='Outputs-373872131' class='collapse'><p>Experimental Outputs are a description of the expected output of the experiment. It contains a set of output data sources.
+
+ The ouputDatasource type is an element that denotes individual output item for the experiment.
+ It has been declared abstract to emphasize that it is an extension point, that must be used to define concrete types of 
+ output datasources. SEDL 1.0 provides a single types of specific  output datasource: the  outputFiles element.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampOutputs1376790731" aria-expanded="false" aria-controls="idSampOutputs1376790731">Show samples</a></button>
+<div id='idSampOutputs1376790731' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSamplSampleOutputsDeclaration1887390834" aria-expanded="false" aria-controls="idSamplSampleOutputsDeclaration1887390834">Sample Outputs Declaration</a></h5>
+<div id='idSamplSampleOutputsDeclaration1887390834' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Outputs :
+File 'Results-ETHOM-1a.csv',
+File 'results.csv' Role: MainResult,
+File 'evidence.csv' Role: AdditionalEvidence Format: 'CSV',
+File 'file.txt' Role: Miscellaneous Format:'TXT' Mapping:'mapping'</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Settings604834530" aria-expanded="false" aria-controls="Settings604834530">Settings</a></h3>
+<div id='Settings604834530' class='collapse'><p>This extension point enables the description of the specific equipment required for experimental conduction in particular scientific environments. 
+For instance, this extension point could be used to create a DSL for experimental instruments in Physics, enabling the description of oscilloscopes with a minimum precision, a mass spectrograph, or particle accelerators with a minimum power.</p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampSettings957084534" aria-expanded="false" aria-controls="idSampSettings957084534">Show samples</a></button>
+<div id='idSampSettings957084534' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idRuntiRuntimeAndLibraries-1230722341" aria-expanded="false" aria-controls="idRuntiRuntimeAndLibraries-1230722341">Runtime And Libraries</a></h5>
+<div id='idRuntiRuntimeAndLibraries-1230722341' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Setting:
+Runtimes: Java 1.6
+Libraries: FAMA 1.1.2, Betty 1.1.1, ETHOM 1.0</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#ExperimentalProcedure-338092088" aria-expanded="false" aria-controls="ExperimentalProcedure-338092088">Experimental Procedure</a></h3>
+<div id='ExperimentalProcedure-338092088' class='collapse'><p>The purpose of this extension point is to enable an accurate description of the procedure of execution of the experiment in different scientific areas. Currently, two DSLs are provided, one for executing computer based experiments as sequences of commands, and another for executing optimization tasks in MOFs.</p>
+<div><h5><a role="button" data-toggle="collapse" href="#ProcedureSteps898860507" aria-expanded="false" aria-controls="ProcedureSteps898860507">Procedure Steps</a></h5>
+<div id='ProcedureSteps898860507' class='collapse'><p>An experimental tasks is a simple step of a sequential experimental procedure. 
+Experimental tasks are an  extension point of SEDL. In this sense, if no
+control flow or decision making structures are needed during the conduction of the experiments, 
+an execution scheme can be use to describe the experimental procedure, and user defined tasks can 
+be used to provide the information needed for a accurate and replicable experimental conduction description.
+
+A command is a experimental task that specifies a command to be executed in a OS shell. 
+A command has a name, a set of arguments, and an optional path where it will be executed.</p>
+<div><h7><a role="button" data-toggle="collapse" href="#Measurement1196574650" aria-expanded="false" aria-controls="Measurement1196574650">Measurement</a></h7>
+<div id='Measurement1196574650' class='collapse'><p>A measurement implies to obtain the current value of a set of variables on a set of groups.</p>
+<br></div></div>
+<div><h7><a role="button" data-toggle="collapse" href="#Treatment1680200571" aria-expanded="false" aria-controls="Treatment1680200571">Treatment</a></h7>
+<div id='Treatment1680200571' class='collapse'><p>A treatment implies to perform an action that sets the value of an independent variable of
+the experiment to a specific value. Consequently, the treatment must specify the levels of
+the independent variables that are set.</p>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampProcedureSteps-1719434499" aria-expanded="false" aria-controls="idSampProcedureSteps-1719434499">Show samples</a></button>
+<div id='idSampProcedureSteps-1719434499' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idCommaCommandExtensionPoint858652393" aria-expanded="false" aria-controls="idCommaCommandExtensionPoint858652393">Command Extension Point</a></h5>
+<div id='idCommaCommandExtensionPoint858652393' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Command DM::{Training}(dataset,algorithm,folds):""</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCommaCommandMeasurement-13948536" aria-expanded="false" aria-controls="idCommaCommandMeasurement-13948536">Command Measurement</a></h5>
+<div id='idCommaCommandMeasurement-13948536' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Command as Measurement: 'Step'</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCommaCommandPostprocessing1084075857" aria-expanded="false" aria-controls="idCommaCommandPostprocessing1084075857">Command Postprocessing</a></h5>
+<div id='idCommaCommandPostprocessing1084075857' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Command as Postprocessing: 'Step'</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCommaCommandPreprocessing799340697" aria-expanded="false" aria-controls="idCommaCommandPreprocessing799340697">Command Preprocessing</a></h5>
+<div id='idCommaCommandPreprocessing799340697' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Command as Preprocessing: 'Step'</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idCommaCommandTreatment1930248771" aria-expanded="false" aria-controls="idCommaCommandTreatment1930248771">Command Treatment</a></h5>
+<div id='idCommaCommandTreatment1930248771' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Command as Treatment: 'Step'</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampExperimentalProcedure392193435" aria-expanded="false" aria-controls="idSampExperimentalProcedure392193435">Show samples</a></button>
+<div id='idSampExperimentalProcedure392193435' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl1587793598" aria-expanded="false" aria-controls="idSimpl1587793598">Simplest Possible Experimental Procedure</a></h5>
+<div id='idSimpl1587793598' class='collapse'><p class='description'>An extremely simple procedure with a single treatment that executes the command
+corresponding to each algorithm.
+(algorithm is a factor of the experiment, and its definition contains a property
+named command, that is usedto execute it.)</p>
+<pre id='editor' class='code'>Procedure:
+Command as Treatment(algorithm): "$algorithm.command" // This treatment for the algorithm factor executes its corresponding command</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idStruc-241269783" aria-expanded="false" aria-controls="idStruc-241269783">Structured Experimental Procedure</a></h5>
+<div id='idStruc-241269783' class='collapse'><p class='description'>This sample shows an experimental procedure described in its structured form.
+In this case all the commands to be executed as, preprocessing, execution
+and postprocessing are described.
+Additionally, a preTreatment preprocessing command is described.</p>
+<pre id='editor' class='code'>Procedure:
+Preprocessing:
+Command(dataset): "cleanDataset $dataset.filename" // First we clean the dataset
+// Just beform applying the treament with the algorithm and evaluation fold,
+// we train the corresponding algorithm with the training folds.
+Command as Pretreatment Preprocessing(algorithm,trainingFold): "$algorithm.trainingCommand $evaluationFold.fileName $algorithm.trainingConfigFile"
+Execution:
+// We apply the treatment by applying the algoritms on the evaluation fold.
+Command as Treatment(algorithm,evaluationFold): "$algorithm.command $evaluationFold.fileName"
+Postprocessing:
+// Finally we compute average results per algorithm and dataset.
+Command: "computeAverages globalResults.csv averageResults.csv"</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idExper333793567" aria-expanded="false" aria-controls="idExper333793567">Experimental Procedure With Domain Dependent Steps</a></h5>
+<div id='idExper333793567' class='collapse'><p class='description'>This sample specifies a structured experimental conduction procedure where a
+domain-specific global preprocessing step is performed before starting
+the experimental conduction(missing data sustitution), and two preprocessing
+steps are performed prior to each treatment application (attributeDiscretization
+and training). This sample assumes that the data mining module has been
+imported (DM).</p>
+<pre id='editor' class='code'>Procedure:
+Preprocessing:
+// Before starting the conduction we sustitute missing data with the
+// mean value of the classification (mode if the dataset classification
+// attribute is nominal).
+Command as DM::{MissingDataSustitution for missing,undefined,null
+with Mean(dataset.classificationAttribute)}(dataset): ""
+// Before each treatment we discretize and train:
+Command as Pretreatment DM::{AttributeDiscretization}(dataset,folds):""
+Command as Pretreatment DM::{Training}(dataset,algorithm,folds):""
+Execution:
+Command as Treatment(algorithm,dataset,folds):""</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><h3><a role="button" data-toggle="collapse" href="#Runs888464084" aria-expanded="false" aria-controls="Runs888464084">Runs</a></h3>
+<div id='Runs888464084' class='collapse'><p>Configurations may include a set of so-called runs. A run represents a conduction of the experiment 
+using an specific configuration. Note that this is primordial to make experiments self-contained and to 
+enable the comparison of results in subsequent replications. An experimental run is described in terms of 
+the result dataset and the results of the analyses. Accordingly to the described in the previous section, 
+the results can be either of descriptive statistics or results of statistical tests.</p>
+<div><h5><a role="button" data-toggle="collapse" href="#Analyses210685224" aria-expanded="false" aria-controls="Analyses210685224">Analyses</a></h5>
+<div id='Analyses210685224' class='collapse'><p></p>
+<div><button><a role="button" data-toggle="collapse" href="#idSampAnalyses1926922880" aria-expanded="false" aria-controls="idSampAnalyses1926922880">Show samples</a></button>
+<div id='idSampAnalyses1926922880' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idFriedFriedmanAnalysis-1812625811" aria-expanded="false" aria-controls="idFriedFriedmanAnalysis-1812625811">Friedman Analysis</a></h5>
+<div id='idFriedFriedmanAnalysis-1812625811' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Friedman: PVALUE COLON 0.00017
+Friedman: PVALUE COLON 0.00017, DESCRIPTION : 'Friedman'
+Friedman: PVALUE COLON 0.00017, freedom_degrees 24
+Friedman: PVALUE COLON 0.00017,{(EA) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
+Friedman: PVALUE COLON 0.00017,{(EA vs TS) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
+Friedman: PVALUE COLON 0.00017,{(TS+SA) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
+Friedman: PVALUE COLON 0.00017,{(EA|TS) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
+Friedman: PVALUE COLON 0.00017,{(EA|TS) Pvalue: 0.063 sthreshold:0.02}, {(EA|TS) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idPearsPearsonAnalysis-422737024" aria-expanded="false" aria-controls="idPearsPearsonAnalysis-422737024">Pearson Analysis</a></h5>
+<div id='idPearsPearsonAnalysis-422737024' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Pearson: {C:0.2,argumnent:9, regresion:0.5}</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampRuns-13859208" aria-expanded="false" aria-controls="idSampRuns-13859208">Show samples</a></button>
+<div id='idSampRuns-13859208' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl-1893739103" aria-expanded="false" aria-controls="idSimpl-1893739103">Simplest Execution Possible</a></h5>
+<div id='idSimpl-1893739103' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Runs:
+E1:
+Result: File: 'results.txt'</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSimpl-321464688" aria-expanded="false" aria-controls="idSimpl-321464688">Simplest Execution With Analysis</a></h5>
+<div id='idSimpl-321464688' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Runs:
+E1:
+Result: File: 'results.txt'
+Analyses:
+analysis:
+function: values</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSimpl-537872917" aria-expanded="false" aria-controls="idSimpl-537872917">Simplest Execution With Start And End</a></h5>
+<div id='idSimpl-537872917' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Runs:
+E1:
+Start: start
+End: end
+Result: File: 'results.txt'</pre>
+<br></div></div>
+<div><h5><a role="button" data-toggle="collapse" href="#idSampl311436088" aria-expanded="false" aria-controls="idSampl311436088">Sample Of Statistical Analyses Specifications And Results</a></h5>
+<div id='idSampl311436088' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>EXPERIMENT: SampleAnalysesSpecification version 1.0 //no repository ...
+Design :
+...
+Analyses :
+A1: Avg( WHERE OptTech BY  Instance OF ObjFunc)
+A2: StdDev( WHERE OptTech BY  Instance  OF ObjFunc)
+A3: Range( WHERE OptTech OF ObjFunc)
+A4: CI( WHERE OptTech BY  Instance  OF ObjFunc)
+A5: IQR(WHERE OptTech BY  Instance OF ObjFunc)
+A6: Ranking(Avg(WHERE OptTech BY  Instance OF ObjFunc),OptTech)
+A7: Median(OF ObjFunc)
+A8: Friedman( WHERE OptTech BY Instance  OF ObjFunc ,0.05)
+Holms( WHEREOptTech BY  Instance  OF ObjFunc ,0.05)
+A9: Pearson(BodyTempDiff,{Dose},{’Cx’})
+...
+Configurations : C1
+Runs : E1 :
+￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼	...
+Analyses :
+￼￼	A1: Avg(EA|PI0): 6.32, ... , Avg(GRASP6|P0): 5.41, ... , (EA|PI0): 6.32, ... , (GRASP6|PI0): 5.41
+A2: StdDev(EA|PI0): 1.64, ... , StdDev(GRASP6|P0): 0.41 ,... , StdDev(EA|PI10): 5.32 ,... , StdDev(GRASP6|PI10): 1.1
+A3: Range(EA): 1.7 223.62, ... , Range(GRASP):0.87 183.43
+A4: CI(EA|PI0): 6.12 7.218}, ... , CI(GRASP6|P0): 5.35 5.93,..., CI(EA|PI10): 6.32, ... , CI(GRASP6|PI10): 5.41
+A5: IQR(EA|PI0): 1.82, ... , IQR(GRASP6|PI0): 0.57 ,... , IQR(EA| PI10 ) : 6.32 , . . . , IQR(GRASP6| PI10 ) : 5.41
+A6: Ranking:(GRASP+PR1):1 , (GRASP6):2 , ... , (TS+SA):5
+A7: Median:3.176
+A8: Friedman: Pvalue:0.00017, description:’Chi-Squared dist.’, freedom degrees:24 {(EA vs TS+SA) Pvalue :0.063 Sthreshold :0.02} , . . . ,{(EA vs GRASP6) Pvalue :0.003 Sthreshold :0.02}
+A9: Pearson(BodyTempDiff,{Dose}): {C:0.2 , Cdose:0.0015 , r:0.78912}
+
+
+
+
+
+￼￼￼￼￼￼￼￼￼￼￼￼￼￼￼</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>
+<div><button><a role="button" data-toggle="collapse" href="#idSampConfigurations-838051474" aria-expanded="false" aria-controls="idSampConfigurations-838051474">Show samples</a></button>
+<div id='idSampConfigurations-838051474' class='collapse'><div><h5><a role="button" data-toggle="collapse" href="#idSimpl431357182" aria-expanded="false" aria-controls="idSimpl431357182">Simplest Possible Configuration</a></h5>
+<div id='idSimpl431357182' class='collapse'><p class='description'></p>
+<pre id='editor' class='code'>Configuration:
+C1:    // Identifier of the configuration
+Procedure: // The most simple configuration has an empty conduction procedure</pre>
+<br></div></div>
+<br></div></div>
+<br></div></div>

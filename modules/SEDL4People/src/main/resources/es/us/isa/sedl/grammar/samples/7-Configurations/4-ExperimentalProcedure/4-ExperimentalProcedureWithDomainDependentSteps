@@ -1,0 +1,20 @@
+/**
+ This sample specifies a structured experimental conduction procedure where a 
+    domain-specific global preprocessing step is performed before starting
+    the experimental conduction(missing data sustitution), and two preprocessing
+    steps are performed prior to each treatment application (attributeDiscretization
+    and training). This sample assumes that the data mining module has been
+    imported (DM).
+**/
+Procedure:
+        Preprocessing:
+            // Before starting the conduction we sustitute missing data with the
+            // mean value of the classification (mode if the dataset classification 
+            // attribute is nominal).
+            Command as DM::{MissingDataSustitution for missing,undefined,null 
+                            with Mean(dataset.classificationAttribute)}(dataset): ""			
+            // Before each treatment we discretize and train:
+            Command as Pretreatment DM::{AttributeDiscretization}(dataset,folds):""
+            Command as Pretreatment DM::{Training}(dataset,algorithm,folds):""
+	Execution:			
+            Command as Treatment(algorithm,dataset,folds):""

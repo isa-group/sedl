@@ -1,0 +1,6 @@
+/****/
+NCFactors:
+	Instance enum ordered P0(File:’P1.qoswsc’), ... , P10(...) 
+	weight enum "40-60","60-80","80-100","100-120"  MEASURED IN kg
+	sex enum "M", "F"
+	age enum "0-5","5-12","12-18"  MEASURED IN years

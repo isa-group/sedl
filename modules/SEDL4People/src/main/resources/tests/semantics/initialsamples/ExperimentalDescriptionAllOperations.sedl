@@ -1,0 +1,52 @@
+/**
+ Sample experiment description that specifies analysise using all the 
+ descriptive statitisc functions. 
+ 
+**/
+
+EXPERIMENT:myExperiment version:1.0
+
+Variables:
+Factors:    // Please, change the values, domain and add the factors of your experiemnt
+    var1 enum 10,30,60,81,65,10,30,60,81,65
+    var2 enum 19,20,30,84,56,19,20,30,84,56
+Outcome:
+   outcome in R  // You should change the name of the outcomen variable to
+
+Hypothesis: Differential    // By default we assume a differential hypothesis, meaning
+                            // that the value of var1 has a significant effect on the
+                            // value of outome, i.e. it makes a difference.
+
+Design:
+ Sampling: Random   
+ Groups: by var1 sizing 30
+ Protocol: Random
+ Analyses:                  // By default we provide two set of analyses:
+    DescriptiveStatitics:   //   descriptive statistics about the results:
+        Avg(var1)
+        Avg(var1,var2)
+        Avg(where var1 by var2)
+        
+        Median(var1)
+        Median(var1,var2)
+        Median(where var1 by var2)
+        
+        Mode(var1)
+        Mode(var1,var2)
+        Mode(where var1 by var2)
+        
+        StdDev(var1)
+        StdDev(var1,var2)
+        StdDev(where var1 by var2)
+        
+        Variance(var1)
+        Variance(var1,var2)
+        Variance(where var1 by var2)
+        
+        IQR(var1)
+        IQR(var1,var2)
+        IQR(where var1 by var2)
+        
+        Range(var1)
+        Range(var1,var2)
+        Range(where var1 by var2)

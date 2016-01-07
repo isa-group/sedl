@@ -1,0 +1,2 @@
+ A group is a set of experimental individuals that receive a sequence of treatments and 
+ whose values for the dependent variables are measured in a specific sequence.

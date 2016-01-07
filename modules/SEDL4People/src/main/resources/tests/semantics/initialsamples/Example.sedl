@@ -1,0 +1,47 @@
+/**
+
+ ETHOM experiment sample
+
+**/
+
+
+EXPERIMENT: ETHOM-E2 version: 1.0 rep: http://moses.us.es/E3
+	Object: 'Run of ETHOM for the parameters specified'
+	Population: 'Any run of ETHOM with a valid tuning for the parameters specified'
+Constants:
+	Solver : 'SPLOT-BDD' //Solver used to evaluate the analysis operation
+	Termination_criterion : 'MaxMObjFuncEvaluations(5000)'
+	RandomNumberGenerator: {desc: 'Standard Java RND', class: 'java.util.Random'}
+Variables :
+	Factors: FMGenerator enum ETHOM(command: 'ETHOM', selection: 'Roulette-wheel',
+							crossover: 'One-point', infeasibilityTreatment: 'Repairing',
+							crossoverProb: 0.9, mutationProb: 0.0075, populationSize: 200 ),
+				RandomGen(command: 'RandomFMGenerator' )
+	NCFactors:
+		NFeatures enum 200 , 400 , 600 , 800 , 1000
+		CTC enum 10 , 20 , 30 , 40
+	Outcome: ObjetiveFundation integer // Best value of the obj. func. found
+Hypothesis : Differential
+Design :
+	Sampling : Random
+	Detailed_Design: Custom Assignment:Random Blocking:NFeatures, CTC
+	Groups: by FMGenerator sizing 25
+	Protocol : Random
+	Analyses: // Use ANOVA or Friedman (with their corresponding PostHoc proc. )
+		A1 :
+			TTest (where FMGenerator by NFeatures,CTC , 0.05 )
+		A2 :
+			Wilcoxon ( where FMGenerator by NFeatures,CTC , 0.05 )
+Configuration:
+ C1 :
+	Outputs : File 'Results-ETHOM-2.csv' role:MainResult
+				format: CSV mapping:VarsPerColumn
+	Setting: Runtimes: Java 1.6 
+			Libraries: FAMA 1.1.2, Betty 1.1.1, ETHOM 1.0
+	Procedure :
+			Command as Treatment ( FMGenerator, NFeatures , CTC ):
+				'java -jar ${FMGenerator} Results-ETHOM_2.csv ${NFeatures} ${CTC} \
+				  ${Termination_criterion} ${Solver} ${FMGenerator.selection} \
+				  ${FMGenerator.crossover} ${FMGenerator.infeasibilityTreatment} \
+				  ${FMGenerator.CrossoverProb} ${FMGenerator.MutationProb} \
+				  ${FMGenerator.PopulationSize}' 

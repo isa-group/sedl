@@ -1,0 +1,7 @@
+/****/
+Outputs : 
+	File 'Results-ETHOM-1a.csv', 
+	File 'results.csv' Role: MainResult,
+	File 'evidence.csv' Role: AdditionalEvidence Format: 'CSV',
+	File 'file.txt' Role: Miscellaneous Format:'TXT' Mapping:'mapping'
+	

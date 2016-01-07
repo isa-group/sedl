@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:SEDL.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:SEDL.es.us.isa.sedl.core.context="http://isa.us.es/sedl/core/context" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:SEDL.es.us.isa.sedl.core.execution="http://isa.us.es/sedl/core/execution" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.configuration" ecore:package="SEDL.es.us.isa.sedl.core.configuration" targetNamespace="http://isa.us.es/sedl/core/configuration">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/execution" schemaLocation="SEDL.es.us.isa.sedl.core.execution.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/context" schemaLocation="SEDL.es.us.isa.sedl.core.context.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
+  <xsd:element ecore:ignore="true" name="Configuration" type="SEDL.es.us.isa.sedl.core.configuration:Configuration"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalProcedure" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalProcedure"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalTask" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTask"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalTaskType" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalSetting" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalSetting"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalEnvironment" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalEnvironment"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalInputs" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalInputs"/>
+  <xsd:element ecore:ignore="true" name="InputDataSource" type="SEDL.es.us.isa.sedl.core.configuration:InputDataSource"/>
+  <xsd:element ecore:ignore="true" name="FileSpecification" type="SEDL.es.us.isa.sedl.core.configuration:FileSpecification"/>
+  <xsd:element ecore:ignore="true" name="FileFormatSpecification" type="SEDL.es.us.isa.sedl.core.configuration:FileFormatSpecification"/>
+  <xsd:element ecore:ignore="true" name="File" type="SEDL.es.us.isa.sedl.core.configuration:File"/>
+  <xsd:element ecore:ignore="true" name="ExperimentalOutputs" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalOutputs"/>
+  <xsd:element ecore:ignore="true" name="OutputDataSource" type="SEDL.es.us.isa.sedl.core.configuration:OutputDataSource"/>
+  <xsd:element ecore:ignore="true" name="CommandExperimentalTask" type="SEDL.es.us.isa.sedl.core.configuration:CommandExperimentalTask"/>
+  <xsd:element ecore:ignore="true" name="ComplexParameter" type="SEDL.es.us.isa.sedl.core.configuration:ComplexParameter"/>
+  <xsd:element ecore:ignore="true" name="ComputationEnvironment" type="SEDL.es.us.isa.sedl.core.configuration:ComputationEnvironment"/>
+  <xsd:element ecore:ignore="true" name="HardwarePlatform" type="SEDL.es.us.isa.sedl.core.configuration:HardwarePlatform"/>
+  <xsd:element ecore:ignore="true" name="SoftwarePlatform" type="SEDL.es.us.isa.sedl.core.configuration:SoftwarePlatform"/>
+  <xsd:element ecore:ignore="true" name="Runtime" type="SEDL.es.us.isa.sedl.core.configuration:Runtime"/>
+  <xsd:element ecore:ignore="true" name="ArtifactSpecification" type="SEDL.es.us.isa.sedl.core.configuration:ArtifactSpecification"/>
+  <xsd:element ecore:ignore="true" name="Library" type="SEDL.es.us.isa.sedl.core.configuration:Library"/>
+  <xsd:element ecore:ignore="true" name="OperatingSystem" type="SEDL.es.us.isa.sedl.core.configuration:OperatingSystem"/>
+  <xsd:element ecore:ignore="true" name="SimpleParameter" type="SEDL.es.us.isa.sedl.core.configuration:SimpleParameter"/>
+  <xsd:element ecore:ignore="true" name="Preprocessing" type="SEDL.es.us.isa.sedl.core.configuration:Preprocessing"/>
+  <xsd:element ecore:ignore="true" name="Treatment" type="SEDL.es.us.isa.sedl.core.configuration:Treatment"/>
+  <xsd:element ecore:ignore="true" name="Measurement" type="SEDL.es.us.isa.sedl.core.configuration:Measurement"/>
+  <xsd:element ecore:ignore="true" name="Postprocessing" type="SEDL.es.us.isa.sedl.core.configuration:Postprocessing"/>
+  <xsd:element ecore:ignore="true" name="TreatmentAndMeasurement" type="SEDL.es.us.isa.sedl.core.configuration:TreatmentAndMeasurement"/>
+  <xsd:element ecore:ignore="true" name="Parameter" type="SEDL.es.us.isa.sedl.core.configuration:Parameter"/>
+  <xsd:complexType name="Configuration">
+    <xsd:annotation>
+      <xsd:documentation>A configuration is a description of the specific factors affecting a set of experimental 
+		executions, along with the specific details about how will be provided
+		 the inputs	and outputs of the experiment in that specific context. By dividing the set of 
+		 factors affecting an experiment in design and configuration, we aim to maintain a general and
+		  unique experiment design among experimental replications. 
+		 In this sense, the experimental desigh should remain valid and consistent among replications in 
+		 order to allow the comparison of results and the identification of relevant variables
+		in the context of the variable by comparing the results of multiple executions with different 
+		configurations.
+		Additionally, the configuration can contain two optional elements: the experimental procedure, 
+		that especifies how the experiment should be conducted in the specific environment of the 
+		configuration, and a context of the configuration (since each replication of the experiment
+		could be performed by different experimenters in different organizations).</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" minOccurs="0" name="context" type="SEDL.es.us.isa.sedl.core.context:Context"/>
+          <xsd:element ecore:resolveProxies="true" minOccurs="0" name="experimentalProcedure" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalProcedure"/>
+          <xsd:element ecore:resolveProxies="true" name="experimentalSetting" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalSetting"/>
+          <xsd:element ecore:resolveProxies="true" name="experimentalInputs" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalInputs"/>
+          <xsd:element ecore:resolveProxies="true" name="experimentalOutputs" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalOutputs"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="parameters" type="SEDL.es.us.isa.sedl.core.configuration:Parameter"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="executions" type="SEDL.es.us.isa.sedl.core.execution:Execution"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalProcedure">
+    <xsd:annotation>
+      <xsd:documentation>An experimental producedure is a detailed description of the steps that should be performed for
+		conducting the experiment in the especific context of its configuration. 
+		In this sense, the experimental procedure can be a much richer and detailed description than 
+		the experimental protocol, that only specifies the experimentation process in terms of group treatments
+		and dependent variable measurements.
+		The use of an appropriate language for describing experimental procedures is a key point for the achieving
+		exactly replicable experiment and even for the automatic experimental replication in those enviroments that
+		could alow it (such as for instance computer science). 
+		This element has been declared abstract to emphasize the need os specifying a concrete type of procedure
+		in this sense, the elements that extend the experimentalProcedureType element would define a experimental 
+		procedure description language. This is one of the main extension points of SEDL that should be used to 
+		define domain specific experimental procedures description languages in the scientific areas that require it.
+		However, for simple applications, we provide a basic experimental procedure description language based on the
+		 execution of a sequence of tasks (that are another possible extension point if no control flow or decission 
+		 structures are needed), and an specific type of task that enables the execution of commands in a OS shell for
+		 enabling the replication of Computer Science experiments as described below.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="tasks" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTask"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ExperimentalTask">
+    <xsd:annotation>
+      <xsd:documentation>An experimental tasks is a simple step of a sequential experimental procedure. Experimental tasks are an  extension point of SEDL. In this sense, if no
+		 control flow or decission making structures are needed during the conduction of the experiments, an 
+		 execution scheme can be use to describe the experimental procedure, and user defined tasks can
+		 be used to provide the information needed for a accurate and replicable experimetal conduction description.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType" name="experimentalTaskType" type="xsd:anyURI" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalTaskType"/>
+  <xsd:complexType name="ExperimentalSetting">
+    <xsd:annotation>
+      <xsd:documentation>
+	 Experimental settings describe the specific context in which experiments executions are run. An experimental
+		 setting containts a general set of parameters (factors affecting the experiment), and a description of the 
+		 experimental environment, that describe those factors due to the environment (lab. conditions for chemical, 
+		 physical and biological experiments, and the runtime plattform for computer science experiments).    				 				  				 
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" name="requirements" type="SEDL.es.us.isa.sedl.core.configuration:ExperimentalEnvironment"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalEnvironment">
+    <xsd:annotation>
+      <xsd:documentation>
+		 ExperimentalEnviroments  describe those factors affecting the experiment due to the environment
+		  (lab. conditions for chemical, physical and biological experiments, and the runtime plattform 
+		  for computer science experiments). The provision of an. The experimental environment description is an extension 
+		  point of SEDL, since in some scientific areas a domain specific language could be required in
+		   order to properly describe such factors. We provide a basic language for describing compuation
+		   environments (hardware plattform, OS, rutime, libraries and apis, etc.))     				 				  				 
+</xsd:documentation>
+    </xsd:annotation>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalInputs">
+    <xsd:annotation>
+      <xsd:documentation>
+Experimental Inputs are a description of the input data required for the execution of the experiment
+		 in the specific configuration. This description could be used to test the replicability of the experiment
+		 in an specific evironment, by checking the availability of those inputs. Currently it is composed of
+		 a set of inputDataSources.       				 				  				 
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="inputDataSources" type="SEDL.es.us.isa.sedl.core.configuration:InputDataSource"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="InputDataSource">
+    <xsd:annotation>
+      <xsd:documentation>
+		 The inputDatasource type is an element that denotes individual inputs for the experiment.
+		 It has bee declared abstract to emphasize that it is an extension point, that must be used
+		 to define concrete types of input datasources. SEDL 1.0 provides two different types of
+		 input datasources: files and URLs.        				 				  				 
+                 Since input datasources can be associated to specific levels of some variables it can contain
+                 an arbitraty sequence of variable valuations.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="fileSpecification" type="SEDL.es.us.isa.sedl.core.configuration:FileSpecification"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="features" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="file" type="SEDL.es.us.isa.sedl.core.configuration:File"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="FileSpecification">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="fileFormatSpecification" type="SEDL.es.us.isa.sedl.core.configuration:FileFormatSpecification"/>
+    </xsd:sequence>
+    <xsd:attribute name="namePattern" type="xsd:string" use="required"/>
+    <xsd:attribute name="pathPattern" type="xsd:string"/>
+    <xsd:attribute name="context" type="xsd:string"/>
+    <xsd:attribute name="description" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="FileFormatSpecification">
+    <xsd:attribute ecore:changeable="false" ecore:name="Type" name="Type" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="File">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="fileformatspecification" type="SEDL.es.us.isa.sedl.core.configuration:FileFormatSpecification"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="types:String" use="required"/>
+    <xsd:attribute name="path" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="ExperimentalOutputs">
+    <xsd:annotation>
+      <xsd:documentation>
+		Experimental Outputs are a description of the expected output of the experiment. It 
+		contains a set of output data sources.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="outputDataSources" type="SEDL.es.us.isa.sedl.core.configuration:OutputDataSource"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="OutputDataSource">
+    <xsd:annotation>
+      <xsd:documentation>
+		 The ouputDatasource type is an element that denotes individual output item for the experiment.
+		 It has been declared abstract to emphasize that it is an extension point, that must be used
+		 to define concrete types of output datasources. SEDL 1.0 provides a singlet types of specific
+		 output datasource: the  outputFiles element.        				 				  				 
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="fileSpecification" type="SEDL.es.us.isa.sedl.core.configuration:FileSpecification"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="file" type="SEDL.es.us.isa.sedl.core.configuration:File"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:unsettable="false" name="role" type="SEDL.es.us.isa.sedl.core.configuration:OutputDataSourceRole" use="required"/>
+  </xsd:complexType>
+  <xsd:simpleType name="OutputDataSourceRole">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="MainResult"/>
+      <xsd:enumeration value="AdditionalEvidence"/>
+      <xsd:enumeration value="Miscellaneous"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="CommandExperimentalTask">
+    <xsd:annotation>
+      <xsd:documentation>
+		 A command is a experimental task that specifies a command to be executed in a OS shell. A command has a name,
+		 a set of arguments, and an optional path where it will be executed.  				 				  				 
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTask">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="parameters" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="path" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ComplexParameter">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:Parameter">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="parameters" type="SEDL.es.us.isa.sedl.core.configuration:Parameter"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ComputationEnvironment">
+    <xsd:annotation>
+      <xsd:documentation>
+		A computation environment is an specific type of experimental environment that comprises of:
+		an operating system, an optional runtme, an optional set of libraries, and an optional
+		set of invironment variables.
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalEnvironment">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="hardwarePlatform" type="SEDL.es.us.isa.sedl.core.configuration:HardwarePlatform"/>
+          <xsd:element ecore:resolveProxies="true" name="softwarePlatform" type="SEDL.es.us.isa.sedl.core.configuration:SoftwarePlatform"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="HardwarePlatform">
+    <xsd:attribute name="description" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="SoftwarePlatform">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="runtimes" type="SEDL.es.us.isa.sedl.core.configuration:Runtime"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="libraries" type="SEDL.es.us.isa.sedl.core.configuration:Library"/>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="operatingSystem" type="SEDL.es.us.isa.sedl.core.configuration:OperatingSystem"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Runtime">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ArtifactSpecification"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ArtifactSpecification">
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+    <xsd:attribute name="version" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Library">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ArtifactSpecification"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="OperatingSystem">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ArtifactSpecification"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SimpleParameter">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:Parameter">
+        <xsd:attribute name="value" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Preprocessing">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Treatment">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Measurement">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Postprocessing">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="TreatmentAndMeasurement">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.configuration:ExperimentalTaskType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Parameter">
+    <xsd:annotation>
+      <xsd:documentation>
+		 An experimental parameters can ve a simple name-value pair, or a collection of parameters
+		 that can be simple or complex.  				 				  				 
+</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+  </xsd:complexType>
+</xsd:schema>

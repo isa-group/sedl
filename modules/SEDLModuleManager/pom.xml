@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>es.us.isa.sedl</groupId>
+        <artifactId>SEDLModulesSubsystem</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>./../../pom.xml</relativePath>
+    </parent>
+    <groupId>es.us.isa.sedl.modules</groupId>
+    <artifactId>SEDLModuleManager</artifactId>
+    
+    <name>SEDL Modules Management System</name>
+
+    <properties>
+        <sedl.version>0.0.1-SNAPSHOT</sedl.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDL-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>es.us.isa.sedl</groupId>
+            <artifactId>SEDL4People</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+</project>

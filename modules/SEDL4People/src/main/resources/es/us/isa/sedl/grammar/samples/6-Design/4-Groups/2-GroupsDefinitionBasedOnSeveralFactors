@@ -1,0 +1,7 @@
+/**
+ In this example the set of  groups to be created depend on the levels
+ two factors variables, weight (non-controllable) and dose (controllable), 
+ meaning the range of weitght of the experimental individuals and the dose 
+ to be applied in the treatment. Each group will have a size of 20 individuals.
+**/
+Groups: by weight,dose sizing 20  

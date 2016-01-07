@@ -1,0 +1,5 @@
+/****/
+STDDEV(dose)
+VARIANCE(dose)
+IQR(dose)
+RANGE(dose)

@@ -1,0 +1,7 @@
+/** **/
+
+	Factors :
+		dose enum 200, 100, 0      MEASURED IN  mg                   
+		weight enum "40-60","60-80","80-100","100-120"  MEASURED IN kg
+	    sex enum "M", "F"  
+	

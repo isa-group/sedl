@@ -1,0 +1,4 @@
+The experimental design describes the groups that are created based on the population of the experiment and the sequence of treatments and measurements (named experimental protocol) that must be performed on each individual of each group in order to conduct the experiment. The design of a SEDL experiment includes information about the sampling, assignments, blocks, groups and the experimental protocol.
+
+In SEDL the set of analyses to perform over the results or the experiments outcomes are specified together with the design. The reason is that we consider that they are closely connected with each other and they must be consistent (not only one with each other, also with the experimental hypothesis)
+

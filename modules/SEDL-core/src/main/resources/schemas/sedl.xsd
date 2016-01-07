@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns="http://moses.us.es/schemas/sedl/v1.0/" targetNamespace="http://moses.us.es/schemas/sedl/v1.0/"
+	xmlns:tns="http://moses.us.es/schemas/sedl/v1.0/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:appinfo>SEDL v0.1</xs:appinfo>
+        <xs:documentation xml:lang="en">
+			SEDL is a language for the description of scientific experiments. It provides means to describe the organizational context,
+			 the hypothesis, design, conduction and analysis performed on the results. 
+        </xs:documentation>
+    </xs:annotation>
+	<!-- notes and annotations -->
+    <xs:element name="notes">
+        <xs:complexType mixed="true">
+            <xs:annotation>
+                <xs:documentation xml:lang="en">
+				Notes are supposed to be human-readable descriptions related to the element where they are inserted to. They contain valid xhtml content.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:any namespace="http://www.w3.org/1999/xhtml" processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="annotations">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation xml:lang="en">
+				Annotations are machine-processable information relate to the element where they are inserted to. They contain any valid xml content.
+                </xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<!-- Base infrastructure types -->
+    <xs:simpleType name="SId">
+        <xs:annotation>
+            <xs:documentation>
+				The type SEDLId is used throughout SEDL as the type of the 'id' attributes on the elements of experiments.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(_|[a-z]|[A-Z])(_|-|[a-z]|[A-Z]|[0-9])*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="SEDLBase">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+				The SEDLBase type is the base of all main types in SEDL. It serves as a container for the annotation of any part of the experiment description.				
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="notes" minOccurs="0"/>
+            <xs:element ref="annotations" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SEDLEntity">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+				The SEDLEntity is the base type of any univocally identifiable element of the experiment. It extends SEDLBase by adding an identifier (that should be unique for al the SEDLEntities of the document), a name, and a meta-identifier (that allows to provide some context to the element and create globally unique identifiers).
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="SEDLBase">
+                <xs:attribute name="id" type="SId" use="required"/>
+                <xs:attribute name="name" type="xs:string" use="required"/>
+                <xs:attribute name="metaId" type="SId"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	<!-- Experiment element -->
+    <xs:element name="experiment">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+				Experiment is the main element provided by SEDL. It supports the description of the context of the experiment (organization, people and projects involved),
+				the hypothesis of the experiment, its design, conduction, results and analysis performed.
+				Moreover, it contains an attribute that defines the version of SEDL used in the description.								 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="SEDLEntity">
+                    <xs:sequence>
+                        <xs:element ref="context" minOccurs="0"/>
+                        <xs:element ref="hypothesis" minOccurs="0"/>
+                        <xs:element ref="design" minOccurs="0"/>
+                        <xs:element name="configurations" type="configuration" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="executions" type="execution" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="analyses" type="analysis" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                    <xs:attribute name="version" type="xs:decimal" use="required" fixed="1"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+	<!-- Experiment´s Context -->
+    <xs:element name="context">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+					The experimental context allows to describe the people, organizations, and projects involved in the experiment an their roles.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="SEDLBase">
+                    <xs:sequence>
+                        <xs:element ref="project" minOccurs="0"/>
+                        <xs:element name="persons" type="personType" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="organizations" type="organizationType" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="project">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+					Projects have a name, a code, an optional type (that could be used to define the EU FP project type or other taxonomy of projects), 
+					and an optional program (e.g the 7th FP), and an optional website (URL). 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="organizations" type="organizationType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="code" type="xs:string" use="optional"/>
+            <xs:attribute name="type" type="xs:string" use="optional"/>
+            <xs:attribute name="program" type="xs:string" use="optional"/>
+            <xs:attribute name="website" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="stakeholderType" abstract="true">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+					Stakeholders are people or organizations involved in the experiment. They have a name, a nationality a role ()in the context of the experiment, or the project), an email, a phisical address, 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="name" type="xs:string"/>
+        <xs:attribute name="nationality" type="xs:string" use="optional"/>
+        <xs:attribute name="role" type="xs:string" use="optional"/>
+        <xs:attribute name="email" type="xs:string" use="optional"/>
+        <xs:attribute name="website" type="xs:string" use="optional"/>
+        <xs:attribute name="address" type="xs:string" use="optional"/>
+        <xs:attribute name="phone" type="xs:string" use="optional"/>
+    </xs:complexType>
+    <xs:complexType name="personType">
+        <xs:complexContent>
+            <xs:extension base="stakeholderType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="organizationType">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                Organizations are a specific type of stakeholder that can contain a set or members (persons) and other organizations.  
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="stakeholderType">
+                <xs:sequence>
+                    <xs:element name="members" type="personType"  minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="organization" type="organizationType" minOccurs="0" maxOccurs="unbounded"/>					
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	<!-- Experiment´s Hypotheses-->
+    <xs:element name="hypothesis">
+        <xs:annotation>
+            <xs:documentation>
+		A scientific hypothesis is a testable assertion. We distinguish three different types of hypotheses: descriptive, associational, and differential. 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="SEDLBase">
+                    <xs:choice>
+                        <xs:element name="descriptive" type="descriptiveHypothesisType"/>
+                        <xs:element name="associational" type="associationalHypothesisType"/>
+                        <xs:element name="differential " type="differentialHypothesisType"/>
+                    </xs:choice>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="descriptiveHypothesisType">
+        <xs:annotation>
+            <xs:documentation>
+				A descriptive hypothesis just describes the properties of the concepts it refers to. In our context, a descriptive hypothesis is an informal natural 
+				language description of the hypothesis of the experiment. 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="relationalHypothesisType">
+        <xs:annotation>
+            <xs:documentation>
+				A relational hypothesis describes a relation between two variables. It is worth noting that the use of variables insted of concepts allows the 
+				operationalization of the hypothesis (its situation in in the real world by specific rules of interpretation, that ultimately allow its testing
+				 by reference to the observable phenomena).    
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="variableReference" minOccurs="2" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="differentialHypothesisType">
+        <xs:annotation>
+            <xs:documentation>
+				A differential hypothesis states that the values of a set I of variables (named independent variables) have an effect on the value of a set 
+				D of variables (named dependent variables). Obviously D and I are disjoint.        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="relationalHypothesisType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="associationalHypothesisType">
+        <xs:annotation>
+            <xs:documentation>
+				An associational hypothesis states that the values of a set D of variables depends on the values of a different set of variables I according
+				to a specific relationship (usually expressed as a mathematical expression). 
+				       
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="relationalHypothesisType">
+                <xs:sequence>
+                    <xs:element name="expression" type="expressionType"></xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="expressionType" abstract="true">
+    </xs:complexType>
+    <xs:complexType name="simpleExpressionType">
+        <xs:complexContent>
+            <xs:extension base="expressionType">
+                <xs:attribute name="value" type="xs:string">
+                </xs:attribute>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	<!-- Experiment´s design-->
+    <xs:element name="design">
+        <xs:annotation>
+            <xs:documentation>
+				A design specifies: the set of variables and constants (here called parameters) that are involved in an experiment, the populations of the experiment
+				 a description of the experimental individual, and the experimental design of the experiment. Note that the experimental desing describes the groups
+				that are created based on the population of the experiment and the sequence of treaments and measurements (named experimental protocol) that must be 
+				performed on each individual of each group in order to conduct the experiment. 				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="population" minOccurs="0"/>
+                <xs:element name="experimentalDesign" type="experimentDesign"/>
+                <xs:element ref="variables"/>
+                <xs:element ref="parameters"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="experimentDesign" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+				We support two different ways of specifying the experimental design: using a predefined experiment design (among a set of classical examples such as 
+				Factorials, Latin Squares, Hyper-latin cubes, etc.), or defining a cutom design. 				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="SEDLBase"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="predefinedExperimentDesign" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="experimentDesign"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="customExperimentDesign">
+        <xs:annotation>
+            <xs:documentation>
+				Custom experimental desgins must specify: the assignmet method used for grouping, the set of groups that are involved in the experiment, and the 
+				experimental protocol (i.e. the specific sequence of treatments and measurements to be performed on each group of experimental individuals).  				        
+            </xs:documentation>
+        </xs:annotation>		
+        <xs:complexContent>
+            <xs:extension base="experimentDesign">
+                <xs:sequence>
+                    <xs:element ref="assignmentMethod"/>
+                    <xs:element ref="groups"/>
+                    <xs:element ref="experimentalProtocol"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="assignmentMethod">
+        <xs:annotation>
+            <xs:documentation>
+				The assignment method describes how the individuals in the population of the experiment are associated to the groups. The use of a random assignment 
+				method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
+				demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
+				chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
+				uncontrolled variables, at baseline (provided that the study has adequate sample size).
+				In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
+				for assignment (as a string in natural language).  				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs="0">
+                <xs:element name="description">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string"/>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="random" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="groups">
+        <xs:annotation>
+            <xs:documentation>
+				The groups element is a sequence of experimental groups.  				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element name="group" type="groupType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="groupType">
+        <xs:annotation>
+            <xs:documentation>
+				The group is a set of experimental individuals that receive a sequence of treatments and 
+				whose values for the dependent variables are measured in a specific sequence.  				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="SEDLBase">
+                <xs:sequence>
+                    <xs:element ref="variableValuation" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="size" type="sizing"/>
+                </xs:sequence>
+                <xs:attribute name="name"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="sizing" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+				A sizing describes the number of experimental individuals in the experiment. It can be a constant
+				size, but can also be an expression on the number of levels or value of some variables of
+				 the experiment.  				        
+            </xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="constantSize">
+        <xs:complexContent>
+            <xs:extension base="sizing">
+                <xs:attribute name="constant" type="xs:integer" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="expression">
+        <xs:complexContent>
+            <xs:extension base="sizing">
+                <xs:sequence>
+                    <xs:element ref="variableReference" maxOccurs="unbounded"/>
+                    <xs:element name="formulation" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="variableReference">
+        <xs:annotation>
+            <xs:documentation>
+				Variable references are used along SEDL documents to refer to a specific variable. It is worth noting
+				that a variable reference does not assigns a specific level to the valua of the referene varaible, but
+				it denotes the variable itself. A variable reference uses the attribute id to identify the specific 
+				variable to which it refers. Additionally, a variable reference can contain an alias tha could be used
+				in the current scope (parent XML element of the variable reference) to refer to this variable.   				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="id" type="SId" use="required"/>
+            <xs:attribute name="alias" type="SId" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="variableValuation">
+        <xs:annotation>
+            <xs:documentation>
+				Variable valuations assign a specific level to the value of a variable.   				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="variable" type="SId"/>
+            <xs:attribute name="level" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="experimentalProtocol">
+        <xs:annotation>
+            <xs:documentation>
+				An experimental protocol is a description of the sequences of treatments to be applied and measurements
+				to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
+				either measurements or treatments.				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element name="step" type="experimentalProtocolStep"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="experimentalProtocolStep" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+				A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
+				It is assumed that the step is performed on all the groups of the experiment.				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="group">
+                <xs:complexType>
+                    <xs:attribute name="id" type="SId"></xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="measurement">
+        <xs:annotation>
+            <xs:documentation>
+				A measurement implies to obtain the current value of a set of variables on a set of groups.				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="experimentalProtocolStep">
+                <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                    <xs:element ref="variableReference"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="treatment">
+        <xs:annotation>
+            <xs:documentation>
+				A treatment implies to perform an action that sets the value of an independent variable of
+				the experiment to a specific value. Consequently, the treatment must specify the levels of
+				the independent variables that are set.				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="experimentalProtocolStep">
+                <xs:sequence>
+                    <xs:element ref="variableValuation" maxOccurs="unbounded"/>
+                    <xs:element name="target">
+                        <xs:complexType>
+                            <xs:attribute name="groupId" type="SId"/>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="population">
+        <xs:annotation>
+            <xs:documentation>
+				The population of an experiment is a description of the set of individual for which we
+				want to extract conclusions (the target population), an the set of individuals that we
+				 are going to use for sampling (the accesible population). The specific method used for
+				 selecting the actual set experimental individuals used is specified in the description
+				  of the population. Additionally, the population can contain a description of the
+				  experimental individuals (that can be people, algorithm runs, animals, objects or
+				  even computer programs).				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="individualDescription" type="xs:string" minOccurs="0"/>
+                <xs:element name="targetPopulation" type="xs:string" minOccurs="0"/>
+                <xs:element name="accesiblePopulation" type="xs:string" minOccurs="0"/>
+                <xs:element ref="samplingMethod"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="samplingMethod">
+        <xs:annotation>
+            <xs:documentation>
+				The sampling method describes how the experimental individuals used in our experiment are
+				chosen from the accesible population of individuals. It contains a boolean attribute, named
+				random that specifies the randomness of determinism of the selection procedure. Additionally,
+				the specific procedure used for sampling can be described using the description element.				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs="0">
+                <xs:element name="description" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="random"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="variables">
+        <xs:annotation>
+            <xs:documentation>
+				The varaibles describes the set of variables of the experiment, eith extraneos, dependent or independent.				    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="variable"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="variable">
+        <xs:annotation>
+            <xs:documentation>
+				An experimental variable is a .	In SEDL an experimental variable always has a set of 
+				levels, that are the values that the variable could possibly have in the context
+				of the experiment. The set of levels of an experimental variable can be described by 
+				extension (i.e. by enumeting each possible value), or by intension (i.e. defining a
+				set of constraints tha determine the set of values, e.g. its maximum and minimum value).
+				Moreover, in SEDL an experimental variable has always a name (that must be unique in the
+				 experiment), a kind that can be Nominal (e.g. X,Y,Z), Ordinal (e.g. horrible, bad, fair,
+				  good), and Scalar (1.1, 3, 5, 2.7), and a role.
+				 The role of a variable can be: Dependent; Independent-Active; Independent-Attributive; 
+				 and Extraneous.
+				Additionally, experimental variables can have an optional data type (that can be any
+				 simple XML-Schema type such as string, integer, etc.). 							    				        
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="SEDLBase">
+                    <xs:sequence>
+                        <xs:element name="levels">
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:sequence>
+                                        <xs:element name="level" minOccurs="2" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                    <xs:sequence>
+                                        <xs:choice>
+                                            <xs:element name="min"/>
+                                            <xs:element name="minInclusive"/>
+                                        </xs:choice>
+                                        <xs:choice>
+                                            <xs:element name="max"/>
+                                            <xs:element name="maxInclusive"/>
+                                        </xs:choice>
+                                    </xs:sequence>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="name" type="xs:string" use="required"/>
+                    <xs:attribute name="dataType" type="xs:anySimpleType"/>
+                    <xs:attribute name="kind" type="variableKind" use="required"/>
+                    <xs:attribute name="role" type="variableRole" use="required"/>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="kind" type="variableKind"/>
+    <xs:simpleType name="variableKind">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Nominal"/>
+            <xs:enumeration value="Ordinal"/>
+            <xs:enumeration value="Scalar"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="variableRole">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Dependent"/>
+            <xs:enumeration value="Indepent-Active"/>
+            <xs:enumeration value="Independent-Attribute"/>
+            <xs:enumeration value="Extraneous"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="parameters">
+        <xs:annotation>
+            <xs:documentation>
+		The parameters element of an experimental design allows to specify a set of factors that
+		can be important for the results of the experiment but do not change along its conduction
+		(i.e. are constant), either because the experimenters specifically controls them fixing
+		their values or because they are fixed for the desing. Consequently, those factors should
+		 be documented but not as variables but as parameters (constants) of the experiment. It is
+		 worth noting that if those factor can (or should) change between different executions of
+		 the same experiment, they should be specified as parameters of the configuration, in order to
+		 maintain a reusable experiment design among executions.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="designParameter" type="experimentalParameter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<!-- Experiment´s configurations-->			
+    <xs:complexType name="configuration">
+        <xs:annotation>
+            <xs:documentation>
+		A configuration is a description of the specific factors affecting a set of experimental 
+		executions, along with the specific details about how will be provided
+		 the inputs	and outputs of the experiment in that specific context. By dividing the set of 
+		 factors affecting an experiment in design and configuration, we aim to maintain a general and
+		  unique experiment design among experimental replications. 
+		 In this sense, the experimental desigh should remain valid and consistent among replications in 
+		 order to allow the comparison of results and the identification of relevant variables
+		in the context of the variable by comparing the results of multiple executions with different 
+		configurations.
+		Additionally, the configuration can contain two optional elements: the experimental procedure, 
+		that especifies how the experiment should be conducted in the specific environment of the 
+		configuration, and a context of the configuration (since each replication of the experiment
+		could be performed by different experimenters in different organizations). 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="SEDLEntity">
+                <xs:sequence>
+                    <xs:element ref="context" minOccurs="0"/>
+                    <xs:element name="experimentalProcedure" type="experimentalProcedure" minOccurs="0"/>
+                    <xs:element ref="experimentalSetting"/>
+                    <xs:element name="experimentalInputs" type="experimentalInputs"/>
+                    <xs:element ref="experimentalOutputs"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	
+    <xs:complexType name="experimentalProcedure" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+		An experimental producedure is a detailed description of the steps that should be performed for
+		conducting the experiment in the especific context of its configuration. 
+		In this sense, the experimental procedure can be a much richer and detailed description than 
+		the experimental protocol, that only specifies the experimentation process in terms of group treatments
+		and dependent variable measurements.
+		The use of an appropriate language for describing experimental procedures is a key point for the achieving
+		exactly replicable experiment and even for the automatic experimental replication in those enviroments that
+		could alow it (such as for instance computer science). 
+		This element has been declared abstract to emphasize the need os specifying a concrete type of procedure
+		in this sense, the elements that extend the experimentalProcedureType element would define a experimental 
+		procedure description language. This is one of the main extension points of SEDL that should be used to 
+		define domain specific experimental procedures description languages in the scientific areas that require it.
+		However, for simple applications, we provide a basic experimental procedure description language based on the
+		 execution of a sequence of tasks (that are another possible extension point if no control flow or decission 
+		 structures are needed), and an specific type of task that enables the execution of commands in a OS shell for
+		 enabling the replication of Computer Science experiments as described below. 				 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="SEDLBase"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="executionScheme">
+        <xs:annotation>
+            <xs:documentation>
+		An executionScheme is a specific type of experimental procedure that just executes a sequence of tasks. 
+		In this sense an execution scheme is just a sequential specification of tasks to be executed. 				 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="experimentalProcedure">
+                <xs:sequence>
+                    <xs:element name="experimentalTasks" type="experimentalTask" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="experimentalTask" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+		 An experimental tasks is a simple step of a sequential execution scheme. Experimental tasks are an  extension point of SEDL. In this sense, if no
+		 control flow or decission making structures are needed during the conduction of the experiments, an 
+		 execution scheme can be use to describe the experimental procedure, and user defined tasks can
+		 be used to provide the information needed for a accurate and replicable experimetal conduction description.				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="command">
+        <xs:annotation>
+            <xs:documentation>
+		 A command is a experimental task that specifies a command to be executed in a OS shell. A command has a name,
+		 a set of arguments, and an optional path where it will be executed.  				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="experimentalTask">
+                <xs:sequence>
+                    <xs:element name="parameters" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="name" type="xs:string" use="required"/>
+                <xs:attribute name="path" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="experimentalSetting">
+        <xs:annotation>
+            <xs:documentation>
+		 Experimental settings describe the specific context in which experiments executions are run. An experimental
+		 setting containts a general set of parameters (factors affecting the experiment), and a description of the 
+		 experimental environment, that describe those factors due to the environment (lab. conditions for chemical, 
+		 physical and biological experiments, and the runtime plattform for computer science experiments).    				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="experimentalParameters" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="parameters" type="experimentalParameter" maxOccurs="unbounded"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="experimentalEnvironment" type="experimentalEnvironment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="experimentalParameter" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+		 An experimental parameters can ve a simple name-value pair, or a collection of parameters
+		 that can be simple or complex.  				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="simpleParameter">
+        <xs:complexContent>
+            <xs:extension base="experimentalParameter">
+                <xs:sequence>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="value"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="experimentalEnvironment">
+        <xs:annotation>
+            <xs:documentation>
+		 ExperimentalEnviroments  describe those factors affecting the experiment due to the environment
+		  (lab. conditions for chemical, physical and biological experiments, and the runtime plattform 
+		  for computer science experiments). The provision of an. The experimental environment description is an extension 
+		  point of SEDL, since in some scientific areas a domain specific language could be required in
+		   order to properly describe such factors. We provide a basic language for describing compuation
+		   environments (hardware plattform, OS, rutime, libraries and apis, etc.))     				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="SEDLBase"/>
+        </xs:complexContent>
+    </xs:complexType>
+    
+        
+    <xs:complexType name="experimentalInputs">
+        <xs:annotation>
+            <xs:documentation>
+		 Experimental Inputs are a description of the input data required for the execution of the experiment
+		 in the specific configuration. This description could be used to test the replicability of the experiment
+		 in an specific evironment, by checking the availability of those inputs. Currently it is composed of
+		 a set of inputDataSources.       				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence maxOccurs="unbounded" minOccurs="0">
+            <xs:element name="inputs" type="inputDataSource"/>
+        </xs:sequence>
+    </xs:complexType>    
+    <xs:complexType name="inputDataSource" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+		 The inputDatasource type is an element that denotes individual inputs for the experiment.
+		 It has bee declared abstract to emphasize that it is an extension point, that must be used
+		 to define concrete types of input datasources. SEDL 1.0 provides two different types of
+		 input datasources: files and URLs.        				 				  				 
+                 Since input datasources can be associated to specific levels of some variables it can contain
+                 an arbitraty sequence of variable valuations.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element ref="variableValuation" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="inputFile">
+        <xs:complexContent>
+            <xs:extension base="inputDataSource">
+                <xs:attribute name="filename" type="xs:string" use="required"/>
+                <xs:attribute name="path" type="xs:string" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="inputURL">
+        <xs:complexContent>
+            <xs:extension base="inputDataSource">
+                <xs:attribute name="address" type="xs:string" use="required"/>				
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="experimentalOutputs">
+        <xs:annotation>
+            <xs:documentation>
+		Experimental Outputs are a description of the expected output of the experiment. It 
+		contains a set of output data sources.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="output" type="outputDataSource"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="outputDataSource" abstract="true">
+        <xs:annotation>
+            <xs:documentation>
+		 The ouputDatasource type is an element that denotes individual output item for the experiment.
+		 It has been declared abstract to emphasize that it is an extension point, that must be used
+		 to define concrete types of output datasources. SEDL 1.0 provides a singlet types of specific
+		 output datasource: the  outputFiles element.        				 				  				 
+            </xs:documentation>
+        </xs:annotation>
+    </xs:complexType>
+    <xs:complexType name="outputFile">
+        <xs:annotation>
+            <xs:documentation>
+		 The ouputFile denotes the description of a set of output files that must be generated by the
+		 execution of the experiment. It has a name, an optional path, and an optional boolean attribute
+		 name relativePath, that indicates whether the path is relative or not.  
+		 It contains a file format description, the defines how the values of the variables of the experiment
+		  are encoded in the file. This encoding can be performed in two different ways: through a wildcard 
+		  or variable in the file name using the ${variable-name} format (thus the value of the variable for
+		   all the results of the experiments is fixed), or throutgh a mapping from the content of the file 
+		   (as defined by the variableMapping element).
+		   Additionally, the filename can contain addditional "execution variables", such as the date or timestamp
+		   of execution. 			   	
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="outputDataSource">
+                <xs:sequence>
+                    <xs:element name="format" type="fileFormatType"/>
+                </xs:sequence>
+                <xs:attribute name="filename" type="xs:string" use="required"/>
+                <xs:attribute name="path" type="xs:string" use="optional"/>
+                <xs:attribute name="relativePath" type="xs:boolean" use="optional" default="true"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="fileFormatType" abstract="true">
+        <xs:sequence>
+            <xs:element name="variableMapping" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="variableReference"/>
+                    </xs:sequence>
+                    <xs:attribute name="format" type="xs:string" use="optional"/>
+                    <xs:attribute name="position" type="xs:string" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="variableLabels" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:complexType name="csvFileFormat">
+        <xs:complexContent>
+            <xs:extension base="fileFormatType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="msExcelFileFormat">
+        <xs:complexContent>
+            <xs:extension base="fileFormatType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="customTXTFileFormat">
+        <xs:complexContent>
+            <xs:extension base="fileFormatType">
+                <xs:attribute name="valueSeparator" type="xs:string"/>
+                <xs:attribute name="datasetSeparator" type="xs:string"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="computationEnvironment">
+        <xs:annotation>
+            <xs:documentation>
+		A computation environment is an specific type of experimental environment that comprises of:
+		an operating system, an optional runtme, an optional set of libraries, and an optional
+		set of invironment variables.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="experimentalEnvironment">
+                <xs:sequence>					
+                    <xs:element ref="hardwarePlatform"/>
+                    <xs:element name="operatingSystem" type="artifactSpecification"/>
+                    <xs:element name="runtimes" minOccurs="0" type="artifactSpecification" maxOccurs="unbounded"/>
+                    <xs:element name="libraries" minOccurs="0" type="artifactSpecification" maxOccurs="unbounded"/>
+                    <xs:element ref="enviromentVariables" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:element name="hardwarePlatform">
+    </xs:element>
+    <xs:complexType name="artifactSpecification">
+        <xs:attribute name="name" use="required"/>
+        <xs:attribute name="version" use="required"/>
+    </xs:complexType>    
+    <xs:element name="enviromentVariables">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="environmentVariable" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="name" use="required"/>
+                        <xs:attribute name="value" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+	<!-- Experiment´s executions -->		
+    <xs:complexType name="execution">
+        <xs:complexContent>
+            <xs:extension base="SEDLEntity">
+                <xs:sequence>
+                    <xs:element ref="context" minOccurs="0"/>
+                    <xs:element name="executionLog" type="executionLog" minOccurs="0"/>
+                    <xs:element name="experimentalResults" type="experimentalResult" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+                <xs:attribute name="start" type="xs:dateTime" use="required"/>
+                <xs:attribute name="finish" type="xs:dateTime" use="required"/>
+                <xs:attribute name="configuration" type="SId" use="optional"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>	
+    <xs:complexType name="executionLog">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="taskExecution">
+                <xs:complexType>
+                    <xs:attribute name="start" type="xs:dateTime" use="required"/>
+                    <xs:attribute name="finish" type="xs:dateTime" use="required"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="experimentalResult" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="SEDLBase"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="resutlsFile">
+        <xs:complexContent>
+            <xs:extension base="experimentalResult">
+                <xs:attribute name="filename" type="xs:string" use="required"/>
+                <xs:attribute name="path" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+	<!-- Experiment´s analyses-->	
+    <xs:complexType name="analysis">
+        <xs:attribute name="date" type="xs:dateTime" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="descriptiveStatistics">
+        <xs:complexContent>
+            <xs:extension base="analysis">
+                <xs:sequence>
+                    <xs:element name="centralTendencyMeasure" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="variabilityMeasure" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="ranking"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="statisitcAnalysis" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="analysis"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="testOfHypothesis" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="statisitcAnalysis"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="associativeAnalysis" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="statisitcAnalysis"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="bayesianAnalysis">
+        <xs:complexContent>
+            <xs:extension base="statisitcAnalysis"/>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

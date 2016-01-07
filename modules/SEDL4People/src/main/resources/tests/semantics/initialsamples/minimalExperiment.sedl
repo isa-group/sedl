@@ -1,0 +1,25 @@
+/**
+   #========================================#
+   #    Minimal Experiment Description      #
+   #========================================#   
+**/
+EXPERIMENT:myExperiment version:1.0
+
+Variables:
+Factors:    // Please, change the values, domain and add the factors of your experiemnt
+    var1 enum "value1","...","valueN"
+Outcome:
+   outcome in R  // You should change the name of the outcomen variable to
+
+Hypothesis: Differential    // By default we assume a differential hypothesis, meaning
+                            // that the value of var1 has a significant effect on the
+                            // value of outome, i.e. it makes a difference.
+
+Design:
+ Sampling: Random   
+ Groups: by var1 sizing 5
+ Protocol: Random
+ Analyses:                  // By default we provide two set of analyses:
+    NHST:                   //  and a minimimal parametric test of hypothesis:
+        ANOVA(,)
+        

@@ -1,0 +1,7 @@
+/****/
+Pearson(dose)
+BivariateRegression(dose)
+Spearman(dose)
+Kendall(dose)
+Cramer(dose)
+LogLinear(dose)

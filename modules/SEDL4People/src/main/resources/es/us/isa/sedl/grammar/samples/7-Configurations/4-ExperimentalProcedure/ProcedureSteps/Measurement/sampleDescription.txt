@@ -1,0 +1,1 @@
+A measurement implies to obtain the current value of a set of variables on a set of groups.

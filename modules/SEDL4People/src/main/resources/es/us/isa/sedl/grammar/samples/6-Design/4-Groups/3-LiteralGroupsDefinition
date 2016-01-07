@@ -1,0 +1,6 @@
+/**
+  In this example, three groups of 20 individuals are created, where each group
+  will have a different dose of the treatment.
+**/
+Groups: Placebo(dose:0) sizing 20, G20(dose:20) sizing 30, G40(dose:40) sizing 10
+ 

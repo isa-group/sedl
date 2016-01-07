@@ -1,0 +1,3 @@
+/** **/
+EXPERIMENT: typedExperimentPreamble
+type: DM::Classification //It is supposed that the DM module has been imported

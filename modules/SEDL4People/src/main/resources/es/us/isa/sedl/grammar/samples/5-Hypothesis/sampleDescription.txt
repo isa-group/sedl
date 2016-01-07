@@ -1,0 +1,6 @@
+A scientific hypothesis is a testable assertion. We distinguish three different types of hypotheses: descriptive, associational, and differential. 
+
+The type of hypothesis of a SEDL experiment is specified either with a keyword indicating whether the hypothesis is differential, associational or descriptive, or stating the hypothesis explicitly (see examples).
+If the hypothesis is differential, it is assumed that the goal of the experiment is to confirm or disprove that the values of the controllable factors make a difference in the outcome. 
+Associational hypotheses are intended to confirm or disprove that the relationship between the controllable factor and the outcomes follows a specific mathematical relation. 
+Finally, descriptive hypotheses state that the value of the outcome has certain statistical properties.

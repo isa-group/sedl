@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:SEDL.es.us.isa.sedl.core.analysis="http://isa.us.es/sedl/core/analysis" xmlns:SEDL.es.us.isa.sedl.core.analysis.datasetspecification="http://isa.us.es/sedl/core/analysis/datasetspecification" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.analysis" ecore:package="SEDL.es.us.isa.sedl.core.analysis" targetNamespace="http://isa.us.es/sedl/core/analysis">
+  <xsd:import namespace="http://isa.us.es/sedl/core/analysis/datasetspecification" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
+  <xsd:element ecore:ignore="true" name="AnalysisResult" type="SEDL.es.us.isa.sedl.core.analysis:AnalysisResult"/>
+  <xsd:complexType abstract="true" name="AnalysisResult">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="datasetSpecification" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

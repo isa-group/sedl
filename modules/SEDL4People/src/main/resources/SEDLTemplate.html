@@ -1,0 +1,378 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="$1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SEDL</title>
+        <!--Cambiar por la ruta de Exemplar-->
+        <link rel="stylesheet" href="https://exemplar.us.es/css/bootstrap.css">
+        <script type="text/javascript" src="https://exemplar.us.es/js/vendor/jquery.js"></script>
+		<script type="text/javascript" src="https://exemplar.us.es/js/vendor/jquery-ui.js"></script>
+		<script type="text/javascript" src="https://exemplar.us.es/js/vendor/bootstrap.js"></script>
+		<script type="text/javascript" src="https://exemplar.us.es/js/vendor/jquery.js"></script>
+		<script src="https://exemplar.us.es/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+		<script>	$( document ).ready(function() {
+
+            var style ="<style type=\"text/css\" media=\"screen\">";
+            var script="<script>";
+            var num=0;
+            $(".code").each(function(){
+                num +=1;
+                $(this).attr("id","editor"+num);
+                script+="var editor"+num+" = ace.edit(\"editor"+num+"\");"+
+                    "editor"+num+".setReadOnly(true);"+
+                    "editor"+num+".setTheme('ace/theme/SEDL4People');"+
+                    "editor"+num+".getSession().setMode('ace/mode/SEDL4People');"+
+                    "editor"+num+".setOptions({maxLines: Infinity});";
+                    style+="#editor"+num+",";
+            });
+            script+="<\/script>";
+            style=style.substring(0, style.length-1);
+              style+="{"+
+                    "position: relative;"+
+                    "width: 600px;"+
+                    "top: 0;"+
+                    "right: 0;"+
+                    "bottom: 0;"+
+                    "left: 0;"+
+                    "}"+
+                "<\/style>";
+
+            $('head').append(style);
+            $('head').append(script);
+
+        });
+
+</script>
+		  
+		  
+    </head>
+    <body>
+        <h1>
+             <a role="button" data-toggle="collapse" href="#introSEDL" aria-expanded="false" aria-controls="introSEDL">
+                Introduction     
+            </a>
+        </h1>
+        <div id="introSEDL" class="collapse" >
+            <p>The use of metaheuristics to solve optimization problems is a largely studied topic in the field of computer sciences. In this context, software engineers recently realized of the benefits of using metaheuristics to solve hard optimization problems, usually referred to as search-based problems.</p>
+            <p>However, despite its many benefits, the application of metaheuristics requires overcoming numerous obstacles. First, the implementation of metaheuristic programs is a complex and error-prone process that require of knowledgeable developers. Although some supporting tools have been proposed, these usually automate only single parts of the MPS life-cycle.</p>
+            <p>Furthermore, a key challenge on the application of metaheuristic is experimentation. This is due to the fact that there is no analytical method to choose a suitable metaheuristic program for a given problem. Instead, experiments must be performed to compare the candidate techniques and their possible variants. This can lead to hundred of potential alternatives to be compared making the design, execution and analysis of experiments complex and time-consuming. Besides this, experiments are usually performed ad-hoc with generic tools and no clear guidelines introducing threats to validity and making them hardly automated and reproducible.</p>
+            <p>In this context we present SEDL (Scientific Experiments Description Language), a domain-independent language to describe experiments in a precise, tool-independent and machine-processable way.</p> 
+        </div>
+        <h1>
+             <a role="button" data-toggle="collapse" href="#langElements" aria-expanded="false" aria-controls="langElements">
+                SEDL Language Elements     
+            </a>
+        </h1>
+        <div id="langElements" class="collapse" >
+
+                //////LANGELEMENTS//////
+
+        </div>
+        <h1>
+             <a role="button" data-toggle="collapse" href="#SEDLModules" aria-expanded="false" aria-controls="SEDLModules">
+                SEDL Modules    
+            </a>
+        </h1>
+        <div id="SEDLModules" class="collapse" >
+            <h2>
+             <a role="button" data-toggle="collapse" href="#SEDLModulesCharts" aria-expanded="false" aria-controls="SEDLModulesCharts">
+                Charts    
+            </a>
+            </h2>
+            <div id="SEDLModulesCharts" class="collapse" >
+            </div>
+            <h2>
+             <a role="button" data-toggle="collapse" href="#SEDLModulesDOE" aria-expanded="false" aria-controls="SEDLModulesDOE">
+                Design of Experiments (DOE)    
+            </a>
+            </h2>
+            <div id="SEDLModulesDOE" class="collapse" >
+            </div>
+            <h2>
+             <a role="button" data-toggle="collapse" href="#SEDLModulesR" aria-expanded="false" aria-controls="SEDLModulesR">
+                R    
+            </a>
+            </h2>
+            <div id="SEDLModulesR" class="collapse" >
+            </div>
+        </div>
+        <h1>
+             <a role="button" data-toggle="collapse" href="#AnalysisOperations" aria-expanded="false" aria-controls="AnalysisOperations">
+                Analysis Operations   
+            </a>
+        </h1>
+        <div id="AnalysisOperations" class="collapse" >
+
+
+
+                <h3>
+    <a role="button" data-toggle="collapse" href="#analysisAvailableOp" aria-expanded="false" aria-controls="analysisAvailableOp">
+                Avaiable Analysis Operations
+            </a>
+</h3>
+<div id="analysisAvailableOp" class="collapse" >
+           
+
+    <h5>
+    <a role="button" data-toggle="collapse" href="#analysisAvailableOpCS" aria-expanded="false" aria-controls="analysisAvailableOpCS">
+                Compute Stats
+            </a>
+    </h5>
+    <div id="analysisAvailableOpCS" class="collapse" >
+            <p>Each description of a SEDL experiment concludes with the specification of the statistic analyses to be performed on the outcomes. This specification comprises of a list of alternative set of statistical tests. This list is prioritized indicating that the first test set whose preconditions holds will be applied, ignoring the rest. This analysis operation compute each set of statistical tests in sequential order.</p>
+    </div>
+
+    <h5>
+    <a role="button" data-toggle="collapse" href="#analysisAvailableOpOOR" aria-expanded="false" aria-controls="analysisAvailableOpOOR">
+                Out of Range
+            </a>
+    </h5>
+    <div id="analysisAvailableOpOOR" class="collapse" >
+            <p>This operation checks if the any of the values of the variables is out of range. In that case, the conclusions of the experiment could be clearly biased. To neutralize it, the experiment should be repeated using suitable ranges for the variables.
+    </div>
+
+    <h5>
+    <a role="button" data-toggle="collapse" href="#analysisAvailableOpSS" aria-expanded="false" aria-controls="analysisAvailableOpSS">
+                Small Sampling
+            </a>
+    </h5>
+    <div id="analysisAvailableOpSS" class="collapse" >
+        <p>This analysis operation returns true if the size of the sampling is less than an input parameter s. This operation is used to diagnose the validity threat derived of using a number of experimental objects too small. Since the minimum accepted size for the sampling varies among experimental disciplines and areas, it is provided as a parameter to the operation. To neutralize this threat, the experiment should be repeated with a larger sampling.</p>
+    </div>
+
+    <h5>
+    <a role="button" data-toggle="collapse" href="#analysisAvailableOpMC" aria-expanded="false" aria-controls="analysisAvailableOpMC">
+                Multiple Comparison
+            </a>
+    </h5>
+    <div id="analysisAvailableOpMC" class="collapse" >
+               <p>This analysis operation checks if several datasets are being compared using a simple comparison statistical test, instead of a specific test for multiple comparison. If a simple comparison test is used, the error rate could be accumulated leading to erroneous conclusions. To neutralize this threat, the statistical analysis should be repeated using a suitable technique for comparing multiple datasets.</p>
+    </div>
+
+</div>
+
+
+<h3>
+    <a role="button" data-toggle="collapse" href="#analysisFutureOp" aria-expanded="false" aria-controls="analysisFutureOp">
+                Future Analysis Operations
+            </a>
+</h3>
+<div id="analysisFutureOp" class="collapse" >
+        <h4>
+            <a role="button" data-toggle="collapse" href="#analysisFutureIEO" aria-expanded="false" aria-controls="analysisAFutureIEO">
+                Information Extraction Operations
+            </a>
+        </h4>
+        <div id="analysisFutureIEO" class="collapse" >
+                <p>In this section, we present a set of generic operations for the automated extraction of information from SEDL documents. These can be helpful to make decision during the experimental process and to report further information about experiments. Also, these can be used as auxiliary operations to check the validity of experiments described in SEDL.</p>
+
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#OpNumOfBlock" aria-expanded="false" aria-controls="OpNumOfBlock">
+                            Number of Blocks
+                    </a>
+                 </h5>
+                <div id="OpNumOfBlock" class="collapse" >
+                           <p>This operation computes the number of blocks of the experiment as the product of the number of levels of the blocking variables. It takes as input an SEDL experiment E.</p>
+                </div>
+
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#OpMeasPerObj" aria-expanded="false" aria-controls="OpMeasPerObj">
+                            Measurements Per Object
+                    </a>
+                 </h5>
+                <div id="OpMeasPerObj" class="collapse" >
+                           <p>This analyses operation computes the number of measurements performed on each experimental object a group (this is usually specified by the experimental protocol). For complete randomized designs, blocking factorial designs, and most of the designs.</p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#OpMeasExpBlock" aria-expanded="false" aria-controls="OpMeasExpBlock">
+                            Measurements Per Experimental Block
+                    </a>
+                 </h5>
+                <div id="OpMeasExpBlock" class="collapse" >
+                           <p>This operation computes the total number of measurements that should be generated for each block in a classical design.</p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#OpDesignSize" aria-expanded="false" aria-controls="OpDesignSize">
+                            Design Cardinality (a.k.a. Design size)
+                    </a>
+                 </h5>
+                <div id="OpDesignSize" class="collapse" >
+                           <p>This operation computes the expected number of measurements that should be generated according to a specific design. It takes as input an experiment E. It can only compute the result for classical design (this is a precondition of the operation). The cardinality is computed as the product of the number of blocks (computed through the analysis operation blocks) and the number of measurements per block specified in the design (computed through the analysis operation measurementsPerBlock).</p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#OpSampleSize" aria-expanded="false" aria-controls="OpSampleSize">
+                            Sample size (#sample)
+                    </a>
+                 </h5>
+                <div id="OpSampleSize" class="collapse" >
+                           <p>This operation computes the number of objects in the sample. It can only compute the result for classical design (this is a precondition of the operation). The cardinality is computed as the product of the number of blocks and the sum of the sizes of all groups.</p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#OpResultCardinal" aria-expanded="false" aria-controls="OpResultCardinal">
+                            Results cardinality (a.k.a. Results size)
+                    </a>
+                 </h5>
+                <div id="OpResultCardinal" class="collapse" >
+                           <p>This operation computes the total size of the dataset of an specific execution of a lab-pack. We assume that the structure of the dataset is a relation (in the sense of the relational model).</p>
+                </div>
+        </div>
+        <h4>
+            <a role="button" data-toggle="collapse" href="#analysisFutureOVC" aria-expanded="false" aria-controls="analysisAFutureOVC">
+                Operations for Validity Checking
+            </a>
+        </h4>
+        <div id="analysisFutureOVC" class="collapse" >
+                <p></p>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#futureOpRandomDesign" aria-expanded="false" aria-controls="futureOpRandomDesign">
+                            Random Design
+                    </a>
+                 </h5>
+                <div id="futureOpRandomDesign" class="collapse" >
+                    <p>This analysis operation checks whether the sampling, the assignment, and the protocol are randomized. If they are not, the experiment would be more susceptible to external events that may influence the conduction of the experiment and its outcome. This should be warned as an internal validity threat in the experiment. To minimize this threat, a random sampling, assignment mechanism and protocol should be used.</p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#futureOpRandomConduction" aria-expanded="false" aria-controls="futureOpRandomConduction">
+                            Random Conduction
+                    </a>
+                 </h5>
+                <div id="futureOpRandomConduction" class="collapse" >
+                           <p>This analysis operation checks whether the experimental protocol defined in the SEDL document is randomized. If it is not, the results could be strongly biased in the case that certain treatments on objects could affect to other subsequent treatments. This should be interpreted as a warning related to the threat to validity ”testing effects”. To minimize this threat, a random protocol should be used.</p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#futureOpBlockingFactors" aria-expanded="false" aria-controls="futureOpBlockingFactors">
+                            Blocking Factors
+                    </a>
+                 </h5>
+                <div id="futureOpBlockingFactors" class="collapse" >
+                           <p>This analysis operation checks if there exists a non controllable factor that is not used for blocking in the design. In such a case, the conclusions of the experiment could be threatened. Since the materialization of the threat is not fully confirmed this should be interpreted as a warning. To neutralize the threat, all non controllable factors should be used for blocking.</p>
+                </div>
+                 
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#futureOpMissingMeasurements" aria-expanded="false" aria-controls="futureOpMissingMeasurements">
+                            Missing measurements
+                    </a>
+                 </h5>
+                <div id="futureOpMissingMeasurements" class="collapse" >
+                           <p>This analysis operation checks if the results of an experimental conduction con- tains less measurements that those specified in the design. If the operation returns true, it means that some measurement of the outcomes failed or were lost. In general, this is considered an error. However, in some cases, a small percentage of missing measurements can be acceptable and therefore this can be interpreted as an warning. To neutralize the threat, the experiment should be repeated.</p>
+                </div>
+                
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#futureOpStatPre" aria-expanded="false" aria-controls="futureOpStatPre">
+                            Statistical Preconditions
+                    </a>
+                 </h5>
+                <div id="futureOpStatPre" class="collapse" >
+                           <p>Some statistical tests are only applicable to dataset with certain characteristics. For instance, ANOVA is applicable only when the data follow a normal distribution. This operation checks if the dataset specified in a SEDL experiment fulfils all the preconditions required by the statistical tests to be performed. If not, the results would be threatened. This threat is neutralized by repeating the experiment with a set of statistical tests that are suitable for the type of dataset. </p>
+                </div>
+                <h5>
+                    <a role="button" data-toggle="collapse" href="#futureOpRecommendedTest" aria-expanded="false" aria-controls="futureOpRecommendedTest">
+                            Recommended Test
+                    </a>
+                 </h5>
+                <div id="futureOpRecommendedTest" class="collapse" >
+                           <p>This operation checks whether the statistical tests performed on the experimental results are those recommended by an specific analysis methodology. For instance, in the thesis we follow the methodology proposed by Derrac et al.. Using the wrong technique may threat the validity of the conclusion due to the “inaccurate size estimation effect”. The result of this operation should be interpreted as a warning. To neutralize the threat, the experimental analysis should be repeated using some of the recommended tests in the methodology.</p>
+                </div>
+        </div>
+</div>
+      
+
+
+        </div>
+        <h1>
+             <a role="button" data-toggle="collapse" href="#tutorialsSEDL" aria-expanded="false" aria-controls="tutorialsSEDL">
+                Tutorials   
+            </a>
+        </h1>
+        <div id="tutorialsSEDL" class="collapse" >
+            <h2>
+             	<a role="button" data-toggle="collapse" href="#firstExpSEDL" aria-expanded="false" aria-controls="firstExpSEDL">
+                	Describing your first experiment with SEDL   
+            	</a>
+            </h2>
+            <div id="firstExpSEDL" class="collapse" >
+            </div>
+            <h2>
+	             <a role="button" data-toggle="collapse" href="#PaperProjOrg" aria-expanded="false" aria-controls="PaperProjOrg">
+	                Describing your paper, project, organization   
+	            </a>
+            </h2>
+            <div id="PaperProjOrg" class="collapse" >
+            </div>
+            <h2>
+	             <a role="button" data-toggle="collapse" href="#journeyToSEDL" aria-expanded="false" aria-controls="journeyToSEDL">
+	                A wonderful journey to the core of SEDL (describing your experimental variables, hypotheses and designs)   
+	            </a>
+            </h2>
+            <div id="journeyToSEDL" class="collapse" >
+            </div>
+            <h2>
+             <a role="button" data-toggle="collapse" href="#ComputingDesStat" aria-expanded="false" aria-controls="ComputingDesStat">
+                Computing descriptive statistics with SEDL   
+            </a>
+            </h2>
+            <div id="ComputingDesStat" class="collapse" >
+                <h3>
+                 <a role="button" data-toggle="collapse" href="#ComputingDesStatCTM" aria-expanded="false" aria-controls="ComputingDesStatCTM">
+                    Central Tendency Measures  
+                </a>
+                </h3>
+                <div id="ComputingDesStatCTM" class="collapse" >
+                </div>
+                <h3>
+                 <a role="button" data-toggle="collapse" href="#ComputingDesStatCharts" aria-expanded="false" aria-controls="ComputingDesStatCharts">
+                    Charting with the Charts package   
+                </a>
+                </h3>
+                <div id="ComputingDesStatCharts" class="collapse" >
+                </div>
+            </div>
+            <h2>
+             <a role="button" data-toggle="collapse" href="#AdvStatAna" aria-expanded="false" aria-controls="AdvStatAna">
+                Advanced statistical analysis (NHST and Correlation) with SEDL   
+            </a>
+            </h2>
+            <div id="AdvStatAna" class="collapse" >
+                <h3>
+                 <a role="button" data-toggle="collapse" href="#AdvStatAnaSimpleNHST" aria-expanded="false" aria-controls="AdvStatAnaSimpleNHST">
+                    Simple NHST  
+                </a>
+                </h3>
+                <div id="AdvStatAnaSimpleNHST" class="collapse" >
+                </div>
+                <h3>
+                 <a role="button" data-toggle="collapse" href="#AdvStatAnaComplexNHST" aria-expanded="false" aria-controls="AdvStatAnaComplexNHST">
+                    Complex NHST with parametrical test   
+                </a>
+                </h3>
+                <div id="AdvStatAnaComplexNHST" class="collapse" >
+                </div>
+                <h3>
+                 <a role="button" data-toggle="collapse" href="#AdvStatAnaSimpleCorrelation" aria-expanded="false" aria-controls="AdvStatAnaSimpleCorrelation">
+                    Simple Correlation using Pearson and Spearman   
+                </a>
+                </h3>
+                <div id="AdvStatAnaSimpleCorrelation" class="collapse" >
+                </div>
+                <h3>
+                 <a role="button" data-toggle="collapse" href="#AdvStatAnaComplexCorrelation" aria-expanded="false" aria-controls="AdvStatAnaComplexCorrelation">
+                    Complex Correlation using Binomial Models   
+                </a>
+                </h3>
+                <div id="AdvStatAnaComplexCorrelation" class="collapse" >
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+

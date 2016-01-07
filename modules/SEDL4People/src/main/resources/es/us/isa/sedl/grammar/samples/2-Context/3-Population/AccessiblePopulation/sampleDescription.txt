@@ -1,0 +1,2 @@
+Since the target population of an experiment can be huge or even infinite, the researcher usually uses a sample of it in the experiment. The sampling of the target population can be divided in two phases. 
+First the accessible population (a.k.a. sampling frame) is defined. The accessible population is the set of experimental individuals that could participate in the experiment.

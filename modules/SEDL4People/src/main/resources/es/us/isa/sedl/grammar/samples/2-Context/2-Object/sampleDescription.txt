@@ -1,0 +1,4 @@
+The first element to be defined in any experiment are the experimental objects 
+(a.k.a. experimental units). The experimental objects are the elements of interest 
+that participate in a particular experiment, for instance, humans are the typical objects in psychology experiments; 
+animals, vegetables, and bacterias are the typical objects in biological experiments; algorithm runs are typical objects in etc.”	

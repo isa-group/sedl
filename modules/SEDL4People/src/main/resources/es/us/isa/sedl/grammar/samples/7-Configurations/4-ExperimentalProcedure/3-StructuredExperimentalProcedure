@@ -1,0 +1,18 @@
+/**
+    This sample shows an experimental procedure described in its structured form.
+    In this case all the commands to be executed as, preprocessing, execution 
+    and postprocessing are described.
+    Additionally, a preTreatment preprocessing command is described.
+**/
+Procedure:
+    Preprocessing:
+        Command(dataset): "cleanDataset $dataset.filename" // First we clean the dataset
+        // Just beform applying the treament with the algorithm and evaluation fold,
+        // we train the corresponding algorithm with the training folds.
+        Command as Pretreatment Preprocessing(algorithm,trainingFold): "$algorithm.trainingCommand $evaluationFold.fileName $algorithm.trainingConfigFile"
+    Execution:		
+        // We apply the treatment by applying the algoritms on the evaluation fold.
+	Command as Treatment(algorithm,evaluationFold): "$algorithm.command $evaluationFold.fileName"
+    Postprocessing:
+        // Finally we compute average results per algorithm and dataset.
+        Command: "computeAverages globalResults.csv averageResults.csv"

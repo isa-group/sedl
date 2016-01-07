@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.analysis="http://isa.us.es/sedl/core/analysis" xmlns:SEDL.es.us.isa.sedl.core.analysis.datasetspecification="http://isa.us.es/sedl/core/analysis/datasetspecification" xmlns:SEDL.es.us.isa.sedl.core.analysis.statistic="http://isa.us.es/sedl/core/analysis/statistic" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:SEDL.es.us.isa.sedl.core.hypothesis="http://isa.us.es/sedl/core/hypothesis" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.analysis.statistic" ecore:package="SEDL.es.us.isa.sedl.core.analysis.statistic" targetNamespace="http://isa.us.es/sedl/core/analysis/statistic">
+  <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/hypothesis" schemaLocation="SEDL.es.us.isa.sedl.core.hypothesis.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/analysis" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/analysis/datasetspecification" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd"/>
+  <xsd:element ecore:ignore="true" name="Statistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
+  <xsd:element ecore:ignore="true" name="StatisticalAnalysisSpec" type="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisSpec"/>
+  <xsd:element ecore:ignore="true" name="Ranking" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Ranking"/>
+  <xsd:element ecore:ignore="true" name="DescriptiveStatistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatistic"/>
+  <xsd:element ecore:ignore="true" name="RankingResult" type="SEDL.es.us.isa.sedl.core.analysis.statistic:RankingResult"/>
+  <xsd:element ecore:ignore="true" name="StatisticalAnalysisResult" type="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult"/>
+  <xsd:element ecore:ignore="true" name="Rank" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Rank"/>
+  <xsd:element ecore:ignore="true" name="CentralTendencyMeasure" type="SEDL.es.us.isa.sedl.core.analysis.statistic:CentralTendencyMeasure"/>
+  <xsd:element ecore:ignore="true" name="InferentialStatistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:InferentialStatistic"/>
+  <xsd:element ecore:ignore="true" name="StatisticalTestAssertion" type="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalTestAssertion"/>
+  <xsd:element ecore:ignore="true" name="VariabilityMeasure" type="SEDL.es.us.isa.sedl.core.analysis.statistic:VariabilityMeasure"/>
+  <xsd:element ecore:ignore="true" name="StandardDeviation" type="SEDL.es.us.isa.sedl.core.analysis.statistic:StandardDeviation"/>
+  <xsd:element ecore:ignore="true" name="InterquartileRange" type="SEDL.es.us.isa.sedl.core.analysis.statistic:InterquartileRange"/>
+  <xsd:element ecore:ignore="true" name="Range" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Range"/>
+  <xsd:element ecore:ignore="true" name="Mean" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Mean"/>
+  <xsd:element ecore:ignore="true" name="Median" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Median"/>
+  <xsd:element ecore:ignore="true" name="Mode" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Mode"/>
+  <xsd:element ecore:ignore="true" name="ConfidenceInterval" type="SEDL.es.us.isa.sedl.core.analysis.statistic:ConfidenceInterval"/>
+  <xsd:element ecore:ignore="true" name="CorrelationCoeficient" type="SEDL.es.us.isa.sedl.core.analysis.statistic:CorrelationCoeficient"/>
+  <xsd:element ecore:ignore="true" name="AssociationalAnalysis" type="SEDL.es.us.isa.sedl.core.analysis.statistic:AssociationalAnalysis"/>
+  <xsd:element ecore:ignore="true" name="TestOfHypothesis" type="SEDL.es.us.isa.sedl.core.analysis.statistic:TestOfHypothesis"/>
+  <xsd:element ecore:ignore="true" name="NHST" type="SEDL.es.us.isa.sedl.core.analysis.statistic:NHST"/>
+  <xsd:element ecore:ignore="true" name="PValue" type="SEDL.es.us.isa.sedl.core.analysis.statistic:PValue"/>
+  <xsd:element ecore:ignore="true" name="DescriptiveStatisticValue" type="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatisticValue"/>
+  <xsd:element ecore:ignore="true" name="ConfidenceIntervalValue" type="SEDL.es.us.isa.sedl.core.analysis.statistic:ConfidenceIntervalValue"/>
+  <xsd:element ecore:ignore="true" name="CorrelationValue" type="SEDL.es.us.isa.sedl.core.analysis.statistic:CorrelationValue"/>
+  <xsd:complexType name="Statistic">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="datasetSpecification" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StatisticalAnalysisSpec">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="statistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Ranking">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="rankingCriterion" type="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatistic"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Factor" name="rankingVariable" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DescriptiveStatistic">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RankingResult">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="2" name="ranks" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Rank"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="StatisticalAnalysisResult">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis:AnalysisResult"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Rank">
+    <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Level" name="level" type="xsd:anyURI" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="CentralTendencyMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatistic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="InferentialStatistic">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="assumptions" type="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalTestAssertion"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="StatisticalTestAssertion">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.hypothesis:Assertion"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="VariabilityMeasure">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatistic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="StandardDeviation">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:VariabilityMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="InterquartileRange">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:VariabilityMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Range">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:VariabilityMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Mean">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:CentralTendencyMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Median">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:CentralTendencyMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Mode">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:CentralTendencyMeasure"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ConfidenceInterval">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:InferentialStatistic">
+        <xsd:attribute ecore:unsettable="false" name="confidenceLevel" type="xsd:double" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CorrelationCoeficient">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:AssociationalAnalysis">
+        <xsd:attribute name="name" type="types:String" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AssociationalAnalysis">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:InferentialStatistic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="TestOfHypothesis">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:InferentialStatistic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="NHST">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:TestOfHypothesis">
+        <xsd:attribute name="name" type="types:String" use="required"/>
+        <xsd:attribute name="statisticalDistribution" type="types:String" use="required"/>
+        <xsd:attribute default="0.05" ecore:unsettable="false" name="alpha" type="xsd:double"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PValue">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="freedomDegrees" nillable="true" type="xsd:integer"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.analysis.statistic:NHST" name="nHST" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="value" type="xsd:double" use="required"/>
+        <xsd:attribute default="0.05" ecore:unsettable="false" name="significanceThreshold" type="xsd:double"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="DescriptiveStatisticValue">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatistic" name="descriptiveStatistic" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.design:Level" name="value" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ConfidenceIntervalValue">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.analysis.statistic:ConfidenceInterval" name="confidenceInterval" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="min" type="xsd:double" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="max" type="xsd:double" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CorrelationValue">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
+        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.analysis.statistic:CorrelationCoeficient" name="correlationCoeficient" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="value" type="xsd:double" use="required"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,5 @@
+/**
+**/
+Groups: by age sizing 20 // The set of groups to be created depend on the levels
+                         // of the variable Age, each group will have a size of 
+                         // 20 individuals

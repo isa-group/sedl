@@ -1,0 +1,12 @@
+/****/
+Factors: 
+	// This factor represents the specific algoritm used to generate the feature models (FMs)
+	FMGenerator enum 
+	            // Our Evolutionary Algorithm (we use the object notation of levels to specify all
+	            // the required parameters in order to automate replication)
+	            ETHOM(command: 'ETHOM', selection: 'Roulette-wheel',
+							crossover: 'One-point', infeasibilityTreatment: 'Repairing',
+							crossoverProb: 0.9, mutationProb: 0.0075, populationSize: 200 ),
+                // A random algorithm
+				RandomGen(command: 'RandomFMGenerator' )
+	Outcome: ObjectiveFunction in Z  // Best value of the obj. func. found

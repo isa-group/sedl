@@ -1,0 +1,11 @@
+Experimental Inputs are a description of the input data required for the execution of the experiment
+in the specific configuration. This description could be used to test the replicability of the experiment
+ in an specific environment, by checking the availability of those inputs. Currently it is composed of a set of inputDataSources. 
+
+The inputDatasource type is an element that denotes individual inputs for the experiment. 
+It has bee declared abstract to emphasize that it is an extension point, that must be used to define concrete 
+types of input datasources. SEDL 1.0 provides two different types of input datasources: files and URLs.        				 				  				 
+Since input datasources can be associated to specific levels of some variables it can contain an arbitrary 
+sequence of variable valuations.
+
+This extension point enables the use of alternative sources of input data for experiments such as public online datasets or experimental repositories

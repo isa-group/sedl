@@ -1,0 +1,2 @@
+A controllable factor (a.k.a. active independent variable) is a variable whose value is applied or given to the experimental objects. 
+The values of this kind of variable are usually controlled or manipulated in some way by the experimenter.

@@ -1,0 +1,3 @@
+A treatment implies to perform an action that sets the value of an independent variable of
+the experiment to a specific value. Consequently, the treatment must specify the levels of
+the independent variables that are set.
