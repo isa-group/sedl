@@ -6,10 +6,11 @@
 
 package es.us.isa.sedl.runtime.analysis.validation;
 
+import es.us.isa.sedl.core.util.Error;
+import es.us.isa.sedl.core.util.Error.ERROR_SEVERITY;
 import java.util.HashSet;
 import java.util.Set;
-import es.us.isa.exemplar.commons.util.Error;
-import es.us.isa.exemplar.commons.util.Error.ERROR_SEVERITY;
+
 
 /**
  *
@@ -26,7 +27,7 @@ public class ValidationError<T> extends Error {
         this(subject,severity,description,new HashSet<Fixing<T>>());
     }
     public ValidationError(T subject, ERROR_SEVERITY severity, String description, Set<Fixing<T>> fixings) {
-        super(severity,description);
+        super(0,severity,description);
         this.subject = subject;        
         this.fixings = fixings;
     }
