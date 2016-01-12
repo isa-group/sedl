@@ -50,7 +50,8 @@ public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller {
     	    listener = new SEDL4PeopleExtendedListener(errorListener);
     	    walker.walk(listener, parser.document());
     	    parser.addParseListener(listener);
-            errors.addAll(getEpUnmarshaller().unmarshall(parser.getImportedModules(),listener.getExtensionPointsInstantiations(),listener.getExperimentModel()));
+            if(epUnmarshaller!=null)
+                errors.addAll(getEpUnmarshaller().unmarshall(parser.getImportedModules(),listener.getExtensionPointsInstantiations(),listener.getExperimentModel()));
     	    if (errorListener.hasErrors()) {
     	    	errors.addAll(errorListener.getErrors());
     	    	result = null;
