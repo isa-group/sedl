@@ -3,24 +3,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-            <groupId>es.us.isa</groupId>
-            <artifactId>SEDL</artifactId>            
-            <version>0.0.1-SNAPSHOT</version>
-            <relativePath>./../../pom.xml</relativePath>
+        <groupId>es.us.isa</groupId>
+        <artifactId>SEDL</artifactId>            
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>./../../pom.xml</relativePath>
     </parent>
 
     <groupId>es.us.isa.sedl</groupId>
     <artifactId>SEDL-core</artifactId>    
 
     <name>SEDL-core</name>    
-
+    <description>
+        This project contains java clases that instantiate the metamodel des-
+        cribed in the meta-model project. Specifically, it takes the XM-Schemas 
+        and JAXB to generate automatically the classes that represent the 
+        elements of such schemas (and consquently those of the SEDL MetaModel). 
+        Additionally, it contain customizations and helper classes that support 
+        the creation of SEDL experimental descriptions as Java objects, loading 
+        and saving those objects information as files using differente syntaxes,
+        etc.
+    </description>
+    
     <dependencies>
     
-    <dependency>
-		<groupId>commons-io</groupId>
-		<artifactId>commons-io</artifactId>
-		<version>2.4</version>
-	</dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -45,12 +55,7 @@
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
             <version>4.5</version>
-        </dependency>
-        <dependency>
-		<groupId>commons-io</groupId>
-		<artifactId>commons-io</artifactId>
-		<version>2.4</version>
-	</dependency>
+        </dependency>        
         <dependency>
             <groupId>es.us.isa</groupId>
             <artifactId>jdataset</artifactId>
@@ -128,6 +133,7 @@
             <plugin> 
                 <groupId>org.jvnet.jaxb2.maven2</groupId> 
                 <artifactId>maven-jaxb22-plugin</artifactId> 
+                <version>0.13.1</version>
                 <executions> 
                     <execution> 
                         <goals> 
@@ -174,7 +180,7 @@
                                 <plugin>
                                     <groupId>org.jvnet.jaxb2_commons</groupId>
                                     <artifactId>jaxb2-basics-annotate</artifactId>
-                                    	<version>1.0.2</version>
+                                    <version>1.0.2</version>
 
                                 </plugin>
                                 <plugin>

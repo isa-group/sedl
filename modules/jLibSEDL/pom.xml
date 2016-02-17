@@ -13,7 +13,13 @@
     <packaging>jar</packaging>
 
     <name>jLibSEDL</name>
-    <description> A minimal library for SEDL documents management.</description>
+    <description> A minimal library for SEDL documents management.
+    This project provides general purpose utilities for working with SEDL 
+        documents in Java. For instance, it contains classes that helps us to 
+        check if a document is a valid SEDL description (in any of the available
+        syntaxes). It also allows to load such document as a Java object inde-
+        pendently of the specific syntax used (SEDL4People, XML or JSON).
+    </description>
     <url>http://maven.apache.org</url>
 
     <properties>

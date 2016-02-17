@@ -12,7 +12,14 @@
     <name>SEDL4People</name>
     <packaging>jar</packaging>
     <description>
-        Parsing and documents generation for the SEDL4People syntax.
+        This project defines a plain text syntax for specifying experiment 
+        descriptions according to the SEDL meta-model. Specifically, it provides
+        utilities for parsing and generating SEDL documents using  SEDL4People 
+        syntax. If you want to learn those syntax and see several examples, 
+        please see the https://exemplar.us.es/ideas-sedl-language/language/help 
+        The project uses Antlr (http://www.antlr.org/) and  StringTemplate 
+        (http://www.stringtemplate.org/) for the parsing and marshalling of 
+        documents.
     </description>
     <properties>
         <antlr.version>4.5</antlr.version>
@@ -25,18 +32,14 @@
             <version>1.5</version>
         </dependency>  
         <!-- We use antlr for parsing -->      
+        
+        <!-- We use string template for document generation from
+        java objects -->
         <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>ST4</artifactId>
             <version>4.0.8</version>
         </dependency>
-        <!-- We use string template for document generation from
-        java objects -->
-        <dependency>
-            <groupId>org.antlr</groupId>
-            <artifactId>stringtemplate</artifactId>
-            <version>4.0.2</version>
-        </dependency>       
         <!-- Log4j for logging -->
         <dependency>
             <groupId>log4j</groupId>

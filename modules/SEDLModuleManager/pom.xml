@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>es.us.isa.sedl</groupId>
-        <artifactId>SEDLModulesSubsystem</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>./../../pom.xml</relativePath>
+       <groupId>es.us.isa</groupId>
+       <artifactId>SEDL</artifactId>            
+       <version>0.0.1-SNAPSHOT</version>
+       <relativePath>./../../pom.xml</relativePath>
     </parent>
     <groupId>es.us.isa.sedl.modules</groupId>
     <artifactId>SEDLModuleManager</artifactId>
@@ -25,8 +25,7 @@
         <dependency>
             <groupId>es.us.isa.sedl</groupId>
             <artifactId>SEDL4People</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <type>jar</type>
-        </dependency>
+            <version>${project.version}</version>            
+        </dependency>        
     </dependencies>
 </project>

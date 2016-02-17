@@ -17,7 +17,7 @@ public class SEDLModuleRegistry extends ImplementationsRegistry<SEDLModule> {
     private static Logger logger = Logger.getLogger(SEDLModuleRegistry.class.getName());
 
     public SEDLModuleRegistry() {
-        super(SEDLModule.class,"es.us.isa.sedl");
+        super(SEDLModule.class,"es.us.isa.sedl.module");
         for(Class<? extends SEDLModule> c:subclassesById.values())
         {                           
                 SEDLModule module=instantiate(c);
@@ -52,8 +52,10 @@ public class SEDLModuleRegistry extends ImplementationsRegistry<SEDLModule> {
     private SEDLModule instantiate(Class<? extends SEDLModule> subtypeClass) {
         SEDLModule result=null;
         try {
-            if(subtypeClass!=null && !Modifier.isAbstract(subtypeClass.getModifiers()))
-                result=subtypeClass.getConstructor().newInstance();
+            if(subtypeClass!=null && !Modifier.isAbstract(subtypeClass.getModifiers())){
+                Object obj=subtypeClass.getConstructor().newInstance();
+                result=(SEDLModule)obj;
+            }
         } catch (InstantiationException ex) {
             logger.log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
