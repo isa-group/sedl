@@ -5,3 +5,4 @@ SEDL documents include information that experimental description should provide 
 
 Another important feature is that SEDL allows for the creation of other internal DSLs for defining details for a specific domain or scientific area, since it has a set of extension points.
 
+**(Visit the SEDL WIKI for more informatin about the language)[https://github.com/isa-group/sedl/wiki]**
