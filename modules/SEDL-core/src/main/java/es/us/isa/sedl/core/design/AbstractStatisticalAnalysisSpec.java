@@ -1,7 +1,8 @@
-package es.us.isa.sedl.core.analysis.statistic;
+package es.us.isa.sedl.core.design;
 
 import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
+import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2016.01.07 a las 06:11:32 PM CET 
+// Generado el: 2018.04.05 a las 07:27:38 PM CEST 
 //
 
 
@@ -32,7 +32,6 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Statistic_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "Statistic");
-    private final static QName _StatisticalAnalysisSpec_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "StatisticalAnalysisSpec");
     private final static QName _Ranking_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "Ranking");
     private final static QName _DescriptiveStatistic_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "DescriptiveStatistic");
     private final static QName _RankingResult_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "RankingResult");
@@ -71,14 +70,6 @@ public class ObjectFactory {
      */
     public Statistic createStatistic() {
         return new Statistic();
-    }
-
-    /**
-     * Create an instance of {@link StatisticalAnalysisSpec }
-     * 
-     */
-    public StatisticalAnalysisSpec createStatisticalAnalysisSpec() {
-        return new StatisticalAnalysisSpec();
     }
 
     /**
@@ -272,15 +263,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "Statistic")
     public JAXBElement<Statistic> createStatistic(Statistic value) {
         return new JAXBElement<Statistic>(_Statistic_QNAME, Statistic.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link StatisticalAnalysisSpec }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "StatisticalAnalysisSpec")
-    public JAXBElement<StatisticalAnalysisSpec> createStatisticalAnalysisSpec(StatisticalAnalysisSpec value) {
-        return new JAXBElement<StatisticalAnalysisSpec>(_StatisticalAnalysisSpec_QNAME, StatisticalAnalysisSpec.class, null, value);
     }
 
     /**

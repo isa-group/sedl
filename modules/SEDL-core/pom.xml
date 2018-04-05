@@ -24,6 +24,11 @@
         etc.
     </description>
     
+    <properties>        
+        <jackson.version>1.9.12</jackson.version>        
+    </properties>
+ 
+    
     <dependencies>
     
         <dependency>
@@ -62,6 +67,27 @@
             <version>0.1-SNAPSHOT</version>
             <type>jar</type>
         </dependency>
+        <!-- We depend on Jackson for JSON serialization/Deserialization -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-jaxrs</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-xc</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>  
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>

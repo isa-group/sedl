@@ -185,13 +185,7 @@
                   <eStructuralFeatures xsi:type="ecore:EReference" name="datasetSpecification"
                       ordered="false" eType="#//es/us/isa/sedl/core/analysis/datasetspecification/DatasetSpecification"
                       containment="true"/>
-                </eClassifiers>
-                <eClassifiers xsi:type="ecore:EClass" name="StatisticalAnalysisSpec"
-                    eSuperTypes="#//es/us/isa/sedl/core/design/AnalysisSpecification">
-                  <eStructuralFeatures xsi:type="ecore:EReference" name="statistic"
-                      ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/analysis/statistic/Statistic"
-                      containment="true"/>
-                </eClassifiers>
+                </eClassifiers>                
                 <eClassifiers xsi:type="ecore:EClass" name="Ranking" eSuperTypes="#//es/us/isa/sedl/core/analysis/statistic/Statistic">
                   <eStructuralFeatures xsi:type="ecore:EReference" name="rankingCriterion"
                       ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/analysis/statistic/DescriptiveStatistic"
@@ -337,6 +331,12 @@
                 <eStructuralFeatures xsi:type="ecore:EReference" name="experimentalDesign"
                     ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/design/ExperimentalDesign"
                     containment="true"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="StatisticalAnalysisSpec"
+                    eSuperTypes="#//es/us/isa/sedl/core/design/AnalysisSpecification">
+                  <eStructuralFeatures xsi:type="ecore:EReference" name="statistic"
+                      ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/analysis/statistic/Statistic"
+                      containment="true"/>
               </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="Variables">
                 <eStructuralFeatures xsi:type="ecore:EReference" name="variable" ordered="false"

@@ -5,8 +5,7 @@
   <xsd:import namespace="http://isa.us.es/sedl/core/analysis" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/analysis/datasetspecification" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd"/>
-  <xsd:element ecore:ignore="true" name="Statistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
-  <xsd:element ecore:ignore="true" name="StatisticalAnalysisSpec" type="SEDL.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisSpec"/>
+  <xsd:element ecore:ignore="true" name="Statistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>  
   <xsd:element ecore:ignore="true" name="Ranking" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Ranking"/>
   <xsd:element ecore:ignore="true" name="DescriptiveStatistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatistic"/>
   <xsd:element ecore:ignore="true" name="RankingResult" type="SEDL.es.us.isa.sedl.core.analysis.statistic:RankingResult"/>
@@ -35,16 +34,7 @@
     <xsd:sequence>
       <xsd:element ecore:resolveProxies="true" minOccurs="0" name="datasetSpecification" type="SEDL.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
     </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="StatisticalAnalysisSpec">
-    <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification">
-        <xsd:sequence>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="statistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
+  </xsd:complexType>  
   <xsd:complexType name="Ranking">
     <xsd:complexContent>
       <xsd:extension base="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic">

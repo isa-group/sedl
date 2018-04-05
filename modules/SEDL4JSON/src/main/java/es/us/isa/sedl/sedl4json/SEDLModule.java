@@ -4,10 +4,10 @@
  */
 package es.us.isa.sedl.sedl4json;
 
-
 import com.google.common.collect.Lists;
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.core.analysis.AnalysisResult;
+import es.us.isa.sedl.core.analysis.datasetspecification.Filter;
 import es.us.isa.sedl.core.analysis.datasetspecification.Projection;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.core.configuration.ExperimentalEnvironment;
@@ -17,6 +17,8 @@ import es.us.isa.sedl.core.design.Domain;
 import es.us.isa.sedl.core.design.ExperimentalDesign;
 import es.us.isa.sedl.core.design.ExperimentalProtocolStep;
 import es.us.isa.sedl.core.design.Sizing;
+import es.us.isa.sedl.core.design.Constraint;
+import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.hypothesis.Assertion;
 import es.us.isa.sedl.core.hypothesis.Hypothesis;
 import java.io.IOException;
@@ -28,12 +30,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import java.util.logging.Filter;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javassist.compiler.ast.Variable;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.annotate.JsonTypeInfo;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.module.SimpleModule;
 
@@ -46,47 +46,47 @@ public class SEDLModule extends SimpleModule {
     private static final String NAME = "SEDLDeserializationModule";
     private static String VERSION;
     Set<Class> extensionPoints;
-    Map<Class, ExtensionPointImplementationsRegistry> extensionPointsRegistries;        
+    Map<Class, ExtensionPointImplementationsRegistry> extensionPointsRegistries;
 
     public SEDLModule() {
-        super(NAME, buildVersion(VERSION));       
+        super(NAME, buildVersion(VERSION));
         extensionPoints = new HashSet<Class>();
-        extensionPointsRegistries=new HashMap<Class,ExtensionPointImplementationsRegistry>();        
+        extensionPointsRegistries = new HashMap<Class, ExtensionPointImplementationsRegistry>();
         initializeClasses();
         registerDeserializers();
         registerTypeInfoMixins();
-        VERSION=getVersion();
+        VERSION = getVersion();
     }
-    
-    public void refreshExtensionPointsRegistries()
-    {
-        for(ExtensionPointImplementationsRegistry epr:extensionPointsRegistries.values())
-        {
+
+    public void refreshExtensionPointsRegistries() {
+        for (ExtensionPointImplementationsRegistry epr : extensionPointsRegistries.values()) {
             epr.refreshRegistry();
         }
     }
 
     public static String getVersion() {
         InputStream is;
-        String result="";
+        String result = "";
         try {
-            URL url=Version.class.getResource("configuration.properties");
-            if(url==null)
+            URL url = Version.class.getResource("configuration.properties");
+            if (url == null) {
                 return result;
+            }
             is = url.openStream();
             Properties props = new Properties();
             props.load(is);
-            result=props.getProperty("version");
+            result = props.getProperty("version");
             is.close();
         } catch (IOException ex) {
-            Logger.getLogger(SEDLModule.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SEDLModule.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        return result;        
+        return result;
     }
 
     public static final Version buildVersion(String myVersion) {
-        if(myVersion==null || myVersion.equals(""))
-            return new Version(0,0,0,null);
+        if (myVersion == null || myVersion.equals("")) {
+            return new Version(0, 0, 0, null);
+        }
         String[] versionValues = myVersion.split(".");
         if (versionValues.length == 1) {
             return Version.unknownVersion();
@@ -108,10 +108,10 @@ public class SEDLModule extends SimpleModule {
     }
 
     private final void registerDeserializers() {
-        List<Class> classesToRegister=Lists.newArrayList(extensionPoints);        
+        List<Class> classesToRegister = Lists.newArrayList(extensionPoints);
         for (Class c : classesToRegister) {
-                addDeserializer(c);
-        }        
+            addDeserializer(c);
+        }
     }
 
     private void initializeClasses() {
@@ -123,6 +123,7 @@ public class SEDLModule extends SimpleModule {
         // Variation Points of Design
         extensionPoints.add(Variable.class);
         extensionPoints.add(Domain.class);
+        extensionPoints.add(Constraint.class);
         extensionPoints.add(Sizing.class);
         extensionPoints.add(ExperimentalDesign.class);
         extensionPoints.add(ExperimentalProtocolStep.class);
@@ -142,14 +143,13 @@ public class SEDLModule extends SimpleModule {
     }
 
     public void addDeserializer(Class<?> classToAdd) {
-        ExtensionPointImplementationsRegistry ged=new ExtensionPointImplementationsRegistry(classToAdd);                
-        if(!ged.getSubClasses().isEmpty())
-        {                           
+        ExtensionPointImplementationsRegistry ged = new ExtensionPointImplementationsRegistry(classToAdd);
+        if (!ged.getSubClasses().isEmpty()) {
             extensionPointsRegistries.put(classToAdd, ged);
-            for (Object c:ged.getSubClasses()) {             
+            for (Object c : ged.getSubClasses()) {
                 //this.setMixInAnnotation((Class<?>)c, TypeInfoConfiguration.class);                
-                this.getDynamicTypingClasses().add((Class<?>)c);                                
-                addDeserializer((Class<?>)c);
+                this.getDynamicTypingClasses().add((Class<?>) c);
+                addDeserializer((Class<?>) c);
             }
         }
         //this.registerSubtypes(ged.getSubClasses());
@@ -164,22 +164,21 @@ public class SEDLModule extends SimpleModule {
     public Set<Class> getDynamicTypingClasses() {
         return extensionPoints;
     }
-    
-    public void configure(ObjectMapper mapper){                    
-        for(Class<?> c:extensionPoints)
-        {
-            mapper.getDeserializationConfig().addMixInAnnotations(c, TypeInfoConfiguration.class);            
-            mapper.getSerializationConfig().addMixInAnnotations(c, TypeInfoConfiguration.class);                                                            
+
+    public void configure(ObjectMapper mapper) {
+        mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        for (Class<?> c : extensionPoints) {
+            mapper.getDeserializationConfig().addMixInAnnotations(c, TypeInfoConfiguration.class);
+            mapper.getSerializationConfig().addMixInAnnotations(c, TypeInfoConfiguration.class);
             mapper.registerSubtypes(c);
-        }        
+        }
     }
 
     @JsonTypeInfo(
             include = JsonTypeInfo.As.PROPERTY,
-    property = "@type",
-    use = JsonTypeInfo.Id.NAME)
+            property = "@type",
+            use = JsonTypeInfo.Id.NAME)
     private class TypeInfoConfiguration {
     }
-    
-    
+
 }

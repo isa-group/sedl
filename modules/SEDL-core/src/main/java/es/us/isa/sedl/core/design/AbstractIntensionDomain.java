@@ -9,6 +9,7 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -18,6 +19,7 @@ public abstract class AbstractIntensionDomain extends Domain {
     
         public abstract List<Constraint> getConstraint();
     
+        @JsonIgnore
         @Override
         public List<Level> getLevels() {
         if (!isFinite()) {

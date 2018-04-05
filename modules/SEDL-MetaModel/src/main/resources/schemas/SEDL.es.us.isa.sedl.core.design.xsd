@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.design" ecore:package="SEDL.es.us.isa.sedl.core.design" targetNamespace="http://isa.us.es/sedl/core/design">
+<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:SEDL.es.us.isa.sedl.core.analysis.statistic="http://isa.us.es/sedl/core/analysis/statistic" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.design" ecore:package="SEDL.es.us.isa.sedl.core.design" targetNamespace="http://isa.us.es/sedl/core/design">
   <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
   <!-- schemaLocation="" -->
   <xsd:import namespace="http://isa.us.es/sedl/core/configuration" schemaLocation="SEDL.es.us.isa.sedl.core.configuration.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core/analysis/statistic" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.statistic.xsd"/>
   <xsd:element ecore:ignore="true" name="Design" type="SEDL.es.us.isa.sedl.core.design:Design"/>
   <xsd:element ecore:ignore="true" name="Variables" type="SEDL.es.us.isa.sedl.core.design:Variables"/>
   <xsd:element ecore:ignore="true" name="Population" type="SEDL.es.us.isa.sedl.core.design:Population"/>
   <xsd:element ecore:ignore="true" name="SamplingMethod" type="SEDL.es.us.isa.sedl.core.design:SamplingMethod"/>
+  <xsd:element ecore:ignore="true" name="StatisticalAnalysisSpec" type="SEDL.es.us.isa.sedl.core.design:StatisticalAnalysisSpec"/>
   <xsd:element ecore:ignore="true" name="VariableValuation" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
   <xsd:element ecore:ignore="true" name="Level" type="SEDL.es.us.isa.sedl.core.design:Level"/>
   <xsd:element ecore:ignore="true" name="ExperimentalDesign" type="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign"/>
@@ -51,6 +53,15 @@
       <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="designParameters" type="SEDL.es.us.isa.sedl.core.configuration:Parameter"/>
       <xsd:element ecore:resolveProxies="true" name="experimentalDesign" type="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign"/>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="StatisticalAnalysisSpec">
+    <xsd:complexContent>
+      <xsd:extension base="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="statistic" type="SEDL.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="Variables">
     <xsd:sequence>
