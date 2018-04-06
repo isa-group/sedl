@@ -15,10 +15,10 @@ import es.us.isa.sedl.sedl4people.grammar.test.ExternalizedSamplesSectionTest;
  * @author japarejo
  */
 public class ConstantsTest extends ExternalizedSamplesSectionTest{
-	public static final String RULE ="";
+	public static final String RULE ="constants";
     public static final String DESCRIPTION="";    
 
     public ConstantsTest() throws IOException {
-        super(RULE, DESCRIPTION,"3-Constants");
+        super(RULE, DESCRIPTION,DEFAULT_BASE_PATH+"/3-Constants");
     }
 }

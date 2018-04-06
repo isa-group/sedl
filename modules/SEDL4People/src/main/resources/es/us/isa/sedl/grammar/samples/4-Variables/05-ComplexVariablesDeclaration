@@ -1,9 +1,9 @@
 /****/
 Variables :
 	Factors :
-		dose enum 200, 100, 0   MEASURED IN mg
+		dose enum 200, 100, 0   measured in mg
 	NCFactors :                        
-		weight enum "40-60","60-80","80-100","100-120"  MEASURED IN kg
+		weight enum "40-60","60-80","80-100","100-120"  measured in kg
 	    sex enum "M", "F"
 	Outcome :
-		temperature  in R   MEASURED IN ºC
+		temperature  in R   measured in Celsius

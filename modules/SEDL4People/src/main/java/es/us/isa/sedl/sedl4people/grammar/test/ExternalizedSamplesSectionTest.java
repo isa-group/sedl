@@ -6,6 +6,7 @@
 
 package es.us.isa.sedl.sedl4people.grammar.test;
 
+import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import org.antlr.v4.runtime.Token;
@@ -97,11 +99,11 @@ public abstract class ExternalizedSamplesSectionTest extends ExperimentalDescrip
     private String extractIdentifier(String name) {
         
         String result=name;
-        int index=name.lastIndexOf('.');        
+        /*int index=name.lastIndexOf('.');        
         if(name.contains("-"))
             index=name.lastIndexOf("-");
         if(index!=-1)
-            result=name.substring(0, index-1);
+            result=name.substring(0, index-1);*/
         return result;
     }
 
@@ -109,8 +111,12 @@ public abstract class ExternalizedSamplesSectionTest extends ExperimentalDescrip
         String result=null;        
         if(name.contains("-")){
             int index=name.lastIndexOf("-");
-            result=name.substring(index+1);
+            result=name.substring(index+1);        
+            if(Character.isUpperCase(result.charAt(0)))
+                result=Character.toLowerCase(result.charAt(0))+result.substring(1);
         }
+        if(!Arrays.asList(SEDL4PeopleParser.ruleNames).contains(result))
+            result=null;
         return result;
     }
     
@@ -190,7 +196,7 @@ public abstract class ExternalizedSamplesSectionTest extends ExperimentalDescrip
                     	}
                        
                     }else
-                        initializeCodeSamples(file,file.getName());
+                        initializeCodeSamples(file,extractSpecificRule(file.getName())!=null?extractSpecificRule(file.getName()):rule);
                 }
     }
 
@@ -263,6 +269,7 @@ public abstract class ExternalizedSamplesSectionTest extends ExperimentalDescrip
                 rule=this.getRuleName();
             else
                 rule=sample.getSpecificRule();
+            System.out.println("Using rule "+rule+" for parsing...");
             generatesNoErrors=generatesNoErrors(rule,sample.getCode());
             message="The code sample '"+sample.getIdentifier()+"' at '"+
                       path+"' should not generate errors, but "+errors.size()+" errors "+

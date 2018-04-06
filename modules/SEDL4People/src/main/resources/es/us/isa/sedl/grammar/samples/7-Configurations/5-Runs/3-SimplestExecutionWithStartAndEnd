@@ -1,6 +1,0 @@
-/** **/
-Runs:
-	E1: 
-		Start: start
-		End: end
-		Result: File: 'results.txt'

@@ -81,6 +81,7 @@ import es.us.isa.sedl.core.design.Variables;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ResultsFile;
 import es.us.isa.sedl.core.hypothesis.AssociationalHypothesis;
+import es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis;
 import es.us.isa.sedl.core.hypothesis.DifferentialHypothesis;
 import es.us.isa.sedl.core.hypothesis.LinearRelation;
 import es.us.isa.sedl.core.hypothesis.LogisticRelation;
@@ -354,12 +355,11 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     FactorDeclarationRangeContext rangeContext = ctx.factorDeclarationRange();
 
                     IntervalConstraint ic = new IntervalConstraint();
-
-                    if(rangeContext.MAX()!=null)
-                       ic.setMax(rangeContext.MAX().toString());
+                    
+                       ic.setMax(rangeContext.intervalLiteral(0).getText());
 
                     if(rangeContext.MIN()!=null)
-                        ic.setMin(rangeContext.MIN().toString());
+                        ic.setMin(rangeContext.intervalLiteral(1).getText());
                     
                     domain.getConstraint().add(ic);
                 }
@@ -475,11 +475,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     @Override
     public void enterOutcome(SEDL4PeopleParser.OutcomeContext ctx) {
+        
     }
 
     @Override
     public void enterDescriptiveHypothesis(SEDL4PeopleParser.DescriptiveHypothesisContext ctx) {
-
+        DescriptiveHypothesis h=new DescriptiveHypothesis();        
+        experiment.getHypotheses().add(h);
     }
 
 	// Design

@@ -17,11 +17,11 @@ import es.us.isa.sedl.sedl4people.grammar.test.ExternalizedSamplesSectionTest;
  * @author japarejo
  */
 public class VariablesTest extends ExternalizedSamplesSectionTest {
-	public static final String RULE ="";
+	public static final String RULE ="variables";
     public static final String DESCRIPTION="";    
 
     public VariablesTest() throws IOException {
-        super(RULE, DESCRIPTION,"4-Variables");
+        super(RULE, DESCRIPTION,DEFAULT_BASE_PATH+"/4-Variables");
     } 
     @Test
     @Override

@@ -1,0 +1,7 @@
+/** **/
+Runs:
+	E1: 
+		Result: File: 'results.txt'
+                Analyses: 
+                    descriptiveStatistics: Avg: 12
+                    //Pearson: {C:0.2,argumnent:9, regresion:0.5} 

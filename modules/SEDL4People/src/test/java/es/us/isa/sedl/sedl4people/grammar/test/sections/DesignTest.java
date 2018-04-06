@@ -24,7 +24,7 @@ public class DesignTest extends ExternalizedSamplesSectionTest{
 " individual in order to conduct the experiment.";
 
     public DesignTest() throws IOException {
-        super("",DESCRIPTION,"6-Design");
+        super("design",DESCRIPTION,DEFAULT_BASE_PATH+"/6-Design");
     }
     
     @Test

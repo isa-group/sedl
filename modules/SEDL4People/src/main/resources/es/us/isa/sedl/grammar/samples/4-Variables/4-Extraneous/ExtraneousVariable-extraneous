@@ -1,0 +1,4 @@
+/****/
+Extraneous :
+	age integer range [18 ,60]  measured in years
+	weight float range [40 ,120]  measured in kg

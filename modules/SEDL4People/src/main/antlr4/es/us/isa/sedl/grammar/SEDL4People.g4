@@ -59,9 +59,9 @@ annotations: ANNOTATIONS COLON (StringLiteral)+;
 
 subjects: SUBJECTS COLON stakeholder+;
 
-stakeholder: id OPEN_PAR email CLOSE_PAR stakeholderFrom? (AS role)?;
+stakeholder: id+ OPEN_PAR email CLOSE_PAR stakeholderFrom? (AS role)?;
 
-stakeholderFrom: FROM id;
+stakeholderFrom: FROM id+;
 
 role: RESPONSIBLE | COLLABORATOR;
 
@@ -299,7 +299,7 @@ roles: ROLE COLON (MISCELLANEOUS | MAIN_RESULT | ADDITIONAL_EVIDENCE);
 
 format: FORMAT COLON id;
 
-mapping: MAPPING COLON id;
+mapping: MAPPING COLON StringLiteral;
 
 settings: SETTING COLON runtimes? libraries?;
 

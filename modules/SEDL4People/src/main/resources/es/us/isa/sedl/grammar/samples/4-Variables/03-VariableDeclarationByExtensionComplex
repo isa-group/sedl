@@ -1,5 +1,6 @@
 /****/
-Factors: 
+Variables :
+    Factors: 
 	// This factor represents the specific algoritm used to generate the feature models (FMs)
 	FMGenerator enum 
 	            // Our Evolutionary Algorithm (we use the object notation of levels to specify all

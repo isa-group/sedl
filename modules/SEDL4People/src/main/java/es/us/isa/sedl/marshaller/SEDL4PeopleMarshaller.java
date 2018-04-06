@@ -24,11 +24,15 @@ import es.us.isa.sedl.core.configuration.Parameter;
 import es.us.isa.sedl.core.configuration.Runtime;
 import es.us.isa.sedl.core.configuration.SimpleParameter;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
+import es.us.isa.sedl.core.design.Constraint;
+import es.us.isa.sedl.core.design.FundamentalSet;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.ExtensionDomain;
 import es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign;
+import es.us.isa.sedl.core.design.FundamentalSetConstraint;
 import es.us.isa.sedl.core.design.Group;
 import es.us.isa.sedl.core.design.IntensionDomain;
+import es.us.isa.sedl.core.design.IntervalConstraint;
 import es.us.isa.sedl.core.design.Level;
 import es.us.isa.sedl.core.design.Literal;
 import es.us.isa.sedl.core.design.NonControllableFactor;
@@ -47,6 +51,7 @@ import es.us.isa.sedl.core.util.SEDLMarshaller;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
 
@@ -63,6 +68,7 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
 	}
 
 	
+        @Override
 	public String asString(Experiment exp) {
 		experiment = exp;
                 sedlCode=new StringBuilder();
@@ -88,24 +94,30 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
                             experiment.getId()
                 ).append(
                             ESP
-                ).append(getTokenName(
-                            SEDL4PeopleLexer.VERSION
-                )).append(
-                            ESP
-                ).append(
-                            experiment.getVersion()
-                ).append(
-                            ESP
-                ).append(getTokenName(
-                            SEDL4PeopleLexer.REP
-                )).append(getTokenName(
-                            SEDL4PeopleLexer.COLON
-                )).append(   
-                            ESP
-		).append(   
-                            experiment.getMetaid()  
-                ).append(   RET
                 );
+                if(experiment.getVersion()!=null){
+                    sb.append(getTokenName(
+                            SEDL4PeopleLexer.VERSION
+                    )).append(
+                            ESP
+                    ).append(
+                            experiment.getVersion()
+                    ).append(
+                            ESP
+                    );
+                }
+                if(experiment.getMetaid()!=null){
+                    sb.append(getTokenName(
+                            SEDL4PeopleLexer.REP
+                        )).append(getTokenName(
+                            SEDL4PeopleLexer.COLON
+                        )).append(   
+                            ESP
+                        ).append(   
+                            experiment.getMetaid()  
+                        );
+                }
+                sb.append(   RET         );
                 return sb.toString();
 	}
 
@@ -285,7 +297,7 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
         
         private String printExtensionDomain(ExtensionDomain domain)
         {
-            StringBuilder sb=new StringBuilder();
+            StringBuilder sb=new StringBuilder();            
             sb.append(
                     getTokenName(SEDL4PeopleLexer.ENUM));
             for ( int i = 0; i < domain.getLevels().size(); i++ ) {
@@ -297,45 +309,73 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
 		sb.append(
                     ESP
                 ).append(
-                    l.getValue()   );
+                    printValue(l.getValue())
+                );
             }
             sb.append(RET);
             return sb.toString();						
+        }
+        
+        private String printValue(String value){
+            String result=value;
+            if(!StringUtils.isNumeric(value) && !isFunctionalExpression(value))
+                result="'"+value+"'";
+            return result;
+        }
+        
+        private boolean isFunctionalExpression(String value){
+            return value.contains("(");
         }
         
         
         private String printIntensionDomain(IntensionDomain dom)
         {
             StringBuilder sb=new StringBuilder();
-            Level l = dom.getLevels().get(0);
-            if ( l.getValue().equals(getTokenName(SEDL4PeopleLexer.N)) 
-		|| l.getValue().equals(getTokenName(SEDL4PeopleLexer.Z))
-		|| l.getValue().equals(getTokenName(SEDL4PeopleLexer.Q))
-		|| l.getValue().equals(getTokenName(SEDL4PeopleLexer.R))
-		|| l.getValue().equals(getTokenName(SEDL4PeopleLexer.I))
-		|| l.getValue().equals(getTokenName(SEDL4PeopleLexer.C))) {
-								
-		sb.append(
-                    getTokenName(SEDL4PeopleLexer.IN)
-                ).append( 
-                    ESP
-                ).append(
-                    l.getValue()
-                ).append(
-                    RET
-                ); 
-            } else {
-		sb.append(
-                    ESP
-                ).append(
-                    l.getValue()
-                ).append(
-                    RET
-                ); 
+            for(Constraint c:dom.getConstraint()){
+                if(c instanceof FundamentalSetConstraint)
+                    sb.append(printFundamentalSetConstraint((FundamentalSetConstraint)c));            
+                else if(c instanceof IntervalConstraint)
+                    sb.append(printIntervalConstraint((IntervalConstraint)c));
+                sb.append(ESP);
             }
+            sb.append(
+                    RET
+                );
             return sb.toString();					
         }
+            
+        private String printFundamentalSetConstraint(FundamentalSetConstraint c){
+            String result=null;
+            
+            switch(c.getFundamentalSet()){
+                case R:
+                    result=getTokenName(SEDL4PeopleLexer.FLOAT);
+                case B:
+                    result=getTokenName(SEDL4PeopleLexer.BOOL);
+                case N:
+                    result=getTokenName(SEDL4PeopleLexer.INTEGER);
+                    break;
+                case Z:
+                    result=getTokenName(SEDL4PeopleLexer.INTEGER);
+                    break;
+            }		
+            
+            return result;
+        }
 	
+        private String printIntervalConstraint(IntervalConstraint c){
+            StringBuilder sb=new StringBuilder();
+            sb.append(
+                    getTokenName(SEDL4PeopleLexer.RANGE)
+                ).append(ESP
+                ).append(getTokenName(SEDL4PeopleLexer.OPEN_SQU_BRA)
+                ).append(c.getMin()
+                ).append(","
+                ).append(c.getMax()
+                ).append(getTokenName(SEDL4PeopleLexer.CLOSE_SQU_BRA));            
+            return sb.toString();
+        }
+        
 	private String writeNCFactorsBlock () {
                 StringBuilder sb=new StringBuilder();
 		BasicExperiment exp = null;
@@ -345,20 +385,24 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
 		boolean ncFactorsExists = false;
 		boolean titleWroten = false;
 		if ( exp != null ) {
-                    sb.append(
-                                TAB
-                        ).append(
-                                getTokenName(SEDL4PeopleLexer.NCFACTORS)
-                        ).append(
-                                ESP
-                        ).append(
-                                getTokenName(SEDL4PeopleLexer.COLON)
-                        ).append(RET);
-			for ( Variable v : exp.getDesign().getVariables().getVariable() ) {
-				if ( v instanceof NonControllableFactor ) {
-                                    sb.append(printVariable(v));
-				}
+                    for ( Variable v : exp.getDesign().getVariables().getVariable() ) {
+                        if ( v instanceof NonControllableFactor ) {	
+                            if(!ncFactorsExists){
+                                    sb.append(
+                                        TAB
+                                    ).append(
+                                        getTokenName(SEDL4PeopleLexer.NCFACTORS)
+                                    ).append(
+                                        ESP
+                                    ).append(
+                                        getTokenName(SEDL4PeopleLexer.COLON)
+                                    ).append(RET);
+                                    ncFactorsExists=true;
+                            }
+                                
+                            sb.append(printVariable(v));
 			}
+                    }
 		}
                 return sb.toString();
 	}
@@ -405,13 +449,15 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
                                 getTokenName(SEDL4PeopleLexer.COLON)
                         ).append(
                                 ESP);
+                        if(exp.getHypotheses().size()>1)
+                            sb.append(RET);
                         for(Hypothesis h:exp.getHypotheses()){
                             if ( h instanceof AssociationalHypothesis ) {
-				sb.append(getTokenName(SEDL4PeopleLexer.ASSOCIATIONAL));
+				sb.append(printAssociationalHypthesis((AssociationalHypothesis)h));
                             } else if ( h instanceof DescriptiveHypothesis ) {
-				sb.append(getTokenName(SEDL4PeopleLexer.DESCRIPTIVE));
+				sb.append(printDescriptiveHypothesis((DescriptiveHypothesis)h));
                             } else if ( h instanceof DifferentialHypothesis ) {
-				sb.append(getTokenName(SEDL4PeopleLexer.DIFFERENTIAL));
+				sb.append(printDifferentialHypothesis((DifferentialHypothesis)h));
                             } else {
                             	System.out.println("Unknown hypothesis type : " + h.toString());
                             }
@@ -915,12 +961,13 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
             )).append(
                     ESP            );
             for (OutputDataSource out : outputs.getOutputDataSources()) {
+                if(out!=null){
                 sb.append(getTokenName(
                         SEDL4PeopleLexer.FILE
                 )).append(
                         ESP
                 ).append(
-                        out.getFile().getName()
+                        out.getFile()!=null?out.getFile().getName():"''"
                 ).append(
                         ESP          );
                 if (out.getRole() != null) {
@@ -931,8 +978,19 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
                     )).append(
                             out.getRole().name()
                     );
-                }					
-                // Falta el format y mapping
+                }	
+                
+                if (out.getFileSpecification()!= null) {
+                    sb.append(getTokenName(
+                            SEDL4PeopleLexer.FORMAT
+                    )).append(getTokenName(
+                            SEDL4PeopleLexer.COLON
+                    )).append(
+                            out.getFileSpecification().getNamePattern()
+                    );
+                }
+                // Falta el mapping
+                }
             }
             sb.append(RET);
             return sb.toString();
@@ -1111,5 +1169,63 @@ public class SEDL4PeopleMarshaller implements  SEDLMarshaller{
 		String tk = SEDL4PeopleLexer.tokenNames[token];
 		return tk.substring(1, tk.length() - 1 ).trim();
 	}
+
+    private String printAssociationalHypthesis(AssociationalHypothesis associationalHypothesis) {
+        StringBuilder sb=new StringBuilder();
+        
+        sb.append(   associationalHypothesis.getDependentVariable());
+                
+        sb.append( getTokenName(SEDL4PeopleLexer.IS) )
+          .append(   ESP);
+        if(associationalHypothesis.getRelation()!=null){
+            sb.append(associationalHypothesis.getRelation().toString())
+              .append(   ESP);
+        }
+
+        sb.append( getTokenName(SEDL4PeopleLexer.CORRELATED) )
+          .append(   ESP)
+          .append( getTokenName(SEDL4PeopleLexer.WITH)       )
+          .append(   ESP);
+        
+        sb.append(   associationalHypothesis.getIndependentVariables().get(0)  );
+        
+        for(int i=1;i<associationalHypothesis.getIndependentVariables().size();i++)
+        {            
+            sb.append(   getTokenName(SEDL4PeopleLexer.COMMA) );
+            sb.append(   ESP);
+            sb.append(   associationalHypothesis.getIndependentVariables().get(i)  );
+        }
+        
+        return sb.toString();
+    }
+
+    private String printDescriptiveHypothesis(DescriptiveHypothesis descriptiveHypothesis) {
+        StringBuilder sb = new StringBuilder();
+        sb.append( getTokenName(SEDL4PeopleLexer.DESCRIPTIVE));          
+        return sb.toString();
+    }
+
+    private String printDifferentialHypothesis(DifferentialHypothesis differentialHypothesis) {
+        StringBuilder sb = new StringBuilder();
+        
+        sb.append(   differentialHypothesis.getIndependentVariables().get(0)  );
+                for(int i=1;i<differentialHypothesis.getIndependentVariables().size();i++)
+        {            
+            sb.append(   getTokenName(SEDL4PeopleLexer.COMMA) );
+            sb.append(   ESP);
+            sb.append(   differentialHypothesis.getIndependentVariables().get(i)  );
+        }
+        sb.append(   ESP);
+        
+        sb.append( getTokenName(SEDL4PeopleLexer.IMPACTS))
+          .append(   ESP)
+          .append( getTokenName(SEDL4PeopleLexer.SIGNIFICANTLY))
+          .append(   ESP)                
+          .append( getTokenName(SEDL4PeopleLexer.ON))
+          .append(   ESP);
+        
+        sb.append(differentialHypothesis.getDependentVariable());
+       return sb.toString();
+    }
 
 }

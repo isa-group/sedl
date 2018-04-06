@@ -16,11 +16,11 @@ import org.junit.Test;
  */
 public class PreambleTest extends ExternalizedSamplesSectionTest{
     
-    public static final String RULE ="";
+    public static final String RULE ="experimentPreamble";
     public static final String DESCRIPTION="";    
 
     public PreambleTest() throws IOException {
-        super(RULE, DESCRIPTION,"1-Preamble");
+        super(RULE, DESCRIPTION,DEFAULT_BASE_PATH+"/1-Preamble");
     }            
     @Test
     @Override

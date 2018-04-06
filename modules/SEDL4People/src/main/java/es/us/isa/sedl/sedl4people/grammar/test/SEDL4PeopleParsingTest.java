@@ -59,6 +59,7 @@ public class SEDL4PeopleParsingTest extends SEDL4PeopleGrammarTest {
             method.invoke(parser);            
         } catch (NoSuchMethodException ex) {
             log.log(Level.SEVERE, null, ex);
+            System.out.println("Unable to find method '"+syntaxRule+"' on parser");
             fail(ex.getMessage());
         } catch (SecurityException ex) {
             log.log(Level.SEVERE, null, ex);

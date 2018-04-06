@@ -1,0 +1,17 @@
+/** **/
+EXPERIMENT: antipyrectisDescriptiveHypothesis version:1.0 rep: http://exemplar.us.es
+Constants :
+dose :200 // measured in milligrams
+Variables :
+Outcome: 
+    bodyTemperatureDecrease float // in Celsius degrees measured 2
+                                  // hours after the administration
+Extraneous :
+    age  integer range [18 ,120]
+    weight float range [40 ,120]
+
+Hypothesis : Descriptive
+// Mean( bodyTemperatureDecrease )= 2.83
+
+Design: SingleGroup::
+// ...

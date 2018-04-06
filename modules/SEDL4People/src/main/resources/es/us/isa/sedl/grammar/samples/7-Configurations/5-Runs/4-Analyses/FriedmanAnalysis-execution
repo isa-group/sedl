@@ -1,4 +1,10 @@
 /** **/
+Runs:
+	E1: 
+		Result: File: 'results.txt'
+                Analyses: 
+                    descriptiveStatistics: Avg: 12
+/*
 Friedman: PVALUE COLON 0.00017 
 Friedman: PVALUE COLON 0.00017, DESCRIPTION : 'Friedman'
 Friedman: PVALUE COLON 0.00017, freedom_degrees 24
@@ -7,3 +13,4 @@ Friedman: PVALUE COLON 0.00017,{(EA vs TS) Pvalue: 0.063 sthreshold:0.02} //Argu
 Friedman: PVALUE COLON 0.00017,{(TS+SA) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
 Friedman: PVALUE COLON 0.00017,{(EA|TS) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
 Friedman: PVALUE COLON 0.00017,{(EA|TS) Pvalue: 0.063 sthreshold:0.02}, {(EA|TS) Pvalue: 0.063 sthreshold:0.02} //Arguments & Validations
+*/

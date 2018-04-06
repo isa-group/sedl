@@ -1,7 +1,7 @@
 /****/
 Outputs : 
 	File 'Results-ETHOM-1a.csv', 
-	File 'results.csv' Role: MainResult,
-	File 'evidence.csv' Role: AdditionalEvidence Format: 'CSV',
-	File 'file.txt' Role: Miscellaneous Format:'TXT' Mapping:'mapping'
+	File 'results.csv' role: MainResult,
+	File 'evidence.csv' role: AdditionalEvidence format: csv,
+	File 'file.txt' role: Miscellaneous format:txt mapping:'mapping'
 	

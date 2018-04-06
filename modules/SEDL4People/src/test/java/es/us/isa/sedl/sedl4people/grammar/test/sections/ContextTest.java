@@ -18,7 +18,7 @@ public class ContextTest extends ExternalizedSamplesSectionTest {
     public static final String DESCRIPTION="";
     
     public ContextTest() throws IOException {
-        super("",DESCRIPTION,"2-Context");
+        super("experimentContext",DESCRIPTION,DEFAULT_BASE_PATH+"/2-Context");
     }
     
     @Test

@@ -160,36 +160,6 @@ public class JSONUnmarshallerTest extends TestCase {
 "        \"name\" : \"Efficiency\",\n" +
 "        \"units\" : null\n" +
 "      } ],\n" +
-"      \"nonControllableFactors\" : [ ],\n" +
-"      \"controllableFactors\" : [ {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }, {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      } ],\n" +
 "      \"outcomes\" : [ {\n" +
 "        \"@type\" : \"Outcome\",\n" +
 "        \"domain\" : {\n" +
@@ -224,7 +194,37 @@ public class JSONUnmarshallerTest extends TestCase {
 "        \"kind\" : \"SCALAR\",\n" +
 "        \"name\" : \"Efficiency\",\n" +
 "        \"units\" : null\n" +
-"      } ]\n" +
+"      } ],\n" +
+"      \"controllableFactors\" : [ {\n" +
+"        \"@type\" : \"ControllableFactor\",\n" +
+"        \"domain\" : {\n" +
+"          \"@type\" : \"ExtensionDomain\",\n" +
+"          \"levels\" : [ {\n" +
+"            \"value\" : \"MF\"\n" +
+"          }, {\n" +
+"            \"value\" : \"PS\"\n" +
+"          } ],\n" +
+"          \"finite\" : true\n" +
+"        },\n" +
+"        \"kind\" : \"NOMINAL\",\n" +
+"        \"name\" : \"treatment\",\n" +
+"        \"units\" : null\n" +
+"      }, {\n" +
+"        \"@type\" : \"ControllableFactor\",\n" +
+"        \"domain\" : {\n" +
+"          \"@type\" : \"ExtensionDomain\",\n" +
+"          \"levels\" : [ {\n" +
+"            \"value\" : \"Erasmus\"\n" +
+"          }, {\n" +
+"            \"value\" : \"EoDP\"\n" +
+"          } ],\n" +
+"          \"finite\" : true\n" +
+"        },\n" +
+"        \"kind\" : \"NOMINAL\",\n" +
+"        \"name\" : \"exercise\",\n" +
+"        \"units\" : null\n" +
+"      } ],\n" +
+"      \"nonControllableFactors\" : [ ]\n" +
 "    },\n" +
 "    \"population\" : {\n" +
 "      \"samplingMethod\" : null,\n" +
@@ -509,9 +509,63 @@ public class JSONUnmarshallerTest extends TestCase {
 "      },\n" +
 "      \"blockingVariables\" : [ ]\n" +
 "    },\n" +
+"    \"outcomes\" : [ {\n" +
+"      \"@type\" : \"Outcome\",\n" +
+"      \"domain\" : {\n" +
+"        \"@type\" : \"IntensionDomain\",\n" +
+"        \"constraint\" : [ {\n" +
+"          \"@type\" : \"FundamentalSetConstraint\",\n" +
+"          \"fundamentalSet\" : \"R\"\n" +
+"        }, {\n" +
+"          \"@type\" : \"IntervalConstraint\",\n" +
+"          \"min\" : null,\n" +
+"          \"max\" : null\n" +
+"        } ],\n" +
+"        \"finite\" : false\n" +
+"      },\n" +
+"      \"kind\" : \"SCALAR\",\n" +
+"      \"name\" : \"Effectiveness\",\n" +
+"      \"units\" : null\n" +
+"    }, {\n" +
+"      \"@type\" : \"Outcome\",\n" +
+"      \"domain\" : {\n" +
+"        \"@type\" : \"IntensionDomain\",\n" +
+"        \"constraint\" : [ {\n" +
+"          \"@type\" : \"FundamentalSetConstraint\",\n" +
+"          \"fundamentalSet\" : \"R\"\n" +
+"        }, {\n" +
+"          \"@type\" : \"IntervalConstraint\",\n" +
+"          \"min\" : null,\n" +
+"          \"max\" : null\n" +
+"        } ],\n" +
+"        \"finite\" : false\n" +
+"      },\n" +
+"      \"kind\" : \"SCALAR\",\n" +
+"      \"name\" : \"Efficiency\",\n" +
+"      \"units\" : null\n" +
+"    } ],\n" +
 "    \"possibleTreatments\" : [ [ {\n" +
 "      \"level\" : {\n" +
 "        \"value\" : \"EoDP\"\n" +
+"      },\n" +
+"      \"variable\" : {\n" +
+"        \"@type\" : \"ControllableFactor\",\n" +
+"        \"domain\" : {\n" +
+"          \"@type\" : \"ExtensionDomain\",\n" +
+"          \"levels\" : [ {\n" +
+"            \"value\" : \"Erasmus\"\n" +
+"          }, {\n" +
+"            \"value\" : \"EoDP\"\n" +
+"          } ],\n" +
+"          \"finite\" : true\n" +
+"        },\n" +
+"        \"kind\" : \"NOMINAL\",\n" +
+"        \"name\" : \"exercise\",\n" +
+"        \"units\" : null\n" +
+"      }\n" +
+"    }, {\n" +
+"      \"level\" : {\n" +
+"        \"value\" : \"Erasmus\"\n" +
 "      },\n" +
 "      \"variable\" : {\n" +
 "        \"@type\" : \"ControllableFactor\",\n" +
@@ -566,7 +620,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "        \"name\" : \"treatment\",\n" +
 "        \"units\" : null\n" +
 "      }\n" +
-"    }, {\n" +
+"    } ], [ {\n" +
 "      \"level\" : {\n" +
 "        \"value\" : \"Erasmus\"\n" +
 "      },\n" +
@@ -583,6 +637,25 @@ public class JSONUnmarshallerTest extends TestCase {
 "        },\n" +
 "        \"kind\" : \"NOMINAL\",\n" +
 "        \"name\" : \"exercise\",\n" +
+"        \"units\" : null\n" +
+"      }\n" +
+"    }, {\n" +
+"      \"level\" : {\n" +
+"        \"value\" : \"MF\"\n" +
+"      },\n" +
+"      \"variable\" : {\n" +
+"        \"@type\" : \"ControllableFactor\",\n" +
+"        \"domain\" : {\n" +
+"          \"@type\" : \"ExtensionDomain\",\n" +
+"          \"levels\" : [ {\n" +
+"            \"value\" : \"MF\"\n" +
+"          }, {\n" +
+"            \"value\" : \"PS\"\n" +
+"          } ],\n" +
+"          \"finite\" : true\n" +
+"        },\n" +
+"        \"kind\" : \"NOMINAL\",\n" +
+"        \"name\" : \"treatment\",\n" +
 "        \"units\" : null\n" +
 "      }\n" +
 "    } ], [ {\n" +
@@ -606,25 +679,6 @@ public class JSONUnmarshallerTest extends TestCase {
 "      }\n" +
 "    }, {\n" +
 "      \"level\" : {\n" +
-"        \"value\" : \"MF\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
 "        \"value\" : \"Erasmus\"\n" +
 "      },\n" +
 "      \"variable\" : {\n" +
@@ -642,7 +696,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "        \"name\" : \"exercise\",\n" +
 "        \"units\" : null\n" +
 "      }\n" +
-"    } ], [ {\n" +
+"    }, {\n" +
 "      \"level\" : {\n" +
 "        \"value\" : \"MF\"\n" +
 "      },\n" +
@@ -661,61 +715,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "        \"name\" : \"treatment\",\n" +
 "        \"units\" : null\n" +
 "      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"Erasmus\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    } ] ],\n" +
-"    \"outcomes\" : [ {\n" +
-"      \"@type\" : \"Outcome\",\n" +
-"      \"domain\" : {\n" +
-"        \"@type\" : \"IntensionDomain\",\n" +
-"        \"constraint\" : [ {\n" +
-"          \"@type\" : \"FundamentalSetConstraint\",\n" +
-"          \"fundamentalSet\" : \"R\"\n" +
-"        }, {\n" +
-"          \"@type\" : \"IntervalConstraint\",\n" +
-"          \"min\" : null,\n" +
-"          \"max\" : null\n" +
-"        } ],\n" +
-"        \"finite\" : false\n" +
-"      },\n" +
-"      \"kind\" : \"SCALAR\",\n" +
-"      \"name\" : \"Effectiveness\",\n" +
-"      \"units\" : null\n" +
-"    }, {\n" +
-"      \"@type\" : \"Outcome\",\n" +
-"      \"domain\" : {\n" +
-"        \"@type\" : \"IntensionDomain\",\n" +
-"        \"constraint\" : [ {\n" +
-"          \"@type\" : \"FundamentalSetConstraint\",\n" +
-"          \"fundamentalSet\" : \"R\"\n" +
-"        }, {\n" +
-"          \"@type\" : \"IntervalConstraint\",\n" +
-"          \"min\" : null,\n" +
-"          \"max\" : null\n" +
-"        } ],\n" +
-"        \"finite\" : false\n" +
-"      },\n" +
-"      \"kind\" : \"SCALAR\",\n" +
-"      \"name\" : \"Efficiency\",\n" +
-"      \"units\" : null\n" +
-"    } ]\n" +
+"    } ] ]\n" +
 "  },\n" +
 "  \"configurations\" : [ {\n" +
 "    \"notes\" : [ ],\n" +
@@ -758,7 +758,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "}";
         JSONUnmarshaller instance = new JSONUnmarshaller();        
         Experiment result = instance.fromString(experimentDescription);
-        assertNotNull(result);        
+        assertNotNull(result);                
     }
     
 }

@@ -18,7 +18,7 @@ public class ConfigurationTest extends ExternalizedSamplesSectionTest{
     public static final String DESCRIPTION="";    
 
     public ConfigurationTest() throws IOException {
-        super("",DESCRIPTION,"7-Configurations");
+        super("configuration",DESCRIPTION,DEFAULT_BASE_PATH+"/7-Configurations");
     }
     
     @Test

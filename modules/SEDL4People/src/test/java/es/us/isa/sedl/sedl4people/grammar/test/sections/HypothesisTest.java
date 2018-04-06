@@ -20,7 +20,7 @@ public class HypothesisTest extends ExternalizedSamplesSectionTest{
 	public static final String DESCRIPTION="";
 
 			    public HypothesisTest() throws IOException {
-			        super("",DESCRIPTION,"5-Hypothesis");
+			        super("hypothesis",DESCRIPTION,DEFAULT_BASE_PATH+"/5-Hypothesis");
 			    }
 			    
 			    @Test

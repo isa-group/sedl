@@ -1,4 +1,4 @@
 /****/
 Variables :
 	Factors :
-		dose integer (0-200)  MEASURED IN mg
+		dose integer range [0,200] measured in mg
