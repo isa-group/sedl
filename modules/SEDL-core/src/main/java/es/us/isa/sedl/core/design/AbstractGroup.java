@@ -5,6 +5,7 @@
  */
 package es.us.isa.sedl.core.design;
 
+import es.us.isa.sedl.core.configuration.ComplexParameter;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,22 @@ import java.util.List;
  */
 public abstract class AbstractGroup {
     
+    //public List<ComplexParameter> complexValuations;
+    
     public abstract List<VariableValuation> getValuations();
     
     public abstract Sizing getSizing();
     
     public abstract String getName();
+    
+    public AbstractGroup(){
+        //complexValuations=new ArrayList<ComplexParameter>();
+    }
+
+    /*public List<ComplexParameter> getComplexValuations() {
+        return complexValuations;
+    }*/
+        
     
     public List<Group> expandGroups()
     {

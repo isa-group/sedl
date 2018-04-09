@@ -39,6 +39,7 @@ import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.context.People;
 import es.us.isa.sedl.core.context.Person;
 import es.us.isa.sedl.core.context.Project;
+import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.AssignmentMethod;
 import es.us.isa.sedl.core.design.Constraint;
 import es.us.isa.sedl.core.design.ControllableFactor;
@@ -268,8 +269,11 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         StatisticalAnalysisSpec a2 = new StatisticalAnalysisSpec();
         a2.setId("A2");
         a2.getStatistic().add(median);
-        fsed.getIntendedAnalyses().add(a1);
-        fsed.getIntendedAnalyses().add(a2);
+        AnalysisSpecificationGroup asgroup=new AnalysisSpecificationGroup();
+        asgroup.setId("A1");
+        asgroup.getAnalyses().add(a1);
+        asgroup.getAnalyses().add(a2);
+        fsed.getIntendedAnalyses().add(asgroup);        
          design.setExperimentalDesign(fsed);
         e.setDesign(design);
         String expectedResult=
@@ -281,8 +285,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
                 + "    Protocol:Random"+NEW_LINE
                 + "    Analyses: "+NEW_LINE
                 + "            A1:"+NEW_LINE
-                + "                Avg()" +NEW_LINE
- 		+ "            A2:"+NEW_LINE 
+                + "                Avg()" +NEW_LINE 		
  		+ "                Median()"+NEW_LINE;               
         ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
         String result=st.render();
@@ -353,8 +356,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     }
     
     protected FullySpecifiedExperimentalDesign buildFullySpecifiedExperimentalDesign(Variable factor)
-    {
-    
+    {    
         FullySpecifiedExperimentalDesign fsed=new FullySpecifiedExperimentalDesign();
         Group g=new Group();
         g.setName("g1");
@@ -371,8 +373,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         AssignmentMethod assignment=new AssignmentMethod();
         assignment.setRandom(true);
         fsed.setAssignmentMethod(assignment);
-        fsed.getBlockingVariables().add("Vname");
-        
+        fsed.getBlockingVariables().add("Vname");        
         return fsed;
     }
     

@@ -12,6 +12,7 @@ import es.us.isa.sedl.core.analysis.datasetspecification.Projection;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.core.configuration.ExperimentalEnvironment;
 import es.us.isa.sedl.core.configuration.ExperimentalTask;
+import es.us.isa.sedl.core.configuration.Parameter;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
 import es.us.isa.sedl.core.design.Domain;
 import es.us.isa.sedl.core.design.ExperimentalDesign;
@@ -121,6 +122,7 @@ public class SEDLModule extends SimpleModule {
         extensionPoints.add(Hypothesis.class);
         extensionPoints.add(Assertion.class);
         // Variation Points of Design
+        extensionPoints.add(Parameter.class);
         extensionPoints.add(Variable.class);
         extensionPoints.add(Domain.class);
         extensionPoints.add(Constraint.class);

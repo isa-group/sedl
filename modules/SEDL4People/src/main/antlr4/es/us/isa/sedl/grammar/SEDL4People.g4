@@ -183,10 +183,16 @@ detailedDesign: DETAILED_DESIGN COLON id designAssignment? designBlocking?;
 
 groups: GROUPS COLON groupsExpresion;
           
-groupsExpresion : BY id (COMMA id)* sizingSentence
-                | functionalDeclaration sizingSentence (COMMA functionalDeclaration sizingSentence)*
+groupsExpresion : groupsByExpresion
+                | groupsAsFunctionalDeclarations
                 | sizingSentence
                 ;
+
+groupsByExpresion : BY id (COMMA id)* sizingSentence;
+
+groupsAsFunctionalDeclarations: functionalDeclaration sizingSentence (COMMA functionalDeclaration sizingSentence)* ;
+
+
 
 sizingSentence: SIZING IntegerLiteral;
 
@@ -197,7 +203,7 @@ explicitProtocol: protocolStep+
 
 protocolStep: measurement | treatment;
 
-measurement: MEASUREMENT  (id COMMA)* functionalDeclaration;
+measurement: MEASUREMENT OF? (id COMMA)* ON? functionalDeclaration;
 
 treatment: TREATMENT (id COMMA)* functionalDeclaration;
 

@@ -7,6 +7,7 @@
 package es.us.isa.sedl.marshaller;
 
 import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 import es.us.isa.sedl.sedl4people.grammar.test.CodeSample;
 import es.us.isa.sedl.sedl4people.grammar.test.ExternalizedSamplesSectionTest;
 import java.io.IOException;
@@ -53,7 +54,7 @@ public abstract class SEDL4PeopleUnmarshallingTest extends ExternalizedSamplesSe
         try {
             setup(codeSample.getCode());
             ParseTreeWalker walker = new ParseTreeWalker();
-            SEDL4PeopleExtendedListener listener = new SEDL4PeopleExtendedListener(null);
+            SEDL4PeopleExtendedListener listener = new SEDL4PeopleExtendedListener(null,null);
             walker.walk(listener, parser.document());
             result=experiment.equals(listener.getExperimentModel());
         } catch (IOException ex) {
@@ -61,5 +62,4 @@ public abstract class SEDL4PeopleUnmarshallingTest extends ExternalizedSamplesSe
         }
         return result;
     }
-    
 }

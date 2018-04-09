@@ -7,6 +7,8 @@ package es.us.isa.sedl.jlibsedl;
 
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.marshaller.SEDL4PeopleMarshaller;
+import es.us.isa.sedl.marshaller.SEDL4PeopleUnmarshaller;
+import es.us.isa.sedl.sedl4json.JSONMarshaller;
 
 import es.us.isa.sedl.sedl4json.JSONUnmarshaller;
 import org.junit.Test;
@@ -19,702 +21,107 @@ public class TestJSON2SEDL4People {
     @Test
     public void test()
     {
-        String experimentDescription = "{\n" +
-"  \"@type\" : \"BasicExperiment\",\n" +
-"  \"notes\" : [ ],\n" +
-"  \"annotations\" : [ ],\n" +
-"  \"id\" : \"Mind-1\",\n" +
-"  \"metaid\" : null,\n" +
-"  \"name\" : \"Mind-1\",\n" +
-"  \"version\" : \"1.0\",\n" +
-"  \"classifications\" : [ ],\n" +
-"  \"context\" : {\n" +
-"    \"notes\" : [ ],\n" +
-"    \"annotations\" : [ ],\n" +
-"    \"id\" : null,\n" +
-"    \"projects\" : [ ],\n" +
-"    \"organization\" : [ ],\n" +
-"    \"people\" : null\n" +
-"  },\n" +
-"  \"hypotheses\" : [ {\n" +
-"    \"@type\" : \"DifferentialHypothesis\",\n" +
-"    \"notes\" : [ ],\n" +
-"    \"annotations\" : [ ],\n" +
-"    \"id\" : null,\n" +
-"    \"dependentVariable\" : \"Effectiveness\",\n" +
-"    \"independentVariables\" : [ \"treatment\" ]\n" +
-"  }, {\n" +
-"    \"@type\" : \"DifferentialHypothesis\",\n" +
-"    \"notes\" : [ ],\n" +
-"    \"annotations\" : [ ],\n" +
-"    \"id\" : null,\n" +
-"    \"dependentVariable\" : \"Efficiency\",\n" +
-"    \"independentVariables\" : [ \"treatment\" ]\n" +
-"  } ],\n" +
-"  \"design\" : {\n" +
-"    \"variables\" : {\n" +
-"      \"variable\" : [ {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }, {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }, {\n" +
-"        \"@type\" : \"Outcome\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"IntensionDomain\",\n" +
-"          \"constraint\" : [ {\n" +
-"            \"@type\" : \"FundamentalSetConstraint\",\n" +
-"            \"fundamentalSet\" : \"R\"\n" +
-"          }, {\n" +
-"            \"@type\" : \"IntervalConstraint\",\n" +
-"            \"min\" : null,\n" +
-"            \"max\" : null\n" +
-"          } ],\n" +
-"          \"finite\" : false\n" +
-"        },\n" +
-"        \"kind\" : \"SCALAR\",\n" +
-"        \"name\" : \"Effectiveness\",\n" +
-"        \"units\" : null\n" +
-"      }, {\n" +
-"        \"@type\" : \"Outcome\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"IntensionDomain\",\n" +
-"          \"constraint\" : [ {\n" +
-"            \"@type\" : \"FundamentalSetConstraint\",\n" +
-"            \"fundamentalSet\" : \"R\"\n" +
-"          }, {\n" +
-"            \"@type\" : \"IntervalConstraint\",\n" +
-"            \"min\" : null,\n" +
-"            \"max\" : null\n" +
-"          } ],\n" +
-"          \"finite\" : false\n" +
-"        },\n" +
-"        \"kind\" : \"SCALAR\",\n" +
-"        \"name\" : \"Efficiency\",\n" +
-"        \"units\" : null\n" +
-"      } ],\n" +
-"      \"outcomes\" : [ {\n" +
-"        \"@type\" : \"Outcome\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"IntensionDomain\",\n" +
-"          \"constraint\" : [ {\n" +
-"            \"@type\" : \"FundamentalSetConstraint\",\n" +
-"            \"fundamentalSet\" : \"R\"\n" +
-"          }, {\n" +
-"            \"@type\" : \"IntervalConstraint\",\n" +
-"            \"min\" : null,\n" +
-"            \"max\" : null\n" +
-"          } ],\n" +
-"          \"finite\" : false\n" +
-"        },\n" +
-"        \"kind\" : \"SCALAR\",\n" +
-"        \"name\" : \"Effectiveness\",\n" +
-"        \"units\" : null\n" +
-"      }, {\n" +
-"        \"@type\" : \"Outcome\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"IntensionDomain\",\n" +
-"          \"constraint\" : [ {\n" +
-"            \"@type\" : \"FundamentalSetConstraint\",\n" +
-"            \"fundamentalSet\" : \"R\"\n" +
-"          }, {\n" +
-"            \"@type\" : \"IntervalConstraint\",\n" +
-"            \"min\" : null,\n" +
-"            \"max\" : null\n" +
-"          } ],\n" +
-"          \"finite\" : false\n" +
-"        },\n" +
-"        \"kind\" : \"SCALAR\",\n" +
-"        \"name\" : \"Efficiency\",\n" +
-"        \"units\" : null\n" +
-"      } ],\n" +
-"      \"controllableFactors\" : [ {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }, {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      } ],\n" +
-"      \"nonControllableFactors\" : [ ]\n" +
-"    },\n" +
-"    \"population\" : {\n" +
-"      \"samplingMethod\" : null,\n" +
-"      \"objectivePopulation\" : null,\n" +
-"      \"individualDescription\" : null,\n" +
-"      \"accesiblePopulation\" : null\n" +
-"    },\n" +
-"    \"samplingMethod\" : {\n" +
-"      \"description\" : \"Random\",\n" +
-"      \"random\" : true\n" +
-"    },\n" +
-"    \"designParameters\" : [ {\n" +
-"      \"name\" : \"NSessions\",\n" +
-"      \"value\" : \"16\"\n" +
-"    }, {\n" +
-"      \"name\" : \"sessionsDuration\",\n" +
-"      \"value\" : \"10\"\n" +
-"    } ],\n" +
-"    \"experimentalDesign\" : {\n" +
-"      \"@type\" : \"FullySpecifiedExperimentalDesign\",\n" +
-"      \"intendedAnalyses\" : [ {\n" +
-"        \"@type\" : \"StatisticalAnalysisSpec\",\n" +
-"        \"id\" : \"DescriptiveStatitics\",\n" +
-"        \"statistic\" : [ {\n" +
-"          \"@type\" : \"Mean\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"exercise\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"exercise\" ]\n" +
-"            } ]\n" +
-"          }\n" +
-"        }, {\n" +
-"          \"@type\" : \"Mean\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\" ]\n" +
-"            } ]\n" +
-"          }\n" +
-"        }, {\n" +
-"          \"@type\" : \"Mean\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\", \"exercise\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\", \"exercise\" ]\n" +
-"            } ]\n" +
-"          }\n" +
-"        }, {\n" +
-"          \"@type\" : \"Median\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\", \"exercise\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\", \"exercise\" ]\n" +
-"            } ]\n" +
-"          }\n" +
-"        }, {\n" +
-"          \"@type\" : \"StandardDeviation\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\", \"exercise\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\", \"exercise\" ]\n" +
-"            } ]\n" +
-"          }\n" +
-"        } ]\n" +
-"      }, {\n" +
-"        \"@type\" : \"StatisticalAnalysisSpec\",\n" +
-"        \"id\" : \"Charts\",\n" +
-"        \"statistic\" : [ ]\n" +
-"      }, {\n" +
-"        \"@type\" : \"StatisticalAnalysisSpec\",\n" +
-"        \"id\" : \"NHST\",\n" +
-"        \"statistic\" : [ {\n" +
-"          \"@type\" : \"NHST\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"exercise\", \"treatment\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"exercise\", \"treatment\" ]\n" +
-"            } ]\n" +
-"          },\n" +
-"          \"assumptions\" : [ ],\n" +
-"          \"name\" : \"Kolmogorov-Smirnov\",\n" +
-"          \"statisticalDistribution\" : null,\n" +
-"          \"alpha\" : 0.05\n" +
-"        }, {\n" +
-"          \"@type\" : \"NHST\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"exercise\", \"treatment\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"exercise\", \"treatment\" ]\n" +
-"            } ]\n" +
-"          },\n" +
-"          \"assumptions\" : [ ],\n" +
-"          \"name\" : \"Levene\",\n" +
-"          \"statisticalDistribution\" : null,\n" +
-"          \"alpha\" : 0.05\n" +
-"        }, {\n" +
-"          \"@type\" : \"NHST\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ {\n" +
-"              \"@type\" : \"ValuationFilter\",\n" +
-"              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
-"              } ]\n" +
-"            } ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ {\n" +
-"              \"@type\" : \"ValuationFilter\",\n" +
-"              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
-"              } ]\n" +
-"            } ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\" ]\n" +
-"            } ]\n" +
-"          },\n" +
-"          \"assumptions\" : [ ],\n" +
-"          \"name\" : \"TTest\",\n" +
-"          \"statisticalDistribution\" : null,\n" +
-"          \"alpha\" : 0.05\n" +
-"        }, {\n" +
-"          \"@type\" : \"NHST\",\n" +
-"          \"datasetSpecification\" : {\n" +
-"            \"projections\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\" ]\n" +
-"            } ],\n" +
-"            \"filters\" : [ {\n" +
-"              \"@type\" : \"ValuationFilter\",\n" +
-"              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
-"              } ]\n" +
-"            } ],\n" +
-"            \"nonGroupingProjections\" : [ ],\n" +
-"            \"valuationFilters\" : [ {\n" +
-"              \"@type\" : \"ValuationFilter\",\n" +
-"              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
-"              } ]\n" +
-"            } ],\n" +
-"            \"groupings\" : [ {\n" +
-"              \"@type\" : \"GroupingProjection\",\n" +
-"              \"projectedVariables\" : [ \"treatment\" ]\n" +
-"            } ]\n" +
-"          },\n" +
-"          \"assumptions\" : [ ],\n" +
-"          \"name\" : \"Wilcoxon\",\n" +
-"          \"statisticalDistribution\" : null,\n" +
-"          \"alpha\" : 0.05\n" +
-"        } ]\n" +
-"      } ],\n" +
-"      \"assignmentMethod\" : {\n" +
-"        \"description\" : \"Custom\",\n" +
-"        \"random\" : false\n" +
-"      },\n" +
-"      \"groups\" : [ ],\n" +
-"      \"experimentalProtocol\" : {\n" +
-"        \"steps\" : [ ],\n" +
-"        \"scheme\" : null,\n" +
-"        \"constraints\" : [ ]\n" +
-"      },\n" +
-"      \"blockingVariables\" : [ ]\n" +
-"    },\n" +
-"    \"outcomes\" : [ {\n" +
-"      \"@type\" : \"Outcome\",\n" +
-"      \"domain\" : {\n" +
-"        \"@type\" : \"IntensionDomain\",\n" +
-"        \"constraint\" : [ {\n" +
-"          \"@type\" : \"FundamentalSetConstraint\",\n" +
-"          \"fundamentalSet\" : \"R\"\n" +
-"        }, {\n" +
-"          \"@type\" : \"IntervalConstraint\",\n" +
-"          \"min\" : null,\n" +
-"          \"max\" : null\n" +
-"        } ],\n" +
-"        \"finite\" : false\n" +
-"      },\n" +
-"      \"kind\" : \"SCALAR\",\n" +
-"      \"name\" : \"Effectiveness\",\n" +
-"      \"units\" : null\n" +
-"    }, {\n" +
-"      \"@type\" : \"Outcome\",\n" +
-"      \"domain\" : {\n" +
-"        \"@type\" : \"IntensionDomain\",\n" +
-"        \"constraint\" : [ {\n" +
-"          \"@type\" : \"FundamentalSetConstraint\",\n" +
-"          \"fundamentalSet\" : \"R\"\n" +
-"        }, {\n" +
-"          \"@type\" : \"IntervalConstraint\",\n" +
-"          \"min\" : null,\n" +
-"          \"max\" : null\n" +
-"        } ],\n" +
-"        \"finite\" : false\n" +
-"      },\n" +
-"      \"kind\" : \"SCALAR\",\n" +
-"      \"name\" : \"Efficiency\",\n" +
-"      \"units\" : null\n" +
-"    } ],\n" +
-"    \"possibleTreatments\" : [ [ {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"EoDP\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"Erasmus\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"PS\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"MF\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    } ], [ {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"Erasmus\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"MF\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    } ], [ {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"EoDP\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"Erasmus\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"Erasmus\"\n" +
-"          }, {\n" +
-"            \"value\" : \"EoDP\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"exercise\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    }, {\n" +
-"      \"level\" : {\n" +
-"        \"value\" : \"MF\"\n" +
-"      },\n" +
-"      \"variable\" : {\n" +
-"        \"@type\" : \"ControllableFactor\",\n" +
-"        \"domain\" : {\n" +
-"          \"@type\" : \"ExtensionDomain\",\n" +
-"          \"levels\" : [ {\n" +
-"            \"value\" : \"MF\"\n" +
-"          }, {\n" +
-"            \"value\" : \"PS\"\n" +
-"          } ],\n" +
-"          \"finite\" : true\n" +
-"        },\n" +
-"        \"kind\" : \"NOMINAL\",\n" +
-"        \"name\" : \"treatment\",\n" +
-"        \"units\" : null\n" +
-"      }\n" +
-"    } ] ]\n" +
-"  },\n" +
-"  \"configurations\" : [ {\n" +
-"    \"notes\" : [ ],\n" +
-"    \"annotations\" : [ ],\n" +
-"    \"id\" : \"C1\",\n" +
-"    \"context\" : null,\n" +
-"    \"experimentalProcedure\" : {\n" +
-"      \"tasks\" : [ ]\n" +
-"    },\n" +
-"    \"experimentalSetting\" : null,\n" +
-"    \"experimentalInputs\" : null,\n" +
-"    \"experimentalOutputs\" : {\n" +
-"      \"outputDataSources\" : [ {\n" +
-"        \"fileSpecification\" : null,\n" +
-"        \"file\" : null,\n" +
-"        \"role\" : null\n" +
-"      } ]\n" +
-"    },\n" +
-"    \"parameters\" : [ ],\n" +
-"    \"executions\" : [ {\n" +
-"      \"notes\" : [ ],\n" +
-"      \"annotations\" : [ ],\n" +
-"      \"id\" : \"Replica\",\n" +
-"      \"log\" : null,\n" +
-"      \"results\" : [ {\n" +
-"        \"variableMapping\" : null,\n" +
-"        \"fileFormat\" : null,\n" +
-"        \"file\" : {\n" +
-"          \"fileformatspecification\" : null,\n" +
-"          \"name\" : \"'data/Datos2014AnalysisR.csv'\",\n" +
-"          \"path\" : null\n" +
-"        }\n" +
-"      } ],\n" +
-"      \"analysisResults\" : [ ],\n" +
-"      \"experimentalSetting\" : null,\n" +
-"      \"start\" : null,\n" +
-"      \"finish\" : null\n" +
-"    } ]\n" +
-"  } ]\n" +
-"}";
-        JSONUnmarshaller instance = new JSONUnmarshaller();        
-        Experiment result = instance.fromString(experimentDescription);
+        String originalExperimentDescription = "/*  #===========================================================================#\n" +
+"    #    Formal Experiment Description in SEDL                                  #\n" +
+"    #===========================================================================#\n" +
+"    # This experimental description is part of the laboratory package of the    #\n" +
+"    # paper entitled:                                                           #\n" +
+"    #                                                                           #\n" +
+"    #  \"Can mindfulness make software engineers better?                         #\n" +
+"    #   A replicated experiment to evaluate its effects in conceptual modeling\" #\n" +
+"    #   To be submitted to the Journal of Systems and Software                  #\n" +
+"    #                               (Special Issue on Replications)             #\n" +
+"    #                                                                           #\n" +
+"    #---------------------------------------------------------------------------#\n" +
+"    #   Specifically, this document describes the baseline experiment,          #\n" +
+"    #   described in :                                                          #\n" +
+"    #   \"A controlled experiment to evaluate the effects of mindfulness in      #\n" +
+"    #    software engineering\".                                                 #\n" +
+"    #   In Proceedings of the 8th ACM/IEEE International Symposium on           #\n" +
+"    #    Empirical Software Engineering and Measurement (ESEM '14). ACM,        #\n" +
+"    #    New York, NY, USA. DOI=http://dx.doi.org/10.1145/2652524.2652539        #\n" +
+"    #===========================================================================#\n" +
+"    # Created on 2015/11/26 by J. A. Parejo                                     #\n" +
+"    #===========================================================================#\n" +
+"*/\n" +
+"import Charts \n" +
+"EXPERIMENT:Mind-1 version:1.0\n" +
+"    \n" +
+"Constants:\n" +
+"    NSessions: 16   // Number of sessions of complimentary teaching (Mindfullness) taken by subjects\n" +
+"    sessionsDuration: 10   // Number of minutes per session\n" +
+"Variables:\n" +
+"Factors:        \n" +
+"    treatment enum \"MF\",    // Mindfulness\n" +
+"                   \"PS\"     // Public Speaking\n" +
+"    exercise enum \"Erasmus\",    // Erasmus exercise \n" +
+"                  \"EoDP\"    // Degree Dissertation exercise \n" +
+"Outcome:\n" +
+"   Effectiveness float range [0,1]      // Number of correctly identified classes, attributes and associations / total classes and associations\n" +
+"   Efficiency float range [0,1]         // Correctly identified elements per minute\n" +
+"\n" +
+"Hypothesis: \n" +
+"    treatment impacts significantly on Effectiveness\n" +
+"    treatment impacts significantly on Efficiency\n" +
+"\n" +
+"Design: \n" +
+"  Sampling: Random\n" +
+"  Assignment: Custom        // Thus this is a Quasi-Experiment\n" +
+"  Groups:\n" +
+"    G-MF() sizing 16,\n" +
+"    G-PS() sizing 16\n" +
+"  Protocol:\n" +
+"    // First Exercise: Erasmus\n" +
+"    Measurement G-PS(exercise:\"Erasmus\")\n" +
+"    Measurement G-MF(exercise:\"Erasmus\")\n" +
+"    // Mindfulness sessions:\n" +
+"    Treatment G-MF(treatment:\"MF\")\n" +
+"    // Public Speaking sessions: \n" +
+"    Treatment G-PS(treatment:\"PS\")\n" +
+"    // Second Exercise: Degree Dissertation\n" +
+"    Measurement G-PS(exercise:\"EoDP\") \n" +
+"    Measurement G-MF(exercise:\"EoDP\")\n" +
+"    \n" +
+"  Analyses:                  \n" +
+"    DescriptiveStatitics:   \n" +
+"        Avg(by exercise)\n" +
+"        Avg(by treatment)\n" +
+"        Avg(by treatment,exercise)\n" +
+"        Median(by treatment,exercise)\n" +
+"        StdDev(by treatment,exercise)\n" +
+"   Charts:  \n" +
+"        Charts::Histogram by treatment,exercise\n" +
+"        Charts::BoxPlot by treatment,exercise\n" +
+"    NHST:               \n" +
+"        Kolmogorov-Smirnov(by exercise,treatment , 0.05)\n" +
+"        Levene(by exercise,treatment,0.05)\n" +
+"        TTest(where exercise=\"EoDP\" by treatment ,0.05)\n" +
+"        Wilcoxon(where exercise=\"EoDP\" by treatment ,0.05)\n" +
+"    \n" +
+"Configuration:\n" +
+"    C1:\n" +
+"        Procedure:\n" +
+"        Runs:\n" +
+"            Baseline:\n" +
+"                Result: \n" +
+"                    File: 'data/Datos2014AnalysisR.csv'";
+        
+        System.out.println("=============== ORIGINAL EXPERIMENT DESCRIPTION ======================");
+        System.out.println(originalExperimentDescription);
+        
+        SEDL4PeopleUnmarshaller sedl4PeopleUnmarshaller=new SEDL4PeopleUnmarshaller();
+        Experiment result = sedl4PeopleUnmarshaller.fromString(originalExperimentDescription);
+        
+        JSONMarshaller jsonMarshaller=new JSONMarshaller();
+        String jsonExperimentDescription=jsonMarshaller.asString(result);
+        
+        System.out.println("=============== JSON EXPERIMENT DESCRIPTION ======================");
+        System.out.println(jsonExperimentDescription);
+        
+        JSONUnmarshaller instance = new JSONUnmarshaller();                
         SEDL4PeopleMarshaller marshaller =new SEDL4PeopleMarshaller();
+        
+        System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
         System.out.println(marshaller.asString(result));
     }
 }

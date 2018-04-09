@@ -21,6 +21,7 @@ import es.us.isa.sedl.core.configuration.ExperimentalSetting;
 import es.us.isa.sedl.core.configuration.File;
 import es.us.isa.sedl.core.configuration.FileFormatSpecification;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
+import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ExperimentalResult;
@@ -244,12 +245,14 @@ public class ExecutionsParser implements Parser<List<Execution>, SEDL4PeoplePars
         DatasetSpecification result=new DatasetSpecification();
         String analysisId=a.id().getText();
         BasicExperiment exp=(BasicExperiment)listener.getExperimentModel();
-        AnalysisSpecification spec=exp.getDesign().getAnalysisSpecById(analysisId);        
+        AnalysisSpecificationGroup specgroup=exp.getDesign().getAnalysisSpecById(analysisId);        
         Statistic  statistic=null;
+        /**
         if(spec instanceof StatisticalAnalysisSpec){
             statistic=findApropiateStatistic((StatisticalAnalysisSpec)spec,actualFunction);            
             result=statistic.getDatasetSpecification();
         }
+        **/
         return result;
     }
 

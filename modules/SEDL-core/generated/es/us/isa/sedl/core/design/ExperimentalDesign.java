@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.06 a las 05:46:41 PM CEST 
+// Generado el: 2018.04.10 a las 12:06:43 AM CEST 
 //
 
 
@@ -41,7 +41,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="intendedAnalyses" type="{http://isa.us.es/sedl/core/design}AnalysisSpecification" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="intendedAnalyses" type="{http://isa.us.es/sedl/core/design}AnalysisSpecificationGroup" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -63,7 +63,7 @@ public abstract class ExperimentalDesign
 {
 
     @XmlElement(required = true)
-    protected List<AnalysisSpecification> intendedAnalyses;
+    protected List<AnalysisSpecificationGroup> intendedAnalyses;
 
     /**
      * Gets the value of the intendedAnalyses property.
@@ -83,13 +83,13 @@ public abstract class ExperimentalDesign
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link AnalysisSpecification }
+     * {@link AnalysisSpecificationGroup }
      * 
      * 
      */
-    public List<AnalysisSpecification> getIntendedAnalyses() {
+    public List<AnalysisSpecificationGroup> getIntendedAnalyses() {
         if (intendedAnalyses == null) {
-            intendedAnalyses = new ArrayList<AnalysisSpecification>();
+            intendedAnalyses = new ArrayList<AnalysisSpecificationGroup>();
         }
         return this.intendedAnalyses;
     }
@@ -103,9 +103,9 @@ public abstract class ExperimentalDesign
         }
         final ExperimentalDesign that = ((ExperimentalDesign) object);
         {
-            List<AnalysisSpecification> lhsIntendedAnalyses;
+            List<AnalysisSpecificationGroup> lhsIntendedAnalyses;
             lhsIntendedAnalyses = (((this.intendedAnalyses!= null)&&(!this.intendedAnalyses.isEmpty()))?this.getIntendedAnalyses():null);
-            List<AnalysisSpecification> rhsIntendedAnalyses;
+            List<AnalysisSpecificationGroup> rhsIntendedAnalyses;
             rhsIntendedAnalyses = (((that.intendedAnalyses!= null)&&(!that.intendedAnalyses.isEmpty()))?that.getIntendedAnalyses():null);
             if (!strategy.equals(LocatorUtils.property(thisLocator, "intendedAnalyses", lhsIntendedAnalyses), LocatorUtils.property(thatLocator, "intendedAnalyses", rhsIntendedAnalyses), lhsIntendedAnalyses, rhsIntendedAnalyses)) {
                 return false;
@@ -122,7 +122,7 @@ public abstract class ExperimentalDesign
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            List<AnalysisSpecification> theIntendedAnalyses;
+            List<AnalysisSpecificationGroup> theIntendedAnalyses;
             theIntendedAnalyses = (((this.intendedAnalyses!= null)&&(!this.intendedAnalyses.isEmpty()))?this.getIntendedAnalyses():null);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "intendedAnalyses", theIntendedAnalyses), currentHashCode, theIntendedAnalyses);
         }
@@ -150,13 +150,13 @@ public abstract class ExperimentalDesign
         if (target instanceof ExperimentalDesign) {
             final ExperimentalDesign copy = ((ExperimentalDesign) target);
             if ((this.intendedAnalyses!= null)&&(!this.intendedAnalyses.isEmpty())) {
-                List<AnalysisSpecification> sourceIntendedAnalyses;
+                List<AnalysisSpecificationGroup> sourceIntendedAnalyses;
                 sourceIntendedAnalyses = (((this.intendedAnalyses!= null)&&(!this.intendedAnalyses.isEmpty()))?this.getIntendedAnalyses():null);
                 @SuppressWarnings("unchecked")
-                List<AnalysisSpecification> copyIntendedAnalyses = ((List<AnalysisSpecification> ) strategy.copy(LocatorUtils.property(locator, "intendedAnalyses", sourceIntendedAnalyses), sourceIntendedAnalyses));
+                List<AnalysisSpecificationGroup> copyIntendedAnalyses = ((List<AnalysisSpecificationGroup> ) strategy.copy(LocatorUtils.property(locator, "intendedAnalyses", sourceIntendedAnalyses), sourceIntendedAnalyses));
                 copy.intendedAnalyses = null;
                 if (copyIntendedAnalyses!= null) {
-                    List<AnalysisSpecification> uniqueIntendedAnalysesl = copy.getIntendedAnalyses();
+                    List<AnalysisSpecificationGroup> uniqueIntendedAnalysesl = copy.getIntendedAnalyses();
                     uniqueIntendedAnalysesl.addAll(copyIntendedAnalyses);
                 }
             } else {

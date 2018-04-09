@@ -23,11 +23,17 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 
 public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller {
 
+    public static final int SEDL = 2;
+    public static final int COMMENTS = 2;
+    
     private List<Error> errors = new ArrayList<Error>();
     private SEDL4PeopleErrorListener errorListener;
     private SEDL4PeopleExtendedListener listener;
     private SEDL4PeopleExtensionPointsUnmarshaller epUnmarshaller;
     CommonTokenStream tokens;
+    CommonTokenStream comments;
+    
+    
     
     @Override
     public Experiment read(InputStream stream) {
@@ -40,14 +46,14 @@ public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller {
         	
             SEDL4PeopleLexer lexer = new SEDL4PeopleLexer(new ANTLRInputStream(stream));
     	    lexer.addErrorListener(errorListener);
-    	    tokens = new CommonTokenStream(lexer);
+    	    tokens = new CommonTokenStream(lexer);            
     	    
     	    SEDL4PeopleParser parser = new SEDL4PeopleParser(tokens);
 
     	    parser.addErrorListener(errorListener);
     	    		
     	    ParseTreeWalker walker = new ParseTreeWalker(); 
-    	    listener = new SEDL4PeopleExtendedListener(errorListener);
+    	    listener = new SEDL4PeopleExtendedListener(errorListener,tokens);
     	    walker.walk(listener, parser.document());
     	    parser.addParseListener(listener);
             if(epUnmarshaller!=null)

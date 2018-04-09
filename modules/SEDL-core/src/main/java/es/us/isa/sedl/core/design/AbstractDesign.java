@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
@@ -21,6 +22,7 @@ public abstract class AbstractDesign {
     
     public abstract Variables getVariables();
     
+    @JsonIgnore
     public List<Outcome> getOutcomes()
     {
         List<Outcome> result=new ArrayList<Outcome>();
@@ -29,6 +31,7 @@ public abstract class AbstractDesign {
         return result;
     }
     
+    @JsonIgnore
     public Set<Set<VariableValuation>> getPossibleTreatments() {
         Set<Set<VariableValuation>> result = new HashSet<Set<VariableValuation>>();
         List<Variable> variables = getVariables().getVariable();
@@ -37,6 +40,7 @@ public abstract class AbstractDesign {
         return result;
     }
 
+    @JsonIgnore
     private void possibleTreatmentCombinations(int i, List<Variable> variables, Set<VariableValuation> tmpSet, Set<Set<VariableValuation>> result) {
         Variable var = variables.get(i);
         Domain domain=var.getDomain();
@@ -71,11 +75,12 @@ public abstract class AbstractDesign {
         }
     }
     
-    public AnalysisSpecification getAnalysisSpecById(String id)
+    
+    public AnalysisSpecificationGroup getAnalysisSpecById(String id)
     {
-        AnalysisSpecification result=null;
-        List<AnalysisSpecification> analysisSpecs=getExperimentalDesign().getIntendedAnalyses();
-        for(AnalysisSpecification candidate:analysisSpecs)
+        AnalysisSpecificationGroup result=null;
+        List<AnalysisSpecificationGroup> analysisSpecs=getExperimentalDesign().getIntendedAnalyses();
+        for(AnalysisSpecificationGroup candidate:analysisSpecs)
             if(candidate.getId().equals(id)){
                 result=candidate;
                 break;

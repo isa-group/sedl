@@ -46,7 +46,7 @@ public class DatasetSpecificationParserTest {
     public void testParse_String_SEDL4PeopleExtendedListener() {
         System.out.println("parse");
         String spec="Filter(v1).Projection(outcome)";
-        SEDL4PeopleExtendedListener l   = new SEDL4PeopleExtendedListener(null);        
+        SEDL4PeopleExtendedListener l   = new SEDL4PeopleExtendedListener(null,null);        
         Variables variables=new Variables();
         ControllableFactor cf=new ControllableFactor();
         cf.setName("v1");

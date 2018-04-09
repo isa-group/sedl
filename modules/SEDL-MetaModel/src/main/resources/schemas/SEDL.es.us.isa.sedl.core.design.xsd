@@ -12,6 +12,7 @@
   <xsd:element ecore:ignore="true" name="VariableValuation" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
   <xsd:element ecore:ignore="true" name="Level" type="SEDL.es.us.isa.sedl.core.design:Level"/>
   <xsd:element ecore:ignore="true" name="ExperimentalDesign" type="SEDL.es.us.isa.sedl.core.design:ExperimentalDesign"/>
+  <xsd:element ecore:ignore="true" name="AnalysisSpecificationGroup" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecificationGroup"/>
   <xsd:element ecore:ignore="true" name="AnalysisSpecification" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification"/>
   <xsd:element ecore:ignore="true" name="Outcome" type="SEDL.es.us.isa.sedl.core.design:Outcome"/>
   <xsd:element ecore:ignore="true" name="Factor" type="SEDL.es.us.isa.sedl.core.design:Factor"/>
@@ -128,8 +129,14 @@
 				Factorials, Latin Squares, Hyper-latin cubes, etc.), or defining a cutom design.</xsd:documentation>
     </xsd:annotation>
     <xsd:sequence>
-      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="intendedAnalyses" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="intendedAnalyses" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecificationGroup"/>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AnalysisSpecificationGroup">    
+     <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="1" name="analyses" type="SEDL.es.us.isa.sedl.core.design:AnalysisSpecification"/>
+     </xsd:sequence>
+     <xsd:attribute name="id" type="types:String" use="required"/>    
   </xsd:complexType>
   <xsd:complexType abstract="true" name="AnalysisSpecification">
     <xsd:attribute name="id" type="types:String" use="required"/>
@@ -272,11 +279,14 @@ A protocol step type makes reference to a set of groups where it is applied. If 
     </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="SEDL.es.us.isa.sedl.core.design:ExperimentalProtocolStep">
+          <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="variableValuation" type="SEDL.es.us.isa.sedl.core.design:VariableValuation"/>
+        </xsd:sequence>
         <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.design:Variable" name="variable" use="required">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
-        </xsd:attribute>
+        </xsd:attribute>        
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.04.06 a las 05:46:41 PM CEST 
+// Generado el: 2018.04.10 a las 12:06:43 AM CEST 
 //
 
 
@@ -39,6 +39,7 @@ public class ObjectFactory {
     private final static QName _VariableValuation_QNAME = new QName("http://isa.us.es/sedl/core/design", "VariableValuation");
     private final static QName _Level_QNAME = new QName("http://isa.us.es/sedl/core/design", "Level");
     private final static QName _ExperimentalDesign_QNAME = new QName("http://isa.us.es/sedl/core/design", "ExperimentalDesign");
+    private final static QName _AnalysisSpecificationGroup_QNAME = new QName("http://isa.us.es/sedl/core/design", "AnalysisSpecificationGroup");
     private final static QName _AnalysisSpecification_QNAME = new QName("http://isa.us.es/sedl/core/design", "AnalysisSpecification");
     private final static QName _Outcome_QNAME = new QName("http://isa.us.es/sedl/core/design", "Outcome");
     private final static QName _Factor_QNAME = new QName("http://isa.us.es/sedl/core/design", "Factor");
@@ -128,6 +129,14 @@ public class ObjectFactory {
      */
     public Level createLevel() {
         return new Level();
+    }
+
+    /**
+     * Create an instance of {@link AnalysisSpecificationGroup }
+     * 
+     */
+    public AnalysisSpecificationGroup createAnalysisSpecificationGroup() {
+        return new AnalysisSpecificationGroup();
     }
 
     /**
@@ -368,6 +377,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "ExperimentalDesign")
     public JAXBElement<ExperimentalDesign> createExperimentalDesign(ExperimentalDesign value) {
         return new JAXBElement<ExperimentalDesign>(_ExperimentalDesign_QNAME, ExperimentalDesign.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AnalysisSpecificationGroup }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "AnalysisSpecificationGroup")
+    public JAXBElement<AnalysisSpecificationGroup> createAnalysisSpecificationGroup(AnalysisSpecificationGroup value) {
+        return new JAXBElement<AnalysisSpecificationGroup>(_AnalysisSpecificationGroup_QNAME, AnalysisSpecificationGroup.class, null, value);
     }
 
     /**

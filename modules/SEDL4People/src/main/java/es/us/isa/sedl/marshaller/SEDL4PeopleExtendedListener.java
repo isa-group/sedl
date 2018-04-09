@@ -5,7 +5,6 @@ import static es.us.isa.sedl.grammar.SEDL4PeopleParser.MAIN_RESULT;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.MISCELLANEOUS;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.tokenNames;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
@@ -54,11 +53,13 @@ import es.us.isa.sedl.core.configuration.SimpleParameter;
 import es.us.isa.sedl.core.configuration.SoftwarePlatform;
 import es.us.isa.sedl.core.configuration.Treatment;
 import es.us.isa.sedl.core.context.Context;
+import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.AssignmentMethod;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.Design;
 import es.us.isa.sedl.core.design.ExperimentalDesign;
 import es.us.isa.sedl.core.design.ExperimentalProtocol;
+import es.us.isa.sedl.core.design.ExperimentalProtocolStep;
 import es.us.isa.sedl.core.design.ExtensionDomain;
 import es.us.isa.sedl.core.design.Factor;
 import es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign;
@@ -70,6 +71,7 @@ import es.us.isa.sedl.core.design.IntervalConstraint;
 import es.us.isa.sedl.core.design.Level;
 import es.us.isa.sedl.core.design.Literal;
 import es.us.isa.sedl.core.design.NonControllableFactor;
+import es.us.isa.sedl.core.design.Nuisance;
 import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.ProtocolScheme;
@@ -77,6 +79,7 @@ import es.us.isa.sedl.core.design.SamplingMethod;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
+import es.us.isa.sedl.core.design.VariableValuation;
 import es.us.isa.sedl.core.design.Variables;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ResultsFile;
@@ -97,7 +100,6 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser.FactorDeclarationTypeContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FactorsContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FieldContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FilesContext;
-import es.us.isa.sedl.grammar.SEDL4PeopleParser.GroupsExpresionContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.IdContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.LibraryContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.NcfactorsContext;
@@ -109,17 +111,21 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser.SizingSentenceContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.StatisticFunctionContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.StructValueContext;
 import es.us.isa.sedl.marshaller.analysis.statistic.StatisticalAnalysisSpecParser;
+import java.math.BigInteger;
 import java.sql.Date;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.Interval;
 
 public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     private final static Logger log = Logger.getLogger(SEDL4PeopleExtendedListener.class);
+    public static final int COMMENTS = 2;
 
     private static final String RANDOM = "Random";
     private static final String SEQUENTIAL = "Sequential";
 
-	// Statistic
+    // Statistic
     private BasicExperiment experiment;
     private Context context;
     private Variables variables;
@@ -131,22 +137,23 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     ExperimentalProtocol protocol;
     Map<StatisticFunctionContext, Statistic> ctxStatistic;
     SEDL4PeopleErrorListener errorListener;
-    
-    public SEDL4PeopleExtendedListener(SEDL4PeopleErrorListener errorListener)
-    {
-        this.errorListener=errorListener;
+    CommonTokenStream tokens;
+
+    public SEDL4PeopleExtendedListener(SEDL4PeopleErrorListener errorListener, CommonTokenStream comments) {
+        this.errorListener = errorListener;
+        this.tokens = comments;
     }
 
-	// Repasar y añadir al Map en cada funcion
+    // Repasar y añadir al Map en cada funcion
     private Map<Object, RuleNode> objectNodeMap = new IdentityHashMap<Object, RuleNode>();
 
     // ExtensionPoints:
     private Map<String, List<ExtensionPointElement>> extensionPointsInstantiations = new HashMap<String, List<ExtensionPointElement>>();
 
-        // Parsers específicos por secciones:
+    // Parsers específicos por secciones:
     private StatisticalAnalysisSpecParser statAnalysisSpecParser = new StatisticalAnalysisSpecParser();
 
-	// Document
+    // Document
     @Override
     public void enterDocument(@NotNull SEDL4PeopleParser.DocumentContext ctx) {
         log.info("Entering document");
@@ -167,11 +174,17 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         log.info("Exiting document");
     }
 
-	// Experiment Preamble
+    // Experiment Preamble
     @Override
     public void enterExperimentPreamble(@NotNull SEDL4PeopleParser.ExperimentPreambleContext ctx) {
         try {
-//		System.out.println(">> Entering experiment preamble. ID: " + ctx.id().getText() );
+            //	
+            if (tokens != null) {
+                List<Token> tokensComments = getComments(0, ctx.getStart().getTokenIndex());
+                for (Token t : tokensComments) {
+                    experiment.getNotes().add(t.getText());
+                }
+            }
             if (ctx.id() != null) {
                 final String id = ctx.id().getText();
                 experiment.setId(id);
@@ -192,7 +205,17 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     }
 
-	// Experiment Context
+    private List<Token> getComments(int start, int end) {
+        List<Token> result = new ArrayList<>();
+        for (Token t : tokens.get(start, end)) {
+            if (t.getChannel() == COMMENTS) {
+                result.add(t);
+            }
+        }
+        return result;
+    }
+
+    // Experiment Context
     @Override
     public void enterExperimentContext(@NotNull SEDL4PeopleParser.ExperimentContextContext ctx) {
         objectNodeMap.put(context, ctx);
@@ -224,7 +247,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         experiment.getDesign().setPopulation(population);
         objectNodeMap.put(population, ctx);
     }
- 
+
     @Override
     public void enterObject(@NotNull SEDL4PeopleParser.ObjectContext ctx) {
         final String individualDescription = ctx.getChild(2).getText();
@@ -233,7 +256,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         objectNodeMap.put(population.getIndividualDescription(), ctx);
     }
 
-	// Constants
+    // Constants
     // El constants block contiene las constantes, que son parámetros del design
     @Override
     public void enterConstantsBlock(@NotNull SEDL4PeopleParser.ConstantsBlockContext ctx) {
@@ -260,7 +283,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     }
 
-	// Variables
+    // Variables
     @Override
     public void enterVariablesBlock(@NotNull SEDL4PeopleParser.VariablesBlockContext ctx) {
 
@@ -273,118 +296,109 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public void enterFactorDeclaration(@NotNull SEDL4PeopleParser.FactorDeclarationContext ctx) {
 
         Variables aux = getVariables();
-        
+
         Variable variable = new ControllableFactor();
-        
-        
-        if (ctx.getParent() instanceof FactorsContext){
-            
+
+        if (ctx.getParent() instanceof FactorsContext) {
+
         }
-        
-        if (ctx.getParent() instanceof NcfactorsContext) {    
+
+        if (ctx.getParent() instanceof NcfactorsContext) {
             variable = new NonControllableFactor();
         }
-        
-        if (ctx.getParent()instanceof OutcomeDeclarationContext) {
+
+        if (ctx.getParent() instanceof OutcomeDeclarationContext) {
             variable = new Outcome();
         }
-        
+
         variable.setName(ctx.id().getText());
         variable.setKind(VariableKind.SCALAR);
-        
+
         if (ctx.factorDeclarationUnits() != null) {
             String units = ctx.factorDeclarationUnits().id().getText();
             variable.setUnits(units);
         }
-       
-         if (ctx.factorDeclarationType() != null) {
-            
+
+        if (ctx.factorDeclarationType() != null) {
+
             FactorDeclarationTypeContext typeContext = ctx.factorDeclarationType();
 
             if (typeContext.ORDERED() != null) {
                 variable.setKind(VariableKind.ORDINAL);
-            }
-            else if (typeContext.ENUM() != null) {
+            } else if (typeContext.ENUM() != null) {
                 variable.setKind(VariableKind.NOMINAL);
             }
-            
+
             //
-            
             if (typeContext.numericSet() != null) { //INTENSION DOMAIN
                 IntensionDomain domain = new IntensionDomain();
                 FundamentalSetConstraint fsc = new FundamentalSetConstraint();
                 String fundamentalSet = ctx.factorDeclarationType().numericSet().getText();
                 fsc.setFundamentalSet(FundamentalSet.valueOf(fundamentalSet));
                 domain.getConstraint().add(fsc);
-                if (ctx.factorDeclarationRange()!= null) {
-            
-                    FactorDeclarationRangeContext rangeContext = ctx.factorDeclarationRange();
-                    
-                    IntervalConstraint ic = new IntervalConstraint();
-                    
-                    if(rangeContext.getChild(2)!=null)
-                       ic.setMax(rangeContext.getChild(4).getChild(0).toString());
-                    else
-                        ic.setMax("");
+                if (ctx.factorDeclarationRange() != null) {
 
-                    if(rangeContext.getChild(4)!=null)
+                    FactorDeclarationRangeContext rangeContext = ctx.factorDeclarationRange();
+
+                    IntervalConstraint ic = new IntervalConstraint();
+
+                    if (rangeContext.getChild(2) != null) {
+                        ic.setMax(rangeContext.getChild(4).getChild(0).toString());
+                    } else {
+                        ic.setMax("");
+                    }
+
+                    if (rangeContext.getChild(4) != null) {
                         ic.setMin(rangeContext.getChild(2).getChild(0).toString());
-                    else
+                    } else {
                         ic.setMin("");
-                    
+                    }
+
                     domain.getConstraint().add(ic);
                 }
                 variable.setDomain(domain);
-            }
-            else if(ctx.factorDeclarationType().type()!=null){
-                String type=ctx.factorDeclarationType().type().getText();
+            } else if (ctx.factorDeclarationType().type() != null) {
+                String type = ctx.factorDeclarationType().type().getText();
                 IntensionDomain domain = new IntensionDomain();
                 FundamentalSetConstraint fsc = new FundamentalSetConstraint();
-                if(type.equalsIgnoreCase("integer")){
-                    fsc.setFundamentalSet(FundamentalSet.Z);  
-                }
-                else if(type.equalsIgnoreCase("float")){
-                    fsc.setFundamentalSet(FundamentalSet.R);    
-                }
-                else if(type.equalsIgnoreCase("bool")||type.equalsIgnoreCase("boolean")){   
-                    fsc.setFundamentalSet(FundamentalSet.B);    
+                if (type.equalsIgnoreCase("integer")) {
+                    fsc.setFundamentalSet(FundamentalSet.Z);
+                } else if (type.equalsIgnoreCase("float")) {
+                    fsc.setFundamentalSet(FundamentalSet.R);
+                } else if (type.equalsIgnoreCase("bool") || type.equalsIgnoreCase("boolean")) {
+                    fsc.setFundamentalSet(FundamentalSet.B);
                 }
                 domain.getConstraint().add(fsc);
-                if (ctx.factorDeclarationRange()!= null) {
-            
+                if (ctx.factorDeclarationRange() != null) {
+
                     FactorDeclarationRangeContext rangeContext = ctx.factorDeclarationRange();
 
                     IntervalConstraint ic = new IntervalConstraint();
-                    
-                       ic.setMax(rangeContext.intervalLiteral(0).getText());
+                    ic.setMin(rangeContext.intervalLiteral(0).getText());
+                    ic.setMax(rangeContext.intervalLiteral(1).getText());
 
-                    if(rangeContext.MIN()!=null)
-                        ic.setMin(rangeContext.intervalLiteral(1).getText());
-                    
+                    if (rangeContext.MIN() != null) {
+                        ic.setMin(rangeContext.intervalLiteral(0).getText());
+                    } else if (rangeContext.MAX() != null) {
+                        ic.setMin(rangeContext.intervalLiteral(0).getText());
+                    }
                     domain.getConstraint().add(ic);
                 }
                 variable.setDomain(domain);
-            }
-            else{ //EXTENSION DOMAIN
+            } else { //EXTENSION DOMAIN
                 ExtensionDomain domain = new ExtensionDomain();
-                for (int i = 0; i < typeContext.enumDeclaration().getChildCount(); i++) {                 
+                for (int i = 0; i < typeContext.enumDeclaration().getChildCount(); i++) {
                     EnumDeclarationContext enumCtx = (EnumDeclarationContext) typeContext.enumDeclaration();
                     if (!enumCtx.getChild(i).getText().equals(",")) {
-                        Level l = new Level();
-                        if(enumCtx.StringLiteral().isEmpty()){
-                            l.setValue(enumCtx.getChild(i).getText().replaceAll("\"", ""));
-                        }
-                        else{
-                            l.setValue(enumCtx.getChild(i).getText().replaceAll("\"", ""));
-                        }
+                        Level l = createLevel(enumCtx.getChild(i).getText().replaceAll("\"", ""));                        
                         domain.getLevels().add(l);
                     }
                 }
                 variable.setDomain(domain);
             }
-            
-        aux.getVariable().add(variable);
-        
+
+            aux.getVariable().add(variable);
+
         }
         setVariables(aux);
     }
@@ -398,9 +412,10 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterImplicitDifferentialHypothesis(SEDL4PeopleParser.ImplicitDifferentialHypothesisContext ctx) {
         DifferentialHypothesis dh = null;
-        Variables vars=experiment.getDesign().getVariables();
-        if(vars==null)
-            vars=variables;
+        Variables vars = experiment.getDesign().getVariables();
+        if (vars == null) {
+            vars = variables;
+        }
         for (Variable outcome : vars.getVariablesByType(Outcome.class)) {
             dh = new DifferentialHypothesis();
             dh.setDependentVariable(outcome.getName());
@@ -415,13 +430,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public void enterExplicitDifferentialHypothesis(SEDL4PeopleParser.ExplicitDifferentialHypothesisContext ctx) {
         DifferentialHypothesis dh = null;
         dh = new DifferentialHypothesis();
-        Variable var=findVariableById(ctx.outcome().id(), true, Outcome.class);
-        if(var!=null){
+        Variable var = findVariableById(ctx.outcome().id(), true, Outcome.class);
+        if (var != null) {
             dh.setDependentVariable(var.getName());
             for (SEDL4PeopleParser.IdContext factorid : ctx.factorList().idList().id()) {
-                var=findVariableById(factorid, true, Factor.class);
-                if(var!=null)
+                var = findVariableById(factorid, true, Factor.class);
+                if (var != null) {
                     dh.getIndependentVariables().add(var.getName());
+                }
             }
             experiment.getHypotheses().add(dh);
         }
@@ -475,16 +491,16 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     @Override
     public void enterOutcome(SEDL4PeopleParser.OutcomeContext ctx) {
-        
+
     }
 
     @Override
     public void enterDescriptiveHypothesis(SEDL4PeopleParser.DescriptiveHypothesisContext ctx) {
-        DescriptiveHypothesis h=new DescriptiveHypothesis();        
+        DescriptiveHypothesis h = new DescriptiveHypothesis();
         experiment.getHypotheses().add(h);
     }
 
-	// Design
+    // Design
     @Override
     public void enterDesign(@NotNull SEDL4PeopleParser.DesignContext ctx) {
 
@@ -513,7 +529,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterDesignSampling(@NotNull SEDL4PeopleParser.DesignSamplingContext ctx) {
 
-		// duplicado, cambiar regla en gramatica
+        // duplicado, cambiar regla en gramatica
         if (ctx.designAssignment() != null) {
             System.out.println(">>>>> Parsing DesignAssignment: " + ctx.designAssignment().getText());
             FullySpecifiedExperimentalDesign expDesign = (FullySpecifiedExperimentalDesign) getExperimentalDesign();
@@ -550,9 +566,10 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         FullySpecifiedExperimentalDesign expDesign = (FullySpecifiedExperimentalDesign) getExperimentalDesign();
         for (IdContext blockingVariableCtx : blockingVariables) {
-            Variable var=findVariableById(blockingVariableCtx, true, Factor.class);
-            if(var!=null)
+            Variable var = findVariableById(blockingVariableCtx, true, Factor.class);
+            if (var != null) {
                 expDesign.getBlockingVariables().add(var.getName());
+            }
         }
         objectNodeMap.put(expDesign.getBlockingVariables(), ctx);
     }
@@ -560,7 +577,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterDetailedDesign(@NotNull SEDL4PeopleParser.DetailedDesignContext ctx) {
 
-		// duplicado, cambiar regla en gramatica
+        // duplicado, cambiar regla en gramatica
         if (ctx.designAssignment() != null) {
             log.debug(">>>>> Parsing DesignAssignment: " + ctx.designAssignment().getText());
             FullySpecifiedExperimentalDesign expDesign = (FullySpecifiedExperimentalDesign) getExperimentalDesign();
@@ -604,8 +621,80 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         } else if (schemeValue.equals(SEQUENTIAL)) {
             protocol.setScheme(ProtocolScheme.SEQUENTIAL);
         } else {
-            System.out.println("Scheme valued not valid: " + schemeValue);
+            protocol.setScheme(ProtocolScheme.SEQUENTIAL);
         }
+        if (ctx.explicitProtocol() != null) {
+            for (SEDL4PeopleParser.ProtocolStepContext stepCtx : ctx.explicitProtocol().protocolStep()) {
+                protocol.getSteps().add(buildExperimentalProtocolStep(stepCtx));
+            }
+        }
+    }
+
+    private ExperimentalProtocolStep buildExperimentalProtocolStep(SEDL4PeopleParser.ProtocolStepContext stepCtx) {
+        ExperimentalProtocolStep result = null;
+        if (stepCtx.measurement() != null) {
+            result = buildMeasurement(stepCtx.measurement());
+        } else if (stepCtx.treatment() != null) {
+            result = buildTreatment(stepCtx.treatment());
+        } else {
+            System.out.println("SEDL only support measurment or treatment steps.");
+        }
+        return result;
+    }
+
+    private ExperimentalProtocolStep buildTreatment(SEDL4PeopleParser.TreatmentContext treatmentCtx) {
+        es.us.isa.sedl.core.design.Treatment treatment = new es.us.isa.sedl.core.design.Treatment();
+        treatment.setId(treatmentCtx.id().toString());
+        Group g = findGroupByName(treatmentCtx.functionalDeclaration().id(), true);
+        treatment.setGroup(treatmentCtx.functionalDeclaration().id().getText());
+        Variable v = null;
+        VariableValuation vv;
+        Level l;
+        for (FieldContext fieldCtx : treatmentCtx.functionalDeclaration().fields().field()) {
+            vv = new VariableValuation();
+            v = findVariableById(fieldCtx.id(), true);
+            l = createLevel(fieldCtx.value() != null ? fieldCtx.value().getText() : fieldCtx.structValue().getText());
+            vv.setVariable(v);
+            vv.setLevel(l);
+            treatment.getVariableValuation().add(vv);
+        }
+
+        return treatment;
+    }
+
+    private ExperimentalProtocolStep buildMeasurement(SEDL4PeopleParser.MeasurementContext measurementCtx) {
+        es.us.isa.sedl.core.design.Measurement measurement = new es.us.isa.sedl.core.design.Measurement();
+        measurement.setId(measurementCtx.functionalDeclaration().id().getText());
+        Group g = findGroupByName(measurementCtx.functionalDeclaration().id(), true);
+        measurement.setGroup(measurementCtx.functionalDeclaration().id().getText());
+        Variable v = null;
+        VariableValuation vv;
+        Level l;
+        
+       
+        for(IdContext id:measurementCtx.id()){
+            measurement.getVariable().add(id.getText());
+        }
+        for (FieldContext fieldCtx : measurementCtx.functionalDeclaration().fields().field()) {
+            vv = new VariableValuation();
+            v = findVariableById(fieldCtx.id(), true);
+            l = createLevel(fieldCtx.value() != null ? fieldCtx.value().getText() : fieldCtx.structValue().getText());
+            if(!v.getDomain().contains(l)){
+                SEDL4PeopleError error = new SEDL4PeopleError(fieldCtx.value().getStart().getLine() - 1,
+                        fieldCtx.value().getStart().getStartIndex(),
+                        fieldCtx.value().getStart().getStopIndex(),
+                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                        "The value " + fieldCtx.id().getText() + " is not a valid "
+                        + "level of the variable "+v.getName());
+                if (errorListener != null) {
+                    errorListener.getErrors().add(error);
+                }
+            }
+            vv.setVariable(v);
+            vv.setLevel(l);
+            measurement.getVariableValuation().add(vv);
+        }
+        return measurement;
     }
 
     @Override
@@ -616,8 +705,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
          * Si tiene una ID, hay que comprobar:
          * 		Si existe como variable, añadirla al Group
          * 		Si no existe como variable, es la ID del group
-         */
-        if (ctx.groupsExpresion() != null) {
+         *
+        if (ctx. != null) {
             GroupsExpresionContext groupsExpCtx = ctx.groupsExpresion();
 //			for ( IdContext id : groupsExpCtx.id() ) {
             for (int i = 0; i < groupsExpCtx.id().size(); i++) {
@@ -646,7 +735,152 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     objectNodeMap.put(expDesign.getGroups(), ctx);
                 }
             }
+        }*/
+    }
+
+    @Override
+    public void enterGroupsAsFunctionalDeclarations(SEDL4PeopleParser.GroupsAsFunctionalDeclarationsContext ctx) {
+        if (getExperimentalDesign() instanceof FullySpecifiedExperimentalDesign) {
+            List<SEDL4PeopleParser.FunctionalDeclarationContext> groupDeclarations = ctx.functionalDeclaration();
+            List<SizingSentenceContext> sizingDeclarations = ctx.sizingSentence();
+            List<Group> groups = new ArrayList<>();
+            for (int i = 0; i < groupDeclarations.size(); i++) {
+                groups.add(generateGroup(groupDeclarations.get(i), sizingDeclarations.get(i)));
+            }
+            FullySpecifiedExperimentalDesign expDesign = (FullySpecifiedExperimentalDesign) getExperimentalDesign();
+            expDesign.getGroups().addAll(groups);
+
+            objectNodeMap.put(expDesign.getGroups(), ctx);
         }
+    }
+
+    private Group generateGroup(SEDL4PeopleParser.FunctionalDeclarationContext groupDecl, SizingSentenceContext sizing) {
+        Group g = new Group();
+        Literal l = new Literal();
+        l.setValue(BigInteger.valueOf(Long.valueOf(sizing.IntegerLiteral().getText())));
+        g.setName(groupDecl.id().getText());
+        g.setSizing(l);
+        if (groupDecl.fields() != null) {
+            for (FieldContext field : groupDecl.fields().field()) {
+                Variable var = findVariableById(field.id(), true);
+                if (field.structValue() != null) {
+                    VariableValuation vv = new VariableValuation();
+                    vv.setVariable(var);                    
+                    vv.setLevel(createLevel(field.value().getText()));
+                    g.getValuations().set(COMMENTS, vv);
+                    //g.getComplexValuations().add(buildComplexParameter(field.id().getText(),field.structValue()));
+                } else if (field.value() != null) {
+                    VariableValuation vv = new VariableValuation();
+                    vv.setVariable(var);                                        
+                    vv.setLevel(createLevel(field.value().getText()));
+                    g.getValuations().set(COMMENTS, vv);
+                }
+            }
+        }
+        return g;
+    }
+
+    @Override
+    public void enterGroupsByExpresion(SEDL4PeopleParser.GroupsByExpresionContext ctx) {
+        List<Variable> vars = new ArrayList<>();
+        Variable var = null;
+        for (IdContext idCtx : ctx.id()) {
+            var = findVariableById(idCtx, true);
+            if (!var.getDomain().isFinite()) {
+                SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
+                        idCtx.Identifier().getSymbol().getStartIndex(),
+                        idCtx.Identifier().getSymbol().getStopIndex(),
+                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                        "The variable " + idCtx.getText() + " has an infinite domain, "
+                        + "you cannot generate a finite set of groups from it.");
+                if (errorListener != null) {
+                    errorListener.getErrors().add(error);
+                }
+            }
+            if (var instanceof Outcome) {
+                SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
+                        idCtx.Identifier().getSymbol().getStartIndex(),
+                        idCtx.Identifier().getSymbol().getStopIndex(),
+                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                        "The variable " + idCtx.getText() + " is an outcome of the experiment , "
+                        + "you cannot generate the "
+                        + " set of groups of the design from it.");
+            }
+            if (var instanceof Nuisance) {
+                SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
+                        idCtx.Identifier().getSymbol().getStartIndex(),
+                        idCtx.Identifier().getSymbol().getStopIndex(),
+                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                        "The variable " + idCtx.getText() + " is a nuisance of the experiment , "
+                        + "you cannot generate the "
+                        + " set of groups of the design from it.");
+            }
+        }
+        int sizing = Integer.parseInt(ctx.sizingSentence().IntegerLiteral().toString());
+
+        // We assume a complete factorial balanced design:
+        Group group = new Group();
+        group.setName("");
+        Literal sizingObject = new Literal();
+        sizingObject.setValue(BigInteger.valueOf((long) sizing));
+        group.setSizing(sizingObject);
+        VariableValuation vv = null;
+        for (Variable myvar : vars) {
+            vv = new VariableValuation();
+            vv.setVariable(myvar);
+            vv.setLevel(null);
+            group.getValuations().add(vv);
+        }
+        FullySpecifiedExperimentalDesign expDesign = (FullySpecifiedExperimentalDesign) getExperimentalDesign();
+        expDesign.getGroups().add(group);
+    }
+
+    public List<Group> generateGroups(List<Variable> vars, int sizing) {
+        List<Group> result = new ArrayList<>();
+        Variable var = vars.get(0);
+        Group g = null;
+        VariableValuation vv = null;
+        Literal sizingObject = new Literal();
+        sizingObject.setValue(BigInteger.valueOf((long) sizing));
+        for (Level l : var.getDomain().getLevels()) {
+            vv = new VariableValuation();
+            vv.setVariable(var);
+            vv.setLevel(l);
+            g = new Group();
+            g.setName(l.getValue());
+            g.getValuations().add(vv);
+            g.setSizing(sizingObject);
+            result.add(g);
+        }
+        result = generateGroups(1, vars, result);
+        return result;
+    }
+
+    public List<Group> generateGroups(int index, List<Variable> vars, List<Group> currentGroups) {
+        List<Group> result = null;
+        Group g = null;
+        Variable var = null;
+        VariableValuation vv = null;
+        if (index >= vars.size()) {
+            result = currentGroups;
+        } else {
+            result = new ArrayList<>();
+            for (Group cg : currentGroups) {
+                var = vars.get(index);
+                for (Level l : var.getDomain().getLevels()) {
+                    vv = new VariableValuation();
+                    vv.setVariable(var);
+                    vv.setLevel(l);
+                    g = new Group();
+                    g.setName(cg.getName() + "-" + l.getValue());
+                    g.getValuations().add(vv);
+                    g.setSizing(cg.getSizing());
+                    result.add(g);
+                }
+            }
+            result = generateGroups(index + 1, vars, result);
+        }
+        return result;
     }
 
     @Override
@@ -657,14 +891,16 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterAnalysesBlock(@NotNull SEDL4PeopleParser.AnalysesBlockContext ctx) {
 
-        StatisticalAnalysisSpec analysis = new StatisticalAnalysisSpec();
+        AnalysisSpecificationGroup analysis = new AnalysisSpecificationGroup();
         analysis.setId(ctx.getChild(0).getChild(0).getText());
-        if(!ctx.statisticFunction().isEmpty()){
-            for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()){
-                 if (statisticFunctionCtx != null){
-                     List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
-                     analysis.getStatistic().addAll(s);
-                 }                             
+        if (!ctx.statisticFunction().isEmpty()) {
+            for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()) {
+                if (statisticFunctionCtx != null) {
+                    List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
+                    StatisticalAnalysisSpec spec=new StatisticalAnalysisSpec();
+                    spec.getStatistic().addAll(s);
+                    analysis.getAnalyses().add(spec);
+                }
             }
         }
         getExperimentalDesign().getIntendedAnalyses().add(analysis);
@@ -844,19 +1080,19 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         experiment.getConfigurations().add(conf);
         conf.setId(ctx.getParent().getChild(0).getText());
 
-		// OUTPUTS 
+        // OUTPUTS 
         ExperimentalOutputs outputs = new ExperimentalOutputs();
         OutputDataSource outSource = new OutputDataSource();
         outputs.getOutputDataSources().add(outSource);
         conf.setExperimentalOutputs(outputs);
 
         File outFile = new File();
-        if (ctx.outputs()!=null && ctx.outputs().files() != null) {
+        if (ctx.outputs() != null && ctx.outputs().files() != null) {
             for (FilesContext fCtx : ctx.outputs().files()) {
 
                 //			FilesContext fCtx = ctx.outputs().files();
-                String name=fCtx.file().getChild(1).getText();
-                outFile.setName(name.substring(1, name.length()-1));
+                String name = fCtx.file().getChild(1).getText();
+                outFile.setName(name.substring(1, name.length() - 1));
                 outSource.setFile(outFile);
 
                 if (fCtx.roles() != null) {
@@ -879,7 +1115,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 if (fCtx.format() != null) {
                     FileSpecification fileSpec = new FileSpecification();
 
-	//			FileFormatSpecification format = new 
+                    //			FileFormatSpecification format = new 
                     //			outFile.setFileFormatSpecification(value);
                 }
 
@@ -888,7 +1124,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 }
             }
 
-		//INPUTS
+            //INPUTS
             ExperimentalInputs inputs = new ExperimentalInputs();
 
             File inputFile = new File();
@@ -905,7 +1141,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
             }
 
-		// SETTINGS
+            // SETTINGS
             if (ctx.settings() != null) {
                 SettingsContext settCtx = ctx.settings();
 
@@ -936,7 +1172,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         }
 
-		// PROCEDURE
+        // PROCEDURE
         if (ctx.experimentalProcedure() != null) {
             ExperimentalProcedureContext procCtx = ctx.experimentalProcedure();
             ExperimentalProcedure procedure = new ExperimentalProcedure();
@@ -953,34 +1189,35 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         }
 
-		//EXECUTIONS
+        //EXECUTIONS
         if (ctx.execution() != null) {
-            SEDL4PeopleParser.ExecutionContext ectx=ctx.execution();
-            for(SEDL4PeopleParser.ExecutionBlockContext execBlockCtx:ectx.executionBlock()){
-                Execution exec=parse(execBlockCtx.executionConf());
-                exec.setId(execBlockCtx.id().getText());                
-                if(exec!=null)
+            SEDL4PeopleParser.ExecutionContext ectx = ctx.execution();
+            for (SEDL4PeopleParser.ExecutionBlockContext execBlockCtx : ectx.executionBlock()) {
+                Execution exec = parse(execBlockCtx.executionConf());
+                exec.setId(execBlockCtx.id().getText());
+                if (exec != null) {
                     conf.getExecutions().add(exec);
+                }
             }
-            
-            
+
         }
 
     }
-    
-    private Execution parse(SEDL4PeopleParser.ExecutionConfContext ctx)
-    {
-        Execution result=new Execution();
-        if(ctx.execStart()!=null)
+
+    private Execution parse(SEDL4PeopleParser.ExecutionConfContext ctx) {
+        Execution result = new Execution();
+        if (ctx.execStart() != null) {
             result.setStart(Date.valueOf(ctx.execStart().StringLiteral().toString()));
-        if(ctx.execEnd()!=null)
+        }
+        if (ctx.execEnd() != null) {
             result.setFinish(Date.valueOf(ctx.execEnd().StringLiteral().toString()));
-        ResultsFile rf=null;
-        File f=null;
-        if(ctx.resultExecution()!=null){
-            for(SEDL4PeopleParser.FileExecContext fectx:ctx.resultExecution().fileExec()){
-                rf=new ResultsFile();
-                f=new File();
+        }
+        ResultsFile rf = null;
+        File f = null;
+        if (ctx.resultExecution() != null) {
+            for (SEDL4PeopleParser.FileExecContext fectx : ctx.resultExecution().fileExec()) {
+                rf = new ResultsFile();
+                f = new File();
                 f.setName(fectx.StringLiteral().getText().replace("\"", ""));
                 rf.setFile(f);
                 result.getResults().add(rf);
@@ -1015,7 +1252,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
     }
 
-	// Getter
+    // Getter
     public Map<Object, RuleNode> getObjectNodeMap() {
         return objectNodeMap;
     }
@@ -1077,14 +1314,15 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
         commandExpTask.setExperimentalTaskType(taskType.getClass().getSimpleName());
         String name = procStepCtx.procBody().getText();
-        commandExpTask.setName(name.substring(1, name.length()-1));
-        
-        if(procStepCtx.procDef().id()!=null && !procStepCtx.procDef().id().isEmpty()){
+        commandExpTask.setName(name.substring(1, name.length() - 1));
+
+        if (procStepCtx.procDef().id() != null && !procStepCtx.procDef().id().isEmpty()) {
             List<IdContext> ids = procStepCtx.procDef().id();
-            for(IdContext id: ids)
-            commandExpTask.getParameters().add(id.getText());
+            for (IdContext id : ids) {
+                commandExpTask.getParameters().add(id.getText());
+            }
         }
-       
+
         return commandExpTask;
     }
 
@@ -1095,17 +1333,18 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public Variable findVariableById(IdContext idCtx, boolean generateErrorIfNotFound, Class<? extends Variable> variableType) {
 
         String variableName = idCtx.getText();
-        Variable result=findVariableById(variableName, generateErrorIfNotFound, variableType);
-        if(result==null && generateErrorIfNotFound){            
-            Interval interval=idCtx.Identifier().getSourceInterval();
-            SEDL4PeopleError error=new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine()-1,
-                                            idCtx.Identifier().getSymbol().getStartIndex(), 
-                                            idCtx.Identifier().getSymbol().getStopIndex(), 
-                                            es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
-                                            "The identifier '"+idCtx.getText()+"' is not the name of a "+variableType.getSimpleName());
-            if(errorListener!=null)
+        Variable result = findVariableById(variableName, generateErrorIfNotFound, variableType);
+        if (result == null && generateErrorIfNotFound) {
+            Interval interval = idCtx.Identifier().getSourceInterval();
+            SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
+                    idCtx.Identifier().getSymbol().getStartIndex(),
+                    idCtx.Identifier().getSymbol().getStopIndex(),
+                    es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                    "The identifier '" + idCtx.getText() + "' is not the name of a " + variableType.getSimpleName());
+            if (errorListener != null) {
                 errorListener.getErrors().add(error);
-                   
+            }
+
         }
         return result;
     }
@@ -1116,7 +1355,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             if (v.getName().equals(variableId)) {
                 result = v;
             }
-        }       
+        }
         return result;
     }
 
@@ -1161,4 +1400,39 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public void setExperimentalDesign(ExperimentalDesign experimentalDesign) {
         this.experimentalDesign = experimentalDesign;
     }
+
+    private Group findGroupByName(IdContext idCtx, boolean b) {
+        Group result = null;
+        if (experimentalDesign instanceof FullySpecifiedExperimentalDesign) {
+            FullySpecifiedExperimentalDesign fed = (FullySpecifiedExperimentalDesign) experimentalDesign;
+            for (Group g : fed.getGroups()) {
+                if (g.getName().equals(idCtx.getText())) {
+                    result = g;
+                }
+            }
+        }
+        if (result == null) {
+            SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
+                    idCtx.Identifier().getSymbol().getStartIndex(),
+                    idCtx.Identifier().getSymbol().getStopIndex(),
+                    es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                    "The group " + idCtx.getText() + " is does not exist.");
+            if (errorListener != null) {
+                errorListener.getErrors().add(error);
+            }
+        }
+        return result;
+    }
+    
+    
+    public Level createLevel(String value)
+    {
+        Level l=new Level();
+        if(value.startsWith("\""))
+            l.setValue(value.substring(1,value.length()-1));
+        else
+            l.setValue(value);
+        return l;
+    }
+
 }
