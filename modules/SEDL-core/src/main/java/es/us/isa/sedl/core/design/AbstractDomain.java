@@ -12,7 +12,6 @@ import java.util.List;
  * @author José Antonio Parejo
  */
 public abstract class AbstractDomain {
-    public abstract List<Level> getLevels();
-    public abstract boolean isFinite();
+    public abstract List<Level> getLevels();    
     public abstract boolean contains(Level l);
 }

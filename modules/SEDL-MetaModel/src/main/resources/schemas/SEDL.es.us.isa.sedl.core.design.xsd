@@ -168,12 +168,8 @@
       <xsd:enumeration value="Scalar"/>
     </xsd:restriction>
   </xsd:simpleType>
-  <xsd:complexType abstract="true" name="Domain">
-    <xsd:annotation>
-      <xsd:appinfo ecore:key="operations" source="http://www.eclipse.org/emf/2002/Ecore">
-        <operation lowerBound="1" name="isFinite" ordered="false" type="xsd:boolean"/>
-      </xsd:appinfo>
-    </xsd:annotation>
+  <xsd:complexType abstract="true" name="Domain">      
+      <xsd:attribute ecore:unsettable="true" name="finite" type="xsd:boolean"/>      
   </xsd:complexType>
   <xsd:complexType name="ExtensionDomain">
     <xsd:complexContent>

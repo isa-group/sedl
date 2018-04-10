@@ -390,7 +390,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 for (int i = 0; i < typeContext.enumDeclaration().getChildCount(); i++) {
                     EnumDeclarationContext enumCtx = (EnumDeclarationContext) typeContext.enumDeclaration();
                     if (!enumCtx.getChild(i).getText().equals(",")) {
-                        Level l = createLevel(enumCtx.getChild(i).getText().replaceAll("\"", ""));                        
+                        Level l = createLevel(enumCtx.getChild(i).getText());
                         domain.getLevels().add(l);
                     }
                 }
@@ -670,22 +670,21 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         Variable v = null;
         VariableValuation vv;
         Level l;
-        
-       
-        for(IdContext id:measurementCtx.id()){
+
+        for (IdContext id : measurementCtx.id()) {
             measurement.getVariable().add(id.getText());
         }
         for (FieldContext fieldCtx : measurementCtx.functionalDeclaration().fields().field()) {
             vv = new VariableValuation();
             v = findVariableById(fieldCtx.id(), true);
             l = createLevel(fieldCtx.value() != null ? fieldCtx.value().getText() : fieldCtx.structValue().getText());
-            if(!v.getDomain().contains(l)){
+            if (!v.getDomain().contains(l)) {
                 SEDL4PeopleError error = new SEDL4PeopleError(fieldCtx.value().getStart().getLine() - 1,
                         fieldCtx.value().getStart().getStartIndex(),
                         fieldCtx.value().getStart().getStopIndex(),
                         es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
                         "The value " + fieldCtx.id().getText() + " is not a valid "
-                        + "level of the variable "+v.getName());
+                        + "level of the variable " + v.getName());
                 if (errorListener != null) {
                     errorListener.getErrors().add(error);
                 }
@@ -765,13 +764,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 Variable var = findVariableById(field.id(), true);
                 if (field.structValue() != null) {
                     VariableValuation vv = new VariableValuation();
-                    vv.setVariable(var);                    
+                    vv.setVariable(var);
                     vv.setLevel(createLevel(field.value().getText()));
                     g.getValuations().set(COMMENTS, vv);
                     //g.getComplexValuations().add(buildComplexParameter(field.id().getText(),field.structValue()));
                 } else if (field.value() != null) {
                     VariableValuation vv = new VariableValuation();
-                    vv.setVariable(var);                                        
+                    vv.setVariable(var);
                     vv.setLevel(createLevel(field.value().getText()));
                     g.getValuations().set(COMMENTS, vv);
                 }
@@ -897,7 +896,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()) {
                 if (statisticFunctionCtx != null) {
                     List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
-                    StatisticalAnalysisSpec spec=new StatisticalAnalysisSpec();
+                    StatisticalAnalysisSpec spec = new StatisticalAnalysisSpec();
                     spec.getStatistic().addAll(s);
                     analysis.getAnalyses().add(spec);
                 }
@@ -1079,15 +1078,17 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         Configuration conf = new Configuration();
         experiment.getConfigurations().add(conf);
         conf.setId(ctx.getParent().getChild(0).getText());
-
-        // OUTPUTS 
+        
         ExperimentalOutputs outputs = new ExperimentalOutputs();
-        OutputDataSource outSource = new OutputDataSource();
-        outputs.getOutputDataSources().add(outSource);
         conf.setExperimentalOutputs(outputs);
-
-        File outFile = new File();
+        // OUTPUTS 
         if (ctx.outputs() != null && ctx.outputs().files() != null) {
+            
+            OutputDataSource outSource = new OutputDataSource();
+            outputs.getOutputDataSources().add(outSource);
+            
+
+            File outFile = new File();
             for (FilesContext fCtx : ctx.outputs().files()) {
 
                 //			FilesContext fCtx = ctx.outputs().files();
@@ -1218,7 +1219,9 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             for (SEDL4PeopleParser.FileExecContext fectx : ctx.resultExecution().fileExec()) {
                 rf = new ResultsFile();
                 f = new File();
-                f.setName(fectx.StringLiteral().getText().replace("\"", ""));
+                if (fectx.StringLiteral().getText().startsWith("'") || fectx.StringLiteral().getText().startsWith("\"")) {
+                    f.setName(fectx.StringLiteral().getText().substring(1, fectx.StringLiteral().getText().length() - 1));
+                }
                 rf.setFile(f);
                 result.getResults().add(rf);
             }
@@ -1423,15 +1426,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
         return result;
     }
-    
-    
-    public Level createLevel(String value)
-    {
-        Level l=new Level();
-        if(value.startsWith("\""))
-            l.setValue(value.substring(1,value.length()-1));
-        else
+
+    public Level createLevel(String value) {
+        Level l = new Level();
+        if (value.startsWith("\"") || value.startsWith("'")) {
+            l.setValue(value.substring(1, value.length() - 1));
+        } else {
             l.setValue(value);
+        }
         return l;
     }
 

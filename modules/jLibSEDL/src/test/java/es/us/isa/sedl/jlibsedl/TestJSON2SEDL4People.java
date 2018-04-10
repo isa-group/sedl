@@ -11,6 +11,7 @@ import es.us.isa.sedl.marshaller.SEDL4PeopleUnmarshaller;
 import es.us.isa.sedl.sedl4json.JSONMarshaller;
 
 import es.us.isa.sedl.sedl4json.JSONUnmarshaller;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
@@ -89,9 +90,6 @@ public class TestJSON2SEDL4People {
 "        Avg(by treatment,exercise)\n" +
 "        Median(by treatment,exercise)\n" +
 "        StdDev(by treatment,exercise)\n" +
-"   Charts:  \n" +
-"        Charts::Histogram by treatment,exercise\n" +
-"        Charts::BoxPlot by treatment,exercise\n" +
 "    NHST:               \n" +
 "        Kolmogorov-Smirnov(by exercise,treatment , 0.05)\n" +
 "        Levene(by exercise,treatment,0.05)\n" +
@@ -120,8 +118,13 @@ public class TestJSON2SEDL4People {
         
         JSONUnmarshaller instance = new JSONUnmarshaller();                
         SEDL4PeopleMarshaller marshaller =new SEDL4PeopleMarshaller();
+        String reifiedExperimentDescription=marshaller.asString(result);
         
         System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
-        System.out.println(marshaller.asString(result));
+        System.out.println(reifiedExperimentDescription);
+        System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
+        Experiment result2=sedl4PeopleUnmarshaller.fromString(reifiedExperimentDescription);
+                
+        assertEquals(result,result2);
     }
 }

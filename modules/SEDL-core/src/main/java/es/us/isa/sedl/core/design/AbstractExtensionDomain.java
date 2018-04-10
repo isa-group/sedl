@@ -11,7 +11,7 @@ package es.us.isa.sedl.core.design;
  */
 public abstract class AbstractExtensionDomain extends Domain{
         @Override
-        public boolean isFinite() {
+        public Boolean isFinite() {
             return true;
         } 
         
