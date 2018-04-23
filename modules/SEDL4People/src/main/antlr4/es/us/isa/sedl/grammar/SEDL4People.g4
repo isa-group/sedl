@@ -134,7 +134,7 @@ intervalLiteral : IntegerLiteral | FloatingPointLiteral;
 
 hypothesis: HYPOTHESIS COLON hypothesisDeclaration+;
 
-hypothesisDeclaration: differentialHypothesis | associationalHypothesis | descriptiveHypothesis;
+hypothesisDeclaration: (id COLON)? differentialHypothesis | associationalHypothesis | descriptiveHypothesis;
 
 differentialHypothesis: implicitDifferentialHypothesis | explicitDifferentialHypothesis;
 
@@ -345,7 +345,7 @@ execution: RUNS COLON executionBlock+;
 
 executionBlock: id COLON executionConf;
 
-executionConf: (execStart execEnd)? resultExecution analysesExecution?;
+executionConf: execStart? execEnd? resultExecution analysesExecution?;
 
 execStart: START COLON StringLiteral;
 

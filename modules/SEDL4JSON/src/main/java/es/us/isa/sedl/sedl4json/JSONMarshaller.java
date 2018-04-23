@@ -13,9 +13,12 @@ import es.us.isa.sedl.core.design.IntensionDomain;
 import es.us.isa.sedl.core.util.SEDLMarshaller;
 
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -70,7 +73,8 @@ public class JSONMarshaller implements SEDLMarshaller {
     private ObjectMapper buildObjectMapper() {
         ObjectMapper mapper=new ObjectMapper();
         mapper.configure(SerializationConfig.Feature.INDENT_OUTPUT,true);        
-        
+        DateFormat df=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+        mapper.setDateFormat(df);
         // We configure additional mixins:        
         mapper.getSerializationConfig().addMixInAnnotations(IntensionDomain.class,IgnoreGetLevels.class);
         mapper.getSerializationConfig().addMixInAnnotations(AbstractIntensionDomain.class,IgnoreGetLevels.class);

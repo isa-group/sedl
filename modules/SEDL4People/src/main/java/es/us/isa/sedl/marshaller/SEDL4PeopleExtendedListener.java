@@ -86,6 +86,7 @@ import es.us.isa.sedl.core.execution.ResultsFile;
 import es.us.isa.sedl.core.hypothesis.AssociationalHypothesis;
 import es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis;
 import es.us.isa.sedl.core.hypothesis.DifferentialHypothesis;
+import es.us.isa.sedl.core.hypothesis.Hypothesis;
 import es.us.isa.sedl.core.hypothesis.LinearRelation;
 import es.us.isa.sedl.core.hypothesis.LogisticRelation;
 import es.us.isa.sedl.core.hypothesis.MonotonicRelation;
@@ -113,6 +114,9 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser.StructValueContext;
 import es.us.isa.sedl.marshaller.analysis.statistic.StatisticalAnalysisSpecParser;
 import java.math.BigInteger;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.Interval;
@@ -182,7 +186,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             if (tokens != null) {
                 List<Token> tokensComments = getComments(0, ctx.getStart().getTokenIndex());
                 for (Token t : tokensComments) {
-                    experiment.getNotes().add(t.getText());
+                    experiment.getNotes().add(t.getText().replace("//", "").replace("/*","").replace("*/", ""));
                 }
             }
             if (ctx.id() != null) {
@@ -409,9 +413,54 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 //		
 //	}
     // Hypothesis
+    
+    @Override
+    public void exitHypothesisDeclaration(SEDL4PeopleParser.HypothesisDeclarationContext ctx) { 
+        if(ctx.id()!=null){
+            if(!isUniqueHypothesisIdentifier(ctx.id().getText())){
+                        
+                    SEDL4PeopleError error = new SEDL4PeopleError(ctx.id().getStart().getLine() - 1,
+                        ctx.id().getStart().getStartIndex(),
+                        ctx.id().getStart().getStopIndex(),
+                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                        "The hypthesis identifiers should be unique, " + ctx.id().getText() + " is repeated valid!"
+                    );
+                    if (errorListener != null) {
+                        errorListener.getErrors().add(error);
+                    }            
+            }
+            experiment.getHypotheses().get(experiment.getHypotheses().size()-1).setId(ctx.id().getText());
+            
+        }else{
+            experiment.getHypotheses().get(experiment.getHypotheses().size()-1).setId(generateHypothesisId());
+        }
+    }
+    public String generateHypothesisId(){
+        int i=0;
+        String result="";
+        boolean isUnique=false;
+        do{
+            i++;
+            result="H"+i;
+        }while(!isUniqueHypothesisIdentifier(result));
+        return result;
+    }
+    
+    private boolean isUniqueHypothesisIdentifier(String id){
+        boolean result=true;
+        for(Hypothesis h:experiment.getHypotheses()){
+                if(id.equals(h.getId())){
+                    result=false;
+                    break;
+                }
+            }
+        return result;
+    }
+    
+    
     @Override
     public void enterImplicitDifferentialHypothesis(SEDL4PeopleParser.ImplicitDifferentialHypothesisContext ctx) {
-        DifferentialHypothesis dh = null;
+        DifferentialHypothesis dh = null;        
         Variables vars = experiment.getDesign().getVariables();
         if (vars == null) {
             vars = variables;
@@ -1207,11 +1256,25 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     private Execution parse(SEDL4PeopleParser.ExecutionConfContext ctx) {
         Execution result = new Execution();
-        if (ctx.execStart() != null) {
-            result.setStart(Date.valueOf(ctx.execStart().StringLiteral().toString()));
+        if (ctx.execStart() != null && ctx.execStart().StringLiteral()!=null) {
+            String value=ctx.execStart().StringLiteral().toString().replace("'","").replace("\"","");
+            try
+            {
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+                result.setStart(df.parse(value));
+            }catch(Exception e){
+                System.out.println("Unable to parse date from string '"+value+"'");
+            }
         }
-        if (ctx.execEnd() != null) {
-            result.setFinish(Date.valueOf(ctx.execEnd().StringLiteral().toString()));
+        if (ctx.execEnd() != null && ctx.execEnd().StringLiteral()!=null) {
+            String value=ctx.execEnd().StringLiteral().toString().replace("'","").replace("\"","");
+            try
+            {
+                DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+                result.setFinish(df.parse(value));
+            }catch(Exception e){
+                System.out.println("Unable to parse date from string '"+value+"'");
+            }
         }
         ResultsFile rf = null;
         File f = null;

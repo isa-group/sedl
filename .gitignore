@@ -10,3 +10,9 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/modules/SEDL-core/target/
+/modules/SEDL4JSON/target/
+/modules/SEDL4People/target/
+/modules/SEDLModuleManager/target/
+/modules/jLibSEDL/target/
+/modules/SEDL4JSON/nbproject/

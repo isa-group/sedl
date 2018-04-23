@@ -50,7 +50,7 @@ public class SEDLSemanticChecker implements SemanticChecker {
 	private List<SEDL4PeopleError> checkGroup() {
 		
 		List<SEDL4PeopleError> subErrors = new ArrayList<SEDL4PeopleError>();
-		List<String> varNames = new ArrayList<String>();
+		/*List<String> varNames = new ArrayList<String>();
 		if ( experiment instanceof BasicExperiment ) {
 			BasicExperiment exp = (BasicExperiment)experiment;
 			for ( Variable v: exp.getDesign().getVariables().getVariable() ) {
@@ -77,14 +77,14 @@ public class SEDLSemanticChecker implements SemanticChecker {
 				}
 			}
 			
-		}
+		}*/
 		return subErrors;
 
 	}
 	
 	private List<SEDL4PeopleError> checkBlocking() {
 		List<SEDL4PeopleError> subErrors = new ArrayList<SEDL4PeopleError>();
-		List<String> varNames = new ArrayList<String>();
+		/*List<String> varNames = new ArrayList<String>();
 		if ( experiment instanceof BasicExperiment ) {
 			BasicExperiment exp = (BasicExperiment)experiment;
 			for ( Variable v: exp.getDesign().getVariables().getVariable() ) {
@@ -113,7 +113,7 @@ public class SEDLSemanticChecker implements SemanticChecker {
 				}
 			}
 			
-		}
+		}*/
 		return subErrors;
 	}
 

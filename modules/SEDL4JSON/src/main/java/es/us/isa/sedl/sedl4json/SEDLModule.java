@@ -20,6 +20,7 @@ import es.us.isa.sedl.core.design.ExperimentalProtocolStep;
 import es.us.isa.sedl.core.design.Sizing;
 import es.us.isa.sedl.core.design.Constraint;
 import es.us.isa.sedl.core.design.Variable;
+import es.us.isa.sedl.core.execution.ExperimentalResult;
 import es.us.isa.sedl.core.hypothesis.Assertion;
 import es.us.isa.sedl.core.hypothesis.Hypothesis;
 import java.io.IOException;
@@ -132,6 +133,7 @@ public class SEDLModule extends SimpleModule {
         // Variation Points of Configuration
         extensionPoints.add(ExperimentalTask.class);
         extensionPoints.add(ExperimentalEnvironment.class);
+        extensionPoints.add(ExperimentalResult.class);
         // Variation Points of Execution
 
         // Variation Points of Analysis

@@ -70,7 +70,10 @@ import es.us.isa.sedl.grammar.SEDL4PeopleLexer;
 import es.us.isa.sedl.core.util.SEDLMarshaller;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 
 public class SEDL4PeopleMarshaller implements SEDLMarshaller {
@@ -148,8 +151,10 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
     private String writePreComments(String indentation, SEDLEntity entity) {
         StringBuilder result = new StringBuilder();
         for (String note : entity.getNotes()) {
-            if (note.startsWith("//") || note.startsWith("/*")) {
-                result.append(note).append(RET);
+            if (note.contains("\n")) {
+                result.append("/*").append(note).append("*/").append(RET);
+            }else{
+                result.append("//").append(note).append(RET);
             }
         }
         return result.toString();
@@ -167,7 +172,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
     private String writeExperimentContext(Experiment exp) {
         StringBuilder sb = new StringBuilder();
         BasicExperiment e = (BasicExperiment) experiment;
-        boolean firstNote = true;
+        /*boolean firstNote = true;
         if (!experiment.getNotes().isEmpty()) {
 
             for (String note : experiment.getNotes()) {
@@ -185,7 +190,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                             .append(RET);
                 }
             }
-        }
+        }*/
         if (!experiment.getAnnotations().isEmpty()) {
             sb.append(TAB)
                     .append(getTokenName(SEDL4PeopleLexer.ANNOTATIONS))
@@ -239,7 +244,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                                     SEDL4PeopleLexer.COLON))
                             .append(ESP)
                             .append(
-                                    param.getValue())
+                                    printValue(param.getValue()))
                             .append(RET);
                 } else if (p instanceof ComplexParameter) {
                     ComplexParameter param = (ComplexParameter) p;
@@ -366,14 +371,22 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
 
     private String printValue(String value) {
         String result = value;
-        if (!StringUtils.isNumeric(value) && !isFunctionalExpression(value)) {
-            result = "'" + value + "'";
+        if (!StringUtils.isNumeric(value) && !isBoolean(value) && !isFunctionalExpression(value)) {
+            if(value.startsWith("'") || value.startsWith("\""))
+                result=value;
+            else
+                result = "'" + value + "'";
         }
         return result;
     }
 
     private boolean isFunctionalExpression(String value) {
         return value.contains("(");
+    }
+    
+    private boolean isBoolean(String value)
+    {        
+        return "true".equalsIgnoreCase(value) || "false".equalsIgnoreCase(value);
     }
 
     private String printIntensionDomain(IntensionDomain dom) {
@@ -503,7 +516,10 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                 sb.append(RET);
             }
             for (Hypothesis h : exp.getHypotheses()) {
-                sb.append(TAB);
+                sb.append(TAB)
+                  .append(h.getId())
+                  .append(getTokenName(SEDL4PeopleLexer.COLON))
+                  .append(ESP);
                 if (h instanceof AssociationalHypothesis) {
                     sb.append(printAssociationalHypthesis((AssociationalHypothesis) h));
                 } else if (h instanceof DescriptiveHypothesis) {
@@ -1132,10 +1148,24 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         if (id == null || id.equals("")) {
             id = "R" + i;
         }
+        DateFormat df=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
         sb.append(TAB).append(TAB).append(TAB)
                 .append(id)
+                .append(getTokenName(SEDL4PeopleLexer.COLON));
+        if(execution.getStart()!=null){            
+            sb.append(ESP)
+              .append(getTokenName(SEDL4PeopleLexer.START))
+              .append(getTokenName(SEDL4PeopleLexer.COLON))
+              .append("'"+df.format(execution.getStart())+"'");
+        }
+            if(execution.getFinish()!=null){
+                sb.append(ESP)
+                .append(getTokenName(SEDL4PeopleLexer.END))
                 .append(getTokenName(SEDL4PeopleLexer.COLON))
-                .append(RET);
+                .append("'"+df.format(execution.getFinish())+"'");
+            }
+        
+        sb.append(RET);
         if (!execution.getResults().isEmpty()) {
             sb.append(TAB).append(TAB).append(TAB).append(TAB)
                     .append(getTokenName(SEDL4PeopleLexer.RESULT))

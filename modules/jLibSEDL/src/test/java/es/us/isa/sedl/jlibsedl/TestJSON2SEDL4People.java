@@ -45,64 +45,51 @@ public class TestJSON2SEDL4People {
 "    # Created on 2015/11/26 by J. A. Parejo                                     #\n" +
 "    #===========================================================================#\n" +
 "*/\n" +
-"import Charts \n" +
-"EXPERIMENT:Mind-1 version:1.0\n" +
-"    \n" +
+"EXPERIMENT: Baseline version: 1.0 \n" +
 "Constants:\n" +
-"    NSessions: 16   // Number of sessions of complimentary teaching (Mindfullness) taken by subjects\n" +
-"    sessionsDuration: 10   // Number of minutes per session\n" +
-"Variables:\n" +
-"Factors:        \n" +
-"    treatment enum \"MF\",    // Mindfulness\n" +
-"                   \"PS\"     // Public Speaking\n" +
-"    exercise enum \"Erasmus\",    // Erasmus exercise \n" +
-"                  \"EoDP\"    // Degree Dissertation exercise \n" +
-"Outcome:\n" +
-"   Effectiveness float range [0,1]      // Number of correctly identified classes, attributes and associations / total classes and associations\n" +
-"   Efficiency float range [0,1]         // Correctly identified elements per minute\n" +
-"\n" +
+"	NSessions : 16\n" +
+"	sessionsDuration : 10\n" +
+"Variables :\n" +
+"	Factors :\n" +
+"		treatment enum 'MF', 'PS'\n" +
+"		exercise enum 'Erasmus', 'EoDP'\n" +
+"	Outcome :\n" +
+"		Effectiveness float range [0,1] \n" +
+"		Efficiency float range [0,1] \n" +
 "Hypothesis: \n" +
-"    treatment impacts significantly on Effectiveness\n" +
-"    treatment impacts significantly on Efficiency\n" +
+"	H1: treatment impacts significantly on Effectiveness\n" +
+"	H2: treatment impacts significantly on Efficiency\n" +
+"Design :\n" +
+"	Sampling : Random\n" +
+"	Assignment : Custom\n" +
+"	Groups : G-MF() sizing 16,G-PS() sizing 16\n" +
+"	Protocol : \n" +
+"		Measurement G-PS(exercise:'Erasmus' )\n" +
+"		Measurement G-MF(exercise:'Erasmus' )\n" +
+"		Treatment G-MF(treatment:'MF' )\n" +
+"		Treatment G-PS(treatment:'PS' )\n" +
+"		Measurement G-PS(exercise:'EoDP' )\n" +
+"		Measurement G-MF(exercise:'EoDP' )\n" +
 "\n" +
-"Design: \n" +
-"  Sampling: Random\n" +
-"  Assignment: Custom        // Thus this is a Quasi-Experiment\n" +
-"  Groups:\n" +
-"    G-MF() sizing 16,\n" +
-"    G-PS() sizing 16\n" +
-"  Protocol:\n" +
-"    // First Exercise: Erasmus\n" +
-"    Measurement G-PS(exercise:\"Erasmus\")\n" +
-"    Measurement G-MF(exercise:\"Erasmus\")\n" +
-"    // Mindfulness sessions:\n" +
-"    Treatment G-MF(treatment:\"MF\")\n" +
-"    // Public Speaking sessions: \n" +
-"    Treatment G-PS(treatment:\"PS\")\n" +
-"    // Second Exercise: Degree Dissertation\n" +
-"    Measurement G-PS(exercise:\"EoDP\") \n" +
-"    Measurement G-MF(exercise:\"EoDP\")\n" +
-"    \n" +
-"  Analyses:                  \n" +
-"    DescriptiveStatitics:   \n" +
-"        Avg(by exercise)\n" +
-"        Avg(by treatment)\n" +
-"        Avg(by treatment,exercise)\n" +
-"        Median(by treatment,exercise)\n" +
-"        StdDev(by treatment,exercise)\n" +
-"    NHST:               \n" +
-"        Kolmogorov-Smirnov(by exercise,treatment , 0.05)\n" +
-"        Levene(by exercise,treatment,0.05)\n" +
-"        TTest(where exercise=\"EoDP\" by treatment ,0.05)\n" +
-"        Wilcoxon(where exercise=\"EoDP\" by treatment ,0.05)\n" +
-"    \n" +
+"	Analyses :\n" +
+"		DescriptiveStatistics:\n" +
+"			Avg(by exercise)\n" +
+"			Avg(by treatment)\n" +
+"			Avg(by treatment,exercise)\n" +
+"			Median(by treatment,exercise)\n" +
+"			StdDev(by treatment,exercise)\n" +
+"		NHST:\n" +
+"			Kolmogorov-Smirnov(by exercise,treatment, 0.05)\n" +
+"			Levene(by exercise,treatment, 0.05)\n" +
+"			TTest(where exercise='EoDP' by treatment, 0.05)\n" +
+"			Wilcoxon(where exercise='EoDP' by treatment, 0.05)\n" +
 "Configuration:\n" +
-"    C1:\n" +
-"        Procedure:\n" +
-"        Runs:\n" +
-"            Baseline:\n" +
-"                Result: \n" +
-"                    File: 'data/Datos2014AnalysisR.csv'";
+"	C1:\n" +
+"		Procedure :\n" +
+"		Runs:\n" +
+"			Baseline: Start:'Wed Apr 04 23:00:00 CEST 2018' End:'Wed Mar 28 00:59:00 CEST 2018'\n" +
+"				Result:\n" +
+"					File: 'data/Datos2014AnalysisR.csv'";
         
         System.out.println("=============== ORIGINAL EXPERIMENT DESCRIPTION ======================");
         System.out.println(originalExperimentDescription);

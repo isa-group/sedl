@@ -12,8 +12,11 @@ import es.us.isa.sedl.core.util.SEDLUnmarshaller;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -34,6 +37,8 @@ public class JSONUnmarshaller implements SEDLUnmarshaller {
         Experiment result = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
+            DateFormat df=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+            mapper.setDateFormat(df);
             //mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
             SEDLModule module = new SEDLModule();
             mapper.registerModule(module);
