@@ -59,9 +59,9 @@ annotations: ANNOTATIONS COLON (StringLiteral)+;
 
 subjects: SUBJECTS COLON stakeholder+;
 
-stakeholder: id+ OPEN_PAR email CLOSE_PAR stakeholderFrom? (AS role)?;
+stakeholder: id+ OPEN_PAR email CLOSE_PAR stakeholderFrom? (AS role)? ;
 
-stakeholderFrom: FROM id+;
+stakeholderFrom: FROM StringLiteral;
 
 role: RESPONSIBLE | COLLABORATOR;
 
@@ -661,12 +661,12 @@ Identifier: Letter ('-'|'_'|LetterOrDigit)*
 
 fragment
     Letter
-    :   [a-zA-Z$_] 
+    :   [a-zA-Z$_áéíóúÁÉÍÓÚ]
     ;
 
 fragment
     LetterOrDigit
-    :   [a-zA-Z0-9$_]
+    :   [a-zA-Z0-9$_áéíóúÁÉÍÓÚ]  
     ;
 
 

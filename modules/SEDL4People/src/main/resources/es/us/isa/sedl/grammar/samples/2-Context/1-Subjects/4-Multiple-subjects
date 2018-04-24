@@ -1,4 +1,4 @@
 /**Multiple Subjects: Here both Bart and Lisa work in the experiment as experimenters. Bart is the responsible of the experiment and Lisa is a collaborator**/
 Subjects:
-	Bart Simpson (bart@thesimpsons.com) from The Simpsons as Responsible
-	Lisa Simpson (lisa@thesimpsons.com) from The Simpsons as Collaborator
+	Bart Simpson (bart@thesimpsons.com) from "The Simpsons" as Responsible
+	Lisa Simpson (lisa@thesimpsons.com) from 'The Simpsons' as Collaborator

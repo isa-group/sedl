@@ -58,7 +58,21 @@ public class JSONUnmarshaller implements SEDLUnmarshaller {
 
     @Override
     public Experiment fromString(String experimentDescription) {
-        return read(new ByteArrayInputStream(experimentDescription.getBytes()));
+        Experiment result = null;
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            DateFormat df=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+            mapper.setDateFormat(df);
+            //mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+            SEDLModule module = new SEDLModule();
+            mapper.registerModule(module);
+            module.configure(mapper);
+            result = mapper.readValue(experimentDescription, Experiment.class);
+        } catch (Exception ex) {
+            Logger.getLogger(JSONUnmarshaller.class.getName()).log(Level.SEVERE, null, ex);
+            errors = Lists.newArrayList(new Error(0, Error.ERROR_SEVERITY.FATAL, ex.getLocalizedMessage()));
+        }
+        return result;
     }
 
 

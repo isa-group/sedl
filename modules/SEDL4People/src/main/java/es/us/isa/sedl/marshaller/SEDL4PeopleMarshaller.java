@@ -37,6 +37,7 @@ import es.us.isa.sedl.core.configuration.OutputDataSource;
 import es.us.isa.sedl.core.configuration.Parameter;
 import es.us.isa.sedl.core.configuration.Runtime;
 import es.us.isa.sedl.core.configuration.SimpleParameter;
+import es.us.isa.sedl.core.context.Person;
 import es.us.isa.sedl.core.design.Treatment;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
@@ -203,7 +204,32 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                         .append(RET);
             }
         }
-
+        if(e.getContext()!=null && e.getContext().getPeople()!=null && !e.getContext().getPeople().getPerson().isEmpty()){
+            sb.append(getTokenName(SEDL4PeopleLexer.SUBJECTS)).append(getTokenName(SEDL4PeopleLexer.COLON)).append(RET);
+            for(Person p:e.getContext().getPeople().getPerson()){
+                sb.append(TAB).append(p.getName());
+                if(p.getEmail()!=null && !"".equals(p.getEmail())){
+                    sb.append(ESP)
+                      .append(getTokenName(SEDL4PeopleLexer.OPEN_PAR))
+                      .append(p.getEmail())
+                      .append(getTokenName(SEDL4PeopleLexer.CLOSE_PAR));
+                    if(p.getOrganization()!=null && !"".equals(p.getOrganization())){
+                      sb.append(ESP)
+                      .append(getTokenName(SEDL4PeopleLexer.FROM))
+                      .append(ESP)
+                      .append(printValue(p.getOrganization()));
+                    }
+                    if(p.getRole()!=null && !"".equals(p.getRole())){
+                        sb.append(ESP)
+                      .append(getTokenName(SEDL4PeopleLexer.AS))
+                      .append(ESP)
+                      .append(p.getRole());
+                    }
+                    sb.append(RET);
+                }
+            }
+        }
+        
         // Object: 
         if (e.getDesign().getPopulation().getIndividualDescription() != null && !e.getDesign().getPopulation().getIndividualDescription().equals("")) {
             sb.append(TAB)

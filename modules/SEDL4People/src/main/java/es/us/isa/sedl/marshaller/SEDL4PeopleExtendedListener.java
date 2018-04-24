@@ -53,6 +53,8 @@ import es.us.isa.sedl.core.configuration.SimpleParameter;
 import es.us.isa.sedl.core.configuration.SoftwarePlatform;
 import es.us.isa.sedl.core.configuration.Treatment;
 import es.us.isa.sedl.core.context.Context;
+import es.us.isa.sedl.core.context.People;
+import es.us.isa.sedl.core.context.Person;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.AssignmentMethod;
 import es.us.isa.sedl.core.design.ControllableFactor;
@@ -163,6 +165,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         log.info("Entering document");
         experiment = new BasicExperiment();
         context = new Context();
+        context.setPeople(new People());
         population = new Population();
         setExperimentalDesign(new FullySpecifiedExperimentalDesign());
         experiment.setContext(context);
@@ -242,6 +245,29 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             experiment.getAnnotations().add(ctx.getChild(i).getText());
         }
         objectNodeMap.put(context.getAnnotations(), ctx);
+    }
+    
+    @Override public void enterSubjects(SEDL4PeopleParser.SubjectsContext ctx) { 
+        Person p=null;
+        String name="";        
+        for(SEDL4PeopleParser.StakeholderContext stkhCtx:ctx.stakeholder()){
+            p=new Person();
+            name="";
+            for(IdContext idCtx:stkhCtx.id())
+                name+=idCtx.getText()+" ";
+            p.setName(name.trim());
+            p.setEmail(stkhCtx.email().getText());
+            if(stkhCtx.stakeholderFrom()!=null){
+                p.setOrganization(stkhCtx.stakeholderFrom().StringLiteral().getText().replace("'","").replace("\"",""));                
+            }
+            if(stkhCtx.role()!=null){
+                if(stkhCtx.role().RESPONSIBLE()!=null)
+                    p.setRole(stkhCtx.role().RESPONSIBLE().getText());
+                else
+                    p.setRole(stkhCtx.role().COLLABORATOR().getText());
+            }
+            experiment.getContext().getPeople().getPerson().add(p);
+        }
     }
 
     @Override
@@ -1256,11 +1282,11 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     private Execution parse(SEDL4PeopleParser.ExecutionConfContext ctx) {
         Execution result = new Execution();
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
         if (ctx.execStart() != null && ctx.execStart().StringLiteral()!=null) {
             String value=ctx.execStart().StringLiteral().toString().replace("'","").replace("\"","");
             try
             {
-                DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
                 result.setStart(df.parse(value));
             }catch(Exception e){
                 System.out.println("Unable to parse date from string '"+value+"'");
@@ -1269,8 +1295,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         if (ctx.execEnd() != null && ctx.execEnd().StringLiteral()!=null) {
             String value=ctx.execEnd().StringLiteral().toString().replace("'","").replace("\"","");
             try
-            {
-                DateFormat df = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+            {             
                 result.setFinish(df.parse(value));
             }catch(Exception e){
                 System.out.println("Unable to parse date from string '"+value+"'");
