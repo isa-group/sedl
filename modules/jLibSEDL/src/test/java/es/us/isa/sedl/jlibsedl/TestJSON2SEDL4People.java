@@ -45,7 +45,12 @@ public class TestJSON2SEDL4People {
 "    # Created on 2015/11/26 by J. A. Parejo                                     #\n" +
 "    #===========================================================================#\n" +
 "*/\n" +
-"EXPERIMENT: Baseline version: 1.0 \n" +
+"EXPERIMENT: Baseline version: 1.0 \n"+
+"Subjects:\n" +
+"	Beatriz Bernardez Jimenez (beat@us.es) from 'University of Sevilla' as Responsible\n" +
+"	Amador Durán Toro (amador@us.es) from 'University of Sevilla' as Collaborator\n" +
+"	José Antonio Parejo Maestre (japarejo@us.es) from 'University of Sevilla' as Collaborator\n" +
+"	Antonio Ruiz Cortés (aruiz@us.es) from 'University of Sevilla' as Collaborator\n" +
 "Constants:\n" +
 "	NSessions : 16\n" +
 "	sessionsDuration : 10\n" +
