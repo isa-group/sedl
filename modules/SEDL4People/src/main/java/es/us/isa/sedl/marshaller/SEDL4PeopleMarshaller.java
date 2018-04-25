@@ -1150,20 +1150,22 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                 printExperimentalProcedure(conf.getExperimentalProcedure())
         ).append(
                 printExperimentalExecutions(conf.getExecutions())
-        );
+        ).append(RET);
         return sb.toString();
     }
 
     private String printExperimentalExecutions(List<Execution> executions) {
         StringBuilder sb = new StringBuilder();
-        sb.append(TAB).append(TAB)
+        if(!executions.isEmpty()){
+            sb.append(TAB).append(TAB)
                 .append(getTokenName(SEDL4PeopleLexer.RUNS))
                 .append(getTokenName(SEDL4PeopleLexer.COLON))
                 .append(RET);
-        int i = 1;
-        for (Execution execution : executions) {
-            sb.append(printExecution(execution, i));
-            i++;
+            int i = 1;
+            for (Execution execution : executions) {
+                sb.append(printExecution(execution, i));
+                i++;
+            }
         }
         return sb.toString();
     }
@@ -1192,11 +1194,13 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
             }
         
         sb.append(RET);
-        if (!execution.getResults().isEmpty()) {
+        
             sb.append(TAB).append(TAB).append(TAB).append(TAB)
                     .append(getTokenName(SEDL4PeopleLexer.RESULT))
                     .append(getTokenName(SEDL4PeopleLexer.COLON))
                     .append(RET);
+            
+        if (!execution.getResults().isEmpty()) {
             for (ExperimentalResult expresult : execution.getResults()) {
                 sb.append(printExperimentalResult(expresult));
             }
