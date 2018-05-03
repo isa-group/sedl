@@ -1,5 +1,6 @@
 package es.us.isa.sedl.marshaller;
 
+import com.google.common.collect.Lists;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.ADDITIONAL_EVIDENCE;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.MAIN_RESULT;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.MISCELLANEOUS;
@@ -144,6 +145,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     Map<StatisticFunctionContext, Statistic> ctxStatistic;
     SEDL4PeopleErrorListener errorListener;
     CommonTokenStream tokens;
+    List<String> locator;
 
     public SEDL4PeopleExtendedListener(SEDL4PeopleErrorListener errorListener, CommonTokenStream comments) {
         this.errorListener = errorListener;
@@ -220,6 +222,12 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             }
         }
         return result;
+    }
+    
+    @Override
+    public void enterModuleImport(SEDL4PeopleParser.ModuleImportContext ctx)
+    {
+        experiment.getAnnotations().add(ctx.Identifier().getText());
     }
 
     // Experiment Context
@@ -967,13 +975,24 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         AnalysisSpecificationGroup analysis = new AnalysisSpecificationGroup();
         analysis.setId(ctx.getChild(0).getChild(0).getText());
+        locator=Lists.newArrayList(analysis.getId());
+        boolean added=false;
         if (!ctx.statisticFunction().isEmpty()) {
             for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()) {
                 if (statisticFunctionCtx != null) {
                     List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
                     StatisticalAnalysisSpec spec = new StatisticalAnalysisSpec();
-                    spec.getStatistic().addAll(s);
-                    analysis.getAnalyses().add(spec);
+                    added=false;
+                    if(s!=null && !s.isEmpty()){                        
+                        for(Statistic stat:s){
+                            if(stat!=null){
+                                spec.getStatistic().addAll(s);
+                                added=true;
+                            }
+                        }
+                    }
+                    if(added)
+                        analysis.getAnalyses().add(spec);    
                 }
             }
         }
@@ -1325,7 +1344,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         if (content.startsWith("::")) {
             content = content.substring(2);
         }
-        ExtensionPointElement epElement = new ExtensionPointElement(extensionPointName, moduleIdentifier, content, ctx);
+        ExtensionPointElement epElement = new ExtensionPointElement(extensionPointName, moduleIdentifier, content, ctx,locator);
         List<ExtensionPointElement> list = extensionPointsInstantiations.get(extensionPointName);
         if (list == null) {
             list = new ArrayList<ExtensionPointElement>();

@@ -55,9 +55,13 @@ public class SEDL4PeopleStringTemplateMarshaller  implements SEDLMarshaller {
     
     public String asString(DatasetSpecification ds)
     {
-        ST dsST=group.getInstanceOf("document");
-        dsST.add("dataSetSpecification",ds);
-        return dsST.render();
+        String result="";    
+        if(ds!=null){
+            ST dsST=group.getInstanceOf("document");
+            dsST.add("dataSetSpecification",ds);
+            result= dsST.render();
+        }
+        return result;
     }
     
     

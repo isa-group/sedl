@@ -31,7 +31,18 @@
             <artifactId>SEDL-core</artifactId>
             <version>${project.version}</version>             
         </dependency>
-        <!-- We depend on Jackson for JSON serialization/Deserialization -->
+        <!-- We integrate the modules of SEDL for JSON serialization/deserialization -->
+        <dependency>
+            <groupId>es.us.isa.sedl.modules</groupId>
+            <artifactId>Charts4SEDL-Module</artifactId>    
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>es.us.isa.sedl.modules</groupId>
+            <artifactId>r-sedl-module</artifactId>    
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- We depend on Jackson for JSON serialization/deserialization -->
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>

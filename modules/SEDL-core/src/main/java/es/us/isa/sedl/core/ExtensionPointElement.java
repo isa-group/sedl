@@ -5,6 +5,8 @@
  */
 package es.us.isa.sedl.core;
 
+import java.util.Collections;
+import java.util.List;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 /**
@@ -17,12 +19,20 @@ public class ExtensionPointElement {
     private String elementIdentifier;
     private String content;
     private ParserRuleContext context;
+    private List<String> extensionPointLocator;
 
-    public ExtensionPointElement(String extensionPointIdentifier, String elementIdentifier, String content,ParserRuleContext ctx) {
+    public ExtensionPointElement(String extensionPointIdentifier, String elementIdentifier, String content,ParserRuleContext ctx)
+    {
+        this(extensionPointIdentifier,elementIdentifier,content,ctx,Collections.EMPTY_LIST);
+    }
+    
+    
+    public ExtensionPointElement(String extensionPointIdentifier, String elementIdentifier, String content,ParserRuleContext ctx,List<String> extensionPointLocator) {
         this.extensionPointIdentifier = extensionPointIdentifier;
         this.elementIdentifier = elementIdentifier;
         this.content = content;
         this.context=ctx;
+        this.extensionPointLocator=extensionPointLocator;
     }
 
     /**
@@ -49,6 +59,9 @@ public class ExtensionPointElement {
     public ParserRuleContext getContext() {
         return context;
     }
-    
+
+    public List<String> getExtensionPointLocator() {
+        return extensionPointLocator;
+    }            
     
 }

@@ -203,7 +203,7 @@ explicitProtocol: protocolStep+
 
 protocolStep: measurement | treatment;
 
-measurement: MEASUREMENT OF? (id COMMA)* ON? functionalDeclaration;
+measurement: MEASUREMENT (OF id (COMMA id)*)?   ON? functionalDeclaration;
 
 treatment: TREATMENT (id COMMA)* functionalDeclaration;
 
