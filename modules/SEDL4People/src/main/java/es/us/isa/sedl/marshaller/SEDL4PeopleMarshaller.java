@@ -1022,16 +1022,23 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
 
     private String printDatasetSpecification(DatasetSpecification dataSpec) {
         StringBuilder sb = new StringBuilder();
+        
+        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
+            Projection p = dataSpec.getProjections().get(i);
+            if(!(p instanceof GroupingProjection))
+                sb.append(printProjection(p));
+        }
+        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
+            Projection p = dataSpec.getProjections().get(i);
+            if(p instanceof GroupingProjection)
+                sb.append(printProjection(p));
+        }
         for (int i = 0; i < dataSpec.getFilters().size(); i++) {
             Filter f = dataSpec.getFilters().get(i);
             sb.append(printFilter(f));
             sb.append(ESP);
         }
-
-        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
-            Projection p = dataSpec.getProjections().get(i);
-            sb.append(printProjection(p));
-        }
+        
         return sb.toString();
     }
 
@@ -1048,24 +1055,19 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
 
     private String printSimpleProjection(Projection p) {
         StringBuilder sb = new StringBuilder();
-        sb.append(
-                getTokenName(SEDL4PeopleLexer.DOT)
-        ).append(
-                getTokenName(SEDL4PeopleLexer.PROJ)
-        ).append(
-                getTokenName(SEDL4PeopleLexer.OPEN_PAR)
-        );
+        sb.append(ESP)
+        .append(
+                getTokenName(SEDL4PeopleLexer.OF)
+        ).append(ESP);
         for (int j = 0; j < p.getProjectedVariables().size(); j++) {
             if (j != 0) {
                 sb.append(getTokenName(
                         SEDL4PeopleLexer.COMMA));
             }
-            sb.append(
-                    p.getProjectedVariables().get(j));
+            sb.append(p.getProjectedVariables().get(j));
 
         }
-        sb.append(
-                getTokenName(SEDL4PeopleLexer.CLOSE_PAR));
+        sb.append(ESP);
         return sb.toString();
     }
 
