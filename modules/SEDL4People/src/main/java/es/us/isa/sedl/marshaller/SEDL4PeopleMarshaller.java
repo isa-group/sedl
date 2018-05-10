@@ -1028,16 +1028,19 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
             if(!(p instanceof GroupingProjection))
                 sb.append(printProjection(p));
         }
-        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
-            Projection p = dataSpec.getProjections().get(i);
-            if(p instanceof GroupingProjection)
-                sb.append(printProjection(p));
-        }
+        
         for (int i = 0; i < dataSpec.getFilters().size(); i++) {
             Filter f = dataSpec.getFilters().get(i);
             sb.append(printFilter(f));
             sb.append(ESP);
         }
+        
+        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
+            Projection p = dataSpec.getProjections().get(i);
+            if(p instanceof GroupingProjection)
+                sb.append(printProjection(p));
+        }
+        
         
         return sb.toString();
     }
