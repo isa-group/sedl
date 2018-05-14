@@ -722,6 +722,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         } else {
             System.out.println("SEDL only support measurment or treatment steps.");
         }
+        result.setId("S"+(protocol.getSteps().size()+1));
         return result;
     }
 

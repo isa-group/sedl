@@ -703,16 +703,19 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                             TAB
                     ).append(
                             getTokenName(SEDL4PeopleLexer.BLOCKING)
-                    ).append(
+                    ).append(ESP)
+                     .append(
                             getTokenName(SEDL4PeopleLexer.COLON));
                     for (int i = 0; i < fd.getBlockingVariables().size(); i++) {
-                        NonControllableFactor var = (NonControllableFactor) exp.getDesign().getVariables().getVariableByName(fd.getBlockingVariables().get(i));
-                        if (i != 0) {
-                            sb.append(
-                                    getTokenName(SEDL4PeopleLexer.COMMA));
+                        Variable var =  exp.getDesign().getVariables().getVariableByName(fd.getBlockingVariables().get(i));
+                        if(var!=null){
+                            if (i != 0) {   
+                                sb.append(
+                                        getTokenName(SEDL4PeopleLexer.COMMA));
+                            }
+                            sb.append(ESP).append(
+                                    var.getName());
                         }
-                        sb.append(
-                                var.getName());
                     }
                     sb.append(RET);
                 }
