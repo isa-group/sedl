@@ -15,9 +15,11 @@ import es.us.isa.sedl.core.analysis.statistic.Mean;
 import es.us.isa.sedl.core.analysis.statistic.Median;
 import es.us.isa.sedl.core.analysis.statistic.Mode;
 import es.us.isa.sedl.core.analysis.statistic.NHST;
+import es.us.isa.sedl.core.analysis.statistic.NamedStatisticalTestAssertion;
 import es.us.isa.sedl.core.analysis.statistic.Range;
 import es.us.isa.sedl.core.analysis.statistic.Ranking;
 import es.us.isa.sedl.core.analysis.statistic.StandardDeviation;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalTestAssertion;
 import es.us.isa.sedl.core.analysis.statistic.VariabilityMeasure;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
@@ -42,7 +44,11 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
 
     private final static Logger log = Logger.getLogger(StatisticalAnalysisSpecParser.class);
     
-    private DatasetSpecificationParser datasetSpecParser=new DatasetSpecificationParser();    
+    private DatasetSpecificationParser datasetSpecParser=new DatasetSpecificationParser();
+
+    private double DEFAULT_ASSUMPTIONS_ALPHA = 0.05;
+    private String DEFAULT_NORMALITY_TEST =getTokenName(KOLMOGOROV_SMIRNOV);
+    private String DEFAULT_HOMOCEDASTICITY_TEST=getTokenName(LEVENE);
 
     @Override
     public StatisticalAnalysisSpec parse(SEDL4PeopleParser.StatisticFunctionContext context, SEDL4PeopleExtendedListener listener) {
@@ -81,6 +87,7 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
                 nhst=new NHST();
                 nhst.setName(name);
                 nhst.setDatasetSpecification(datasetSpecParser.defaultDatsetSpecification(listener,NHST.class,name));
+                generateAssumpions(name,nhst.getAssumptions(),nhst.getDatasetSpecification());
                 result.add(nhst);
             } else {
                 DatasetSpecification dataset = null;      
@@ -94,6 +101,7 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
                 if(!ctx.statisticFunctionParam(1).getText().equals("")){
                 	nhst.setAlpha(Double.parseDouble(ctx.statisticFunctionParam(1).getText()));
                 }
+                generateAssumpions(name,nhst.getAssumptions(),nhst.getDatasetSpecification());
                 result.add(nhst);                                                  
             }
             return result;
@@ -233,4 +241,36 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
         return result;        
     }
 
+    private void generateAssumpions(String name, List<StatisticalTestAssertion> assumptions,DatasetSpecification spec) {        
+        if(getTokenName(TTEST).equals(name)){            
+            assumptions.add(generateNormalityAssumption(spec));
+            assumptions.add(generateHomocedasticityAssumption(spec));
+        }else if(getTokenName(ANOVA).equals(name)){
+            assumptions.add(generateNormalityAssumption(spec));
+            assumptions.add(generateHomocedasticityAssumption(spec));
+        }
+    }
+    
+    private NamedStatisticalTestAssertion generateNormalityAssumption(DatasetSpecification spec){        
+        NHST test=new NHST();
+        test.setName(DEFAULT_NORMALITY_TEST);
+        test.setAlpha(DEFAULT_ASSUMPTIONS_ALPHA);
+        test.setDatasetSpecification(spec);
+        NamedStatisticalTestAssertion assertion=new NamedStatisticalTestAssertion("Normality",test,false);
+        return assertion;
+    }
+    
+    private NamedStatisticalTestAssertion generateHomocedasticityAssumption(DatasetSpecification spec){ 
+        NHST test=new NHST();
+        test.setName(DEFAULT_HOMOCEDASTICITY_TEST);
+        test.setAlpha(DEFAULT_ASSUMPTIONS_ALPHA);
+        test.setDatasetSpecification(spec);
+        NamedStatisticalTestAssertion assertion=new NamedStatisticalTestAssertion("Homocedasticity (equality of variances)",test,false);
+        return assertion;
+    }
+
+    private String getTokenName(int token) {
+        String tk = SEDL4PeopleLexer.tokenNames[token];
+        return tk.substring(1, tk.length() - 1).trim();
+    }
 }

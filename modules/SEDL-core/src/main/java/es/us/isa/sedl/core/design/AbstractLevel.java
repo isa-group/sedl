@@ -1,6 +1,8 @@
 package es.us.isa.sedl.core.design;
 
-public abstract class AbstractLevel {
+import es.us.isa.sedl.core.SEDLBase;
+
+public abstract class AbstractLevel extends SEDLBase {
 
 
 	public abstract String getValue();

@@ -2,7 +2,7 @@ package es.us.isa.sedl.marshaller;
 
 import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.Experiment;
-import es.us.isa.sedl.core.SEDLEntity;
+import es.us.isa.sedl.core.SEDLBase;
 import es.us.isa.sedl.core.analysis.AnalysisResult;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.datasetspecification.Filter;
@@ -58,7 +58,6 @@ import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.ProtocolScheme;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
-import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ExperimentalResult;
@@ -73,6 +72,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
@@ -111,7 +111,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         StringBuilder sb = new StringBuilder();
         for(String moduleImport:exp.getAnnotations())
             sb.append(getTokenName(SEDL4PeopleLexer.IMPORT)).append(ESP).append(moduleImport).append(RET);
-        sb.append(writePreComments("", exp));
+        sb.append(writePreComments("", exp,FormalLinguisticPattern.StructuredAbstract));
         sb.append(getTokenName(
                 SEDL4PeopleLexer.EXPERIMENT));
         sb.append(getTokenName(
@@ -151,13 +151,21 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         return sb.toString();
     }
 
-    private String writePreComments(String indentation, SEDLEntity entity) {
+    private String writePreComments(String indentation, SEDLBase entity){
+        return writePreComments(indentation,entity,null);
+    }
+    
+    private String writePreComments(String indentation, SEDLBase entity,FormalLinguisticPattern pattern) {
         StringBuilder result = new StringBuilder();
-        for (String note : entity.getNotes()) {
-            if (note.contains("\n")) {
-                result.append("/*").append(note).append("*/").append(RET);
+        List<String> comments=new ArrayList<String>(entity.getNotes());
+        if(pattern!=null && entity.getNotes().size()>1){
+            comments=pattern.apply(comments);
+        }
+        for (String comment : comments) {
+            if (comment.contains("\n")) {
+                result.append("/*").append(comment).append("*/").append(RET);
             }else{
-                result.append("//").append(note).append(RET);
+                result.append("//").append(comment).append(RET);
             }
         }
         return result.toString();
@@ -175,6 +183,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
     private String writeExperimentContext(Experiment exp) {
         StringBuilder sb = new StringBuilder();
         BasicExperiment e = (BasicExperiment) experiment;
+        sb.append(writePreComments(TAB, e.getContext(),FormalLinguisticPattern.GQM));
         /*boolean firstNote = true;
         if (!experiment.getNotes().isEmpty()) {
 

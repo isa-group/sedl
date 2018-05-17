@@ -16,6 +16,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.apache.log4j.Logger;
 
+import es.us.isa.sedl.core.SEDLBase;
 import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
@@ -121,6 +122,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.Interval;
 
@@ -146,10 +148,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     SEDL4PeopleErrorListener errorListener;
     CommonTokenStream tokens;
     List<String> locator;
+    
+    private int lastCommentTokenIndex;
 
     public SEDL4PeopleExtendedListener(SEDL4PeopleErrorListener errorListener, CommonTokenStream comments) {
         this.errorListener = errorListener;
         this.tokens = comments;
+        lastCommentTokenIndex=0;
     }
 
     // Repasar y añadir al Map en cada funcion
@@ -188,12 +193,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public void enterExperimentPreamble(@NotNull SEDL4PeopleParser.ExperimentPreambleContext ctx) {
         try {
             //	
-            if (tokens != null) {
-                List<Token> tokensComments = getComments(0, ctx.getStart().getTokenIndex());
-                for (Token t : tokensComments) {
-                    experiment.getNotes().add(t.getText().replace("//", "").replace("/*","").replace("*/", ""));
-                }
-            }
+            extractNotes(experiment,ctx,FormalLinguisticPattern.StructuredAbstract);               
             if (ctx.id() != null) {
                 final String id = ctx.id().getText();
                 experiment.setId(id);
@@ -234,7 +234,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterExperimentContext(@NotNull SEDL4PeopleParser.ExperimentContextContext ctx) {
         objectNodeMap.put(context, ctx);
-        ctxStatistic = new HashMap<SEDL4PeopleParser.StatisticFunctionContext, Statistic>();
+        extractNotes(context,ctx,FormalLinguisticPattern.GQM);
     }
 
     @Override
@@ -327,14 +327,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         setVariables(new Variables());
         objectNodeMap.put(getVariables(), ctx);
-
+        lastCommentTokenIndex=ctx.getStart().getTokenIndex();
     }
 
     @Override
     public void enterFactorDeclaration(@NotNull SEDL4PeopleParser.FactorDeclarationContext ctx) {
 
-        Variables aux = getVariables();
-
+        Variables aux = getVariables();        
         Variable variable = new ControllableFactor();
 
         if (ctx.getParent() instanceof FactorsContext) {
@@ -348,7 +347,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         if (ctx.getParent() instanceof OutcomeDeclarationContext) {
             variable = new Outcome();
         }
-
+        
+        extractNotes(variable, ctx);
         variable.setName(ctx.id().getText());
         variable.setKind(VariableKind.SCALAR);
 
@@ -430,6 +430,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     if (!enumCtx.getChild(i).getText().equals(",")) {
                         Level l = createLevel(enumCtx.getChild(i).getText());
                         domain.getLevels().add(l);
+                        extractNotes(l, enumCtx);
                     }
                 }
                 variable.setDomain(domain);
@@ -1543,6 +1544,29 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             l.setValue(value);
         }
         return l;
+    }
+
+    private void extractNotes(SEDLBase object, ParserRuleContext ctx)
+    {
+        extractNotes(object,ctx,null);
+    }
+    
+    private void extractNotes(SEDLBase object, ParserRuleContext ctx,FormalLinguisticPattern formalLinguisticPattern) {
+        if (tokens != null) {
+                List<Token> tokensComments = getComments(lastCommentTokenIndex, ctx.getStart().getTokenIndex());
+                
+                List<String> comments=new ArrayList<>(tokensComments.size());
+                for (Token t : tokensComments) {
+                    comments.add(t.getText().replace("//", "").replace("/*","").replace("*/", ""));
+                }
+                if(formalLinguisticPattern!=null && comments.size()>1)
+                    comments=formalLinguisticPattern.extract(comments);
+                object.getNotes().addAll(comments);
+                if(!tokensComments.isEmpty())
+                    lastCommentTokenIndex=tokensComments.get(tokensComments.size()-1).getTokenIndex()+1;
+                else
+                    lastCommentTokenIndex=ctx.getStart().getTokenIndex();
+            }
     }
 
 }

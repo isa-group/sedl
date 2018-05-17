@@ -10,6 +10,7 @@ import es.us.isa.sedl.core.analysis.AnalysisResult;
 import es.us.isa.sedl.core.analysis.datasetspecification.Filter;
 import es.us.isa.sedl.core.analysis.datasetspecification.Projection;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalTestAssertion;
 import es.us.isa.sedl.core.configuration.ExperimentalEnvironment;
 import es.us.isa.sedl.core.configuration.ExperimentalTask;
 import es.us.isa.sedl.core.configuration.Parameter;
@@ -141,6 +142,7 @@ public class SEDLModule extends SimpleModule {
         extensionPoints.add(AnalysisResult.class);
         extensionPoints.add(Filter.class);
         extensionPoints.add(Projection.class);
+        extensionPoints.add(StatisticalTestAssertion.class);
         // Statistical Analysis:
         extensionPoints.add(Statistic.class);
 

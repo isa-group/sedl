@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.05.03 a las 09:36:25 AM CEST 
+// Generado el: 2018.05.17 a las 12:43:04 AM CEST 
 //
 
 
@@ -28,12 +28,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * The population of an experiment is a description of the set of individual for which we
- * 				want to extract conclusions (the target population), an the set of individuals that we
- * 				 are going to use for sampling (the accesible population). The specific method used for
- * 				 selecting the actual set experimental individuals used is specified in the description
- * 				  of the population. Additionally, the population can contain a description of the
- * 				  experimental individuals (that can be people, algorithm runs, animals, objects or
- * 				  even computer programs).
+ *                 want to extract conclusions (the target population), an the set of individuals that we
+ *                 are going to use for sampling (the accesible population). The specific method used for
+ *                 selecting the actual set experimental individuals used is specified in the description
+ *                 of the population. Additionally, the population can contain a description of the
+ *                 experimental individuals (that can be people, algorithm runs, animals, objects or
+ *                 even computer programs).
  * 
  * <p>Clase Java para Population complex type.
  * 

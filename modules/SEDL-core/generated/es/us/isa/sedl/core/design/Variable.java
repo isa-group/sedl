@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.05.03 a las 09:36:25 AM CEST 
+// Generado el: 2018.05.17 a las 12:43:04 AM CEST 
 //
 
 
@@ -29,17 +29,17 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * In SEDL an experimental variable always has a set of 
- * 				levels, that are the values that the variable could possibly have in the context
- * 				of the experiment. The set of levels of an experimental variable can be described by 
- * 				extension (i.e. by enumeting each possible value), or by intension (i.e. defining a
- * 				set of constraints tha determine the set of values, e.g. its maximum and minimum value).
- * 				Moreover, in SEDL an experimental variable has always a name (that must be unique in the
- * 				 experiment), a kind that can be Nominal (e.g. X,Y,Z), Ordinal (e.g. horrible, bad, fair,
- * 				  good), and Scalar (e.g. 1.1, 3, 5, 2.7), and a role.
- * 				 The role of a variable can be: Dependent; Independent-Active; Independent-Attributive; 
- * 				 and Extraneous.
- * 				Additionally, experimental variables can have an optional data type (that can be any
- * 				 simple XML-Schema type such as string, integer, etc.).
+ *                 levels, that are the values that the variable could possibly have in the context
+ *                 of the experiment. The set of levels of an experimental variable can be described by 
+ *                 extension (i.e. by enumeting each possible value), or by intension (i.e. defining a
+ *                 set of constraints tha determine the set of values, e.g. its maximum and minimum value).
+ *                 Moreover, in SEDL an experimental variable has always a name (that must be unique in the
+ *                 experiment), a kind that can be Nominal (e.g. X,Y,Z), Ordinal (e.g. horrible, bad, fair,
+ *                 good), and Scalar (e.g. 1.1, 3, 5, 2.7), and a role.
+ *                 The role of a variable can be: Dependent; Independent-Active; Independent-Attributive; 
+ *                 and Extraneous.
+ *                 Additionally, experimental variables can have an optional data type (that can be any
+ *                 simple XML-Schema type such as string, integer, etc.).
  * 
  * <p>Clase Java para Variable complex type.
  * 
@@ -48,14 +48,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Variable"&gt;
  *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SEDLBase"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="domain" type="{http://isa.us.es/sedl/core/design}Domain"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="kind" use="required" type="{http://isa.us.es/sedl/core/design}VariableKind" /&gt;
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="units" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *     &lt;/restriction&gt;
+ *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
@@ -188,6 +188,9 @@ public abstract class Variable
         if (this == object) {
             return true;
         }
+        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
+            return false;
+        }
         final Variable that = ((Variable) object);
         {
             Domain lhsDomain;
@@ -234,7 +237,7 @@ public abstract class Variable
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
+        int currentHashCode = super.hashCode(locator, strategy);
         {
             Domain theDomain;
             theDomain = this.getDomain();
@@ -276,6 +279,7 @@ public abstract class Variable
         if (null == target) {
             throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
         }
+        super.copyTo(locator, target, strategy);
         if (target instanceof Variable) {
             final Variable copy = ((Variable) target);
             if (this.domain!= null) {

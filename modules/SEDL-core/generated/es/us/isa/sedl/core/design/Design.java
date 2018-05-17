@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.05.03 a las 09:36:25 AM CEST 
+// Generado el: 2018.05.17 a las 12:43:04 AM CEST 
 //
 
 
@@ -30,9 +30,9 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * A design specifies: the set of variables and constants (here called parameters) that are involved in an experiment, the populations of the experiment
- * 				 a description of the experimental individual, and the experimental design of the experiment. Note that the experimental desing describes the groups
- * 				that are created based on the population of the experiment and the sequence of treaments and measurements (named experimental protocol) that must be 
- * 				performed on each individual of each group in order to conduct the experiment.
+ *                 a description of the experimental individual, and the experimental design of the experiment. Note that the experimental desing describes the groups
+ *                 that are created based on the population of the experiment and the sequence of treaments and measurements (named experimental protocol) that must be 
+ *                 performed on each individual of each group in order to conduct the experiment.
  * 
  * <p>Clase Java para Design complex type.
  * 

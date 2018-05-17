@@ -22,30 +22,18 @@ public class TestJSON2SEDL4People {
     @Test
     public void test()
     {
-        String originalExperimentDescription = "/*  #===========================================================================#\n" +
-"    #    Formal Experiment Description in SEDL                                  #\n" +
-"    #===========================================================================#\n" +
-"    # This experimental description is part of the laboratory package of the    #\n" +
-"    # paper entitled:                                                           #\n" +
-"    #                                                                           #\n" +
-"    #  \"Can mindfulness make software engineers better?                         #\n" +
-"    #   A replicated experiment to evaluate its effects in conceptual modeling\" #\n" +
-"    #   To be submitted to the Journal of Systems and Software                  #\n" +
-"    #                               (Special Issue on Replications)             #\n" +
-"    #                                                                           #\n" +
-"    #---------------------------------------------------------------------------#\n" +
-"    #   Specifically, this document describes the baseline experiment,          #\n" +
-"    #   described in :                                                          #\n" +
-"    #   \"A controlled experiment to evaluate the effects of mindfulness in      #\n" +
-"    #    software engineering\".                                                 #\n" +
-"    #   In Proceedings of the 8th ACM/IEEE International Symposium on           #\n" +
-"    #    Empirical Software Engineering and Measurement (ESEM '14). ACM,        #\n" +
-"    #    New York, NY, USA. DOI=http://dx.doi.org/10.1145/2652524.2652539        #\n" +
-"    #===========================================================================#\n" +
-"    # Created on 2015/11/26 by J. A. Parejo                                     #\n" +
-"    #===========================================================================#\n" +
-"*/\n" +
-"EXPERIMENT: Baseline version: 1.0 \n"+
+        String originalExperimentDescription = 
+"//Context: Mindfulness is a meditation technique whose main goal is to keep the mind calm and to educate attention by focusing only on one thing at a time, usually breathing. The reported benefits of its continued practice can be of interest for Software Engineering students and practitioners, especially in tasks like conceptual modeling, in which concentration and clearness of mind are crucial. \n" +
+"//Goal: In order to evaluate whether Software Engineering students enhance their conceptual modeling performance after several weeks of mindfulness practice, a series of three controlled experiments were carried out at the University of Seville during three consecutive academic years (2013–2016). \n" +
+"//Method: Subjects were divided into two groups. While the experimental group practiced mindfulness, the control group was trained in public speaking as a placebo treatment. All the subjects developed two conceptual models based on a transcript of an interview, one before and another one after the treatment. The results were compared in terms of conceptual modeling quality (the percentage of model elements correctly identified) and productivity (the number of model elements correctly identified per unit of time). \n" +
+"//Results: The results of the series of experiments reveal that the subjects who practiced mindfulness developed slightly better conceptual models (their quality was 8.16% higher) and they did it faster (they were 46,67% more productive) than the control group, even if they did not have a previous interest in meditation. \n" +
+"//Conclusions: The practice of mindfulness improves the performance of Software Engineering students in conceptual modeling, especially their productivity. More experimentation is needed in order to confirm the outcomes in other Software Engineering tasks and populations. \n" +
+"EXPERIMENT: Baseline version: 1.0 \n" +
+"//Analyze the practice of mindfulness\n" +
+"//for the purpose of evaluating its effects\n" +
+"//with respect to conceptual modeling performance\n" +
+"//from the point of view of the researchers\n" +
+"//in the context of second–year students of the Degree in Software Engineering at the University of Seville\n" +
 "Subjects:\n" +
 "	Beatriz Bernardez Jimenez (beat@us.es) from 'University of Sevilla' as Responsible\n" +
 "	Amador Durán Toro (amador@us.es) from 'University of Sevilla' as Collaborator\n" +
@@ -86,13 +74,13 @@ public class TestJSON2SEDL4People {
 "		NHST:\n" +
 "			Kolmogorov-Smirnov(by exercise,treatment, 0.05)\n" +
 "			Levene(by exercise,treatment, 0.05)\n" +
-"			TTest(where exercise='EoDP' by treatment, 0.05)\n" +
-"			Wilcoxon(where exercise='EoDP' by treatment, 0.05)\n" +
+"			TTest(by treatment, 0.05)\n" +
+"			ANOVA(by treatment,exercise, 0.05)\n" +
 "Configuration:\n" +
 "	C1:\n" +
 "		Procedure :\n" +
 "		Runs:\n" +
-"			Baseline: Start:'Wed Apr 04 23:00:00 CEST 2018' End:'Wed Mar 28 00:59:00 CEST 2018'\n" +
+"			Baseline:\n" +
 "				Result:\n" +
 "					File: 'data/Datos2014AnalysisR.csv'";
         
@@ -108,15 +96,17 @@ public class TestJSON2SEDL4People {
         System.out.println("=============== JSON EXPERIMENT DESCRIPTION ======================");
         System.out.println(jsonExperimentDescription);
         
-        JSONUnmarshaller instance = new JSONUnmarshaller();                
+        JSONUnmarshaller instance = new JSONUnmarshaller();          
+        Experiment result2 = instance.fromString(jsonExperimentDescription);
         SEDL4PeopleMarshaller marshaller =new SEDL4PeopleMarshaller();
         String reifiedExperimentDescription=marshaller.asString(result);
+        assertEquals(result,result2);
         
         System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
         System.out.println(reifiedExperimentDescription);
         System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
-        Experiment result2=sedl4PeopleUnmarshaller.fromString(reifiedExperimentDescription);
+        Experiment result3=sedl4PeopleUnmarshaller.fromString(reifiedExperimentDescription);
                 
-        assertEquals(result,result2);
+        assertEquals(result2,result3);
     }
 }

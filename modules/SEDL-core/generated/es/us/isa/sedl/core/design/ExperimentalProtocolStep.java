@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.05.03 a las 09:36:25 AM CEST 
+// Generado el: 2018.05.17 a las 12:43:04 AM CEST 
 //
 
 
@@ -29,10 +29,10 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * An experimental protocol describes  the sequences of treatments  and measurements
- * 				to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
- * 				either measurements or treatments.
- * A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
- * 				It is assumed that the step is performed on all the groups of the experiment.
+ *                 to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
+ *                 either measurements or treatments.
+ *                 A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
+ *                 It is assumed that the step is performed on all the groups of the experiment.
  * 
  * <p>Clase Java para ExperimentalProtocolStep complex type.
  * 
