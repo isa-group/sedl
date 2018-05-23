@@ -163,9 +163,9 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         }
         for (String comment : comments) {
             if (comment.contains("\n")) {
-                result.append("/*").append(comment).append("*/").append(RET);
+                result.append(indentation+"/*").append(comment).append("*/").append(RET);
             }else{
-                result.append("//").append(comment).append(RET);
+                result.append(indentation+"//").append(comment).append(RET);
             }
         }
         return result.toString();
@@ -219,6 +219,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         if(e.getContext()!=null && e.getContext().getPeople()!=null && !e.getContext().getPeople().getPerson().isEmpty()){
             sb.append(getTokenName(SEDL4PeopleLexer.SUBJECTS)).append(getTokenName(SEDL4PeopleLexer.COLON)).append(RET);
             for(Person p:e.getContext().getPeople().getPerson()){
+                sb.append(writePreComments(TAB,p));
                 sb.append(TAB).append(p.getName());
                 if(p.getEmail()!=null && !"".equals(p.getEmail())){
                     sb.append(ESP)
@@ -272,6 +273,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                     .append(getTokenName(SEDL4PeopleLexer.COLON))
                     .append(RET);
             for (Parameter p : exp.getDesign().getDesignParameters()) {
+                sb.append(writePreComments(TAB, p));
                 if (p instanceof SimpleParameter) {
                     SimpleParameter param = (SimpleParameter) p;
                     sb.append(TAB)
@@ -282,8 +284,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                                     SEDL4PeopleLexer.COLON))
                             .append(ESP)
                             .append(
-                                    printValue(param.getValue()))
-                            .append(RET);
+                                    printValue(param.getValue()));                            
                 } else if (p instanceof ComplexParameter) {
                     ComplexParameter param = (ComplexParameter) p;
                     sb.append(TAB)
@@ -306,11 +307,20 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                                     .append(((SimpleParameter) sp).getValue());
                         }
                     }
-                    sb.append(getTokenName(SEDL4PeopleLexer.CLOSE_BRA)).append(RET);
+                    sb.append(getTokenName(SEDL4PeopleLexer.CLOSE_BRA));
+                    
 
                 } else {
                     System.out.println("Can not find parameter " + p.getName() + " type.");
                 }
+                if(p.getUnits()!=null && !"".equals(p.getUnits()))
+                    sb.append(ESP)
+                      .append(getTokenName(SEDL4PeopleLexer.MEASURED))
+                      .append(ESP)
+                      .append(getTokenName(SEDL4PeopleLexer.IN))
+                      .append(ESP)
+                      .append(p.getUnits());
+                sb.append(RET);
             }
         }
         return sb.toString();
@@ -361,6 +371,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
 
     private String printVariable(Variable v) {
         StringBuilder sb = new StringBuilder();
+        sb.append(writePreComments(TAB+TAB, v));
         sb.append(
                 TAB
         ).append(
@@ -372,6 +383,14 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         ).append(
                 printDomain(v)
         );
+        if(v.getUnits()!=null && !"".equals(v.getUnits()))
+            sb.append(ESP)
+              .append(getTokenName(SEDL4PeopleLexer.MEASURED))
+              .append(ESP)
+              .append(getTokenName(SEDL4PeopleLexer.IN))
+              .append(ESP)
+              .append(v.getUnits());
+        sb.append(RET);
         return sb.toString();
     }
 
@@ -393,17 +412,22 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                 getTokenName(SEDL4PeopleLexer.ENUM));
         for (int i = 0; i < domain.getLevels().size(); i++) {
             Level l = domain.getLevels().get(i);
-            if (i != 0) {
-                sb.append(
-                        getTokenName(SEDL4PeopleLexer.COMMA));
-            }
+            if(!l.getNotes().isEmpty())
+                sb.append(RET);
+            sb.append(writePreComments(TAB+TAB+TAB, l));            
+            if(!l.getNotes().isEmpty())
+                sb.append(TAB+TAB+TAB);
             sb.append(
                     ESP
             ).append(
                     printValue(l.getValue())
             );
-        }
-        sb.append(RET);
+            if (domain.getLevels().size()>1 && i!=domain.getLevels().size()-1) {
+                sb.append(
+                        getTokenName(SEDL4PeopleLexer.COMMA));
+            }
+            
+        }        
         return sb.toString();
     }
 
@@ -437,9 +461,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
             }
             sb.append(ESP);
         }
-        sb.append(
-                RET
-        );
+        
         return sb.toString();
     }
 

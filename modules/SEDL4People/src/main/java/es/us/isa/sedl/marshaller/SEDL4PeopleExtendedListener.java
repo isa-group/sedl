@@ -48,6 +48,7 @@ import es.us.isa.sedl.core.configuration.Library;
 import es.us.isa.sedl.core.configuration.Measurement;
 import es.us.isa.sedl.core.configuration.OutputDataSource;
 import es.us.isa.sedl.core.configuration.OutputDataSourceRole;
+import es.us.isa.sedl.core.configuration.Parameter;
 import es.us.isa.sedl.core.configuration.Postprocessing;
 import es.us.isa.sedl.core.configuration.Preprocessing;
 import es.us.isa.sedl.core.configuration.Runtime;
@@ -98,6 +99,7 @@ import es.us.isa.sedl.error.SEDL4PeopleError;
 import es.us.isa.sedl.error.SEDL4PeopleErrorListener;
 import es.us.isa.sedl.grammar.SEDL4PeopleBaseListener;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser;
+import es.us.isa.sedl.grammar.SEDL4PeopleParser.ConstantDeclarationContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.EnumDeclarationContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.ExperimentalProcedureContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FactorDeclarationRangeContext;
@@ -117,7 +119,6 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser.StatisticFunctionContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.StructValueContext;
 import es.us.isa.sedl.marshaller.analysis.statistic.StatisticalAnalysisSpecParser;
 import java.math.BigInteger;
-import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
@@ -148,13 +149,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     SEDL4PeopleErrorListener errorListener;
     CommonTokenStream tokens;
     List<String> locator;
-    
+
     private int lastCommentTokenIndex;
 
     public SEDL4PeopleExtendedListener(SEDL4PeopleErrorListener errorListener, CommonTokenStream comments) {
         this.errorListener = errorListener;
         this.tokens = comments;
-        lastCommentTokenIndex=0;
+        lastCommentTokenIndex = 0;
     }
 
     // Repasar y añadir al Map en cada funcion
@@ -193,7 +194,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public void enterExperimentPreamble(@NotNull SEDL4PeopleParser.ExperimentPreambleContext ctx) {
         try {
             //	
-            extractNotes(experiment,ctx,FormalLinguisticPattern.StructuredAbstract);               
+            extractNotes(experiment, ctx, FormalLinguisticPattern.StructuredAbstract);
             if (ctx.id() != null) {
                 final String id = ctx.id().getText();
                 experiment.setId(id);
@@ -223,10 +224,9 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
         return result;
     }
-    
+
     @Override
-    public void enterModuleImport(SEDL4PeopleParser.ModuleImportContext ctx)
-    {
+    public void enterModuleImport(SEDL4PeopleParser.ModuleImportContext ctx) {
         experiment.getAnnotations().add(ctx.Identifier().getText());
     }
 
@@ -234,7 +234,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterExperimentContext(@NotNull SEDL4PeopleParser.ExperimentContextContext ctx) {
         objectNodeMap.put(context, ctx);
-        extractNotes(context,ctx,FormalLinguisticPattern.GQM);
+        extractNotes(context, ctx, FormalLinguisticPattern.GQM);
     }
 
     @Override
@@ -254,25 +254,29 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
         objectNodeMap.put(context.getAnnotations(), ctx);
     }
-    
-    @Override public void enterSubjects(SEDL4PeopleParser.SubjectsContext ctx) { 
-        Person p=null;
-        String name="";        
-        for(SEDL4PeopleParser.StakeholderContext stkhCtx:ctx.stakeholder()){
-            p=new Person();
-            name="";
-            for(IdContext idCtx:stkhCtx.id())
-                name+=idCtx.getText()+" ";
+
+    @Override
+    public void enterSubjects(SEDL4PeopleParser.SubjectsContext ctx) {
+        Person p = null;
+        String name = "";
+        for (SEDL4PeopleParser.StakeholderContext stkhCtx : ctx.stakeholder()) {
+            p = new Person();
+            extractNotes(p, stkhCtx, null);
+            name = "";
+            for (IdContext idCtx : stkhCtx.id()) {
+                name += idCtx.getText() + " ";
+            }
             p.setName(name.trim());
             p.setEmail(stkhCtx.email().getText());
-            if(stkhCtx.stakeholderFrom()!=null){
-                p.setOrganization(stkhCtx.stakeholderFrom().StringLiteral().getText().replace("'","").replace("\"",""));                
+            if (stkhCtx.stakeholderFrom() != null) {
+                p.setOrganization(stkhCtx.stakeholderFrom().StringLiteral().getText().replace("'", "").replace("\"", ""));
             }
-            if(stkhCtx.role()!=null){
-                if(stkhCtx.role().RESPONSIBLE()!=null)
+            if (stkhCtx.role() != null) {
+                if (stkhCtx.role().RESPONSIBLE() != null) {
                     p.setRole(stkhCtx.role().RESPONSIBLE().getText());
-                else
+                } else {
                     p.setRole(stkhCtx.role().COLLABORATOR().getText());
+                }
             }
             experiment.getContext().getPeople().getPerson().add(p);
         }
@@ -298,12 +302,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     // El constants block contiene las constantes, que son parámetros del design
     @Override
     public void enterConstantsBlock(@NotNull SEDL4PeopleParser.ConstantsBlockContext ctx) {
-        for (FieldContext field : ctx.field()) {
+        for (ConstantDeclarationContext cdctx : ctx.constantDeclaration()) {
+            FieldContext field=cdctx.field();
+            Parameter p=null;
             if (field.structValue() == null) {
                 SimpleParameter parameter = new SimpleParameter();
                 parameter.setName(field.id().getText());
-                parameter.setValue(field.value().getText());
-                getDesign().getDesignParameters().add(parameter);
+                parameter.setValue(field.value().getText());                
+                p=parameter;
             } else {
                 ComplexParameter parameter = new ComplexParameter();
                 parameter.setName(field.id().getText());
@@ -313,10 +319,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     SimpleParameter param = new SimpleParameter();
                     param.setName(f.id().getText());
                     param.setValue(f.value().getText());
-                    parameter.getParameters().add(param);
-                }
-                getDesign().getDesignParameters().add(parameter);
+                    parameter.getParameters().add(param);                    
+                }                
+                p=parameter;
             }
+            if(cdctx.factorDeclarationUnits()!=null)
+                p.setUnits(cdctx.factorDeclarationUnits().id().getText());
+            extractNotes(p, ctx);
+            getDesign().getDesignParameters().add(p);
         }
 
     }
@@ -327,13 +337,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         setVariables(new Variables());
         objectNodeMap.put(getVariables(), ctx);
-        lastCommentTokenIndex=ctx.getStart().getTokenIndex();
+        lastCommentTokenIndex = ctx.getStart().getTokenIndex();
     }
 
     @Override
     public void enterFactorDeclaration(@NotNull SEDL4PeopleParser.FactorDeclarationContext ctx) {
 
-        Variables aux = getVariables();        
+        Variables aux = getVariables();
         Variable variable = new ControllableFactor();
 
         if (ctx.getParent() instanceof FactorsContext) {
@@ -347,7 +357,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         if (ctx.getParent() instanceof OutcomeDeclarationContext) {
             variable = new Outcome();
         }
-        
+
         extractNotes(variable, ctx);
         variable.setName(ctx.id().getText());
         variable.setKind(VariableKind.SCALAR);
@@ -425,12 +435,12 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 variable.setDomain(domain);
             } else { //EXTENSION DOMAIN
                 ExtensionDomain domain = new ExtensionDomain();
-                for (int i = 0; i < typeContext.enumDeclaration().getChildCount(); i++) {
-                    EnumDeclarationContext enumCtx = (EnumDeclarationContext) typeContext.enumDeclaration();
+                EnumDeclarationContext enumCtx = (EnumDeclarationContext) typeContext.enumDeclaration();
+                for (int i = 0; i < enumCtx.getChildCount(); i++) {
                     if (!enumCtx.getChild(i).getText().equals(",")) {
                         Level l = createLevel(enumCtx.getChild(i).getText());
                         domain.getLevels().add(l);
-                        extractNotes(l, enumCtx);
+                        extractNotes(l, enumCtx.getChild(i).getSourceInterval().a,null);
                     }
                 }
                 variable.setDomain(domain);
@@ -448,54 +458,53 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 //		
 //	}
     // Hypothesis
-    
     @Override
-    public void exitHypothesisDeclaration(SEDL4PeopleParser.HypothesisDeclarationContext ctx) { 
-        if(ctx.id()!=null){
-            if(!isUniqueHypothesisIdentifier(ctx.id().getText())){
-                        
-                    SEDL4PeopleError error = new SEDL4PeopleError(ctx.id().getStart().getLine() - 1,
+    public void exitHypothesisDeclaration(SEDL4PeopleParser.HypothesisDeclarationContext ctx) {
+        if (ctx.id() != null) {
+            if (!isUniqueHypothesisIdentifier(ctx.id().getText())) {
+
+                SEDL4PeopleError error = new SEDL4PeopleError(ctx.id().getStart().getLine() - 1,
                         ctx.id().getStart().getStartIndex(),
                         ctx.id().getStart().getStopIndex(),
                         es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
                         "The hypthesis identifiers should be unique, " + ctx.id().getText() + " is repeated valid!"
-                    );
-                    if (errorListener != null) {
-                        errorListener.getErrors().add(error);
-                    }            
-            }
-            experiment.getHypotheses().get(experiment.getHypotheses().size()-1).setId(ctx.id().getText());
-            
-        }else{
-            experiment.getHypotheses().get(experiment.getHypotheses().size()-1).setId(generateHypothesisId());
-        }
-    }
-    public String generateHypothesisId(){
-        int i=0;
-        String result="";
-        boolean isUnique=false;
-        do{
-            i++;
-            result="H"+i;
-        }while(!isUniqueHypothesisIdentifier(result));
-        return result;
-    }
-    
-    private boolean isUniqueHypothesisIdentifier(String id){
-        boolean result=true;
-        for(Hypothesis h:experiment.getHypotheses()){
-                if(id.equals(h.getId())){
-                    result=false;
-                    break;
+                );
+                if (errorListener != null) {
+                    errorListener.getErrors().add(error);
                 }
             }
+            experiment.getHypotheses().get(experiment.getHypotheses().size() - 1).setId(ctx.id().getText());
+
+        } else {
+            experiment.getHypotheses().get(experiment.getHypotheses().size() - 1).setId(generateHypothesisId());
+        }
+    }
+
+    public String generateHypothesisId() {
+        int i = 0;
+        String result = "";
+        boolean isUnique = false;
+        do {
+            i++;
+            result = "H" + i;
+        } while (!isUniqueHypothesisIdentifier(result));
         return result;
     }
-    
-    
+
+    private boolean isUniqueHypothesisIdentifier(String id) {
+        boolean result = true;
+        for (Hypothesis h : experiment.getHypotheses()) {
+            if (id.equals(h.getId())) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
     @Override
     public void enterImplicitDifferentialHypothesis(SEDL4PeopleParser.ImplicitDifferentialHypothesisContext ctx) {
-        DifferentialHypothesis dh = null;        
+        DifferentialHypothesis dh = null;
         Variables vars = experiment.getDesign().getVariables();
         if (vars == null) {
             vars = variables;
@@ -723,7 +732,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         } else {
             System.out.println("SEDL only support measurment or treatment steps.");
         }
-        result.setId("S"+(protocol.getSteps().size()+1));
+        result.setId("S" + (protocol.getSteps().size() + 1));
         return result;
     }
 
@@ -768,7 +777,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                         fieldCtx.value().getStart().getStartIndex(),
                         fieldCtx.value().getStart().getStopIndex(),
                         es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
-                        "The value " + fieldCtx.id().getText() + " is not a valid "
+                        "The value " + l.getValue() + " is not a valid "
                         + "level of the variable " + v.getName());
                 if (errorListener != null) {
                     errorListener.getErrors().add(error);
@@ -977,24 +986,25 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         AnalysisSpecificationGroup analysis = new AnalysisSpecificationGroup();
         analysis.setId(ctx.getChild(0).getChild(0).getText());
-        locator=Lists.newArrayList(analysis.getId());
-        boolean added=false;
+        locator = Lists.newArrayList(analysis.getId());
+        boolean added = false;
         if (!ctx.statisticFunction().isEmpty()) {
             for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()) {
                 if (statisticFunctionCtx != null) {
                     List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
                     StatisticalAnalysisSpec spec = new StatisticalAnalysisSpec();
-                    added=false;
-                    if(s!=null && !s.isEmpty()){                        
-                        for(Statistic stat:s){
-                            if(stat!=null){
+                    added = false;
+                    if (s != null && !s.isEmpty()) {
+                        for (Statistic stat : s) {
+                            if (stat != null) {
                                 spec.getStatistic().addAll(s);
-                                added=true;
+                                added = true;
                             }
                         }
                     }
-                    if(added)
-                        analysis.getAnalyses().add(spec);    
+                    if (added) {
+                        analysis.getAnalyses().add(spec);
+                    }
                 }
             }
         }
@@ -1174,15 +1184,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         Configuration conf = new Configuration();
         experiment.getConfigurations().add(conf);
         conf.setId(ctx.getParent().getChild(0).getText());
-        
+
         ExperimentalOutputs outputs = new ExperimentalOutputs();
         conf.setExperimentalOutputs(outputs);
         // OUTPUTS 
         if (ctx.outputs() != null && ctx.outputs().files() != null) {
-            
+
             OutputDataSource outSource = new OutputDataSource();
             outputs.getOutputDataSources().add(outSource);
-            
 
             File outFile = new File();
             for (FilesContext fCtx : ctx.outputs().files()) {
@@ -1304,22 +1313,20 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     private Execution parse(SEDL4PeopleParser.ExecutionConfContext ctx) {
         Execution result = new Execution();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
-        if (ctx.execStart() != null && ctx.execStart().StringLiteral()!=null) {
-            String value=ctx.execStart().StringLiteral().toString().replace("'","").replace("\"","");
-            try
-            {
+        if (ctx.execStart() != null && ctx.execStart().StringLiteral() != null) {
+            String value = ctx.execStart().StringLiteral().toString().replace("'", "").replace("\"", "");
+            try {
                 result.setStart(df.parse(value));
-            }catch(Exception e){
-                System.out.println("Unable to parse date from string '"+value+"'");
+            } catch (Exception e) {
+                System.out.println("Unable to parse date from string '" + value + "'");
             }
         }
-        if (ctx.execEnd() != null && ctx.execEnd().StringLiteral()!=null) {
-            String value=ctx.execEnd().StringLiteral().toString().replace("'","").replace("\"","");
-            try
-            {             
+        if (ctx.execEnd() != null && ctx.execEnd().StringLiteral() != null) {
+            String value = ctx.execEnd().StringLiteral().toString().replace("'", "").replace("\"", "");
+            try {
                 result.setFinish(df.parse(value));
-            }catch(Exception e){
-                System.out.println("Unable to parse date from string '"+value+"'");
+            } catch (Exception e) {
+                System.out.println("Unable to parse date from string '" + value + "'");
             }
         }
         ResultsFile rf = null;
@@ -1346,7 +1353,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         if (content.startsWith("::")) {
             content = content.substring(2);
         }
-        ExtensionPointElement epElement = new ExtensionPointElement(extensionPointName, moduleIdentifier, content, ctx,locator);
+        ExtensionPointElement epElement = new ExtensionPointElement(extensionPointName, moduleIdentifier, content, ctx, locator);
         List<ExtensionPointElement> list = extensionPointsInstantiations.get(extensionPointName);
         if (list == null) {
             list = new ArrayList<ExtensionPointElement>();
@@ -1546,27 +1553,31 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         return l;
     }
 
-    private void extractNotes(SEDLBase object, ParserRuleContext ctx)
-    {
-        extractNotes(object,ctx,null);
-    }
+    private void extractNotes(SEDLBase object, ParserRuleContext ctx) {
+        extractNotes(object, ctx, null);
+    }    
     
-    private void extractNotes(SEDLBase object, ParserRuleContext ctx,FormalLinguisticPattern formalLinguisticPattern) {
-        if (tokens != null) {
-                List<Token> tokensComments = getComments(lastCommentTokenIndex, ctx.getStart().getTokenIndex());
-                
-                List<String> comments=new ArrayList<>(tokensComments.size());
-                for (Token t : tokensComments) {
-                    comments.add(t.getText().replace("//", "").replace("/*","").replace("*/", ""));
-                }
-                if(formalLinguisticPattern!=null && comments.size()>1)
-                    comments=formalLinguisticPattern.extract(comments);
-                object.getNotes().addAll(comments);
-                if(!tokensComments.isEmpty())
-                    lastCommentTokenIndex=tokensComments.get(tokensComments.size()-1).getTokenIndex()+1;
-                else
-                    lastCommentTokenIndex=ctx.getStart().getTokenIndex();
-            }
+    private void extractNotes(SEDLBase object, ParserRuleContext ctx, FormalLinguisticPattern formalLinguisticPattern) {
+        extractNotes(object,ctx.getStart().getTokenIndex(),formalLinguisticPattern);
     }
 
+    private void extractNotes(SEDLBase object, int tokenIndex, FormalLinguisticPattern formalLinguisticPattern) {
+        if (tokens != null) {
+            List<Token> tokensComments = getComments(lastCommentTokenIndex, tokenIndex);
+
+            List<String> comments = new ArrayList<>(tokensComments.size());
+            for (Token t : tokensComments) {
+                comments.add(t.getText().replace("//", "").replace("/*", "").replace("*/", ""));
+            }
+            if (formalLinguisticPattern != null && comments.size() > 1) {
+                comments = formalLinguisticPattern.extract(comments);
+            }
+            object.getNotes().addAll(comments);
+            if (!tokensComments.isEmpty()) {
+                lastCommentTokenIndex = tokensComments.get(tokensComments.size() - 1).getTokenIndex() + 1;
+            } else {
+                lastCommentTokenIndex = tokenIndex;
+            }
+        }
+    }
 }

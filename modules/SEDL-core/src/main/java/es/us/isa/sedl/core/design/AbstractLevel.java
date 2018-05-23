@@ -11,5 +11,10 @@ public abstract class AbstractLevel extends SEDLBase {
 	public String toString() {
 		return "Level [value=" + getValue() + "]";
 	} 
+        
+        @Override
+        public boolean equals(Object o){
+            return (o instanceof AbstractLevel) && this.getValue().equals(((AbstractLevel)o).getValue());
+        }
 
 }

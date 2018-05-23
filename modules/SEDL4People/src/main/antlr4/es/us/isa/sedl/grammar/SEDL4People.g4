@@ -76,8 +76,9 @@ population: POPULATION COLON StringLiteral;
 
 constants: CONSTANTS COLON constantsBlock {parsingVariables=false;};
 
-constantsBlock: field+;
+constantsBlock: constantDeclaration+ ;
 
+constantDeclaration: field factorDeclarationUnits? ;
 
 //---------------------------------------
 // Variables

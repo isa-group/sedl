@@ -17,7 +17,13 @@ public abstract class AbstractExtensionDomain extends Domain{
         
         @Override
         public boolean contains(Level l)
-        {
-            return getLevels().contains(l);
+        {            
+            boolean result=false;
+            for(Level level:getLevels())
+                if(level.getValue().equals(l.getValue())){
+                    result=true;
+                    break;
+                }                    
+            return result;
         }
 }

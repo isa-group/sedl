@@ -28,7 +28,7 @@
         </bindings> 
         <bindings node="/xsd:schema/xsd:complexType[@name='Design']">        
             <inheritance:extends>es.us.isa.sedl.core.design.AbstractDesign</inheritance:extends>        
-        </bindings> 
+        </bindings>         
         <bindings node="/xsd:schema/xsd:complexType[@name='Variable']">        
             <inheritance:extends>es.us.isa.sedl.core.design.AbstractVariable</inheritance:extends>        
         </bindings> 
@@ -85,6 +85,11 @@
             <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.AbstractConfidenceInterval</inheritance:extends>        
         </bindings> 
     </bindings>
+    <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.configuration.xsd">         
+        <bindings node="/xsd:schema/xsd:complexType[@name='Parameter']">        
+            <inheritance:extends>es.us.isa.sedl.core.configuration.AbstractParameter</inheritance:extends>        
+        </bindings>         
+     </bindings>
     <!--<bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.execution.xsd">
         <bindings node="/xsd:schema/xsd:complexType[@name='Execution']">            
             <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.AbstractExecution</inheritance:extends>        
