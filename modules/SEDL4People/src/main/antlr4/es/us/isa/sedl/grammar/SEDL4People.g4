@@ -214,13 +214,14 @@ analysesBlocks: analysesBlock+;
 
 analysesBlock: id COLON statisticFunction+;
 
-statisticFunction : rankingSF
+statisticFunction : 
+                  (rankingSF
                   | centralTendencyMeasurementSF
                   | variabilityMeasureSF
                   | confidenceIntervalSF
                   | correlationCoeficientSF
                   | nhstSF
-                  | extensionPoint
+                  | extensionPoint)
                   ;
 
 rankingSF: rFunction OPEN_PAR (centralTendencyMeasurementSF | variabilityMeasureSF) COMMA id CLOSE_PAR;
@@ -346,11 +347,13 @@ execution: RUNS COLON executionBlock+;
 
 executionBlock: id COLON executionConf;
 
-executionConf: execStart? execEnd? resultExecution analysesExecution?;
+executionConf: execStart? execEnd? log? resultExecution analysesExecution?;
 
 execStart: START COLON StringLiteral;
 
 execEnd: END COLON StringLiteral;
+
+log: LOG COLON StringLiteral;
 
 resultExecution: RESULT COLON fileExec*;
 
@@ -358,7 +361,7 @@ analysesExecution:ANALYSES COLON analysesExecBlock+;
 
 analysesExecBlock: id COLON analFunctions; 
 
-analFunctions: exeFunction (COMMA exeFunction)*;
+analFunctions:  exeFunction (COMMA exeFunction)*;
 
 exeFunction: exeFunctionTypes? exeArguments? COLON (values | friedmanFunction | pearsonFunction); 
 
@@ -501,7 +504,7 @@ CUADRATIC: 'cuadratic'; //??
 RANDOM: 'Random';
 ADHOC: 'Adhoc';
 CONFIGURATION : 'Configuration';
-
+LOG: 'Log';
 OUTPUTS: 'Outputs';
 INPUTS: 'Inputs';
 SETTING: 'Setting';
@@ -785,9 +788,8 @@ SingleCharacter
     ;
 
 // String Literals
-
-StringLiteral : '\'' ~[']* '\''
-              | '"' ~["]* '"'
+StringLiteral : '\'' ('\\\''|~['])* '\''
+              | '"' ('\\"'|~["])* '"'
     ;
 
 fragment

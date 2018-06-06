@@ -62,7 +62,7 @@ public enum FormalLinguisticPattern {
         if(!result.endsWith(suffix) && !(phrasalPattern && result.endsWith(suffix+"."))){            
             result=result+suffix;
         }
-        if(phrasalPattern && !result.endsWith("."))
+        if(phrasalPattern && !result.endsWith(".") && !result.endsWith(".</p>") && !result.endsWith(".</span>"))
             result+=". ";
         else 
             result+=" ";

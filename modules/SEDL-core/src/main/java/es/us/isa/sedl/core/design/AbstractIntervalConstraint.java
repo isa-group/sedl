@@ -16,7 +16,9 @@ public abstract class AbstractIntervalConstraint extends Constraint{
     @Override
     public boolean isMetBy(Object object)
     {
-        if(object==null || object.getClass().isAssignableFrom(Number.class))
+        if(object instanceof Level)
+            object=((Level)object).getValue();
+        if(object==null || ((object instanceof String) && "".equals((String)object)))
             return false;
         double min=Double.parseDouble(getMin());
         double max=Double.parseDouble(getMax());

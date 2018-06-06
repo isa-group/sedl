@@ -58,6 +58,7 @@ import es.us.isa.sedl.core.configuration.Treatment;
 import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.context.People;
 import es.us.isa.sedl.core.context.Person;
+import es.us.isa.sedl.core.design.AnalysisSpecification;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.AssignmentMethod;
 import es.us.isa.sedl.core.design.ControllableFactor;
@@ -87,6 +88,8 @@ import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
 import es.us.isa.sedl.core.design.Variables;
 import es.us.isa.sedl.core.execution.Execution;
+import es.us.isa.sedl.core.execution.Log;
+import es.us.isa.sedl.core.execution.LogLine;
 import es.us.isa.sedl.core.execution.ResultsFile;
 import es.us.isa.sedl.core.hypothesis.AssociationalHypothesis;
 import es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis;
@@ -460,6 +463,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     // Hypothesis
     @Override
     public void exitHypothesisDeclaration(SEDL4PeopleParser.HypothesisDeclarationContext ctx) {
+        extractNotes(experiment.getHypotheses().get(experiment.getHypotheses().size() - 1), ctx);
         if (ctx.id() != null) {
             if (!isUniqueHypothesisIdentifier(ctx.id().getText())) {
 
@@ -600,23 +604,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         getDesign().setPopulation(population);
         getDesign().setVariables(getVariables());
         objectNodeMap.put(getDesign(), ctx);
+        extractNotes(getDesign(), ctx);
 
     }
 
     @Override
     public void enterDesignBlock(@NotNull SEDL4PeopleParser.DesignBlockContext ctx) {
-
-//		DesignSamplingContext designSamplingContext = ctx.designSampling();
-//		
-//		SamplingMethod samplingMethod = new SamplingMethod();
-//		
-//		objectNodeMap.put(samplingMethod, ctx);
-//		
-//		samplingMethod.setDescription(designSamplingContext.samplingType().getText());
-//		samplingMethod.setRandom(designSamplingContext.samplingType().getText().equals(RANDOM));
-//		
-//		design.setSamplingMethod(samplingMethod);
-        //TODO...
+        
+        
     }
 
     @Override
@@ -993,6 +988,10 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 if (statisticFunctionCtx != null) {
                     List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
                     StatisticalAnalysisSpec spec = new StatisticalAnalysisSpec();
+                    //if(statisticFunctionCtx.id()!=null)
+                    //    spec.setId(statisticFunctionCtx.id().getText());
+                    //else
+                    spec.setId(generateAnalysisId(analysis));
                     added = false;
                     if (s != null && !s.isEmpty()) {
                         for (Statistic stat : s) {
@@ -1002,7 +1001,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                             }
                         }
                     }
-                    if (added) {
+                    if (added) {                        
                         analysis.getAnalyses().add(spec);
                     }
                 }
@@ -1305,10 +1304,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     conf.getExecutions().add(exec);
                 }
             }
+            
 
         }
 
     }
+    
+    
 
     private Execution parse(SEDL4PeopleParser.ExecutionConfContext ctx) {
         Execution result = new Execution();
@@ -1328,6 +1330,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             } catch (Exception e) {
                 System.out.println("Unable to parse date from string '" + value + "'");
             }
+        }
+        if(ctx.log()!=null){
+            Log log=new Log();
+            LogLine line=new LogLine();
+            line.setMessage(ctx.log().StringLiteral().getText().replace("'","").replace("\"",""));
+            log.getLines().add(line);
+            result.setLog(log);
         }
         ResultsFile rf = null;
         File f = null;
@@ -1580,4 +1589,21 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             }
         }
     }
+
+    private String generateAnalysisId(AnalysisSpecificationGroup analysis) {
+        int index=0;
+        String candidate=null;
+        boolean valid=true;
+                
+        do{
+            index++;
+            candidate=analysis.getId()+"-"+index;
+            valid=true;
+            for(AnalysisSpecification spec:analysis.getAnalyses()){
+                if(candidate.equals(spec.getId()))
+                    valid=false;
+            }
+        }while(!valid);
+        return candidate;
+    }    
 }

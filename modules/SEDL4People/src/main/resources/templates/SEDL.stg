@@ -351,7 +351,7 @@ analysesExecBlock(a)::=<<$a.id$: $a:exeFunction();separator=","$>>
 
 exeFunction(a)::="$(a.class.simpleName)(a)$"    
 
-DescriptiveStatisticValue(dsv)::="$dsv.descriptiveStatistic$$analysisConditions(dsv)$: $dsv.value$"
+DescriptiveStatisticValue(dsv)::="$dsv.descriptiveStatistic$ $dataSetSpecification(dsv.datasetSpecification)$ : $dsv.value$"
 
 analysisConditions(dsv)::=<%
 $if( dsv.datasetSpecification.filters || dsv.datasetSpecification.groupings)$

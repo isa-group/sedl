@@ -5,6 +5,7 @@
  */
 package es.us.isa.sedl.core.design;
 
+import es.us.isa.sedl.core.SEDLBase;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,7 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  * @author José Antonio Parejo
  */
-public abstract class AbstractDesign {
+public abstract class AbstractDesign extends SEDLBase {
     
     public abstract ExperimentalDesign getExperimentalDesign();
     

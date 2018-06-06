@@ -17,13 +17,17 @@ public abstract class AbstractStatisticalAnalysisSpec extends AnalysisSpecificat
         Statistic auxiliaryStatistic=null;
         for(Statistic statistic:getStatistic())
         {
-            List<DatasetSpecification> specs=statistic.getDatasetSpecification().expand(experiment);
-            for(DatasetSpecification spec:specs)
-            {
-                auxiliaryStatistic=(Statistic)statistic.clone();
-                auxiliaryStatistic.setDatasetSpecification(spec);
-                result.add(auxiliaryStatistic);
-            }
+            List<DatasetSpecification> specs=null;
+            if(statistic.getDatasetSpecification()!=null){
+                specs=statistic.getDatasetSpecification().expand(experiment);
+                for(DatasetSpecification spec:specs)
+                {
+                    auxiliaryStatistic=(Statistic)statistic.clone();
+                    auxiliaryStatistic.setDatasetSpecification(spec);
+                    result.add(auxiliaryStatistic);
+                }
+            }else
+                result.add(statistic);
         }
         return result;
     }
