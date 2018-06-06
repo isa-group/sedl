@@ -40,9 +40,9 @@ public class TestJSON2SEDL4People {
 "	//She did almost everything\n" +
 "	Beatriz Bernardez Jimenez (beat@us.es) from 'University of Sevilla' as Responsible\n" +
 "	//Human compiler and excellent writer\n" +
-"	Amador Durán Toro (amador@us.es) from 'University of Sevilla' as Collaborator\n" +
+"	Amador Duran Toro (amador@us.es) from 'University of Sevilla' as Collaborator\n" +
 "	//Statistics and experimental methodology support\n" +
-"	José Antonio Parejo Maestre (japarejo@us.es) from 'University of Sevilla' as Collaborator\n" +
+"	Jose Antonio Parejo Maestre (japarejo@us.es) from 'University of Sevilla' as Collaborator\n" +
 "	//Big Boss\n" +
 "	Antonio Ruiz-Cortes (aruiz@us.es) from 'University of Sevilla' as Collaborator\n" +
 "Constants:\n" +
@@ -54,7 +54,7 @@ public class TestJSON2SEDL4People {
 "		treatment enum\n" +
 "			/*In the mindfulness workshops, the sessions were face-to–face, four days a week.\n" +
 "All the sessions followed the same dynamics: the students and the researcher responsible for conducting\n" +
-"the session met in a classroom; they all sat down, lights were turned off and curtains were drawn letting only some dim light in the room; when they all were in silence, an alarm was programmed; during the first five minutes, the subjects were guided in their body scan; then, during the remaining time, they were invited to focus solely on their breathing. Sometimes, the researcher asked “where is your mind now?” in order to re–focus them on breathing. In the event a student were late, they were instructed to enter the\n" +
+"the session met in a classroom; they all sat down, lights were turned off and curtains were drawn letting only some dim light in the room; when they all were in silence, an alarm was programmed; during the first five minutes, the subjects were guided in their body scan; then, during the remaining time, they were invited to focus solely on their breathing. Sometimes, the researcher asked 'where is your mind now?' in order to re–focus them on breathing. In the event a student were late, they were instructed to enter the\n" +
 "room making as less noise as possible and sit on one of the chairs that were intentionally left empty near the door.*/\n" +
 "			 'MF',\n" +
 "			//In the public speaking workshops, the subjects were given some basic guidelines on how to prepare a talk, some notions on non–verbal communication and some seminal talks were commented. Later, they were invited to look for related videos in the Internet and to prepare a script of a public presentation on a topic of their interest.\n" +
@@ -84,8 +84,11 @@ public class TestJSON2SEDL4People {
 "               and the time in minutes spent by a subject in finishing a conceptual modeling exercise*/\n" +
 "		Efficiency float range [0,1] \n" +
 "Hypothesis: \n" +
+"	// Mindfullness helps students make better conceptual models\n" +
 "	H1: treatment impacts significantly on Effectiveness\n" +
+"	// Mindfullness helps students make conceptual models faster\n" +
 "	H2: treatment impacts significantly on Efficiency\n" +
+"// Our Design is based on a classic mixed factorial design with repeated measures\n"  +
 "Design :\n" +
 "	Sampling : Random\n" +
 "	Assignment : Custom\n" +
@@ -114,8 +117,9 @@ public class TestJSON2SEDL4People {
 "		Procedure :\n" +
 "		Runs:\n" +
 "			Baseline:\n" +
-"				Result:\n" +
-"					File: 'LabPack/data/Datos2014AnalysisR.csv'";
+"                           Log: 'Log execution specification'\n"+                        
+"                           Result:\n" +
+"				File: 'LabPack/data/Datos2014AnalysisR.csv'";
         
         System.out.println("=============== ORIGINAL EXPERIMENT DESCRIPTION ======================");
         System.out.println(originalExperimentDescription);
