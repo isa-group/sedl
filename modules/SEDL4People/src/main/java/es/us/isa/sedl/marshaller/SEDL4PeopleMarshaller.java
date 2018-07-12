@@ -58,6 +58,7 @@ import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.ProtocolScheme;
 import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
+import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ExperimentalResult;
@@ -397,9 +398,11 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
     }
 
     private String printDomain(Variable v) {
-        String result = null;
+        String result = "";
         if (v.getDomain() instanceof ExtensionDomain) {
-            result = printExtensionDomain((ExtensionDomain) v.getDomain());
+            if(v.getKind()==VariableKind.ORDINAL)
+                result = getTokenName(SEDL4PeopleLexer.ORDERED) + ESP;
+            result += printExtensionDomain((ExtensionDomain) v.getDomain());
         } else if (v.getDomain() instanceof IntensionDomain) {
             result = printIntensionDomain((IntensionDomain) v.getDomain());
         } else {
@@ -1023,10 +1026,10 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         } else if (inferentialStatistic instanceof ConfidenceInterval) {
             result = getTokenName(SEDL4PeopleLexer.CONFIDENCE_INTERVAL)
                     + getTokenName(SEDL4PeopleLexer.OPEN_PAR)
-                    + printDatasetSpecification(inferentialStatistic.getDatasetSpecification())
-                    + getTokenName(SEDL4PeopleLexer.COMMA)
-                    + ((ConfidenceInterval) inferentialStatistic).getConfidenceLevel()
-                    + getTokenName(SEDL4PeopleLexer.CLOSE_PAR);
+                    + printDatasetSpecification(inferentialStatistic.getDatasetSpecification());
+            if(((ConfidenceInterval) inferentialStatistic).getConfidenceLevel()!=0.0)
+                    result+= getTokenName(SEDL4PeopleLexer.COMMA) + ((ConfidenceInterval) inferentialStatistic).getConfidenceLevel();
+            result+= getTokenName(SEDL4PeopleLexer.CLOSE_PAR);
         } else if (inferentialStatistic instanceof AssociationalAnalysis) {
             result = printAssociationalAnalysis((AssociationalAnalysis) inferentialStatistic);
         }

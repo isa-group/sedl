@@ -855,13 +855,13 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     VariableValuation vv = new VariableValuation();
                     vv.setVariable(var);
                     vv.setLevel(createLevel(field.value().getText()));
-                    g.getValuations().set(COMMENTS, vv);
+                    g.getValuations().add(vv);
                     //g.getComplexValuations().add(buildComplexParameter(field.id().getText(),field.structValue()));
                 } else if (field.value() != null) {
                     VariableValuation vv = new VariableValuation();
                     vv.setVariable(var);
-                    vv.setLevel(createLevel(field.value().getText()));
-                    g.getValuations().set(COMMENTS, vv);
+                    vv.setLevel(createLevel(field.value().getText()));                    
+                    g.getValuations().add(vv);
                 }
             }
         }
