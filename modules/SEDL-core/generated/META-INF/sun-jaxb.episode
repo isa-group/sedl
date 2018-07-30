@@ -5,7 +5,7 @@
 Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-Generado el: 2018.05.03 a las 09:36:25 AM CEST 
+Generado el: 2018.06.26 a las 12:16:29 PM CEST 
 
   -->
   <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/datasetspecification" if-exists="true" scd="x-schema::tns">
@@ -151,6 +151,37 @@ Generado el: 2018.05.03 a las 09:36:25 AM CEST
     </bindings>
     <bindings if-exists="true" scd="~tns:FundamentalSet">
       <typesafeEnumClass ref="es.us.isa.sedl.core.design.FundamentalSet"/>
+    </bindings>
+  </bindings>
+  <bindings xmlns:tns="http://isa.us.es/sedl/core" if-exists="true" scd="x-schema::tns">
+    <schemaBindings map="false">
+      <package name="es.us.isa.sedl.core"/>
+    </schemaBindings>
+    <bindings if-exists="true" scd="~tns:SEDLEntity">
+      <class ref="es.us.isa.sedl.core.SEDLEntity"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:SEDLBase">
+      <class ref="es.us.isa.sedl.core.SEDLBase"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:BasicExperiment">
+      <class ref="es.us.isa.sedl.core.BasicExperiment"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:Experiment">
+      <class ref="es.us.isa.sedl.core.Experiment"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:ExtensionPoint">
+      <class ref="es.us.isa.sedl.core.ExtensionPoint"/>
+    </bindings>
+  </bindings>
+  <bindings xmlns:tns="http://isa.us.es/sedl/core/classification" if-exists="true" scd="x-schema::tns">
+    <schemaBindings map="false">
+      <package name="es.us.isa.sedl.core.classification"/>
+    </schemaBindings>
+    <bindings if-exists="true" scd="~tns:ExperimentalClassification">
+      <class ref="es.us.isa.sedl.core.classification.ExperimentalClassification"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:ExperimentalClassificationType">
+      <class ref="es.us.isa.sedl.core.classification.ExperimentalClassificationType"/>
     </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration" if-exists="true" scd="x-schema::tns">
@@ -312,35 +343,27 @@ Generado el: 2018.05.03 a las 09:36:25 AM CEST
       <class ref="es.us.isa.sedl.core.analysis.AnalysisResult"/>
     </bindings>
   </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core" if-exists="true" scd="x-schema::tns">
+  <bindings xmlns:tns="http://isa.us.es/sedl/core/context" if-exists="true" scd="x-schema::tns">
     <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core"/>
+      <package name="es.us.isa.sedl.core.context"/>
     </schemaBindings>
-    <bindings if-exists="true" scd="~tns:SEDLEntity">
-      <class ref="es.us.isa.sedl.core.SEDLEntity"/>
+    <bindings if-exists="true" scd="~tns:Person">
+      <class ref="es.us.isa.sedl.core.context.Person"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:SEDLBase">
-      <class ref="es.us.isa.sedl.core.SEDLBase"/>
+    <bindings if-exists="true" scd="~tns:Stakeholder">
+      <class ref="es.us.isa.sedl.core.context.Stakeholder"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:BasicExperiment">
-      <class ref="es.us.isa.sedl.core.BasicExperiment"/>
+    <bindings if-exists="true" scd="~tns:Organization">
+      <class ref="es.us.isa.sedl.core.context.Organization"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:Experiment">
-      <class ref="es.us.isa.sedl.core.Experiment"/>
+    <bindings if-exists="true" scd="~tns:Project">
+      <class ref="es.us.isa.sedl.core.context.Project"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:ExtensionPoint">
-      <class ref="es.us.isa.sedl.core.ExtensionPoint"/>
+    <bindings if-exists="true" scd="~tns:People">
+      <class ref="es.us.isa.sedl.core.context.People"/>
     </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/classification" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.classification"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalClassification">
-      <class ref="es.us.isa.sedl.core.classification.ExperimentalClassification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalClassificationType">
-      <class ref="es.us.isa.sedl.core.classification.ExperimentalClassificationType"/>
+    <bindings if-exists="true" scd="~tns:Context">
+      <class ref="es.us.isa.sedl.core.context.Context"/>
     </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/hypothesis" if-exists="true" scd="x-schema::tns">
@@ -379,29 +402,6 @@ Generado el: 2018.05.03 a las 09:36:25 AM CEST
     </bindings>
     <bindings if-exists="true" scd="~tns:Assertion">
       <class ref="es.us.isa.sedl.core.hypothesis.Assertion"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/context" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.context"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Person">
-      <class ref="es.us.isa.sedl.core.context.Person"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Stakeholder">
-      <class ref="es.us.isa.sedl.core.context.Stakeholder"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Organization">
-      <class ref="es.us.isa.sedl.core.context.Organization"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Project">
-      <class ref="es.us.isa.sedl.core.context.Project"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:People">
-      <class ref="es.us.isa.sedl.core.context.People"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Context">
-      <class ref="es.us.isa.sedl.core.context.Context"/>
     </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/statistic" if-exists="true" scd="x-schema::tns">
