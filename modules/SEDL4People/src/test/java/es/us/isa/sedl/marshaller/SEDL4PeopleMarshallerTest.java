@@ -78,7 +78,9 @@ import org.stringtemplate.v4.ST;
 public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{     
     
     
-    private static final String NEW_LINE=System.getProperty("line.separator");
+    //private static final String NEW_LINE=System.getProperty("line.separator");
+    private static final String NEW_LINE="\n";
+    private static final String TAB="\t";
     //==================================
     // PREAMBLE TESTS
     //==================================
@@ -104,14 +106,22 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     {
         Population p = new Population();
         p.setIndividualDescription("'Run of ETHOM for the parameters specified'");
-        p.setObjectivePopulation("'Any run of ETHOM with a valid tuning for the parameters specified'");
+        p.setAccesiblePopulation("'Any run of ETHOM with a valid tuning for the parameters specified'");
         
-        ST st=getTemplate("population",p,"p");        
-        String result=st.render();
+        //ST st=getTemplate("population",p,"p");        
+        //String result=st.render();
+        
+        BasicExperiment e=new BasicExperiment();
+        Design d=new Design();
+        e.setDesign(d);
+        d.setPopulation(p);
+        
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeExperimentContext(e);       
         
         String expectedResult=
-                "Object:'Run of ETHOM for the parameters specified'"+NEW_LINE
-                +"Population:'Any run of ETHOM with a valid tuning for the parameters specified'";
+                TAB+"Object:'Run of ETHOM for the parameters specified'"+NEW_LINE+
+                TAB+"Population:'Any run of ETHOM with a valid tuning for the parameters specified'";
         
         assertEquals(expectedResult.trim(),result.trim());
         
@@ -170,7 +180,9 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testExperimentVariables()
     {
+        BasicExperiment e=new BasicExperiment();
         Design design=new Design();
+        e.setDesign(design);
         Variables vars=new Variables();        
         design.setVariables(vars);
         Variable factor=new ControllableFactor();
@@ -198,16 +210,17 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         vars.getVariable().add(outcome);
         design.setVariables(vars);
         String expectedResult=
-                  "Variables:"+NEW_LINE
-                + "    Factors:"+NEW_LINE
-                + "        cf1 enum \"l1\", \"l2\" "+NEW_LINE
-                + "    NCFactors:"+NEW_LINE
-                + "        ncf enum \"l1\", \"l2\" "+NEW_LINE
-                + "    Outcome:"+NEW_LINE
-                + "        o in R   ";        
-        ST st=getTemplate("variables",design,"design");   
+                  "Variables :"+NEW_LINE
+                + TAB+"Factors :"+NEW_LINE
+                + TAB+TAB+"cf1 enum 'l1', 'l2'"+NEW_LINE
+                + TAB+"NCFactors :"+NEW_LINE
+                + TAB+TAB+"ncf enum 'l1', 'l2'"+NEW_LINE
+                + TAB+"Outcome :"+NEW_LINE
+                + TAB+TAB+"o float "+NEW_LINE;        
+        //ST st=getTemplate("variables",design,"design");   
         //st.inspect();
-        String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeVariablesBlock(e);       
         assertEquals(expectedResult.trim(),result.trim());                
     }
         
@@ -220,15 +233,17 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         design.setExperimentalDesign(fsed);
         e.setDesign(design);
         String expectedResult=
-                  "    Sampling: Custom"+NEW_LINE
-                + "    Assignment: Random"+NEW_LINE
-                + "    Blocking: Vname"+NEW_LINE
-                + "    Groups:"+NEW_LINE
-                + "         by Vname sizing 40"+NEW_LINE
-                + "    Protocol:Random"+NEW_LINE   
-                + "    Analyses:"+NEW_LINE;               
-        ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
-        String result=st.render();
+                "Design :"+NEW_LINE
+                + TAB+"Assignment: Random"+NEW_LINE;
+                /*+ TAB+"Blocking: Vname"+NEW_LINE
+                + TAB+"Groups:"+NEW_LINE
+                + TAB+TAB+"by Vname sizing 40"+NEW_LINE
+                + TAB+"Protocol:Random"+NEW_LINE   
+                + TAB+"Analyses:"+NEW_LINE;               */
+        //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeDesign(e);       
         assertEquals(expectedResult.trim(),result.trim());                
     }
     
@@ -277,18 +292,14 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
          design.setExperimentalDesign(fsed);
         e.setDesign(design);
         String expectedResult=
-                  "    Sampling: Custom"+NEW_LINE
-                + "    Assignment: Random"+NEW_LINE
-                + "    Blocking: Vname"+NEW_LINE
-                + "    Groups:"+NEW_LINE
-                + "         by Vname sizing 40"+NEW_LINE
-                + "    Protocol:Random"+NEW_LINE
-                + "    Analyses: "+NEW_LINE
-                + "            A1:"+NEW_LINE
-                + "                Avg()" +NEW_LINE 		
- 		+ "                Median()"+NEW_LINE;               
-        ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
-        String result=st.render();
+                  TAB+"Analyses :"+NEW_LINE
+                + TAB+TAB+ "A1:"+NEW_LINE
+                + TAB+TAB+TAB+"Avg()" +NEW_LINE 		
+ 		+ TAB+TAB+TAB+"Median()"+NEW_LINE;               
+        //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeAnalyses(e);
         //st.inspect();
         assertEquals(expectedResult.trim(),result.trim());                
     }

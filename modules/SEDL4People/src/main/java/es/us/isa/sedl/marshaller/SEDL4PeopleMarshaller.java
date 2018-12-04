@@ -37,6 +37,7 @@ import es.us.isa.sedl.core.configuration.OutputDataSource;
 import es.us.isa.sedl.core.configuration.Parameter;
 import es.us.isa.sedl.core.configuration.Runtime;
 import es.us.isa.sedl.core.configuration.SimpleParameter;
+import es.us.isa.sedl.core.context.ClassificationEntry;
 import es.us.isa.sedl.core.context.Person;
 import es.us.isa.sedl.core.design.Treatment;
 import es.us.isa.sedl.core.design.AnalysisSpecification;
@@ -182,10 +183,11 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
             }
             return result.toString();
         }*/
-    private String writeExperimentContext(Experiment exp) {
+    public String writeExperimentContext(Experiment exp) {
         StringBuilder sb = new StringBuilder();
-        BasicExperiment e = (BasicExperiment) experiment;
-        sb.append(writePreComments(TAB, e.getContext(), FormalLinguisticPattern.GQM));
+        BasicExperiment e = (BasicExperiment) exp;
+        if(e.getContext()!=null)
+            sb.append(writePreComments(TAB, e.getContext(), FormalLinguisticPattern.GQM));
         /*boolean firstNote = true;
         if (!experiment.getNotes().isEmpty()) {
 
@@ -218,6 +220,8 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                         .append(RET);
             }
         }*/
+        sb.append(writeExperimentClassification(exp));
+        sb.append(writeExperimentKeywords(exp));
         if (e.getContext() != null && e.getContext().getPeople() != null && !e.getContext().getPeople().getPerson().isEmpty()) {
             sb.append(getTokenName(SEDL4PeopleLexer.SUBJECTS)).append(getTokenName(SEDL4PeopleLexer.COLON)).append(RET);
             for (Person p : e.getContext().getPeople().getPerson()) {
@@ -263,8 +267,52 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         }
         return sb.toString();
     }
+    
+    private String writeExperimentClassification(Experiment exp){
+        String result="";
+        BasicExperiment e = (BasicExperiment) exp;        
+        if(e.getContext()!=null && !e.getContext().getClasses().isEmpty()){            
+            StringBuilder sb=new StringBuilder();
+            sb.append(TAB)
+                    .append(getTokenName(SEDL4PeopleLexer.CLASSIFIED_AS))
+                    .append(getTokenName(SEDL4PeopleLexer.COLON)).append(RET);
+            for(ClassificationEntry ce:e.getContext().getClasses()){
+                sb.append(TAB).append(TAB)
+                    .append(ce.getOrganization().getName())
+                    .append(getTokenName(SEDL4PeopleLexer.COLON))
+                    .append(ce.getCode())
+                    .append(ESP)
+                    .append(ce.getName())
+                    .append(RET);
+            }
+            result=sb.toString();
+        }
+        return result;
+    }
+    
+    private String writeExperimentKeywords(Experiment exp){
+        String result="";
+        BasicExperiment e = (BasicExperiment) exp;
+        ClassificationEntry ce=null;
+        if(e.getContext()!=null && !e.getContext().getKeywords().isEmpty()){
+            StringBuilder sb=new StringBuilder();
+            sb.append(TAB)
+                    .append(getTokenName(SEDL4PeopleLexer.KEYWORDS))
+                    .append(getTokenName(SEDL4PeopleLexer.COLON)).append(ESP);
+            for(int i=0;i<e.getContext().getKeywords().size();i++){                
+                sb.append(e.getContext().getKeywords().get(i));
+                if(i!=e.getContext().getKeywords().size()-1){
+                    sb.append(getTokenName(SEDL4PeopleLexer.COMMA))
+                        .append(ESP);
+                }else
+                    sb.append(RET);
+            }
+            result=sb.toString();
+        }
+        return result;
+    }
 
-    private String writeConstantsBlock(Experiment experiment) {
+    public String writeConstantsBlock(Experiment experiment) {
         BasicExperiment exp = null;
         StringBuilder sb = new StringBuilder();
         if (experiment instanceof BasicExperiment) {
@@ -328,7 +376,12 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         return sb.toString();
     }
 
-    private String writeVariablesBlock(Experiment experiment) {
+    public String writeVariablesBlock(Experiment experiment) {
+        
+        BasicExperiment exp = null;
+        if (experiment instanceof BasicExperiment) {
+            exp = (BasicExperiment) experiment;
+        }
         StringBuilder sb = new StringBuilder(
                 getTokenName(SEDL4PeopleLexer.VARIABLES));
         sb.append(
@@ -337,20 +390,16 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                 getTokenName(SEDL4PeopleLexer.COLON)
         ).append(RET
         ).append(
-                writeFactorsBlock()
+                writeFactorsBlock(exp)
         ).append(
-                writeNCFactorsBlock()
+                writeNCFactorsBlock(exp)
         ).append(
-                writeOutcomeBlock()
+                writeOutcomeBlock(exp)
         );
         return sb.toString();
     }
 
-    private String writeFactorsBlock() {
-        BasicExperiment exp = null;
-        if (experiment instanceof BasicExperiment) {
-            exp = (BasicExperiment) experiment;
-        }
+    private String writeFactorsBlock(BasicExperiment exp) {        
         StringBuilder sb = new StringBuilder();
         if (exp != null) {
             sb.append(
@@ -506,12 +555,8 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         return sb.toString();
     }
 
-    private String writeNCFactorsBlock() {
-        StringBuilder sb = new StringBuilder();
-        BasicExperiment exp = null;
-        if (experiment instanceof BasicExperiment) {
-            exp = (BasicExperiment) experiment;
-        }
+    private String writeNCFactorsBlock(BasicExperiment exp) {
+        StringBuilder sb = new StringBuilder();        
         boolean ncFactorsExists = false;
         boolean titleWroten = false;
         if (exp != null) {
@@ -537,12 +582,8 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         return sb.toString();
     }
 
-    private String writeOutcomeBlock() {
-        StringBuilder sb = new StringBuilder();
-        BasicExperiment exp = null;
-        if (experiment instanceof BasicExperiment) {
-            exp = (BasicExperiment) experiment;
-        }
+    private String writeOutcomeBlock(BasicExperiment exp) {
+        StringBuilder sb = new StringBuilder();      
         boolean outcomeExists = false;
         boolean titleWroten = false;
         if (exp != null) {
@@ -566,7 +607,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
 
     }
 
-    private String writeHypothesis(Experiment experiment) {
+    public String writeHypothesis(Experiment experiment) {
         BasicExperiment exp = null;
         StringBuilder sb = new StringBuilder();
         if (experiment instanceof BasicExperiment) {
@@ -603,7 +644,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         return sb.toString();
     }
 
-    private String writeDesign(Experiment experiment) {
+    public String writeDesign(Experiment experiment) {
         StringBuilder sb = new StringBuilder();
         if (experiment instanceof BasicExperiment) {
             BasicExperiment exp = (BasicExperiment) experiment;
@@ -643,10 +684,10 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
             exp = (BasicExperiment) experiment;
         }
         StringBuilder sb = new StringBuilder();
-        System.out.println("BEFORE SAMPLING: " + String.valueOf(exp != null) + "/" + String.valueOf(exp.getDesign() != null) + "//" + String.valueOf(exp.getDesign().getSamplingMethod() != null));
+        //System.out.println("BEFORE SAMPLING: " + String.valueOf(exp != null) + "/" + String.valueOf(exp.getDesign() != null) + "//" + String.valueOf(exp.getDesign().getSamplingMethod() != null));
         if (exp != null && exp.getDesign() != null && exp.getDesign().getSamplingMethod() != null) {
-            System.out.println(">>>>>>>>> WRITE SAMPLING 2");
-            System.out.println("Writing: " + TAB + getTokenName(SEDL4PeopleLexer.SAMPLING) + ESP + getTokenName(SEDL4PeopleLexer.COLON) + ESP);
+            //System.out.println(">>>>>>>>> WRITE SAMPLING 2");
+            //System.out.println("Writing: " + TAB + getTokenName(SEDL4PeopleLexer.SAMPLING) + ESP + getTokenName(SEDL4PeopleLexer.COLON) + ESP);
             sb.append(
                     TAB
             ).append(
@@ -659,13 +700,13 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                     ESP
             );
             if (exp.getDesign().getSamplingMethod().isRandom()) {
-                System.out.println("RANDOM!");
+                //System.out.println("RANDOM!");
                 sb.append(
                         getTokenName(SEDL4PeopleLexer.RANDOM)
                 ).append(
                         RET);
             } else {
-                System.out.println("NO RANDOM!");
+                //System.out.println("NO RANDOM!");
                 sb.append(
                         exp.getDesign().getSamplingMethod().getDescription()
                 ).append(
@@ -923,7 +964,7 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
         return sb.toString();
     }
 
-    private String writeAnalyses(Experiment experiment) {
+    public String writeAnalyses(Experiment experiment) {
         BasicExperiment exp = null;
         if (experiment instanceof BasicExperiment) {
             exp = (BasicExperiment) experiment;
@@ -1069,27 +1110,27 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
 
     private String printDatasetSpecification(DatasetSpecification dataSpec) {
         StringBuilder sb = new StringBuilder();
+        if(dataSpec!=null){
+            for (int i = 0; i < dataSpec.getProjections().size(); i++) {
+                Projection p = dataSpec.getProjections().get(i);
+                if (!(p instanceof GroupingProjection)) {
+                    sb.append(printProjection(p));
+                }
+            }
 
-        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
-            Projection p = dataSpec.getProjections().get(i);
-            if (!(p instanceof GroupingProjection)) {
-                sb.append(printProjection(p));
+            for (int i = 0; i < dataSpec.getFilters().size(); i++) {
+                Filter f = dataSpec.getFilters().get(i);
+                sb.append(printFilter(f));
+                sb.append(ESP);
+            }
+
+            for (int i = 0; i < dataSpec.getProjections().size(); i++) {
+                Projection p = dataSpec.getProjections().get(i);
+                if (p instanceof GroupingProjection) {
+                    sb.append(printProjection(p));
+                }
             }
         }
-
-        for (int i = 0; i < dataSpec.getFilters().size(); i++) {
-            Filter f = dataSpec.getFilters().get(i);
-            sb.append(printFilter(f));
-            sb.append(ESP);
-        }
-
-        for (int i = 0; i < dataSpec.getProjections().size(); i++) {
-            Projection p = dataSpec.getProjections().get(i);
-            if (p instanceof GroupingProjection) {
-                sb.append(printProjection(p));
-            }
-        }
-
         return sb.toString();
     }
 
@@ -1155,10 +1196,12 @@ public class SEDL4PeopleMarshaller implements SEDLMarshaller {
                 ));
             }
             VariableValuation var = vf.getVariableValuations().get(j);
-            sb.append(
+            if(var!=null){
+                sb.append(
                     var.getVariable().getName())
                     .append("=")
                     .append(printValue(var.getLevel().getValue()));
+            }
         }
         return sb.toString();
     }

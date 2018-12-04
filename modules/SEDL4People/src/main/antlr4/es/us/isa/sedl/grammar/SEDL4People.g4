@@ -51,11 +51,18 @@ experimentPreamble: EXPERIMENT COLON id  (VERSION COLON versionNumber)? (REP COL
 
 experimentType: extensionPoint;
 
-experimentContext: notes? annotations? subjects? object? population?;
+experimentContext: notes? annotations? classification? keywords?  subjects? object? population?;
+
 
 notes: NOTES COLON (StringLiteral)+;
        
 annotations: ANNOTATIONS COLON (StringLiteral)+;
+
+classification: CLASSIFIED_AS COLON (classification_entry)+;
+
+classification_entry: id CLASSIFIER; 
+
+keywords: KEYWORDS COLON (KEYWORD)+;
 
 subjects: SUBJECTS COLON stakeholder+;
 
@@ -442,6 +449,11 @@ extensionPoint : Identifier EXTENSION_POINT_CONTENT ;
 /*=====================================
             LEXICAL RULES
  ======================================*/
+CLASSIFIER: COLON .*? '\r'? ('\n'|';') // Classifier content
+    ;
+
+KEYWORD: .*? '\r'? ('\n'|',') // Keyword content
+    ;
 
 EXTENSION_POINT_CONTENT: DOUBLECOLON OPEN_BRA .*? CLOSE_BRA // Multiple lines content
                        | DOUBLECOLON .*? '\r'? '\n' // Single Line Content 
@@ -457,6 +469,8 @@ VERSION: 'version';
 REP: 'rep';             
 NOTES: 'Notes';
 ANNOTATIONS: 'Annotations';
+CLASSIFIED_AS: 'Cathegories';
+KEYWORDS: 'Keywords';
 SUBJECTS: 'Subjects';
 OBJECT: 'Object';
 POPULATION: 'Population';

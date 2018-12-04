@@ -55,6 +55,9 @@ import es.us.isa.sedl.core.configuration.Runtime;
 import es.us.isa.sedl.core.configuration.SimpleParameter;
 import es.us.isa.sedl.core.configuration.SoftwarePlatform;
 import es.us.isa.sedl.core.configuration.Treatment;
+import es.us.isa.sedl.core.context.BiLevelClassificationSystem;
+import es.us.isa.sedl.core.context.ClassificationSystem;
+import es.us.isa.sedl.core.context.ClassificationEntry;
 import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.context.People;
 import es.us.isa.sedl.core.context.Person;
@@ -129,6 +132,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.misc.Interval;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
@@ -256,6 +260,33 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             experiment.getAnnotations().add(ctx.getChild(i).getText());
         }
         objectNodeMap.put(context.getAnnotations(), ctx);
+    }
+    
+    @Override
+    public void enterClassification(SEDL4PeopleParser.ClassificationContext ctx) { 
+        for(SEDL4PeopleParser.Classification_entryContext cectx:ctx.classification_entry()){
+            String classificationSystemId=cectx.id().getText();
+            String classificationEntry=cectx.CLASSIFIER().getText().replaceFirst(":", "").trim();
+            if(classificationEntry.endsWith(";"))
+                classificationEntry=classificationEntry.substring(0, classificationEntry.length()-1);
+            int separatorIndex=classificationEntry.indexOf(" ");
+            String classificationCode=classificationEntry.substring(0, separatorIndex-1);
+            String classificationText=classificationEntry.substring(separatorIndex,classificationEntry.length()-1);
+            ClassificationSystem cs=new BiLevelClassificationSystem();
+            cs.setName(classificationSystemId);
+            ClassificationEntry ce=new ClassificationEntry();
+            ce.setCode(classificationCode);
+            ce.setName(classificationText);
+            ce.setOrganization(cs);
+            experiment.getContext().getClasses().add(ce);
+        }
+    }
+    
+    @Override 
+    public void enterKeywords(SEDL4PeopleParser.KeywordsContext ctx) { 
+        for(TerminalNode kwd:ctx.KEYWORD()){
+            experiment.getContext().getKeywords().add(kwd.getText().replace(",","").trim());
+        }
     }
 
     @Override
