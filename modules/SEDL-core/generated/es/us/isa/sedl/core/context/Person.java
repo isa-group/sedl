@@ -2,16 +2,17 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
 package es.us.isa.sedl.core.context;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -35,7 +36,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * &lt;complexType name="Person"&gt;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://isa.us.es/sedl/core/context}Stakeholder"&gt;
- *       &lt;attribute name="organization" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+ *       &lt;attribute name="organization"&gt;
+ *         &lt;simpleType&gt;
+ *           &lt;list itemType="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+ *         &lt;/simpleType&gt;
+ *       &lt;/attribute&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -51,31 +56,35 @@ public class Person
 {
 
     @XmlAttribute(name = "organization")
-    @XmlSchemaType(name = "anyURI")
-    protected String organization;
+    protected List<String> organization;
 
     /**
-     * Obtiene el valor de la propiedad organization.
+     * Gets the value of the organization property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getOrganization() {
-        return organization;
-    }
-
-    /**
-     * Define el valor de la propiedad organization.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the organization property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getOrganization().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
      */
-    public void setOrganization(String value) {
-        this.organization = value;
+    public List<String> getOrganization() {
+        if (organization == null) {
+            organization = new ArrayList<String>();
+        }
+        return this.organization;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
@@ -90,10 +99,10 @@ public class Person
         }
         final Person that = ((Person) object);
         {
-            String lhsOrganization;
-            lhsOrganization = this.getOrganization();
-            String rhsOrganization;
-            rhsOrganization = that.getOrganization();
+            List<String> lhsOrganization;
+            lhsOrganization = (((this.organization!= null)&&(!this.organization.isEmpty()))?this.getOrganization():null);
+            List<String> rhsOrganization;
+            rhsOrganization = (((that.organization!= null)&&(!that.organization.isEmpty()))?that.getOrganization():null);
             if (!strategy.equals(LocatorUtils.property(thisLocator, "organization", lhsOrganization), LocatorUtils.property(thatLocator, "organization", rhsOrganization), lhsOrganization, rhsOrganization)) {
                 return false;
             }
@@ -109,8 +118,8 @@ public class Person
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
-            String theOrganization;
-            theOrganization = this.getOrganization();
+            List<String> theOrganization;
+            theOrganization = (((this.organization!= null)&&(!this.organization.isEmpty()))?this.getOrganization():null);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "organization", theOrganization), currentHashCode, theOrganization);
         }
         return currentHashCode;
@@ -135,11 +144,16 @@ public class Person
         super.copyTo(locator, draftCopy, strategy);
         if (draftCopy instanceof Person) {
             final Person copy = ((Person) draftCopy);
-            if (this.organization!= null) {
-                String sourceOrganization;
-                sourceOrganization = this.getOrganization();
-                String copyOrganization = ((String) strategy.copy(LocatorUtils.property(locator, "organization", sourceOrganization), sourceOrganization));
-                copy.setOrganization(copyOrganization);
+            if ((this.organization!= null)&&(!this.organization.isEmpty())) {
+                List<String> sourceOrganization;
+                sourceOrganization = (((this.organization!= null)&&(!this.organization.isEmpty()))?this.getOrganization():null);
+                @SuppressWarnings("unchecked")
+                List<String> copyOrganization = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "organization", sourceOrganization), sourceOrganization));
+                copy.organization = null;
+                if (copyOrganization!= null) {
+                    List<String> uniqueOrganizationl = copy.getOrganization();
+                    uniqueOrganizationl.addAll(copyOrganization);
+                }
             } else {
                 copy.organization = null;
             }

@@ -14,14 +14,14 @@ import es.us.isa.sedl.core.analysis.statistic.InterquartileRange;
 import es.us.isa.sedl.core.analysis.statistic.Mean;
 import es.us.isa.sedl.core.analysis.statistic.Median;
 import es.us.isa.sedl.core.analysis.statistic.Mode;
-import es.us.isa.sedl.core.analysis.statistic.NHST;
+import es.us.isa.sedl.core.analysis.statistic.Nhst;
 import es.us.isa.sedl.core.analysis.statistic.NamedStatisticalTestAssertion;
 import es.us.isa.sedl.core.analysis.statistic.Range;
 import es.us.isa.sedl.core.analysis.statistic.Ranking;
 import es.us.isa.sedl.core.analysis.statistic.StandardDeviation;
 import es.us.isa.sedl.core.analysis.statistic.StatisticalTestAssertion;
 import es.us.isa.sedl.core.analysis.statistic.VariabilityMeasure;
-import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.grammar.SEDL4PeopleLexer;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser;
@@ -55,7 +55,7 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
         StatisticalAnalysisSpec result = new StatisticalAnalysisSpec();
         String functionType = context.getChild(0).getText();
         if (context.nhstSF() != null) {            
-            List<NHST> nhstList = parseNHST(context.nhstSF(),listener);            
+            List<Nhst> nhstList = parseNHST(context.nhstSF(),listener);            
             result.getStatistic().addAll(nhstList);
         } else if (context.correlationCoeficientSF() != null) {
             List<CorrelationCoeficient> corCoefList=parseCorrelationCoeficient(context.correlationCoeficientSF(),listener);                        
@@ -79,20 +79,20 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
         return result;
     }
 
-    public List<NHST> parseNHST(SEDL4PeopleParser.NhstSFContext ctx, SEDL4PeopleExtendedListener listener) {
-            List<NHST> result=new ArrayList<NHST>();            
+    public List<Nhst> parseNHST(SEDL4PeopleParser.NhstSFContext ctx, SEDL4PeopleExtendedListener listener) {
+            List<Nhst> result=new ArrayList<Nhst>();            
             String name=ctx.nhstFunction().getText();
-            NHST nhst=null;
+            Nhst nhst=null;
             if (ctx.statisticFunctionParam() == null || ctx.statisticFunctionParam().isEmpty()) {
-                nhst=new NHST();
+                nhst=new Nhst();
                 nhst.setName(name);
-                nhst.setDatasetSpecification(datasetSpecParser.defaultDatsetSpecification(listener,NHST.class,name));
+                nhst.setDatasetSpecification(datasetSpecParser.defaultDatsetSpecification(listener,Nhst.class,name));
                 generateAssumpions(name,nhst.getAssumptions(),nhst.getDatasetSpecification());
                 result.add(nhst);
             } else {
                 DatasetSpecification dataset = null;      
                 
-                nhst = new NHST();
+                nhst = new Nhst();
                 nhst.setName(name);
                 if(!ctx.statisticFunctionParam(0).getText().equals("")){
                 	dataset=datasetSpecParser.parse(ctx.statisticFunctionParam(0), listener);
@@ -252,7 +252,7 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
     }
     
     private NamedStatisticalTestAssertion generateNormalityAssumption(DatasetSpecification spec){        
-        NHST test=new NHST();
+        Nhst test=new Nhst();
         test.setName(DEFAULT_NORMALITY_TEST);
         test.setAlpha(DEFAULT_ASSUMPTIONS_ALPHA);
         test.setDatasetSpecification(spec);
@@ -261,7 +261,7 @@ public class StatisticalAnalysisSpecParser implements Parser<StatisticalAnalysis
     }
     
     private NamedStatisticalTestAssertion generateHomocedasticityAssumption(DatasetSpecification spec){ 
-        NHST test=new NHST();
+        Nhst test=new Nhst();
         test.setName(DEFAULT_HOMOCEDASTICITY_TEST);
         test.setAlpha(DEFAULT_ASSUMPTIONS_ALPHA);
         test.setDatasetSpecification(spec);

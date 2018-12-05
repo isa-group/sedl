@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -34,7 +34,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * &lt;complexType name="FileFormatSpecification"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attribute name="Type" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
+ *       &lt;attribute name="type" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -48,7 +48,7 @@ public abstract class FileFormatSpecification
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlAttribute(name = "Type", required = true)
+    @XmlAttribute(name = "type", required = true)
     protected String type;
 
     /**

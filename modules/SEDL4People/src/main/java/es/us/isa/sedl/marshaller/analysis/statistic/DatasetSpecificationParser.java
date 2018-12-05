@@ -78,7 +78,7 @@ public class DatasetSpecificationParser implements Parser<DatasetSpecification, 
                 ValuationFilter vf = new ValuationFilter();
                 VariableValuation vv = new VariableValuation();
                 vf.getVariableValuations().add(vv);
-                vv.setVariable(var);
+                vv.setVariable(var.getName());
             } else {
                 Projection proj = new Projection();
                 for (Variable v : outcomes) {
@@ -99,10 +99,11 @@ public class DatasetSpecificationParser implements Parser<DatasetSpecification, 
                 idCtx = assignmentCtx.id();
                 valContext = assignmentCtx.value();
                 VariableValuation valuation = new VariableValuation();
-                valuation.setVariable(listener.findVariableById(idCtx, true));
+                Variable var=listener.findVariableById(idCtx, true);
+                valuation.setVariable(var.getName());
                 if (valContext != null) {
-                    Level level = createLevel(valContext.getText(), valuation.getVariable());
-                    valuation.setLevel(level);
+                    Level level = createLevel(valContext.getText(), var);
+                    valuation.setLevel(valContext.getText());
                 }
                 filter.getVariableValuations().add(valuation);
             }
@@ -147,10 +148,11 @@ public class DatasetSpecificationParser implements Parser<DatasetSpecification, 
                 result.getProjections().add(projection);
             } else {
                 VariableValuation valuation = new VariableValuation();
-                valuation.setVariable(listener.findVariableById(assignmentCtx.id().getText(), true, Variable.class));
+                Variable myvar=listener.findVariableById(assignmentCtx.id().getText(), true, Variable.class);
+                valuation.setVariable(myvar.getName());
                 if (assignmentCtx.value() != null) {
-                    Level level = createLevel(assignmentCtx.value().getText(),valuation.getVariable());                    
-                    valuation.setLevel(level);
+                    Level level = createLevel(assignmentCtx.value().getText(),myvar);                    
+                    valuation.setLevel(level.getValue());
                 }
                 filter.getVariableValuations().add(valuation);
             }
@@ -210,7 +212,7 @@ public class DatasetSpecificationParser implements Parser<DatasetSpecification, 
                 ValuationFilter vf = new ValuationFilter();
                 VariableValuation vv = new VariableValuation();
                 vf.getVariableValuations().add(vv);
-                vv.setVariable(var);
+                vv.setVariable(var.getName());
             } else {
                 Projection proj = new Projection();
                 for (Variable v : outcomes) {
@@ -231,10 +233,11 @@ public class DatasetSpecificationParser implements Parser<DatasetSpecification, 
                 idCtx = assignmentCtx.id();
                 valContext = assignmentCtx.value();
                 VariableValuation valuation = new VariableValuation();
-                valuation.setVariable(listener.findVariableById(idCtx, true));
+                Variable var=listener.findVariableById(idCtx, true);
+                valuation.setVariable(var.getName());
                 if (valContext != null) {
-                    Level level = createLevel(valContext.getText(),valuation.getVariable());                    
-                    valuation.setLevel(level);
+                    Level level = createLevel(valContext.getText(),var);                    
+                    valuation.setLevel(level.getValue());
                 }
                 filter.getVariableValuations().add(valuation);
             }

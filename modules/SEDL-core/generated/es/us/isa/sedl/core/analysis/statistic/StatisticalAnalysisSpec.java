@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
-package es.us.isa.sedl.core.design;
+package es.us.isa.sedl.core.analysis.statistic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import es.us.isa.sedl.core.analysis.statistic.Statistic;
+import es.us.isa.sedl.core.design.AbstractStatisticalAnalysisSpec;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -36,7 +36,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="StatisticalAnalysisSpec"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core/design}AnalysisSpecification"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core/design}AnalysisSpecificationGroup"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="statistic" type="{http://isa.us.es/sedl/core/analysis/statistic}Statistic" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;

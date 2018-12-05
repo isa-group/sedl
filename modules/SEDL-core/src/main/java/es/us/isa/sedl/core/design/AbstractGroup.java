@@ -33,7 +33,7 @@ public abstract class AbstractGroup {
     }*/
         
     
-    public List<Group> expandGroups()
+    public List<Group> expandGroups(Variables vars)
     {
         List<Group> result=new ArrayList<Group>();
         List<VariableValuation> abstractValuations=getAbstractValuations(getValuations());
@@ -49,7 +49,7 @@ public abstract class AbstractGroup {
             for(VariableValuation vv:getValuations())
                 if(!abstractValuations.contains(vv))
                     concreteValuations.add(vv);
-            expandGroups(abstractValuations,concreteValuations,0,result);
+            expandGroups(abstractValuations,concreteValuations,0,result,vars);
         }
         return result;
     }
@@ -77,20 +77,21 @@ public abstract class AbstractGroup {
         return result;
     }
 
-    private void expandGroups(List<VariableValuation> abstractValuations,List<VariableValuation> concreteValuations, int i, List<Group> result) {        
-       Variable v=abstractValuations.get(i).getVariable();
+    private void expandGroups(List<VariableValuation> abstractValuations,List<VariableValuation> concreteValuations, int i, List<Group> result,Variables vars) {        
+       String vname=abstractValuations.get(i).getVariable();
        VariableValuation valuation=null;
-       valuation.setVariable(v);               
+       valuation.setVariable(vname);
+       Variable v=vars.getVariableByName(vname);
        if(v.getDomain().isFinite())
        {
             for(Level l:v.getDomain().getLevels()){
                 valuation=new VariableValuation();
-                valuation.setLevel(l);
-                valuation.setVariable(v);
+                valuation.setLevel(l.getValue());
+                valuation.setVariable(v.getName());
                 concreteValuations.add(valuation);
                 if(i<abstractValuations.size()-1)
                 {
-                    expandGroups(abstractValuations,concreteValuations,i+1,result);
+                    expandGroups(abstractValuations,concreteValuations,i+1,result,vars);
                 }else{
                     result.add(createGroup(abstractValuations,concreteValuations));
                 }
@@ -114,7 +115,7 @@ public abstract class AbstractGroup {
         VariableValuation valuation=null;
         for(int i=index;i<concreteValuations.size();i++)
         {
-            result+=concreteValuations.get(i).getLevel().getValue();
+            result+=concreteValuations.get(i).getLevel();
             if(i!=concreteValuations.size()-1)
                 result+="-";
         }

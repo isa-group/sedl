@@ -14,4 +14,5 @@ import java.util.List;
 public abstract class AbstractDomain {
     public abstract List<Level> getLevels();    
     public abstract boolean contains(Level l);
+    public abstract boolean isFinite();
 }

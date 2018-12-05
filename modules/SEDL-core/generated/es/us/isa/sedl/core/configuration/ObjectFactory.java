@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -35,17 +35,17 @@ public class ObjectFactory {
     private final static QName _ExperimentalProcedure_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalProcedure");
     private final static QName _ExperimentalTask_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalTask");
     private final static QName _ExperimentalTaskType_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalTaskType");
-    private final static QName _ExperimentalSetting_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalSetting");
-    private final static QName _ExperimentalEnvironment_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalEnvironment");
     private final static QName _ExperimentalInputs_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalInputs");
     private final static QName _InputDataSource_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "InputDataSource");
     private final static QName _FileSpecification_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "FileSpecification");
     private final static QName _FileFormatSpecification_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "FileFormatSpecification");
+    private final static QName _Parameter_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "Parameter");
     private final static QName _File_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "File");
     private final static QName _ExperimentalOutputs_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalOutputs");
     private final static QName _OutputDataSource_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "OutputDataSource");
     private final static QName _CommandExperimentalTask_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "CommandExperimentalTask");
     private final static QName _ComplexParameter_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ComplexParameter");
+    private final static QName _ExperimentalEnvironment_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalEnvironment");
     private final static QName _ComputationEnvironment_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ComputationEnvironment");
     private final static QName _HardwarePlatform_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "HardwarePlatform");
     private final static QName _SoftwarePlatform_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "SoftwarePlatform");
@@ -59,7 +59,7 @@ public class ObjectFactory {
     private final static QName _Measurement_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "Measurement");
     private final static QName _Postprocessing_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "Postprocessing");
     private final static QName _TreatmentAndMeasurement_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "TreatmentAndMeasurement");
-    private final static QName _Parameter_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "Parameter");
+    private final static QName _ExperimentalSetting_QNAME = new QName("http://isa.us.es/sedl/core/configuration", "ExperimentalSetting");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: es.us.isa.sedl.core.configuration
@@ -90,22 +90,6 @@ public class ObjectFactory {
      */
     public ExperimentalTaskType createExperimentalTaskType() {
         return new ExperimentalTaskType();
-    }
-
-    /**
-     * Create an instance of {@link ExperimentalSetting }
-     * 
-     */
-    public ExperimentalSetting createExperimentalSetting() {
-        return new ExperimentalSetting();
-    }
-
-    /**
-     * Create an instance of {@link ExperimentalEnvironment }
-     * 
-     */
-    public ExperimentalEnvironment createExperimentalEnvironment() {
-        return new ExperimentalEnvironment();
     }
 
     /**
@@ -170,6 +154,14 @@ public class ObjectFactory {
      */
     public ComplexParameter createComplexParameter() {
         return new ComplexParameter();
+    }
+
+    /**
+     * Create an instance of {@link ExperimentalEnvironment }
+     * 
+     */
+    public ExperimentalEnvironment createExperimentalEnvironment() {
+        return new ExperimentalEnvironment();
     }
 
     /**
@@ -277,11 +269,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Parameter }
+     * Create an instance of {@link ExperimentalSetting }
      * 
      */
-    public Parameter createParameter() {
-        return new Parameter();
+    public ExperimentalSetting createExperimentalSetting() {
+        return new ExperimentalSetting();
     }
 
     /**
@@ -321,24 +313,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExperimentalSetting }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "ExperimentalSetting")
-    public JAXBElement<ExperimentalSetting> createExperimentalSetting(ExperimentalSetting value) {
-        return new JAXBElement<ExperimentalSetting>(_ExperimentalSetting_QNAME, ExperimentalSetting.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ExperimentalEnvironment }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "ExperimentalEnvironment")
-    public JAXBElement<ExperimentalEnvironment> createExperimentalEnvironment(ExperimentalEnvironment value) {
-        return new JAXBElement<ExperimentalEnvironment>(_ExperimentalEnvironment_QNAME, ExperimentalEnvironment.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ExperimentalInputs }{@code >}}
      * 
      */
@@ -372,6 +346,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "FileFormatSpecification")
     public JAXBElement<FileFormatSpecification> createFileFormatSpecification(FileFormatSpecification value) {
         return new JAXBElement<FileFormatSpecification>(_FileFormatSpecification_QNAME, FileFormatSpecification.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Parameter }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "Parameter")
+    public JAXBElement<Parameter> createParameter(Parameter value) {
+        return new JAXBElement<Parameter>(_Parameter_QNAME, Parameter.class, null, value);
     }
 
     /**
@@ -417,6 +400,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "ComplexParameter")
     public JAXBElement<ComplexParameter> createComplexParameter(ComplexParameter value) {
         return new JAXBElement<ComplexParameter>(_ComplexParameter_QNAME, ComplexParameter.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExperimentalEnvironment }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "ExperimentalEnvironment")
+    public JAXBElement<ExperimentalEnvironment> createExperimentalEnvironment(ExperimentalEnvironment value) {
+        return new JAXBElement<ExperimentalEnvironment>(_ExperimentalEnvironment_QNAME, ExperimentalEnvironment.class, null, value);
     }
 
     /**
@@ -537,12 +529,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Parameter }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ExperimentalSetting }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "Parameter")
-    public JAXBElement<Parameter> createParameter(Parameter value) {
-        return new JAXBElement<Parameter>(_Parameter_QNAME, Parameter.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration", name = "ExperimentalSetting")
+    public JAXBElement<ExperimentalSetting> createExperimentalSetting(ExperimentalSetting value) {
+        return new JAXBElement<ExperimentalSetting>(_ExperimentalSetting_QNAME, ExperimentalSetting.class, null, value);
     }
 
 }

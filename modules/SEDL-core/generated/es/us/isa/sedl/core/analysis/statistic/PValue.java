@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -42,7 +42,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *       &lt;sequence&gt;
  *         &lt;element name="freedomDegrees" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attribute name="nHST" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+ *       &lt;attribute name="nhst" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
  *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
  *       &lt;attribute name="significanceThreshold" type="{http://www.w3.org/2001/XMLSchema}double" default="0.05" /&gt;
  *       &lt;attribute name="description" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -64,7 +64,7 @@ public class PValue
 
     @XmlElement(required = true, nillable = true)
     protected List<BigInteger> freedomDegrees;
-    @XmlAttribute(name = "nHST", required = true)
+    @XmlAttribute(name = "nhst", required = true)
     @XmlSchemaType(name = "anyURI")
     protected String nhst;
     @XmlAttribute(name = "value", required = true)
@@ -111,7 +111,7 @@ public class PValue
      *     {@link String }
      *     
      */
-    public String getNHST() {
+    public String getNhst() {
         return nhst;
     }
 
@@ -123,7 +123,7 @@ public class PValue
      *     {@link String }
      *     
      */
-    public void setNHST(String value) {
+    public void setNhst(String value) {
         this.nhst = value;
     }
 
@@ -216,11 +216,11 @@ public class PValue
             }
         }
         {
-            String lhsNHST;
-            lhsNHST = this.getNHST();
-            String rhsNHST;
-            rhsNHST = that.getNHST();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "nhst", lhsNHST), LocatorUtils.property(thatLocator, "nhst", rhsNHST), lhsNHST, rhsNHST)) {
+            String lhsNhst;
+            lhsNhst = this.getNhst();
+            String rhsNhst;
+            rhsNhst = that.getNhst();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "nhst", lhsNhst), LocatorUtils.property(thatLocator, "nhst", rhsNhst), lhsNhst, rhsNhst)) {
                 return false;
             }
         }
@@ -267,9 +267,9 @@ public class PValue
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "freedomDegrees", theFreedomDegrees), currentHashCode, theFreedomDegrees);
         }
         {
-            String theNHST;
-            theNHST = this.getNHST();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "nhst", theNHST), currentHashCode, theNHST);
+            String theNhst;
+            theNhst = this.getNhst();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "nhst", theNhst), currentHashCode, theNhst);
         }
         {
             double theValue;
@@ -322,10 +322,10 @@ public class PValue
                 copy.freedomDegrees = null;
             }
             if (this.nhst!= null) {
-                String sourceNHST;
-                sourceNHST = this.getNHST();
-                String copyNHST = ((String) strategy.copy(LocatorUtils.property(locator, "nhst", sourceNHST), sourceNHST));
-                copy.setNHST(copyNHST);
+                String sourceNhst;
+                sourceNhst = this.getNhst();
+                String copyNhst = ((String) strategy.copy(LocatorUtils.property(locator, "nhst", sourceNhst), sourceNhst));
+                copy.setNhst(copyNhst);
             } else {
                 copy.nhst = null;
             }

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import es.us.isa.sedl.core.SEDLEntity;
+import es.us.isa.sedl.core.SedlEntity;
 import es.us.isa.sedl.core.analysis.AnalysisResult;
 import es.us.isa.sedl.core.configuration.ExperimentalSetting;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -42,12 +42,12 @@ import org.w3._2001.xmlschema.Adapter2;
  * <pre>
  * &lt;complexType name="Execution"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core}SEDLEntity"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="log" type="{http://isa.us.es/sedl/core/execution}Log" minOccurs="0"/&gt;
  *         &lt;element name="results" type="{http://isa.us.es/sedl/core/execution}ExperimentalResult" maxOccurs="unbounded" minOccurs="0"/&gt;
- *         &lt;element name="analysisResults" type="{http://isa.us.es/sedl/core/analysis}AnalysisResult" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="experimentalSetting" type="{http://isa.us.es/sedl/core/configuration}ExperimentalSetting" minOccurs="0"/&gt;
+ *         &lt;element name="analysisResults" type="{http://isa.us.es/sedl/core/analysis}AnalysisResult" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="start" use="required" type="{http://www.w3.org/2001/XMLSchema}date" /&gt;
  *       &lt;attribute name="finish" use="required" type="{http://www.w3.org/2001/XMLSchema}date" /&gt;
@@ -62,18 +62,18 @@ import org.w3._2001.xmlschema.Adapter2;
 @XmlType(name = "Execution", propOrder = {
     "log",
     "results",
-    "analysisResults",
-    "experimentalSetting"
+    "experimentalSetting",
+    "analysisResults"
 })
 public class Execution
-    extends SEDLEntity
+    extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
     protected Log log;
     protected List<ExperimentalResult> results;
-    protected List<AnalysisResult> analysisResults;
     protected ExperimentalSetting experimentalSetting;
+    protected List<AnalysisResult> analysisResults;
     @XmlAttribute(name = "start", required = true)
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
@@ -137,6 +137,30 @@ public class Execution
     }
 
     /**
+     * Obtiene el valor de la propiedad experimentalSetting.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExperimentalSetting }
+     *     
+     */
+    public ExperimentalSetting getExperimentalSetting() {
+        return experimentalSetting;
+    }
+
+    /**
+     * Define el valor de la propiedad experimentalSetting.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExperimentalSetting }
+     *     
+     */
+    public void setExperimentalSetting(ExperimentalSetting value) {
+        this.experimentalSetting = value;
+    }
+
+    /**
      * Gets the value of the analysisResults property.
      * 
      * <p>
@@ -163,30 +187,6 @@ public class Execution
             analysisResults = new ArrayList<AnalysisResult>();
         }
         return this.analysisResults;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad experimentalSetting.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ExperimentalSetting }
-     *     
-     */
-    public ExperimentalSetting getExperimentalSetting() {
-        return experimentalSetting;
-    }
-
-    /**
-     * Define el valor de la propiedad experimentalSetting.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ExperimentalSetting }
-     *     
-     */
-    public void setExperimentalSetting(ExperimentalSetting value) {
-        this.experimentalSetting = value;
     }
 
     /**
@@ -267,20 +267,20 @@ public class Execution
             }
         }
         {
-            List<AnalysisResult> lhsAnalysisResults;
-            lhsAnalysisResults = (((this.analysisResults!= null)&&(!this.analysisResults.isEmpty()))?this.getAnalysisResults():null);
-            List<AnalysisResult> rhsAnalysisResults;
-            rhsAnalysisResults = (((that.analysisResults!= null)&&(!that.analysisResults.isEmpty()))?that.getAnalysisResults():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "analysisResults", lhsAnalysisResults), LocatorUtils.property(thatLocator, "analysisResults", rhsAnalysisResults), lhsAnalysisResults, rhsAnalysisResults)) {
-                return false;
-            }
-        }
-        {
             ExperimentalSetting lhsExperimentalSetting;
             lhsExperimentalSetting = this.getExperimentalSetting();
             ExperimentalSetting rhsExperimentalSetting;
             rhsExperimentalSetting = that.getExperimentalSetting();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "experimentalSetting", lhsExperimentalSetting), LocatorUtils.property(thatLocator, "experimentalSetting", rhsExperimentalSetting), lhsExperimentalSetting, rhsExperimentalSetting)) {
+                return false;
+            }
+        }
+        {
+            List<AnalysisResult> lhsAnalysisResults;
+            lhsAnalysisResults = (((this.analysisResults!= null)&&(!this.analysisResults.isEmpty()))?this.getAnalysisResults():null);
+            List<AnalysisResult> rhsAnalysisResults;
+            rhsAnalysisResults = (((that.analysisResults!= null)&&(!that.analysisResults.isEmpty()))?that.getAnalysisResults():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "analysisResults", lhsAnalysisResults), LocatorUtils.property(thatLocator, "analysisResults", rhsAnalysisResults), lhsAnalysisResults, rhsAnalysisResults)) {
                 return false;
             }
         }
@@ -323,14 +323,14 @@ public class Execution
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "results", theResults), currentHashCode, theResults);
         }
         {
-            List<AnalysisResult> theAnalysisResults;
-            theAnalysisResults = (((this.analysisResults!= null)&&(!this.analysisResults.isEmpty()))?this.getAnalysisResults():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "analysisResults", theAnalysisResults), currentHashCode, theAnalysisResults);
-        }
-        {
             ExperimentalSetting theExperimentalSetting;
             theExperimentalSetting = this.getExperimentalSetting();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "experimentalSetting", theExperimentalSetting), currentHashCode, theExperimentalSetting);
+        }
+        {
+            List<AnalysisResult> theAnalysisResults;
+            theAnalysisResults = (((this.analysisResults!= null)&&(!this.analysisResults.isEmpty()))?this.getAnalysisResults():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "analysisResults", theAnalysisResults), currentHashCode, theAnalysisResults);
         }
         {
             Date theStart;
@@ -385,6 +385,14 @@ public class Execution
             } else {
                 copy.results = null;
             }
+            if (this.experimentalSetting!= null) {
+                ExperimentalSetting sourceExperimentalSetting;
+                sourceExperimentalSetting = this.getExperimentalSetting();
+                ExperimentalSetting copyExperimentalSetting = ((ExperimentalSetting) strategy.copy(LocatorUtils.property(locator, "experimentalSetting", sourceExperimentalSetting), sourceExperimentalSetting));
+                copy.setExperimentalSetting(copyExperimentalSetting);
+            } else {
+                copy.experimentalSetting = null;
+            }
             if ((this.analysisResults!= null)&&(!this.analysisResults.isEmpty())) {
                 List<AnalysisResult> sourceAnalysisResults;
                 sourceAnalysisResults = (((this.analysisResults!= null)&&(!this.analysisResults.isEmpty()))?this.getAnalysisResults():null);
@@ -397,14 +405,6 @@ public class Execution
                 }
             } else {
                 copy.analysisResults = null;
-            }
-            if (this.experimentalSetting!= null) {
-                ExperimentalSetting sourceExperimentalSetting;
-                sourceExperimentalSetting = this.getExperimentalSetting();
-                ExperimentalSetting copyExperimentalSetting = ((ExperimentalSetting) strategy.copy(LocatorUtils.property(locator, "experimentalSetting", sourceExperimentalSetting), sourceExperimentalSetting));
-                copy.setExperimentalSetting(copyExperimentalSetting);
-            } else {
-                copy.experimentalSetting = null;
             }
             if (this.start!= null) {
                 Date sourceStart;

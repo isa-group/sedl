@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import es.us.isa.sedl.core.SEDLEntity;
+import es.us.isa.sedl.core.SedlEntity;
 import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.execution.Execution;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -52,7 +52,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Configuration"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core}SEDLEntity"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="context" type="{http://isa.us.es/sedl/core/context}Context" minOccurs="0"/&gt;
  *         &lt;element name="experimentalProcedure" type="{http://isa.us.es/sedl/core/configuration}ExperimentalProcedure" minOccurs="0"/&gt;
@@ -80,7 +80,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     "executions"
 })
 public class Configuration
-    extends SEDLEntity
+    extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
 

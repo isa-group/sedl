@@ -28,18 +28,18 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
         VariableValuation vv = new VariableValuation();
         Level l = new Level();
         l.setValue("EA");
-        vv.setLevel(l);
+        vv.setLevel(l.getValue());
         ControllableFactor cf = new ControllableFactor();
         cf.setName("Algorithm");
-        vv.setVariable(cf);
+        vv.setVariable(cf.getName());
         vf.getVariableValuations().add(vv);
         VariableValuation vv2 = new VariableValuation();
         NonControllableFactor v2 = new NonControllableFactor();
         v2.setName("ProblemInstance");
         Level l2 = new Level();
         l2.setValue("PI0");
-        vv2.setLevel(l2);
-        vv2.setVariable(v2);
+        vv2.setLevel(l2.getValue());
+        vv2.setVariable(v2.getName());
         vf.getVariableValuations().add(vv2);
         datasetSpec.getFilters().add(vf);
         DescriptiveStatisticValue dsv = new DescriptiveStatisticValue();
@@ -102,7 +102,7 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
         //    f(EA vs TS+SA) Pvalue : 0 . 0 6 3 Sthreshold : 0 . 0 2 g , . . . ,
         // f(EA vs GRASP6) Pvalue : 0 . 0 0 3 Sthreshold : 0 . 0 2 g
         PValue pvalue=new PValue();
-        pvalue.setNHST("Friedman");
+        pvalue.setNhst("Friedman");
         pvalue.setDescription("no description");
         pvalue.setValue(0.03);
         pvalue.setDatasetSpecification(new DatasetSpecification());        

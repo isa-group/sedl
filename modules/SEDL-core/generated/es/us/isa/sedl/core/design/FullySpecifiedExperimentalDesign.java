@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -30,8 +30,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * Custom experimental desgins must specify: the assignmet method used for grouping, the set of groups that are involved in the experiment, the 
- *                 experimental protocol (i.e. the specific sequence of treatments and measurements to be performed on each group of experimental individuals), and
- *                 the set of analyses to be performed on the results of the experiments.
+ * 				experimental protocol (i.e. the specific sequence of treatments and measurements to be performed on each group of experimental individuals), and
+ * 				the set of analyses to be performed on the results of the experiments.
  * 
  * <p>Clase Java para FullySpecifiedExperimentalDesign complex type.
  * 

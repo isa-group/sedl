@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -21,10 +21,10 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="ColumnConstants"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="ExperimentalSubjectId"/&gt;
- *     &lt;enumeration value="Ignore"/&gt;
- *     &lt;enumeration value="ExperimentalGroupId"/&gt;
- *     &lt;enumeration value="Timestamp"/&gt;
+ *     &lt;enumeration value="experimentalSubjectId"/&gt;
+ *     &lt;enumeration value="ignore"/&gt;
+ *     &lt;enumeration value="experimentalGroupId"/&gt;
+ *     &lt;enumeration value="timestamp"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -34,14 +34,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum ColumnConstants {
 
-    @XmlEnumValue("ExperimentalSubjectId")
-    EXPERIMENTAL_SUBJECT_ID("ExperimentalSubjectId"),
-    @XmlEnumValue("Ignore")
-    IGNORE("Ignore"),
-    @XmlEnumValue("ExperimentalGroupId")
-    EXPERIMENTAL_GROUP_ID("ExperimentalGroupId"),
-    @XmlEnumValue("Timestamp")
-    TIMESTAMP("Timestamp");
+    @XmlEnumValue("experimentalSubjectId")
+    EXPERIMENTAL_SUBJECT_ID("experimentalSubjectId"),
+    @XmlEnumValue("ignore")
+    IGNORE("ignore"),
+    @XmlEnumValue("experimentalGroupId")
+    EXPERIMENTAL_GROUP_ID("experimentalGroupId"),
+    @XmlEnumValue("timestamp")
+    TIMESTAMP("timestamp");
     private final String value;
 
     ColumnConstants(String v) {

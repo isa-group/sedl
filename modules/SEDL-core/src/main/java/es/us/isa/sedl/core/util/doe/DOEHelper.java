@@ -31,7 +31,7 @@ public class DOEHelper {
     public Set<Set<VariableValuation>> possibleFactorCombinations(BasicExperiment experiment)
     {
         Set<Set<VariableValuation>> result=new HashSet<Set<VariableValuation>>();
-        List<Variable> variables=experiment.getDesign().getVariables().getVariable();
+        List<Variable> variables=experiment.getDesign().getVariables().getVariables();
         Set<VariableValuation> tmpSet=new HashSet<VariableValuation>();
         possibleFactorCombinations(0,variables,tmpSet,result);
         return result;

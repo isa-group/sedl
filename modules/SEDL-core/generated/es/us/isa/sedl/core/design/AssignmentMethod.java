@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -27,13 +27,13 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * 				The assignment method describes how the individuals in the population of the experiment are associated to the groups. The use of a random assignment 
- *                 method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
- *                 demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
- *                 chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
- *                 uncontrolled variables, at baseline (provided that the study has adequate sample size).
- *                 In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
- *                 for assignment (as a string in natural language).
- *             
+ * 				method is necessary for having an experiment, otherwise, we have a quasy-experiment. With quasi-experimental studies, it may not be possible to 
+ * 				demonstrate a causal link between the treatment condition and observed outcomes. On the other hand,  With random assignment, experimental subjects have the same 
+ * 				chance of being assigned to any group. As a result, all the groups will be statistically identical to the control group, on both controlled and
+ * 				uncontrolled variables, at baseline (provided that the study has adequate sample size).
+ * 				In SEDL assignment methods have a boolean attribute that describes if the assignment is random or not, and a description of the specic procedure used
+ * 				for assignment (as a string in natural language).
+ * 
  * 
  * <p>Clase Java para AssignmentMethod complex type.
  * 

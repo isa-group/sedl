@@ -58,7 +58,7 @@ public class SEDL4PeopleStatisticalAnalysisSpecificationMarshallingTest extends 
         ControllableFactor factor1=new ControllableFactor();
         factor1.setName("factor1");
         VariableValuation vv=new VariableValuation();
-        vv.setVariable(factor1);
+        vv.setVariable(factor1.getName());
         ValuationFilter f=new ValuationFilter();
         f.getVariableValuations().add(vv);                
         dss.getFilters().add(f);
@@ -81,7 +81,7 @@ public class SEDL4PeopleStatisticalAnalysisSpecificationMarshallingTest extends 
         l.setValue("1");
         for(ValuationFilter f:dss.getValuationFilters())
             for(VariableValuation vv:f.getVariableValuations())
-                vv.setLevel(l);
+                vv.setLevel(l.getValue());
         return dss;
     }
     

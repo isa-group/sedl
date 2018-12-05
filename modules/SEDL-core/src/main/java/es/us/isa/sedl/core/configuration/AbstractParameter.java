@@ -1,8 +1,8 @@
 package es.us.isa.sedl.core.configuration;
 
-import es.us.isa.sedl.core.SEDLBase;
+import es.us.isa.sedl.core.SedlBase;
 
-public class AbstractParameter extends SEDLBase{
+public class AbstractParameter extends SedlBase{
     private String units;
 
     public String getUnits() {

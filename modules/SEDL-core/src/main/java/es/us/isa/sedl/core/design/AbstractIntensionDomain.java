@@ -44,7 +44,7 @@ public abstract class AbstractIntensionDomain extends Domain {
     }
 
     @Override
-    public Boolean isFinite() {
+    public boolean isFinite() {
         boolean result = false;
         boolean hasBounds = false;
         FundamentalSet set = FundamentalSet.R;

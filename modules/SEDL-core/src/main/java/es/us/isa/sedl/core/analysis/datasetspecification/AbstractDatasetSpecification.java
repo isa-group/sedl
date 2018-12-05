@@ -12,6 +12,7 @@ import es.us.isa.sedl.core.design.Level;
 import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableValuation;
+import es.us.isa.sedl.core.design.Variables;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -56,7 +57,7 @@ public abstract class AbstractDatasetSpecification {
     public List<DatasetSpecification> expand(BasicExperiment experiment)
     {
         List<DatasetSpecification> result=new ArrayList<DatasetSpecification>();
-        List<Variable> variablesToExpand=findVariablesToExpand();
+        List<Variable> variablesToExpand=findVariablesToExpand(experiment.getDesign().getVariables());
         List<Filter> nonExpandableFilters=generateNonExpandableFilers();        
         List<Set<VariableValuation>> expandedValuations=expandValuations(variablesToExpand);
         DatasetSpecification dss=null;
@@ -103,13 +104,13 @@ public abstract class AbstractDatasetSpecification {
         return result;
     }
     
-    protected List<Variable> findVariablesToExpand()
+    protected List<Variable> findVariablesToExpand(Variables variables)
     {
         List<Variable> result=new ArrayList<Variable>();
         for(ValuationFilter vf:this.getValuationFilters())
             for(VariableValuation vv:vf.getVariableValuations())
                 if(vv.getLevel()==null)
-                    result.add(vv.getVariable());
+                    result.add(variables.getVariableByName(vv.getVariable()));
         return result;
     }
     
@@ -132,8 +133,8 @@ public abstract class AbstractDatasetSpecification {
                     {
                         Set<VariableValuation> vvset=new HashSet<VariableValuation>();
                         vv=new VariableValuation();
-                        vv.setVariable(v);
-                        vv.setLevel(l);
+                        vv.setVariable(v.getName());
+                        vv.setLevel(l.getValue());
                         vvset.add(vv);
                         result.add(vvset);
                     }
@@ -145,8 +146,8 @@ public abstract class AbstractDatasetSpecification {
                         {
                             Set<VariableValuation> vvset=new HashSet<VariableValuation>(svv);
                             vv=new VariableValuation();
-                            vv.setVariable(v);
-                            vv.setLevel(l);
+                            vv.setVariable(v.getName());
+                            vv.setLevel(l.getValue());
                             vvset.add(vv);
                             auxiliaryResult.add(vvset);
                         }
@@ -246,7 +247,7 @@ public abstract class AbstractDatasetSpecification {
                 for(Column c:dataset.getColumns())
                     projection.getProjectedVariables().add(c.getName());
             }else if(experiment!=null)
-                for(Variable v:experiment.getDesign().getVariables().getVariable())
+                for(Variable v:experiment.getDesign().getVariables().getVariables())
                     projection.getProjectedVariables().add(v.getName());
         }else{
             List<Outcome> outcomes=experiment.getDesign().getOutcomes();
@@ -309,9 +310,9 @@ public abstract class AbstractDatasetSpecification {
          {
              if(!first)
                  sb.append("_AND_");
-             sb.append(val.getVariable().getName());
+             sb.append(val.getVariable());
              sb.append("=");
-             sb.append(val.getLevel().getValue());
+             sb.append(val.getLevel());
              first=false;
          }   
          return sb.toString();
@@ -337,7 +338,7 @@ public abstract class AbstractDatasetSpecification {
     private boolean inValuationSet(String name, Set<VariableValuation> group) {
         for(VariableValuation v:group)
         {
-            if(v.getVariable().getName().equals(name))
+            if(v.getVariable().equals(name))
                 return true;
         }
         return false;

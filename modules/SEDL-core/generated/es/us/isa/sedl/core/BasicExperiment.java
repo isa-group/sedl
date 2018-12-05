@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -47,9 +47,9 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *     &lt;extension base="{http://isa.us.es/sedl/core}Experiment"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="context" type="{http://isa.us.es/sedl/core/context}Context"/&gt;
- *         &lt;element name="hypotheses" type="{http://isa.us.es/sedl/core/hypothesis}Hypothesis" maxOccurs="unbounded"/&gt;
  *         &lt;element name="design" type="{http://isa.us.es/sedl/core/design}Design"/&gt;
  *         &lt;element name="configurations" type="{http://isa.us.es/sedl/core/configuration}Configuration" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="hypotheses" type="{http://isa.us.es/sedl/core/hypothesis}Hypothesis" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -61,9 +61,9 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "BasicExperiment", propOrder = {
     "context",
-    "hypotheses",
     "design",
-    "configurations"
+    "configurations",
+    "hypotheses"
 })
 @XmlRootElement(name = "BasicExperiment")
 public class BasicExperiment
@@ -74,10 +74,10 @@ public class BasicExperiment
     @XmlElement(required = true)
     protected Context context;
     @XmlElement(required = true)
-    protected List<Hypothesis> hypotheses;
-    @XmlElement(required = true)
     protected Design design;
     protected List<Configuration> configurations;
+    @XmlElement(required = true)
+    protected List<Hypothesis> hypotheses;
 
     /**
      * Obtiene el valor de la propiedad context.
@@ -101,35 +101,6 @@ public class BasicExperiment
      */
     public void setContext(Context value) {
         this.context = value;
-    }
-
-    /**
-     * Gets the value of the hypotheses property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the hypotheses property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getHypotheses().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Hypothesis }
-     * 
-     * 
-     */
-    public List<Hypothesis> getHypotheses() {
-        if (hypotheses == null) {
-            hypotheses = new ArrayList<Hypothesis>();
-        }
-        return this.hypotheses;
     }
 
     /**
@@ -185,6 +156,35 @@ public class BasicExperiment
         return this.configurations;
     }
 
+    /**
+     * Gets the value of the hypotheses property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the hypotheses property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getHypotheses().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Hypothesis }
+     * 
+     * 
+     */
+    public List<Hypothesis> getHypotheses() {
+        if (hypotheses == null) {
+            hypotheses = new ArrayList<Hypothesis>();
+        }
+        return this.hypotheses;
+    }
+
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof BasicExperiment)) {
             return false;
@@ -206,15 +206,6 @@ public class BasicExperiment
             }
         }
         {
-            List<Hypothesis> lhsHypotheses;
-            lhsHypotheses = (((this.hypotheses!= null)&&(!this.hypotheses.isEmpty()))?this.getHypotheses():null);
-            List<Hypothesis> rhsHypotheses;
-            rhsHypotheses = (((that.hypotheses!= null)&&(!that.hypotheses.isEmpty()))?that.getHypotheses():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "hypotheses", lhsHypotheses), LocatorUtils.property(thatLocator, "hypotheses", rhsHypotheses), lhsHypotheses, rhsHypotheses)) {
-                return false;
-            }
-        }
-        {
             Design lhsDesign;
             lhsDesign = this.getDesign();
             Design rhsDesign;
@@ -229,6 +220,15 @@ public class BasicExperiment
             List<Configuration> rhsConfigurations;
             rhsConfigurations = (((that.configurations!= null)&&(!that.configurations.isEmpty()))?that.getConfigurations():null);
             if (!strategy.equals(LocatorUtils.property(thisLocator, "configurations", lhsConfigurations), LocatorUtils.property(thatLocator, "configurations", rhsConfigurations), lhsConfigurations, rhsConfigurations)) {
+                return false;
+            }
+        }
+        {
+            List<Hypothesis> lhsHypotheses;
+            lhsHypotheses = (((this.hypotheses!= null)&&(!this.hypotheses.isEmpty()))?this.getHypotheses():null);
+            List<Hypothesis> rhsHypotheses;
+            rhsHypotheses = (((that.hypotheses!= null)&&(!that.hypotheses.isEmpty()))?that.getHypotheses():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "hypotheses", lhsHypotheses), LocatorUtils.property(thatLocator, "hypotheses", rhsHypotheses), lhsHypotheses, rhsHypotheses)) {
                 return false;
             }
         }
@@ -248,11 +248,6 @@ public class BasicExperiment
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "context", theContext), currentHashCode, theContext);
         }
         {
-            List<Hypothesis> theHypotheses;
-            theHypotheses = (((this.hypotheses!= null)&&(!this.hypotheses.isEmpty()))?this.getHypotheses():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "hypotheses", theHypotheses), currentHashCode, theHypotheses);
-        }
-        {
             Design theDesign;
             theDesign = this.getDesign();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "design", theDesign), currentHashCode, theDesign);
@@ -261,6 +256,11 @@ public class BasicExperiment
             List<Configuration> theConfigurations;
             theConfigurations = (((this.configurations!= null)&&(!this.configurations.isEmpty()))?this.getConfigurations():null);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "configurations", theConfigurations), currentHashCode, theConfigurations);
+        }
+        {
+            List<Hypothesis> theHypotheses;
+            theHypotheses = (((this.hypotheses!= null)&&(!this.hypotheses.isEmpty()))?this.getHypotheses():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "hypotheses", theHypotheses), currentHashCode, theHypotheses);
         }
         return currentHashCode;
     }
@@ -292,19 +292,6 @@ public class BasicExperiment
             } else {
                 copy.context = null;
             }
-            if ((this.hypotheses!= null)&&(!this.hypotheses.isEmpty())) {
-                List<Hypothesis> sourceHypotheses;
-                sourceHypotheses = (((this.hypotheses!= null)&&(!this.hypotheses.isEmpty()))?this.getHypotheses():null);
-                @SuppressWarnings("unchecked")
-                List<Hypothesis> copyHypotheses = ((List<Hypothesis> ) strategy.copy(LocatorUtils.property(locator, "hypotheses", sourceHypotheses), sourceHypotheses));
-                copy.hypotheses = null;
-                if (copyHypotheses!= null) {
-                    List<Hypothesis> uniqueHypothesesl = copy.getHypotheses();
-                    uniqueHypothesesl.addAll(copyHypotheses);
-                }
-            } else {
-                copy.hypotheses = null;
-            }
             if (this.design!= null) {
                 Design sourceDesign;
                 sourceDesign = this.getDesign();
@@ -325,6 +312,19 @@ public class BasicExperiment
                 }
             } else {
                 copy.configurations = null;
+            }
+            if ((this.hypotheses!= null)&&(!this.hypotheses.isEmpty())) {
+                List<Hypothesis> sourceHypotheses;
+                sourceHypotheses = (((this.hypotheses!= null)&&(!this.hypotheses.isEmpty()))?this.getHypotheses():null);
+                @SuppressWarnings("unchecked")
+                List<Hypothesis> copyHypotheses = ((List<Hypothesis> ) strategy.copy(LocatorUtils.property(locator, "hypotheses", sourceHypotheses), sourceHypotheses));
+                copy.hypotheses = null;
+                if (copyHypotheses!= null) {
+                    List<Hypothesis> uniqueHypothesesl = copy.getHypotheses();
+                    uniqueHypothesesl.addAll(copyHypotheses);
+                }
+            } else {
+                copy.hypotheses = null;
             }
         }
         return draftCopy;

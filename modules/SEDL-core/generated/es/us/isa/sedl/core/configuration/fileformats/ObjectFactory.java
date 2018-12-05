@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -31,7 +31,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _CSVFileFormat_QNAME = new QName("http://isa.us.es/sedl/core/configuration/fileformats", "CSVFileFormat");
+    private final static QName _CsvFileFormat_QNAME = new QName("http://isa.us.es/sedl/core/configuration/fileformats", "CsvFileFormat");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: es.us.isa.sedl.core.configuration.fileformats
@@ -41,20 +41,20 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CSVFileFormat }
+     * Create an instance of {@link CsvFileFormat }
      * 
      */
-    public CSVFileFormat createCSVFileFormat() {
-        return new CSVFileFormat();
+    public CsvFileFormat createCsvFileFormat() {
+        return new CsvFileFormat();
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CSVFileFormat }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CsvFileFormat }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration/fileformats", name = "CSVFileFormat")
-    public JAXBElement<CSVFileFormat> createCSVFileFormat(CSVFileFormat value) {
-        return new JAXBElement<CSVFileFormat>(_CSVFileFormat_QNAME, CSVFileFormat.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/configuration/fileformats", name = "CsvFileFormat")
+    public JAXBElement<CsvFileFormat> createCsvFileFormat(CsvFileFormat value) {
+        return new JAXBElement<CsvFileFormat>(_CsvFileFormat_QNAME, CsvFileFormat.class, null, value);
     }
 
 }

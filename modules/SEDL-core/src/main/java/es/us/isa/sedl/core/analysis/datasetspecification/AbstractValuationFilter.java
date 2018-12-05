@@ -16,9 +16,9 @@ public abstract class AbstractValuationFilter extends Filter {
         for(VariableValuation valuation:getVariableValuations())
         {
             if(valuation.getLevel()!=null){
-                c=dataset.getColumn(valuation.getVariable().getName());
+                c=dataset.getColumn(valuation.getVariable());
                 if(c!=null){
-                    if(!valuation.getLevel().getValue().equals(c.get(rowIndex).toString())){
+                    if(!valuation.getLevel().equals(c.get(rowIndex).toString())){
                         result=false;
                         break;
                     }

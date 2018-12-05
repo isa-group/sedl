@@ -72,8 +72,8 @@ public class AbstractDatasetSpecificationTest extends TestCase {
             Level l=new Level();
             l.setValue("man");
             VariableValuation valuation=new VariableValuation();
-            valuation.setVariable(var);
-            valuation.setLevel(l);
+            valuation.setVariable(var.getName());
+            valuation.setLevel(l.getValue());
             filter.getVariableValuations().add(valuation);
             datasetSpecification.getFilters().add(filter);
             result=datasetSpecification.apply(initialDataset);
@@ -142,13 +142,13 @@ public class AbstractDatasetSpecificationTest extends TestCase {
         List<Set<VariableValuation>> expectedResult=new ArrayList<Set<VariableValuation>>();
         Set<VariableValuation> s1=new HashSet<VariableValuation>();
         VariableValuation vv1=new VariableValuation();
-        vv1.setLevel(la);
-        vv1.setVariable(var1);
+        vv1.setLevel(la.getValue());
+        vv1.setVariable(var1.getName());
         s1.add(vv1);
         Set<VariableValuation> s2=new HashSet<VariableValuation>();
         VariableValuation vv2=new VariableValuation();
-        vv2.setLevel(lb);
-        vv2.setVariable(var1);
+        vv2.setLevel(lb.getValue());
+        vv2.setVariable(var1.getName());
         s2.add(vv2);
         expectedResult.add(s1);
         expectedResult.add(s2);
@@ -171,15 +171,15 @@ public class AbstractDatasetSpecificationTest extends TestCase {
         
         Set<VariableValuation> s3=new HashSet<VariableValuation>();
         VariableValuation vv3=new VariableValuation();
-        vv3.setLevel(l1);
-        vv3.setVariable(var2);
+        vv3.setLevel(l1.getValue());
+        vv3.setVariable(var2.getName());
         s1.add(vv3);
         s3.add(vv2);
         s3.add(vv3);
         Set<VariableValuation> s4=new HashSet<VariableValuation>();
         VariableValuation vv4=new VariableValuation();
-        vv4.setLevel(l2);
-        vv4.setVariable(var2);
+        vv4.setLevel(l2.getValue());
+        vv4.setVariable(var2.getName());
         s2.add(vv4);
         s4.add(vv1);
         s4.add(vv4);

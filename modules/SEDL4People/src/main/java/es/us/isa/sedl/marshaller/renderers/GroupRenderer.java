@@ -39,10 +39,10 @@ public class GroupRenderer extends Renderer<Group>{
             sb.append(" by ");            
             int i=0;
             for(VariableValuation vv:group.getValuations()){
-                if(vv.getLevel()==null || vv.getLevel().getValue()==null || "".equals(vv.getLevel().getValue())){
+                if(vv.getLevel()==null || vv.getLevel()==null || "".equals(vv.getLevel())){
                     if(i!=0)
                         sb.append(", ");
-                    sb.append(vv.getVariable().getName());
+                    sb.append(vv.getVariable());
                     i++;
                 }
             }

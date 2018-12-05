@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -13,7 +13,6 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -30,7 +29,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * A measurement implies to obtain the current value of a set of variables on a set of groups.
- *             
+ * 
  * 
  * <p>Clase Java para Measurement complex type.
  * 
@@ -41,7 +40,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://isa.us.es/sedl/core/design}ExperimentalProtocolStep"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="variableValuation" type="{http://isa.us.es/sedl/core/design}VariableValuation" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="variablevaluations" type="{http://isa.us.es/sedl/core/design}VariableValuation" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="variable" use="required"&gt;
  *         &lt;simpleType&gt;
@@ -57,31 +56,30 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Measurement", propOrder = {
-    "variableValuation"
+    "variablevaluations"
 })
 public class Measurement
     extends ExperimentalProtocolStep
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlElement(required = true)
-    protected List<VariableValuation> variableValuation;
+    protected List<VariableValuation> variablevaluations;
     @XmlAttribute(name = "variable", required = true)
     protected List<String> variable;
 
     /**
-     * Gets the value of the variableValuation property.
+     * Gets the value of the variablevaluations property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the variableValuation property.
+     * This is why there is not a <CODE>set</CODE> method for the variablevaluations property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getVariableValuation().add(newItem);
+     *    getVariablevaluations().add(newItem);
      * </pre>
      * 
      * 
@@ -91,11 +89,11 @@ public class Measurement
      * 
      * 
      */
-    public List<VariableValuation> getVariableValuation() {
-        if (variableValuation == null) {
-            variableValuation = new ArrayList<VariableValuation>();
+    public List<VariableValuation> getVariablevaluations() {
+        if (variablevaluations == null) {
+            variablevaluations = new ArrayList<VariableValuation>();
         }
-        return this.variableValuation;
+        return this.variablevaluations;
     }
 
     /**
@@ -139,11 +137,11 @@ public class Measurement
         }
         final Measurement that = ((Measurement) object);
         {
-            List<VariableValuation> lhsVariableValuation;
-            lhsVariableValuation = (((this.variableValuation!= null)&&(!this.variableValuation.isEmpty()))?this.getVariableValuation():null);
-            List<VariableValuation> rhsVariableValuation;
-            rhsVariableValuation = (((that.variableValuation!= null)&&(!that.variableValuation.isEmpty()))?that.getVariableValuation():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "variableValuation", lhsVariableValuation), LocatorUtils.property(thatLocator, "variableValuation", rhsVariableValuation), lhsVariableValuation, rhsVariableValuation)) {
+            List<VariableValuation> lhsVariablevaluations;
+            lhsVariablevaluations = (((this.variablevaluations!= null)&&(!this.variablevaluations.isEmpty()))?this.getVariablevaluations():null);
+            List<VariableValuation> rhsVariablevaluations;
+            rhsVariablevaluations = (((that.variablevaluations!= null)&&(!that.variablevaluations.isEmpty()))?that.getVariablevaluations():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "variablevaluations", lhsVariablevaluations), LocatorUtils.property(thatLocator, "variablevaluations", rhsVariablevaluations), lhsVariablevaluations, rhsVariablevaluations)) {
                 return false;
             }
         }
@@ -167,9 +165,9 @@ public class Measurement
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
-            List<VariableValuation> theVariableValuation;
-            theVariableValuation = (((this.variableValuation!= null)&&(!this.variableValuation.isEmpty()))?this.getVariableValuation():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variableValuation", theVariableValuation), currentHashCode, theVariableValuation);
+            List<VariableValuation> theVariablevaluations;
+            theVariablevaluations = (((this.variablevaluations!= null)&&(!this.variablevaluations.isEmpty()))?this.getVariablevaluations():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variablevaluations", theVariablevaluations), currentHashCode, theVariablevaluations);
         }
         {
             List<String> theVariable;
@@ -198,18 +196,18 @@ public class Measurement
         super.copyTo(locator, draftCopy, strategy);
         if (draftCopy instanceof Measurement) {
             final Measurement copy = ((Measurement) draftCopy);
-            if ((this.variableValuation!= null)&&(!this.variableValuation.isEmpty())) {
-                List<VariableValuation> sourceVariableValuation;
-                sourceVariableValuation = (((this.variableValuation!= null)&&(!this.variableValuation.isEmpty()))?this.getVariableValuation():null);
+            if ((this.variablevaluations!= null)&&(!this.variablevaluations.isEmpty())) {
+                List<VariableValuation> sourceVariablevaluations;
+                sourceVariablevaluations = (((this.variablevaluations!= null)&&(!this.variablevaluations.isEmpty()))?this.getVariablevaluations():null);
                 @SuppressWarnings("unchecked")
-                List<VariableValuation> copyVariableValuation = ((List<VariableValuation> ) strategy.copy(LocatorUtils.property(locator, "variableValuation", sourceVariableValuation), sourceVariableValuation));
-                copy.variableValuation = null;
-                if (copyVariableValuation!= null) {
-                    List<VariableValuation> uniqueVariableValuationl = copy.getVariableValuation();
-                    uniqueVariableValuationl.addAll(copyVariableValuation);
+                List<VariableValuation> copyVariablevaluations = ((List<VariableValuation> ) strategy.copy(LocatorUtils.property(locator, "variablevaluations", sourceVariablevaluations), sourceVariablevaluations));
+                copy.variablevaluations = null;
+                if (copyVariablevaluations!= null) {
+                    List<VariableValuation> uniqueVariablevaluationsl = copy.getVariablevaluations();
+                    uniqueVariablevaluationsl.addAll(copyVariablevaluations);
                 }
             } else {
-                copy.variableValuation = null;
+                copy.variablevaluations = null;
             }
             if ((this.variable!= null)&&(!this.variable.isEmpty())) {
                 List<String> sourceVariable;

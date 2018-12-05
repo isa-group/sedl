@@ -2,19 +2,17 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
 package es.us.isa.sedl.core.context;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-import es.us.isa.sedl.core.SEDLEntity;
+import es.us.isa.sedl.core.SedlEntity;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -40,17 +38,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Project"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core}SEDLEntity"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;attribute name="name" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="code" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="program" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="type" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="website" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
- *       &lt;attribute name="participant" use="required"&gt;
- *         &lt;simpleType&gt;
- *           &lt;list itemType="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *         &lt;/simpleType&gt;
- *       &lt;/attribute&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -61,7 +54,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Project")
 public class Project
-    extends SEDLEntity
+    extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
@@ -75,8 +68,6 @@ public class Project
     protected String type;
     @XmlAttribute(name = "website", required = true)
     protected String website;
-    @XmlAttribute(name = "participant", required = true)
-    protected List<String> participant;
 
     /**
      * Obtiene el valor de la propiedad name.
@@ -198,35 +189,6 @@ public class Project
         this.website = value;
     }
 
-    /**
-     * Gets the value of the participant property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the participant property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getParticipant().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getParticipant() {
-        if (participant == null) {
-            participant = new ArrayList<String>();
-        }
-        return this.participant;
-    }
-
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof Project)) {
             return false;
@@ -283,15 +245,6 @@ public class Project
                 return false;
             }
         }
-        {
-            List<String> lhsParticipant;
-            lhsParticipant = (((this.participant!= null)&&(!this.participant.isEmpty()))?this.getParticipant():null);
-            List<String> rhsParticipant;
-            rhsParticipant = (((that.participant!= null)&&(!that.participant.isEmpty()))?that.getParticipant():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "participant", lhsParticipant), LocatorUtils.property(thatLocator, "participant", rhsParticipant), lhsParticipant, rhsParticipant)) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -326,11 +279,6 @@ public class Project
             String theWebsite;
             theWebsite = this.getWebsite();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "website", theWebsite), currentHashCode, theWebsite);
-        }
-        {
-            List<String> theParticipant;
-            theParticipant = (((this.participant!= null)&&(!this.participant.isEmpty()))?this.getParticipant():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "participant", theParticipant), currentHashCode, theParticipant);
         }
         return currentHashCode;
     }
@@ -393,19 +341,6 @@ public class Project
                 copy.setWebsite(copyWebsite);
             } else {
                 copy.website = null;
-            }
-            if ((this.participant!= null)&&(!this.participant.isEmpty())) {
-                List<String> sourceParticipant;
-                sourceParticipant = (((this.participant!= null)&&(!this.participant.isEmpty()))?this.getParticipant():null);
-                @SuppressWarnings("unchecked")
-                List<String> copyParticipant = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "participant", sourceParticipant), sourceParticipant));
-                copy.participant = null;
-                if (copyParticipant!= null) {
-                    List<String> uniqueParticipantl = copy.getParticipant();
-                    uniqueParticipantl.addAll(copyParticipant);
-                }
-            } else {
-                copy.participant = null;
             }
         }
         return draftCopy;

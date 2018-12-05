@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -30,9 +30,9 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * A design specifies: the set of variables and constants (here called parameters) that are involved in an experiment, the populations of the experiment
- *                 a description of the experimental individual, and the experimental design of the experiment. Note that the experimental desing describes the groups
- *                 that are created based on the population of the experiment and the sequence of treaments and measurements (named experimental protocol) that must be 
- *                 performed on each individual of each group in order to conduct the experiment.
+ * 				 a description of the experimental individual, and the experimental design of the experiment. Note that the experimental desing describes the groups
+ * 				that are created based on the population of the experiment and the sequence of treaments and measurements (named experimental protocol) that must be 
+ * 				performed on each individual of each group in order to conduct the experiment.
  * 
  * <p>Clase Java para Design complex type.
  * 
@@ -43,11 +43,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="variables" type="{http://isa.us.es/sedl/core/design}Variables"/&gt;
- *         &lt;element name="population" type="{http://isa.us.es/sedl/core/design}Population"/&gt;
  *         &lt;element name="samplingMethod" type="{http://isa.us.es/sedl/core/design}SamplingMethod"/&gt;
  *         &lt;element name="designParameters" type="{http://isa.us.es/sedl/core/configuration}Parameter" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="population" type="{http://isa.us.es/sedl/core/design}Population"/&gt;
  *         &lt;element name="experimentalDesign" type="{http://isa.us.es/sedl/core/design}ExperimentalDesign"/&gt;
+ *         &lt;element name="variables" type="{http://isa.us.es/sedl/core/design}Variables"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -58,11 +58,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Design", propOrder = {
-    "variables",
-    "population",
     "samplingMethod",
     "designParameters",
-    "experimentalDesign"
+    "population",
+    "experimentalDesign",
+    "variables"
 })
 public class Design
     extends AbstractDesign
@@ -70,62 +70,14 @@ public class Design
 {
 
     @XmlElement(required = true)
-    protected Variables variables;
-    @XmlElement(required = true)
-    protected Population population;
-    @XmlElement(required = true)
     protected SamplingMethod samplingMethod;
     protected List<Parameter> designParameters;
     @XmlElement(required = true)
+    protected Population population;
+    @XmlElement(required = true)
     protected ExperimentalDesign experimentalDesign;
-
-    /**
-     * Obtiene el valor de la propiedad variables.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Variables }
-     *     
-     */
-    public Variables getVariables() {
-        return variables;
-    }
-
-    /**
-     * Define el valor de la propiedad variables.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Variables }
-     *     
-     */
-    public void setVariables(Variables value) {
-        this.variables = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad population.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Population }
-     *     
-     */
-    public Population getPopulation() {
-        return population;
-    }
-
-    /**
-     * Define el valor de la propiedad population.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Population }
-     *     
-     */
-    public void setPopulation(Population value) {
-        this.population = value;
-    }
+    @XmlElement(required = true)
+    protected Variables variables;
 
     /**
      * Obtiene el valor de la propiedad samplingMethod.
@@ -181,6 +133,30 @@ public class Design
     }
 
     /**
+     * Obtiene el valor de la propiedad population.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Population }
+     *     
+     */
+    public Population getPopulation() {
+        return population;
+    }
+
+    /**
+     * Define el valor de la propiedad population.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Population }
+     *     
+     */
+    public void setPopulation(Population value) {
+        this.population = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad experimentalDesign.
      * 
      * @return
@@ -204,6 +180,30 @@ public class Design
         this.experimentalDesign = value;
     }
 
+    /**
+     * Obtiene el valor de la propiedad variables.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Variables }
+     *     
+     */
+    public Variables getVariables() {
+        return variables;
+    }
+
+    /**
+     * Define el valor de la propiedad variables.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Variables }
+     *     
+     */
+    public void setVariables(Variables value) {
+        this.variables = value;
+    }
+
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof Design)) {
             return false;
@@ -212,24 +212,6 @@ public class Design
             return true;
         }
         final Design that = ((Design) object);
-        {
-            Variables lhsVariables;
-            lhsVariables = this.getVariables();
-            Variables rhsVariables;
-            rhsVariables = that.getVariables();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "variables", lhsVariables), LocatorUtils.property(thatLocator, "variables", rhsVariables), lhsVariables, rhsVariables)) {
-                return false;
-            }
-        }
-        {
-            Population lhsPopulation;
-            lhsPopulation = this.getPopulation();
-            Population rhsPopulation;
-            rhsPopulation = that.getPopulation();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "population", lhsPopulation), LocatorUtils.property(thatLocator, "population", rhsPopulation), lhsPopulation, rhsPopulation)) {
-                return false;
-            }
-        }
         {
             SamplingMethod lhsSamplingMethod;
             lhsSamplingMethod = this.getSamplingMethod();
@@ -249,11 +231,29 @@ public class Design
             }
         }
         {
+            Population lhsPopulation;
+            lhsPopulation = this.getPopulation();
+            Population rhsPopulation;
+            rhsPopulation = that.getPopulation();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "population", lhsPopulation), LocatorUtils.property(thatLocator, "population", rhsPopulation), lhsPopulation, rhsPopulation)) {
+                return false;
+            }
+        }
+        {
             ExperimentalDesign lhsExperimentalDesign;
             lhsExperimentalDesign = this.getExperimentalDesign();
             ExperimentalDesign rhsExperimentalDesign;
             rhsExperimentalDesign = that.getExperimentalDesign();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "experimentalDesign", lhsExperimentalDesign), LocatorUtils.property(thatLocator, "experimentalDesign", rhsExperimentalDesign), lhsExperimentalDesign, rhsExperimentalDesign)) {
+                return false;
+            }
+        }
+        {
+            Variables lhsVariables;
+            lhsVariables = this.getVariables();
+            Variables rhsVariables;
+            rhsVariables = that.getVariables();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "variables", lhsVariables), LocatorUtils.property(thatLocator, "variables", rhsVariables), lhsVariables, rhsVariables)) {
                 return false;
             }
         }
@@ -268,16 +268,6 @@ public class Design
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            Variables theVariables;
-            theVariables = this.getVariables();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variables", theVariables), currentHashCode, theVariables);
-        }
-        {
-            Population thePopulation;
-            thePopulation = this.getPopulation();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "population", thePopulation), currentHashCode, thePopulation);
-        }
-        {
             SamplingMethod theSamplingMethod;
             theSamplingMethod = this.getSamplingMethod();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "samplingMethod", theSamplingMethod), currentHashCode, theSamplingMethod);
@@ -288,9 +278,19 @@ public class Design
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "designParameters", theDesignParameters), currentHashCode, theDesignParameters);
         }
         {
+            Population thePopulation;
+            thePopulation = this.getPopulation();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "population", thePopulation), currentHashCode, thePopulation);
+        }
+        {
             ExperimentalDesign theExperimentalDesign;
             theExperimentalDesign = this.getExperimentalDesign();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "experimentalDesign", theExperimentalDesign), currentHashCode, theExperimentalDesign);
+        }
+        {
+            Variables theVariables;
+            theVariables = this.getVariables();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variables", theVariables), currentHashCode, theVariables);
         }
         return currentHashCode;
     }
@@ -313,22 +313,6 @@ public class Design
         final Object draftCopy = ((target == null)?createNewInstance():target);
         if (draftCopy instanceof Design) {
             final Design copy = ((Design) draftCopy);
-            if (this.variables!= null) {
-                Variables sourceVariables;
-                sourceVariables = this.getVariables();
-                Variables copyVariables = ((Variables) strategy.copy(LocatorUtils.property(locator, "variables", sourceVariables), sourceVariables));
-                copy.setVariables(copyVariables);
-            } else {
-                copy.variables = null;
-            }
-            if (this.population!= null) {
-                Population sourcePopulation;
-                sourcePopulation = this.getPopulation();
-                Population copyPopulation = ((Population) strategy.copy(LocatorUtils.property(locator, "population", sourcePopulation), sourcePopulation));
-                copy.setPopulation(copyPopulation);
-            } else {
-                copy.population = null;
-            }
             if (this.samplingMethod!= null) {
                 SamplingMethod sourceSamplingMethod;
                 sourceSamplingMethod = this.getSamplingMethod();
@@ -350,6 +334,14 @@ public class Design
             } else {
                 copy.designParameters = null;
             }
+            if (this.population!= null) {
+                Population sourcePopulation;
+                sourcePopulation = this.getPopulation();
+                Population copyPopulation = ((Population) strategy.copy(LocatorUtils.property(locator, "population", sourcePopulation), sourcePopulation));
+                copy.setPopulation(copyPopulation);
+            } else {
+                copy.population = null;
+            }
             if (this.experimentalDesign!= null) {
                 ExperimentalDesign sourceExperimentalDesign;
                 sourceExperimentalDesign = this.getExperimentalDesign();
@@ -357,6 +349,14 @@ public class Design
                 copy.setExperimentalDesign(copyExperimentalDesign);
             } else {
                 copy.experimentalDesign = null;
+            }
+            if (this.variables!= null) {
+                Variables sourceVariables;
+                sourceVariables = this.getVariables();
+                Variables copyVariables = ((Variables) strategy.copy(LocatorUtils.property(locator, "variables", sourceVariables), sourceVariables));
+                copy.setVariables(copyVariables);
+            } else {
+                copy.variables = null;
             }
         }
         return draftCopy;

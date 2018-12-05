@@ -16,7 +16,7 @@ import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.apache.log4j.Logger;
 
-import es.us.isa.sedl.core.SEDLBase;
+import es.us.isa.sedl.core.SedlBase;
 import es.us.isa.sedl.core.BasicExperiment;
 import es.us.isa.sedl.core.Experiment;
 import es.us.isa.sedl.core.ExtensionPointElement;
@@ -26,7 +26,7 @@ import es.us.isa.sedl.core.analysis.statistic.InterquartileRange;
 import es.us.isa.sedl.core.analysis.statistic.Mean;
 import es.us.isa.sedl.core.analysis.statistic.Median;
 import es.us.isa.sedl.core.analysis.statistic.Mode;
-import es.us.isa.sedl.core.analysis.statistic.NHST;
+import es.us.isa.sedl.core.analysis.statistic.Nhst;
 import es.us.isa.sedl.core.analysis.statistic.Range;
 import es.us.isa.sedl.core.analysis.statistic.StandardDeviation;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
@@ -57,11 +57,10 @@ import es.us.isa.sedl.core.configuration.SoftwarePlatform;
 import es.us.isa.sedl.core.configuration.Treatment;
 import es.us.isa.sedl.core.context.BiLevelClassificationSystem;
 import es.us.isa.sedl.core.context.ClassificationSystem;
-import es.us.isa.sedl.core.context.ClassificationEntry;
+import es.us.isa.sedl.core.context.ClassificationTerm;
 import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.context.People;
 import es.us.isa.sedl.core.context.Person;
-import es.us.isa.sedl.core.design.AnalysisSpecification;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.AssignmentMethod;
 import es.us.isa.sedl.core.design.ControllableFactor;
@@ -85,7 +84,7 @@ import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.ProtocolScheme;
 import es.us.isa.sedl.core.design.SamplingMethod;
-import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
@@ -271,14 +270,12 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 classificationEntry=classificationEntry.substring(0, classificationEntry.length()-1);
             int separatorIndex=classificationEntry.indexOf(" ");
             String classificationCode=classificationEntry.substring(0, separatorIndex-1);
-            String classificationText=classificationEntry.substring(separatorIndex,classificationEntry.length()-1);
-            ClassificationSystem cs=new BiLevelClassificationSystem();
-            cs.setName(classificationSystemId);
-            ClassificationEntry ce=new ClassificationEntry();
+            String classificationText=classificationEntry.substring(separatorIndex,classificationEntry.length()-1);            
+            ClassificationTerm ce=new ClassificationTerm();
             ce.setCode(classificationCode);
             ce.setName(classificationText);
-            ce.setOrganization(cs);
-            experiment.getContext().getClasses().add(ce);
+            ce.setClassificationSystem(classificationSystemId);
+            experiment.getContext().getClassificationTerms().add(ce);
         }
     }
     
@@ -303,7 +300,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             p.setName(name.trim());
             p.setEmail(stkhCtx.email().getText());
             if (stkhCtx.stakeholderFrom() != null) {
-                p.setOrganization(stkhCtx.stakeholderFrom().StringLiteral().getText().replace("'", "").replace("\"", ""));
+                p.getOrganization().add(stkhCtx.stakeholderFrom().StringLiteral().getText().replace("'", "").replace("\"", ""));
             }
             if (stkhCtx.role() != null) {
                 if (stkhCtx.role().RESPONSIBLE() != null) {
@@ -480,7 +477,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 variable.setDomain(domain);
             }
 
-            aux.getVariable().add(variable);
+            aux.getVariables().add(variable);
 
         }
         setVariables(aux);
@@ -774,8 +771,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             vv = new VariableValuation();
             v = findVariableById(fieldCtx.id(), true);
             l = createLevel(fieldCtx.value() != null ? fieldCtx.value().getText() : fieldCtx.structValue().getText());
-            vv.setVariable(v);
-            vv.setLevel(l);
+            vv.setVariable(v.getName());
+            vv.setLevel(l.getValue());
             treatment.getVariableValuation().add(vv);
         }
 
@@ -809,9 +806,9 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                     errorListener.getErrors().add(error);
                 }
             }
-            vv.setVariable(v);
-            vv.setLevel(l);
-            measurement.getVariableValuation().add(vv);
+            vv.setVariable(v.getName());
+            vv.setLevel(l.getValue());
+            measurement.getVariablevaluations().add(vv);
         }
         return measurement;
     }
@@ -884,14 +881,14 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 Variable var = findVariableById(field.id(), true);
                 if (field.structValue() != null) {
                     VariableValuation vv = new VariableValuation();
-                    vv.setVariable(var);
-                    vv.setLevel(createLevel(field.value().getText()));
+                    vv.setVariable(var.getName());
+                    vv.setLevel(field.value().getText());
                     g.getValuations().add(vv);
                     //g.getComplexValuations().add(buildComplexParameter(field.id().getText(),field.structValue()));
                 } else if (field.value() != null) {
                     VariableValuation vv = new VariableValuation();
-                    vv.setVariable(var);
-                    vv.setLevel(createLevel(field.value().getText()));                    
+                    vv.setVariable(var.getName());
+                    vv.setLevel(field.value().getText());                    
                     g.getValuations().add(vv);
                 }
             }
@@ -946,7 +943,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         VariableValuation vv = null;
         for (Variable myvar : vars) {
             vv = new VariableValuation();
-            vv.setVariable(myvar);
+            vv.setVariable(myvar.getName());
             vv.setLevel(null);
             group.getValuations().add(vv);
         }
@@ -963,8 +960,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         sizingObject.setValue(BigInteger.valueOf((long) sizing));
         for (Level l : var.getDomain().getLevels()) {
             vv = new VariableValuation();
-            vv.setVariable(var);
-            vv.setLevel(l);
+            vv.setVariable(var.getName());
+            vv.setLevel(l.getValue());
             g = new Group();
             g.setName(l.getValue());
             g.getValuations().add(vv);
@@ -988,8 +985,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 var = vars.get(index);
                 for (Level l : var.getDomain().getLevels()) {
                     vv = new VariableValuation();
-                    vv.setVariable(var);
-                    vv.setLevel(l);
+                    vv.setVariable(var.getName());
+                    vv.setLevel(l.getValue());
                     g = new Group();
                     g.setName(cg.getName() + "-" + l.getValue());
                     g.getValuations().add(vv);
@@ -1010,31 +1007,27 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterAnalysesBlock(@NotNull SEDL4PeopleParser.AnalysesBlockContext ctx) {
 
-        AnalysisSpecificationGroup analysis = new AnalysisSpecificationGroup();
+        StatisticalAnalysisSpec analysis = new StatisticalAnalysisSpec();
         analysis.setId(ctx.getChild(0).getChild(0).getText());
         locator = Lists.newArrayList(analysis.getId());
         boolean added = false;
         if (!ctx.statisticFunction().isEmpty()) {
             for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()) {
                 if (statisticFunctionCtx != null) {
-                    List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
-                    StatisticalAnalysisSpec spec = new StatisticalAnalysisSpec();
+                    List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();                    
                     //if(statisticFunctionCtx.id()!=null)
                     //    spec.setId(statisticFunctionCtx.id().getText());
                     //else
-                    spec.setId(generateAnalysisId(analysis));
+                    analysis.setId(generateAnalysisId(getExperimentalDesign()));
                     added = false;
                     if (s != null && !s.isEmpty()) {
                         for (Statistic stat : s) {
                             if (stat != null) {
-                                spec.getStatistic().addAll(s);
+                                analysis.getStatistic().addAll(s);
                                 added = true;
                             }
                         }
-                    }
-                    if (added) {                        
-                        analysis.getAnalyses().add(spec);
-                    }
+                    }                    
                 }
             }
         }
@@ -1092,7 +1085,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     }
 
-    protected DatasetSpecification generateDefaultDatasetSpecification(NHST nhst) {
+    protected DatasetSpecification generateDefaultDatasetSpecification(Nhst nhst) {
         /*
          DatasetSpecification dataset = new DatasetSpecification();            
          Set<Set<VariableValuation>> levelCombinations=experiment.getDesign().getPossibleTreatments();
@@ -1510,7 +1503,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     public Variable findVariableById(String variableId, boolean b, Class<? extends Variable> variableType) {
         Variable result = null;
-        for (Variable v : getVariables().getVariable()) {
+        for (Variable v : getVariables().getVariables()) {
             if (v.getName().equals(variableId)) {
                 result = v;
             }
@@ -1593,15 +1586,15 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         return l;
     }
 
-    private void extractNotes(SEDLBase object, ParserRuleContext ctx) {
+    private void extractNotes(SedlBase object, ParserRuleContext ctx) {
         extractNotes(object, ctx, null);
     }    
     
-    private void extractNotes(SEDLBase object, ParserRuleContext ctx, FormalLinguisticPattern formalLinguisticPattern) {
+    private void extractNotes(SedlBase object, ParserRuleContext ctx, FormalLinguisticPattern formalLinguisticPattern) {
         extractNotes(object,ctx.getStart().getTokenIndex(),formalLinguisticPattern);
     }
 
-    private void extractNotes(SEDLBase object, int tokenIndex, FormalLinguisticPattern formalLinguisticPattern) {
+    private void extractNotes(SedlBase object, int tokenIndex, FormalLinguisticPattern formalLinguisticPattern) {
         if (tokens != null) {
             List<Token> tokensComments = getComments(lastCommentTokenIndex, tokenIndex);
 
@@ -1621,16 +1614,16 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
     }
 
-    private String generateAnalysisId(AnalysisSpecificationGroup analysis) {
+    private String generateAnalysisId(ExperimentalDesign design) {
         int index=0;
         String candidate=null;
         boolean valid=true;
                 
         do{
             index++;
-            candidate=analysis.getId()+"-"+index;
+            candidate="A-"+index;
             valid=true;
-            for(AnalysisSpecification spec:analysis.getAnalyses()){
+            for(AnalysisSpecificationGroup spec:design.getIntendedAnalyses()){
                 if(candidate.equals(spec.getId()))
                     valid=false;
             }

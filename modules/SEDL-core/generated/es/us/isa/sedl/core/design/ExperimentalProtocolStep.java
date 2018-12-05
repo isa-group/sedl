@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -29,10 +29,10 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * An experimental protocol describes  the sequences of treatments  and measurements
- *                 to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
- *                 either measurements or treatments.
- *                 A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
- *                 It is assumed that the step is performed on all the groups of the experiment.
+ * 				to be performed on the different groups of the experiment. It is comprises of a se of steps, that can be
+ * 				either measurements or treatments.
+ * A protocol step type makes reference to a set of groups where it is applied. If no group is specified, 
+ * 				It is assumed that the step is performed on all the groups of the experiment.
  * 
  * <p>Clase Java para ExperimentalProtocolStep complex type.
  * 
@@ -43,7 +43,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="group" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *       &lt;attribute name="Id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -64,7 +64,7 @@ public class ExperimentalProtocolStep
     @XmlAttribute(name = "group", required = true)
     @XmlSchemaType(name = "anyURI")
     protected String group;
-    @XmlAttribute(name = "Id", required = true)
+    @XmlAttribute(name = "id", required = true)
     protected String id;
 
     /**

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="VariableKind"&gt;
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
- *     &lt;enumeration value="Nominal"/&gt;
- *     &lt;enumeration value="Ordinal"/&gt;
- *     &lt;enumeration value="Scalar"/&gt;
+ *     &lt;enumeration value="nominal"/&gt;
+ *     &lt;enumeration value="ordinal"/&gt;
+ *     &lt;enumeration value="scalar"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
  * </pre>
@@ -33,12 +33,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum VariableKind {
 
-    @XmlEnumValue("Nominal")
-    NOMINAL("Nominal"),
-    @XmlEnumValue("Ordinal")
-    ORDINAL("Ordinal"),
-    @XmlEnumValue("Scalar")
-    SCALAR("Scalar");
+    @XmlEnumValue("nominal")
+    NOMINAL("nominal"),
+    @XmlEnumValue("ordinal")
+    ORDINAL("ordinal"),
+    @XmlEnumValue("scalar")
+    SCALAR("scalar");
     private final String value;
 
     VariableKind(String v) {

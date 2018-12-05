@@ -2,11 +2,11 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
-package es.us.isa.sedl.core.execution;
+package es.us.isa.sedl.core;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -24,15 +24,15 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
 
 
 /**
- * <p>Clase Java para CSV complex type.
+ * <p>Clase Java para Abstract complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="CSV"&gt;
+ * &lt;complexType name="Abstract"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core/execution}FileFormat"&gt;
- *     &lt;/extension&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
@@ -40,22 +40,18 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CSV")
-public class CSV
-    extends FileFormat
+@XmlType(name = "Abstract")
+public abstract class Abstract
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof CSV)) {
+        if (!(object instanceof Abstract)) {
             return false;
         }
         if (this == object) {
             return true;
-        }
-        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
-            return false;
         }
         return true;
     }
@@ -66,7 +62,7 @@ public class CSV
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = super.hashCode(locator, strategy);
+        int currentHashCode = 1;
         return currentHashCode;
     }
 
@@ -85,13 +81,10 @@ public class CSV
     }
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
-        final Object draftCopy = ((target == null)?createNewInstance():target);
-        super.copyTo(locator, draftCopy, strategy);
-        return draftCopy;
-    }
-
-    public Object createNewInstance() {
-        return new CSV();
+        if (null == target) {
+            throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
+        }
+        return target;
     }
 
 }

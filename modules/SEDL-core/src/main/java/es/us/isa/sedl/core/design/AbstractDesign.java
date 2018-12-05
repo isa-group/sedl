@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.core.design;
 
-import es.us.isa.sedl.core.SEDLBase;
+import es.us.isa.sedl.core.SedlBase;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,7 +17,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  * @author José Antonio Parejo
  */
-public abstract class AbstractDesign extends SEDLBase {
+public abstract class AbstractDesign extends SedlBase {
     
     public abstract ExperimentalDesign getExperimentalDesign();
     
@@ -35,7 +35,7 @@ public abstract class AbstractDesign extends SEDLBase {
     @JsonIgnore
     public Set<Set<VariableValuation>> getPossibleTreatments() {
         Set<Set<VariableValuation>> result = new HashSet<Set<VariableValuation>>();
-        List<Variable> variables = getVariables().getVariable();
+        List<Variable> variables = getVariables().getVariables();
         Set<VariableValuation> tmpSet = new HashSet<VariableValuation>();
         possibleTreatmentCombinations(0, variables, tmpSet, result);
         return result;
@@ -50,8 +50,8 @@ public abstract class AbstractDesign extends SEDLBase {
             if (domain.isFinite()) {
                 for (Level level : domain.getLevels()) {
                     valuation = new VariableValuation();
-                    valuation.setVariable(var);
-                    valuation.setLevel(level);
+                    valuation.setVariable(var.getName());
+                    valuation.setLevel(level.getValue());
                     tmpSet.add(valuation);
                     if (i < variables.size() - 1) {
                         possibleTreatmentCombinations(i + 1, variables, tmpSet, result);

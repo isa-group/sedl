@@ -16,14 +16,14 @@ import java.util.List;
 public abstract class AbstractFullySpecifiedExperimentalDesign extends ExperimentalDesign {
     public abstract List<Group> getGroups();
     
-    public List<Group> getFullSetOfGroups()
+    public List<Group> getFullSetOfGroups(Variables vars)
     {
         List<Group> result=getGroups();
         if(result.size()==1)
         {
             Group g=result.get(0);
             if(g.isGroupSpecification())
-                result=g.expandGroups();
+                result=g.expandGroups(vars);
         }
         return result;
     }

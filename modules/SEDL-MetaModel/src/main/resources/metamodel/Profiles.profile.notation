@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_xSjTAOYtEeK-Ze-9ctH0oQ" type="PapyrusUMLProfileDiagram" name="NewDiagram" measurementUnit="Pixel">
     <styles xmi:type="notation:DiagramStyle" xmi:id="_xSjTAeYtEeK-Ze-9ctH0oQ"/>
+    <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_Tz3u0PbmEeiNQPhXo2GK0g" diagramKindId="org.eclipse.papyrus.uml.diagram.profile">
+      <owner xmi:type="uml:Profile" href="Profiles.profile.uml#_xQ3Q8OYtEeK-Ze-9ctH0oQ"/>
+    </styles>
+    <styles xmi:type="notation:StringValueStyle" xmi:id="_T0R-gPbmEeiNQPhXo2GK0g" name="diagram_compatibility_version" stringValue="1.4.0"/>
     <element xmi:type="uml:Profile" href="Profiles.profile.uml#_xQ3Q8OYtEeK-Ze-9ctH0oQ"/>
   </notation:Diagram>
   <notation:Diagram xmi:id="_FPydgOYuEeK-Ze-9ctH0oQ" type="PapyrusUMLProfileDiagram" name="ProfileDiagram" measurementUnit="Pixel">

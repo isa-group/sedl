@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -10,7 +10,8 @@ package es.us.isa.sedl.core.design;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -36,10 +37,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * &lt;complexType name="VariableValuation"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="level" type="{http://isa.us.es/sedl/core/design}Level"/&gt;
- *         &lt;element name="variable" type="{http://isa.us.es/sedl/core/design}Variable"/&gt;
- *       &lt;/sequence&gt;
+ *       &lt;attribute name="level" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+ *       &lt;attribute name="variable" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -48,29 +47,28 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "VariableValuation", propOrder = {
-    "level",
-    "variable"
-})
+@XmlType(name = "VariableValuation")
 public class VariableValuation
     extends AbstractVariableValuation
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlElement(required = true)
-    protected Level level;
-    @XmlElement(required = true)
-    protected Variable variable;
+    @XmlAttribute(name = "level", required = true)
+    @XmlSchemaType(name = "anyURI")
+    protected String level;
+    @XmlAttribute(name = "variable", required = true)
+    @XmlSchemaType(name = "anyURI")
+    protected String variable;
 
     /**
      * Obtiene el valor de la propiedad level.
      * 
      * @return
      *     possible object is
-     *     {@link Level }
+     *     {@link String }
      *     
      */
-    public Level getLevel() {
+    public String getLevel() {
         return level;
     }
 
@@ -79,10 +77,10 @@ public class VariableValuation
      * 
      * @param value
      *     allowed object is
-     *     {@link Level }
+     *     {@link String }
      *     
      */
-    public void setLevel(Level value) {
+    public void setLevel(String value) {
         this.level = value;
     }
 
@@ -91,10 +89,10 @@ public class VariableValuation
      * 
      * @return
      *     possible object is
-     *     {@link Variable }
+     *     {@link String }
      *     
      */
-    public Variable getVariable() {
+    public String getVariable() {
         return variable;
     }
 
@@ -103,10 +101,10 @@ public class VariableValuation
      * 
      * @param value
      *     allowed object is
-     *     {@link Variable }
+     *     {@link String }
      *     
      */
-    public void setVariable(Variable value) {
+    public void setVariable(String value) {
         this.variable = value;
     }
 
@@ -119,18 +117,18 @@ public class VariableValuation
         }
         final VariableValuation that = ((VariableValuation) object);
         {
-            Level lhsLevel;
+            String lhsLevel;
             lhsLevel = this.getLevel();
-            Level rhsLevel;
+            String rhsLevel;
             rhsLevel = that.getLevel();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "level", lhsLevel), LocatorUtils.property(thatLocator, "level", rhsLevel), lhsLevel, rhsLevel)) {
                 return false;
             }
         }
         {
-            Variable lhsVariable;
+            String lhsVariable;
             lhsVariable = this.getVariable();
-            Variable rhsVariable;
+            String rhsVariable;
             rhsVariable = that.getVariable();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "variable", lhsVariable), LocatorUtils.property(thatLocator, "variable", rhsVariable), lhsVariable, rhsVariable)) {
                 return false;
@@ -147,12 +145,12 @@ public class VariableValuation
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            Level theLevel;
+            String theLevel;
             theLevel = this.getLevel();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "level", theLevel), currentHashCode, theLevel);
         }
         {
-            Variable theVariable;
+            String theVariable;
             theVariable = this.getVariable();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variable", theVariable), currentHashCode, theVariable);
         }
@@ -178,17 +176,17 @@ public class VariableValuation
         if (draftCopy instanceof VariableValuation) {
             final VariableValuation copy = ((VariableValuation) draftCopy);
             if (this.level!= null) {
-                Level sourceLevel;
+                String sourceLevel;
                 sourceLevel = this.getLevel();
-                Level copyLevel = ((Level) strategy.copy(LocatorUtils.property(locator, "level", sourceLevel), sourceLevel));
+                String copyLevel = ((String) strategy.copy(LocatorUtils.property(locator, "level", sourceLevel), sourceLevel));
                 copy.setLevel(copyLevel);
             } else {
                 copy.level = null;
             }
             if (this.variable!= null) {
-                Variable sourceVariable;
+                String sourceVariable;
                 sourceVariable = this.getVariable();
-                Variable copyVariable = ((Variable) strategy.copy(LocatorUtils.property(locator, "variable", sourceVariable), sourceVariable));
+                String copyVariable = ((String) strategy.copy(LocatorUtils.property(locator, "variable", sourceVariable), sourceVariable));
                 copy.setVariable(copyVariable);
             } else {
                 copy.variable = null;

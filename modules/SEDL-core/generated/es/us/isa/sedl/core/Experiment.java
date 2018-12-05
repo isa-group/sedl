@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -13,6 +13,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
@@ -41,7 +42,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Experiment"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core}SEDLEntity"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="goal" type="{http://isa.us.es/sedl/core}Goal"/&gt;
+ *         &lt;element name="abstract" type="{http://isa.us.es/sedl/core}Abstract"/&gt;
+ *       &lt;/sequence&gt;
  *       &lt;attribute name="metaid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="version" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
@@ -58,16 +63,23 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Experiment")
+@XmlType(name = "Experiment", propOrder = {
+    "goal",
+    "_abstract"
+})
 @XmlSeeAlso({
     BasicExperiment.class
 })
 @XmlTransient
 public abstract class Experiment
-    extends SEDLEntity
+    extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
+    @XmlElement(required = true)
+    protected Goal goal;
+    @XmlElement(name = "abstract", required = true)
+    protected Abstract _abstract;
     @XmlAttribute(name = "metaid", required = true)
     protected String metaid;
     @XmlAttribute(name = "name", required = true)
@@ -76,6 +88,54 @@ public abstract class Experiment
     protected String version;
     @XmlAttribute(name = "classifications")
     protected List<String> classifications;
+
+    /**
+     * Obtiene el valor de la propiedad goal.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Goal }
+     *     
+     */
+    public Goal getGoal() {
+        return goal;
+    }
+
+    /**
+     * Define el valor de la propiedad goal.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Goal }
+     *     
+     */
+    public void setGoal(Goal value) {
+        this.goal = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad abstract.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Abstract }
+     *     
+     */
+    public Abstract getAbstract() {
+        return _abstract;
+    }
+
+    /**
+     * Define el valor de la propiedad abstract.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Abstract }
+     *     
+     */
+    public void setAbstract(Abstract value) {
+        this._abstract = value;
+    }
 
     /**
      * Obtiene el valor de la propiedad metaid.
@@ -190,6 +250,24 @@ public abstract class Experiment
         }
         final Experiment that = ((Experiment) object);
         {
+            Goal lhsGoal;
+            lhsGoal = this.getGoal();
+            Goal rhsGoal;
+            rhsGoal = that.getGoal();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "goal", lhsGoal), LocatorUtils.property(thatLocator, "goal", rhsGoal), lhsGoal, rhsGoal)) {
+                return false;
+            }
+        }
+        {
+            Abstract lhsAbstract;
+            lhsAbstract = this.getAbstract();
+            Abstract rhsAbstract;
+            rhsAbstract = that.getAbstract();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "_abstract", lhsAbstract), LocatorUtils.property(thatLocator, "_abstract", rhsAbstract), lhsAbstract, rhsAbstract)) {
+                return false;
+            }
+        }
+        {
             String lhsMetaid;
             lhsMetaid = this.getMetaid();
             String rhsMetaid;
@@ -236,6 +314,16 @@ public abstract class Experiment
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
+            Goal theGoal;
+            theGoal = this.getGoal();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "goal", theGoal), currentHashCode, theGoal);
+        }
+        {
+            Abstract theAbstract;
+            theAbstract = this.getAbstract();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "_abstract", theAbstract), currentHashCode, theAbstract);
+        }
+        {
             String theMetaid;
             theMetaid = this.getMetaid();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "metaid", theMetaid), currentHashCode, theMetaid);
@@ -279,6 +367,22 @@ public abstract class Experiment
         super.copyTo(locator, target, strategy);
         if (target instanceof Experiment) {
             final Experiment copy = ((Experiment) target);
+            if (this.goal!= null) {
+                Goal sourceGoal;
+                sourceGoal = this.getGoal();
+                Goal copyGoal = ((Goal) strategy.copy(LocatorUtils.property(locator, "goal", sourceGoal), sourceGoal));
+                copy.setGoal(copyGoal);
+            } else {
+                copy.goal = null;
+            }
+            if (this._abstract!= null) {
+                Abstract sourceAbstract;
+                sourceAbstract = this.getAbstract();
+                Abstract copyAbstract = ((Abstract) strategy.copy(LocatorUtils.property(locator, "_abstract", sourceAbstract), sourceAbstract));
+                copy.setAbstract(copyAbstract);
+            } else {
+                copy._abstract = null;
+            }
             if (this.metaid!= null) {
                 String sourceMetaid;
                 sourceMetaid = this.getMetaid();

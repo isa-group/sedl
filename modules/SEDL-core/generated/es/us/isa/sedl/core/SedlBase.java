@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -15,8 +15,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import es.us.isa.sedl.core.design.Level;
-import es.us.isa.sedl.core.design.Variable;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -34,12 +32,12 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * The SEDLBase type is the base of all main types in SEDL. It serves as a container for the annotation of any part of the experiment description.
  * 
  * 
- * <p>Clase Java para SEDLBase complex type.
+ * <p>Clase Java para SedlBase complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="SEDLBase"&gt;
+ * &lt;complexType name="SedlBase"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
@@ -54,16 +52,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "SEDLBase", propOrder = {
+@XmlType(name = "SedlBase", propOrder = {
     "notes",
     "annotations"
 })
 @XmlSeeAlso({
-    Level.class,
-    Variable.class,
-    SEDLEntity.class
+    SedlEntity.class
 })
-public class SEDLBase
+public class SedlBase
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
@@ -131,13 +127,13 @@ public class SEDLBase
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof SEDLBase)) {
+        if (!(object instanceof SedlBase)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final SEDLBase that = ((SEDLBase) object);
+        final SedlBase that = ((SedlBase) object);
         {
             List<String> lhsNotes;
             lhsNotes = (((this.notes!= null)&&(!this.notes.isEmpty()))?this.getNotes():null);
@@ -195,8 +191,8 @@ public class SEDLBase
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof SEDLBase) {
-            final SEDLBase copy = ((SEDLBase) draftCopy);
+        if (draftCopy instanceof SedlBase) {
+            final SedlBase copy = ((SedlBase) draftCopy);
             if ((this.notes!= null)&&(!this.notes.isEmpty())) {
                 List<String> sourceNotes;
                 sourceNotes = (((this.notes!= null)&&(!this.notes.isEmpty()))?this.getNotes():null);
@@ -228,7 +224,7 @@ public class SEDLBase
     }
 
     public Object createNewInstance() {
-        return new SEDLBase();
+        return new SedlBase();
     }
 
 }

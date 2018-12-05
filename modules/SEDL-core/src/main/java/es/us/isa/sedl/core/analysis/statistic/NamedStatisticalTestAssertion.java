@@ -11,13 +11,13 @@ package es.us.isa.sedl.core.analysis.statistic;
  */
 public class NamedStatisticalTestAssertion extends StatisticalTestAssertion{
        private String name;
-       private NHST test;
+       private Nhst test;
        private boolean expectedDifference;
 
     public NamedStatisticalTestAssertion() {
     }    
        
-    public NamedStatisticalTestAssertion(String name, NHST test, boolean expectedDifference) {
+    public NamedStatisticalTestAssertion(String name, Nhst test, boolean expectedDifference) {
         this.name = name;
         this.test = test;
         this.expectedDifference = expectedDifference;
@@ -27,7 +27,7 @@ public class NamedStatisticalTestAssertion extends StatisticalTestAssertion{
         return name;
     }
 
-    public NHST getTest() {
+    public Nhst getTest() {
         return test;
     }
 

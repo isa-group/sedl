@@ -19,6 +19,14 @@
     <bindings node="xsd:complexType[@name='SEDLEntity']">
             <inheritance:extends>es.us.isa.moses.sedlcore.DomainEntity</inheritance:extends>
     </bindings>    -->
+    <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.context.xsd">
+        <bindings node="/xsd:schema/xsd:complexType[@name='ClassificationSystem']">        
+            <inheritance:extends>es.us.isa.sedl.core.context.AbstractClassificationSystem</inheritance:extends>        
+        </bindings>
+        <bindings node="/xsd:schema/xsd:complexType[@name='ClassificationTerm']">        
+            <inheritance:extends>es.us.isa.sedl.core.context.AbstractClassificationTerm</inheritance:extends>        
+        </bindings>
+    </bindings>
     <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.design.xsd">
         <bindings node="/xsd:schema/xsd:complexType[@name='Variables']">        
             <inheritance:extends>es.us.isa.sedl.core.design.AbstractVariables</inheritance:extends>        
@@ -55,10 +63,7 @@
         </bindings>         
         <bindings node="/xsd:schema/xsd:complexType[@name='Group']">        
             <inheritance:extends>es.us.isa.sedl.core.design.AbstractGroup</inheritance:extends>        
-        </bindings>
-        <bindings node="/xsd:schema/xsd:complexType[@name='StatisticalAnalysisSpec']">        
-            <inheritance:extends>es.us.isa.sedl.core.design.AbstractStatisticalAnalysisSpec</inheritance:extends>        
-        </bindings>         
+        </bindings>        
     </bindings>
     <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd">
         <bindings node="/xsd:schema/xsd:complexType[@name='DatasetSpecification']">        
@@ -81,6 +86,9 @@
         </bindings>
     </bindings>
     <bindings schemaLocation="../../../../../SEDL-Metamodel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.analysis.statistic.xsd">         
+        <bindings node="/xsd:schema/xsd:complexType[@name='StatisticalAnalysisSpec']">        
+            <inheritance:extends>es.us.isa.sedl.core.design.AbstractStatisticalAnalysisSpec</inheritance:extends>        
+        </bindings>         
         <bindings node="/xsd:schema/xsd:complexType[@name='ConfidenceInterval']">        
             <inheritance:extends>es.us.isa.sedl.core.analysis.statistic.AbstractConfidenceInterval</inheritance:extends>        
         </bindings> 

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -46,7 +46,7 @@ import org.jvnet.jaxb2_commons.locator.ObjectLocator;
     ByColumnLabel.class,
     ByColumnIndex.class
 })
-public class ColumnBasedDataMapping
+public abstract class ColumnBasedDataMapping
     extends DataMapping
     implements Cloneable, CopyTo, Equals, HashCode
 {
@@ -90,13 +90,11 @@ public class ColumnBasedDataMapping
     }
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
-        final Object draftCopy = ((target == null)?createNewInstance():target);
-        super.copyTo(locator, draftCopy, strategy);
-        return draftCopy;
-    }
-
-    public Object createNewInstance() {
-        return new ColumnBasedDataMapping();
+        if (null == target) {
+            throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
+        }
+        super.copyTo(locator, target, strategy);
+        return target;
     }
 
 }

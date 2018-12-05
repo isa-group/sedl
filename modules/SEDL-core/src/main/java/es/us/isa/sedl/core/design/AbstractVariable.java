@@ -1,8 +1,8 @@
 package es.us.isa.sedl.core.design;
 
-import es.us.isa.sedl.core.SEDLBase;
+import es.us.isa.sedl.core.SedlBase;
 
-public abstract class AbstractVariable extends SEDLBase {
+public abstract class AbstractVariable extends SedlBase {
 
 	
 	public abstract VariableKind getKind();

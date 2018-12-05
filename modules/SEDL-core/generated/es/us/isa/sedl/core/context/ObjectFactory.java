@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -36,6 +36,8 @@ public class ObjectFactory {
     private final static QName _Organization_QNAME = new QName("http://isa.us.es/sedl/core/context", "Organization");
     private final static QName _Project_QNAME = new QName("http://isa.us.es/sedl/core/context", "Project");
     private final static QName _People_QNAME = new QName("http://isa.us.es/sedl/core/context", "People");
+    private final static QName _ClassificationTerm_QNAME = new QName("http://isa.us.es/sedl/core/context", "ClassificationTerm");
+    private final static QName _ClassificationSystem_QNAME = new QName("http://isa.us.es/sedl/core/context", "ClassificationSystem");
     private final static QName _Context_QNAME = new QName("http://isa.us.es/sedl/core/context", "Context");
 
     /**
@@ -83,6 +85,14 @@ public class ObjectFactory {
      */
     public People createPeople() {
         return new People();
+    }
+
+    /**
+     * Create an instance of {@link ClassificationTerm }
+     * 
+     */
+    public ClassificationTerm createClassificationTerm() {
+        return new ClassificationTerm();
     }
 
     /**
@@ -136,6 +146,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/context", name = "People")
     public JAXBElement<People> createPeople(People value) {
         return new JAXBElement<People>(_People_QNAME, People.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClassificationTerm }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/context", name = "ClassificationTerm")
+    public JAXBElement<ClassificationTerm> createClassificationTerm(ClassificationTerm value) {
+        return new JAXBElement<ClassificationTerm>(_ClassificationTerm_QNAME, ClassificationTerm.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ClassificationSystem }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/context", name = "ClassificationSystem")
+    public JAXBElement<ClassificationSystem> createClassificationSystem(ClassificationSystem value) {
+        return new JAXBElement<ClassificationSystem>(_ClassificationSystem_QNAME, ClassificationSystem.class, null, value);
     }
 
     /**

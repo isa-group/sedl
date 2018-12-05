@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:SEDL.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:SEDL.es.us.isa.sedl.core.context="http://isa.us.es/sedl/core/context" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.context" ecore:package="SEDL.es.us.isa.sedl.core.context" targetNamespace="http://isa.us.es/sedl/core/context">
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:sedl.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:sedl.es.us.isa.sedl.core.context="http://isa.us.es/sedl/core/context" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="sedl.es.us.isa.sedl.core.context" ecore:package="SEDL.es.us.isa.sedl.core.context" targetNamespace="http://isa.us.es/sedl/core/context">
   <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
-  <xsd:element ecore:ignore="true" name="Person" type="SEDL.es.us.isa.sedl.core.context:Person"/>
-  <xsd:element ecore:ignore="true" name="Stakeholder" type="SEDL.es.us.isa.sedl.core.context:Stakeholder"/>
-  <xsd:element ecore:ignore="true" name="Organization" type="SEDL.es.us.isa.sedl.core.context:Organization"/>
-  <xsd:element ecore:ignore="true" name="Project" type="SEDL.es.us.isa.sedl.core.context:Project"/>
-  <xsd:element ecore:ignore="true" name="People" type="SEDL.es.us.isa.sedl.core.context:People"/>
-  <xsd:element ecore:ignore="true" name="Context" type="SEDL.es.us.isa.sedl.core.context:Context"/>
+  <xsd:element ecore:ignore="true" name="Person" type="sedl.es.us.isa.sedl.core.context:Person"/>
+  <xsd:element ecore:ignore="true" name="Stakeholder" type="sedl.es.us.isa.sedl.core.context:Stakeholder"/>
+  <xsd:element ecore:ignore="true" name="Organization" type="sedl.es.us.isa.sedl.core.context:Organization"/>
+  <xsd:element ecore:ignore="true" name="Project" type="sedl.es.us.isa.sedl.core.context:Project"/>
+  <xsd:element ecore:ignore="true" name="People" type="sedl.es.us.isa.sedl.core.context:People"/>
+  <xsd:element ecore:ignore="true" name="ClassificationTerm" type="sedl.es.us.isa.sedl.core.context:ClassificationTerm"/>
+  <xsd:element ecore:ignore="true" name="ClassificationSystem" type="sedl.es.us.isa.sedl.core.context:ClassificationSystem"/>
+  <xsd:element ecore:ignore="true" name="Context" type="sedl.es.us.isa.sedl.core.context:Context"/>
   <xsd:complexType name="Person">
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core.context:Stakeholder">
-        <xsd:attribute ecore:reference="SEDL.es.us.isa.sedl.core.context:Organization" name="organization" type="xsd:anyURI"/>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.context:Stakeholder">
+        <xsd:attribute ecore:ordered="false" ecore:reference="sedl.es.us.isa.sedl.core.context:Organization" name="organization">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -20,7 +26,7 @@
       <xsd:documentation>Stakeholders are people or organizations involved in the experiment. They have a name, a nationality a role ()in the context of the experiment, or the project), an email, a physical address, etc.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+      <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
         <xsd:sequence>
           <xsd:element ecore:ordered="false" maxOccurs="unbounded" minOccurs="0" name="phone" nillable="true" type="types:String"/>
         </xsd:sequence>
@@ -37,7 +43,11 @@
 </xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core.context:Stakeholder"/>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.context:Stakeholder">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="department" type="sedl.es.us.isa.sedl.core.context:Organization"/>
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="Project">
@@ -47,24 +57,31 @@
 </xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+      <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
         <xsd:attribute name="name" type="types:String" use="required"/>
         <xsd:attribute name="code" type="types:String" use="required"/>
         <xsd:attribute name="program" type="types:String" use="required"/>
         <xsd:attribute name="type" type="types:String" use="required"/>
         <xsd:attribute name="website" type="types:String" use="required"/>
-        <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.context:Stakeholder" name="participant" use="required">
-          <xsd:simpleType>
-            <xsd:list itemType="xsd:anyURI"/>
-          </xsd:simpleType>
-        </xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="People">
     <xsd:sequence>
-      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="person" type="SEDL.es.us.isa.sedl.core.context:Person"/>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="person" type="sedl.es.us.isa.sedl.core.context:Person"/>
     </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ClassificationTerm">
+    <xsd:attribute name="name" type="types:String" use="required"/>
+    <xsd:attribute name="code" type="types:String" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ClassificationSystem">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="experimentalClassification" type="sedl.es.us.isa.sedl.core.context:ClassificationTerm"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="types:String" use="required"/>
+    <xsd:attribute name="description" type="types:String"/>
+    <xsd:attribute name="url" type="types:String"/>
   </xsd:complexType>
   <xsd:complexType name="Context">
     <xsd:annotation>
@@ -72,11 +89,13 @@
 </xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+      <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
         <xsd:sequence>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="projects" type="SEDL.es.us.isa.sedl.core.context:Project"/>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="organization" type="SEDL.es.us.isa.sedl.core.context:Organization"/>
-          <xsd:element ecore:resolveProxies="true" name="people" type="SEDL.es.us.isa.sedl.core.context:People"/>
+          <xsd:element ecore:ordered="false" ecore:unique="true" maxOccurs="unbounded" minOccurs="0" name="keywords" nillable="true" type="xsd:string"/>
+          <xsd:element ecore:resolveProxies="true" name="people" type="sedl.es.us.isa.sedl.core.context:People"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="projects" type="sedl.es.us.isa.sedl.core.context:Project"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="classificationTerms" type="sedl.es.us.isa.sedl.core.context:ClassificationTerm"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="organization" type="sedl.es.us.isa.sedl.core.context:Organization"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>

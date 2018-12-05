@@ -12,7 +12,7 @@ import es.us.isa.sedl.core.analysis.statistic.ConfidenceIntervalValue;
 import es.us.isa.sedl.core.analysis.statistic.CorrelationValue;
 import es.us.isa.sedl.core.analysis.statistic.DescriptiveStatisticValue;
 import es.us.isa.sedl.core.analysis.statistic.CorrelationCoeficient;
-import es.us.isa.sedl.core.analysis.statistic.NHST;
+import es.us.isa.sedl.core.analysis.statistic.Nhst;
 import es.us.isa.sedl.core.analysis.statistic.PValue;
 import es.us.isa.sedl.core.analysis.statistic.Rank;
 import es.us.isa.sedl.core.analysis.statistic.RankingResult;
@@ -20,9 +20,8 @@ import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.core.configuration.ExperimentalSetting;
 import es.us.isa.sedl.core.configuration.File;
 import es.us.isa.sedl.core.configuration.FileFormatSpecification;
-import es.us.isa.sedl.core.design.AnalysisSpecification;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
-import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ExperimentalResult;
 import es.us.isa.sedl.core.execution.ResultsFile;
@@ -230,7 +229,7 @@ public class ExecutionsParser implements Parser<List<Execution>, SEDL4PeoplePars
         DatasetSpecification dataSpec = parseDatasetSpecification(actualFunction, a, exe, listener);
         for (ValueContext vc : exe.values().value()) {
             pvalue = new PValue();
-            pvalue.setNHST(actualFunction);
+            pvalue.setNhst(actualFunction);
             pvalue.setValue(Double.parseDouble(vc.getText()));
             pvalue.setId(a.id().getText());
             pvalue.setDescription(exe.friedmanFunction().exeDescription().getText());
@@ -260,8 +259,8 @@ public class ExecutionsParser implements Parser<List<Execution>, SEDL4PeoplePars
         Statistic result=null;
         for(Statistic statistic:statisticalAnalysisSpec.getStatistic())
         {
-            if(statistic instanceof NHST){
-                if(((NHST)statistic).getName().toUpperCase().equals(actualFunction))
+            if(statistic instanceof Nhst){
+                if(((Nhst)statistic).getName().toUpperCase().equals(actualFunction))
                     result=statistic;
             }else if(statistic instanceof CorrelationCoeficient){
                 if(((CorrelationCoeficient)statistic).getName().toUpperCase().equals(

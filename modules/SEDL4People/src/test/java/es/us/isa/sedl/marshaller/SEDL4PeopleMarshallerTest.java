@@ -57,7 +57,7 @@ import es.us.isa.sedl.core.design.NonControllableFactor;
 import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.SamplingMethod;
-import es.us.isa.sedl.core.design.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
@@ -195,11 +195,11 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         l2.setValue("l2");
         d.getLevels().add(l1);
         d.getLevels().add(l2);
-        vars.getVariable().add(factor);
+        vars.getVariables().add(factor);
         Variable v2=new NonControllableFactor();
         v2.setName("ncf");
         v2.setDomain(d);
-        design.getVariables().getVariable().add(v2);
+        design.getVariables().getVariables().add(v2);
         Outcome outcome=new Outcome();
         outcome.setName("o");
         FundamentalSetConstraint fsc=new FundamentalSetConstraint();
@@ -207,7 +207,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         IntensionDomain id=new IntensionDomain();
         id.getConstraint().add(fsc);                
         outcome.setDomain(id);
-        vars.getVariable().add(outcome);
+        vars.getVariables().add(outcome);
         design.setVariables(vars);
         String expectedResult=
                   "Variables :"+NEW_LINE
@@ -284,11 +284,9 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         StatisticalAnalysisSpec a2 = new StatisticalAnalysisSpec();
         a2.setId("A2");
         a2.getStatistic().add(median);
-        AnalysisSpecificationGroup asgroup=new AnalysisSpecificationGroup();
-        asgroup.setId("A1");
-        asgroup.getAnalyses().add(a1);
-        asgroup.getAnalyses().add(a2);
-        fsed.getIntendedAnalyses().add(asgroup);        
+        
+        fsed.getIntendedAnalyses().add(a1);        
+        fsed.getIntendedAnalyses().add(a2);        
          design.setExperimentalDesign(fsed);
         e.setDesign(design);
         String expectedResult=
@@ -349,11 +347,11 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         l2.setValue("l2");
         d.getLevels().add(l1);
         d.getLevels().add(l2);
-        vars.getVariable().add(factor);
+        vars.getVariables().add(factor);
         Variable v2=new NonControllableFactor();
         v2.setName("ncf");
         v2.setDomain(d);
-        design.getVariables().getVariable().add(v2);
+        design.getVariables().getVariables().add(v2);
         Outcome outcome=new Outcome();
         outcome.setName("o");
         FundamentalSetConstraint fsc=new FundamentalSetConstraint();
@@ -361,7 +359,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         IntensionDomain id=new IntensionDomain();
         id.getConstraint().add(fsc);                
         outcome.setDomain(id);
-        vars.getVariable().add(outcome);
+        vars.getVariables().add(outcome);
         design.setVariables(vars);       
         return design;
     }
@@ -372,7 +370,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         Group g=new Group();
         g.setName("g1");
         VariableValuation v=new VariableValuation();
-        v.setVariable(factor);        
+        v.setVariable(factor.getName());        
         v.setLevel(null);
         Literal sizing=new Literal();
         sizing.setValue(BigInteger.valueOf(40));
@@ -683,7 +681,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         japarejo.setName("J. A. Parejo");
         japarejo.setEmail("japarejo@us.es");
         japarejo.setId("japarejo");
-        japarejo.setOrganization("University of Sevilla");
+        japarejo.getOrganization().add("University of Sevilla");
         japarejo.setRole("Main author");
         p.getPerson().add(japarejo);
         Project EXEMPLAR=new Project();
@@ -719,7 +717,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         v.setDomain(ed);     
 
         VariableValuation vv=new VariableValuation();
-        vv.setVariable(v);        
+        vv.setVariable(v.getName());        
         vv.setLevel(null);
         
         ValuationFilter vf = new ValuationFilter();

@@ -13,12 +13,12 @@ import java.util.List;
  * @author José Antonio Parejo
  */
 public abstract class AbstractVariables {
-    public abstract List<Variable> getVariable();
+    public abstract List<Variable> getVariables();
     
     public Variable getVariableByName(String name)
     {
         Variable result=null;
-        for(Variable var:getVariable())
+        for(Variable var:getVariables())
         {
             if(var.getName().equals(name))
             {
@@ -33,7 +33,7 @@ public abstract class AbstractVariables {
     public <T extends Variable> List<T> getVariablesByType(Class<T> type)
     {
         List<T> result=new ArrayList<T>();
-        for(Variable var:getVariable())
+        for(Variable var:getVariables())
             if(type.isInstance(var))
                 result.add((T)var);
         return result;
@@ -56,8 +56,8 @@ public abstract class AbstractVariables {
     
     public Variable get(int index){
         Variable result=null;
-        if(index>=0 && index<getVariable().size())
-            result=getVariable().get(index);
+        if(index>=0 && index<getVariables().size())
+            result=getVariables().get(index);
         return result;
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:SEDL.es.us.isa.sedl.core.configuration.FileFormats="http://isa.us.es/sedl/core/configuration/fileformats" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core.configuration.FileFormats" ecore:package="SEDL.es.us.isa.sedl.core.configuration.FileFormats" targetNamespace="http://isa.us.es/sedl/core/configuration/fileformats">
-  <xsd:element ecore:ignore="true" name="CSVFileFormat" type="SEDL.es.us.isa.sedl.core.configuration.FileFormats:CSVFileFormat"/>
-  <xsd:complexType name="CSVFileFormat"/>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.uml2._2._0._0.uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:sedl.es.us.isa.sedl.core.configuration.fileFormats="http://isa.us.es/sedl/core/configuration/fileformats" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="sedl.es.us.isa.sedl.core.configuration.fileFormats" ecore:package="SEDL.es.us.isa.sedl.core.configuration.fileFormats" org.eclipse.uml2._2._0._0.uml:originalName="FileFormats" targetNamespace="http://isa.us.es/sedl/core/configuration/fileformats">
+  <xsd:element ecore:ignore="true" name="CsvFileFormat" type="sedl.es.us.isa.sedl.core.configuration.fileFormats:CsvFileFormat"/>
+  <xsd:complexType name="CsvFileFormat" org.eclipse.uml2._2._0._0.uml:originalName="CSVFileFormat"/>
 </xsd:schema>

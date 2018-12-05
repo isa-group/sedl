@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -39,7 +39,7 @@ public class ObjectFactory {
     private final static QName _DataMapping_QNAME = new QName("http://isa.us.es/sedl/core/execution", "DataMapping");
     private final static QName _FileFormat_QNAME = new QName("http://isa.us.es/sedl/core/execution", "FileFormat");
     private final static QName _ColumnBasedDataMapping_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ColumnBasedDataMapping");
-    private final static QName _CSV_QNAME = new QName("http://isa.us.es/sedl/core/execution", "CSV");
+    private final static QName _Csv_QNAME = new QName("http://isa.us.es/sedl/core/execution", "Csv");
     private final static QName _Excel_QNAME = new QName("http://isa.us.es/sedl/core/execution", "Excel");
     private final static QName _PlainText_QNAME = new QName("http://isa.us.es/sedl/core/execution", "PlainText");
     private final static QName _ByColumnLabel_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ByColumnLabel");
@@ -112,75 +112,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ColumnBasedDataMapping }
+     * Create an instance of {@link Csv }
      * 
      */
-    public ColumnBasedDataMapping createColumnBasedDataMapping() {
-        return new ColumnBasedDataMapping();
-    }
-
-    /**
-     * Create an instance of {@link CSV }
-     * 
-     */
-    public CSV createCSV() {
-        return new CSV();
-    }
-
-    /**
-     * Create an instance of {@link Excel }
-     * 
-     */
-    public Excel createExcel() {
-        return new Excel();
-    }
-
-    /**
-     * Create an instance of {@link PlainText }
-     * 
-     */
-    public PlainText createPlainText() {
-        return new PlainText();
-    }
-
-    /**
-     * Create an instance of {@link ByColumnLabel }
-     * 
-     */
-    public ByColumnLabel createByColumnLabel() {
-        return new ByColumnLabel();
-    }
-
-    /**
-     * Create an instance of {@link ByColumnIndex }
-     * 
-     */
-    public ByColumnIndex createByColumnIndex() {
-        return new ByColumnIndex();
-    }
-
-    /**
-     * Create an instance of {@link ColumnIndexMapper }
-     * 
-     */
-    public ColumnIndexMapper createColumnIndexMapper() {
-        return new ColumnIndexMapper();
-    }
-
-    /**
-     * Create an instance of {@link ToVariable }
-     * 
-     */
-    public ToVariable createToVariable() {
-        return new ToVariable();
-    }
-
-    /**
-     * Create an instance of {@link ToConstant }
-     * 
-     */
-    public ToConstant createToConstant() {
-        return new ToConstant();
+    public Csv createCsv() {
+        return new Csv();
     }
 
     /**
@@ -256,12 +192,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CSV }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Csv }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "CSV")
-    public JAXBElement<CSV> createCSV(CSV value) {
-        return new JAXBElement<CSV>(_CSV_QNAME, CSV.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "Csv")
+    public JAXBElement<Csv> createCsv(Csv value) {
+        return new JAXBElement<Csv>(_Csv_QNAME, Csv.class, null, value);
     }
 
     /**

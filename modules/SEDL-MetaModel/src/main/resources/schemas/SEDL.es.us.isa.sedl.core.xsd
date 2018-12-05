@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:SEDL.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:SEDL.es.us.isa.sedl.core.classification="http://isa.us.es/sedl/core/classification" xmlns:SEDL.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:SEDL.es.us.isa.sedl.core.context="http://isa.us.es/sedl/core/context" xmlns:SEDL.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:SEDL.es.us.isa.sedl.core.hypothesis="http://isa.us.es/sedl/core/hypothesis" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="SEDL.es.us.isa.sedl.core" ecore:package="SEDL.es.us.isa.sedl.core" targetNamespace="http://isa.us.es/sedl/core">
-  <xsd:import namespace="http://isa.us.es/sedl/core/classification" schemaLocation="SEDL.es.us.isa.sedl.core.classification.xsd"/>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.uml2._2._0._0.uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:sedl.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:sedl.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:sedl.es.us.isa.sedl.core.context="http://isa.us.es/sedl/core/context" xmlns:sedl.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:sedl.es.us.isa.sedl.core.hypothesis="http://isa.us.es/sedl/core/hypothesis" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="sedl.es.us.isa.sedl.core" ecore:package="SEDL.es.us.isa.sedl.core" targetNamespace="http://isa.us.es/sedl/core">
+  <xsd:import namespace="http://isa.us.es/sedl/core/hypothesis" schemaLocation="SEDL.es.us.isa.sedl.core.hypothesis.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/configuration" schemaLocation="SEDL.es.us.isa.sedl.core.configuration.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
-  <xsd:import namespace="http://isa.us.es/sedl/core/hypothesis" schemaLocation="SEDL.es.us.isa.sedl.core.hypothesis.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/context" schemaLocation="SEDL.es.us.isa.sedl.core.context.xsd"/>
-  <xsd:element ecore:ignore="true" name="SEDLEntity" type="SEDL.es.us.isa.sedl.core:SEDLEntity"/>
-  <xsd:element ecore:ignore="true" name="SEDLBase" type="SEDL.es.us.isa.sedl.core:SEDLBase"/>
-  <xsd:element ecore:ignore="true" name="BasicExperiment" type="SEDL.es.us.isa.sedl.core:BasicExperiment"/>
-  <xsd:element ecore:ignore="true" name="Experiment" type="SEDL.es.us.isa.sedl.core:Experiment"/>
-  <xsd:element ecore:ignore="true" name="ExtensionPoint" type="SEDL.es.us.isa.sedl.core:ExtensionPoint"/>
-  <xsd:complexType name="SEDLEntity">
+  <xsd:element ecore:ignore="true" name="SedlEntity" type="sedl.es.us.isa.sedl.core:SedlEntity"/>
+  <xsd:element ecore:ignore="true" name="SedlBase" type="sedl.es.us.isa.sedl.core:SedlBase"/>
+  <xsd:element ecore:ignore="true" name="BasicExperiment" type="sedl.es.us.isa.sedl.core:BasicExperiment"/>
+  <xsd:element ecore:ignore="true" name="Experiment" type="sedl.es.us.isa.sedl.core:Experiment"/>
+  <xsd:element ecore:ignore="true" name="Goal" type="sedl.es.us.isa.sedl.core:Goal"/>
+  <xsd:element ecore:ignore="true" name="Abstract" type="sedl.es.us.isa.sedl.core:Abstract"/>
+  <xsd:element ecore:ignore="true" name="ExtensionPoint" type="sedl.es.us.isa.sedl.core:ExtensionPoint"/>
+  <xsd:element ecore:ignore="true" name="SimpleGoal" type="sedl.es.us.isa.sedl.core:SimpleGoal"/>
+  <xsd:element ecore:ignore="true" name="GqmGoal" type="sedl.es.us.isa.sedl.core:GqmGoal"/>
+  <xsd:element ecore:ignore="true" name="SimpleAbstract" type="sedl.es.us.isa.sedl.core:SimpleAbstract"/>
+  <xsd:element ecore:ignore="true" name="StructuredAbstract" type="sedl.es.us.isa.sedl.core:StructuredAbstract"/>
+  <xsd:complexType name="SedlEntity" org.eclipse.uml2._2._0._0.uml:originalName="SEDLEntity">
     <xsd:annotation>
       <xsd:documentation>The SEDLEntity is the base type of any univocally identifiable element of the experiment. It extends SEDLBase by adding an identifier (that should be unique for al the SEDLEntities of the document), a name, and a meta-identifier (that allows to provide some context to the element and create globally unique identifiers).
 </xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLBase">
+      <xsd:extension base="sedl.es.us.isa.sedl.core:SedlBase">
         <xsd:attribute ecore:id="true" name="id" type="xsd:string" use="required">
           <xsd:annotation>
             <xsd:documentation>The type SEDLId is used throughout SEDL as the type of the 'id' attributes on the elements of experiments.
@@ -26,7 +31,7 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="SEDLBase">
+  <xsd:complexType name="SedlBase" org.eclipse.uml2._2._0._0.uml:originalName="SEDLBase">
     <xsd:annotation>
       <xsd:documentation>The SEDLBase type is the base of all main types in SEDL. It serves as a container for the annotation of any part of the experiment description.
 </xsd:documentation>
@@ -52,12 +57,12 @@
 				Moreover, it contains an attribute that defines the version of SEDL used in the description.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core:Experiment">
+      <xsd:extension base="sedl.es.us.isa.sedl.core:Experiment">
         <xsd:sequence>
-          <xsd:element ecore:resolveProxies="true" name="context" type="SEDL.es.us.isa.sedl.core.context:Context"/>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="hypotheses" type="SEDL.es.us.isa.sedl.core.hypothesis:Hypothesis"/>
-          <xsd:element ecore:resolveProxies="true" name="design" type="SEDL.es.us.isa.sedl.core.design:Design"/>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="configurations" type="SEDL.es.us.isa.sedl.core.configuration:Configuration"/>
+          <xsd:element ecore:resolveProxies="true" name="context" type="sedl.es.us.isa.sedl.core.context:Context"/>
+          <xsd:element ecore:resolveProxies="true" name="design" type="sedl.es.us.isa.sedl.core.design:Design"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="configurations" type="sedl.es.us.isa.sedl.core.configuration:Configuration"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="hypotheses" type="sedl.es.us.isa.sedl.core.hypothesis:Hypothesis"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>
@@ -69,11 +74,15 @@ by the 'canonical' Basic Experiment, that describes all the details of the exper
 using SEDL elements.</xsd:documentation>
     </xsd:annotation>
     <xsd:complexContent>
-      <xsd:extension base="SEDL.es.us.isa.sedl.core:SEDLEntity">
+      <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" name="goal" type="sedl.es.us.isa.sedl.core:Goal"/>
+          <xsd:element ecore:resolveProxies="true" name="abstract" type="sedl.es.us.isa.sedl.core:Abstract"/>
+        </xsd:sequence>
         <xsd:attribute name="metaid" type="xsd:string" use="required"/>
         <xsd:attribute name="name" type="xsd:string" use="required"/>
         <xsd:attribute name="version" type="xsd:string" use="required"/>
-        <xsd:attribute ecore:ordered="false" ecore:reference="SEDL.es.us.isa.sedl.core.classification:ExperimentalClassification" name="classifications">
+        <xsd:attribute ecore:ordered="false" ecore:reference="sedl.es.us.isa.sedl.core.context:ClassificationTerm" name="classifications">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -81,5 +90,27 @@ using SEDL elements.</xsd:documentation>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="Goal"/>
+  <xsd:complexType abstract="true" ecore:interface="true" name="Abstract"/>
   <xsd:complexType abstract="true" ecore:interface="true" name="ExtensionPoint"/>
+  <xsd:complexType name="SimpleGoal">
+    <xsd:attribute name="description" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="GqmGoal" org.eclipse.uml2._2._0._0.uml:originalName="GQMGoal">
+    <xsd:attribute name="object" type="xsd:string" use="required"/>
+    <xsd:attribute name="purpose" type="xsd:string" use="required"/>
+    <xsd:attribute name="focus" type="xsd:string" use="required"/>
+    <xsd:attribute name="pointOfView" type="xsd:string" use="required"/>
+    <xsd:attribute name="context" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="SimpleAbstract">
+    <xsd:attribute name="description" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="StructuredAbstract">
+    <xsd:attribute name="background" type="xsd:string" use="required"/>
+    <xsd:attribute name="aim" type="xsd:string" use="required"/>
+    <xsd:attribute name="method" type="xsd:string" use="required"/>
+    <xsd:attribute name="results" type="xsd:string" use="required"/>
+    <xsd:attribute name="conclusions" type="xsd:string" use="required"/>
+  </xsd:complexType>
 </xsd:schema>

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -32,21 +32,19 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Design_QNAME = new QName("http://isa.us.es/sedl/core/design", "Design");
-    private final static QName _Variables_QNAME = new QName("http://isa.us.es/sedl/core/design", "Variables");
-    private final static QName _Population_QNAME = new QName("http://isa.us.es/sedl/core/design", "Population");
     private final static QName _SamplingMethod_QNAME = new QName("http://isa.us.es/sedl/core/design", "SamplingMethod");
-    private final static QName _StatisticalAnalysisSpec_QNAME = new QName("http://isa.us.es/sedl/core/design", "StatisticalAnalysisSpec");
-    private final static QName _VariableValuation_QNAME = new QName("http://isa.us.es/sedl/core/design", "VariableValuation");
-    private final static QName _Level_QNAME = new QName("http://isa.us.es/sedl/core/design", "Level");
+    private final static QName _Population_QNAME = new QName("http://isa.us.es/sedl/core/design", "Population");
     private final static QName _ExperimentalDesign_QNAME = new QName("http://isa.us.es/sedl/core/design", "ExperimentalDesign");
     private final static QName _AnalysisSpecificationGroup_QNAME = new QName("http://isa.us.es/sedl/core/design", "AnalysisSpecificationGroup");
-    private final static QName _AnalysisSpecification_QNAME = new QName("http://isa.us.es/sedl/core/design", "AnalysisSpecification");
+    private final static QName _Variables_QNAME = new QName("http://isa.us.es/sedl/core/design", "Variables");
+    private final static QName _Variable_QNAME = new QName("http://isa.us.es/sedl/core/design", "Variable");
+    private final static QName _Domain_QNAME = new QName("http://isa.us.es/sedl/core/design", "Domain");
     private final static QName _Outcome_QNAME = new QName("http://isa.us.es/sedl/core/design", "Outcome");
     private final static QName _Factor_QNAME = new QName("http://isa.us.es/sedl/core/design", "Factor");
     private final static QName _NonControllableFactor_QNAME = new QName("http://isa.us.es/sedl/core/design", "NonControllableFactor");
     private final static QName _ControllableFactor_QNAME = new QName("http://isa.us.es/sedl/core/design", "ControllableFactor");
-    private final static QName _Domain_QNAME = new QName("http://isa.us.es/sedl/core/design", "Domain");
     private final static QName _ExtensionDomain_QNAME = new QName("http://isa.us.es/sedl/core/design", "ExtensionDomain");
+    private final static QName _Level_QNAME = new QName("http://isa.us.es/sedl/core/design", "Level");
     private final static QName _Constraint_QNAME = new QName("http://isa.us.es/sedl/core/design", "Constraint");
     private final static QName _FullySpecifiedExperimentalDesign_QNAME = new QName("http://isa.us.es/sedl/core/design", "FullySpecifiedExperimentalDesign");
     private final static QName _AssignmentMethod_QNAME = new QName("http://isa.us.es/sedl/core/design", "AssignmentMethod");
@@ -66,7 +64,7 @@ public class ObjectFactory {
     private final static QName _IntervalConstraint_QNAME = new QName("http://isa.us.es/sedl/core/design", "IntervalConstraint");
     private final static QName _FundamentalSetConstraint_QNAME = new QName("http://isa.us.es/sedl/core/design", "FundamentalSetConstraint");
     private final static QName _IntensionDomain_QNAME = new QName("http://isa.us.es/sedl/core/design", "IntensionDomain");
-    private final static QName _Variable_QNAME = new QName("http://isa.us.es/sedl/core/design", "Variable");
+    private final static QName _VariableValuation_QNAME = new QName("http://isa.us.es/sedl/core/design", "VariableValuation");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: es.us.isa.sedl.core.design
@@ -84,11 +82,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Variables }
+     * Create an instance of {@link SamplingMethod }
      * 
      */
-    public Variables createVariables() {
-        return new Variables();
+    public SamplingMethod createSamplingMethod() {
+        return new SamplingMethod();
     }
 
     /**
@@ -100,43 +98,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SamplingMethod }
-     * 
-     */
-    public SamplingMethod createSamplingMethod() {
-        return new SamplingMethod();
-    }
-
-    /**
-     * Create an instance of {@link StatisticalAnalysisSpec }
-     * 
-     */
-    public StatisticalAnalysisSpec createStatisticalAnalysisSpec() {
-        return new StatisticalAnalysisSpec();
-    }
-
-    /**
-     * Create an instance of {@link VariableValuation }
-     * 
-     */
-    public VariableValuation createVariableValuation() {
-        return new VariableValuation();
-    }
-
-    /**
-     * Create an instance of {@link Level }
-     * 
-     */
-    public Level createLevel() {
-        return new Level();
-    }
-
-    /**
      * Create an instance of {@link AnalysisSpecificationGroup }
      * 
      */
     public AnalysisSpecificationGroup createAnalysisSpecificationGroup() {
         return new AnalysisSpecificationGroup();
+    }
+
+    /**
+     * Create an instance of {@link Variables }
+     * 
+     */
+    public Variables createVariables() {
+        return new Variables();
     }
 
     /**
@@ -169,6 +143,14 @@ public class ObjectFactory {
      */
     public ExtensionDomain createExtensionDomain() {
         return new ExtensionDomain();
+    }
+
+    /**
+     * Create an instance of {@link Level }
+     * 
+     */
+    public Level createLevel() {
+        return new Level();
     }
 
     /**
@@ -308,30 +290,20 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link VariableValuation }
+     * 
+     */
+    public VariableValuation createVariableValuation() {
+        return new VariableValuation();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Design }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Design")
     public JAXBElement<Design> createDesign(Design value) {
         return new JAXBElement<Design>(_Design_QNAME, Design.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Variables }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Variables")
-    public JAXBElement<Variables> createVariables(Variables value) {
-        return new JAXBElement<Variables>(_Variables_QNAME, Variables.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Population }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Population")
-    public JAXBElement<Population> createPopulation(Population value) {
-        return new JAXBElement<Population>(_Population_QNAME, Population.class, null, value);
     }
 
     /**
@@ -344,30 +316,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link StatisticalAnalysisSpec }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Population }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "StatisticalAnalysisSpec")
-    public JAXBElement<StatisticalAnalysisSpec> createStatisticalAnalysisSpec(StatisticalAnalysisSpec value) {
-        return new JAXBElement<StatisticalAnalysisSpec>(_StatisticalAnalysisSpec_QNAME, StatisticalAnalysisSpec.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link VariableValuation }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "VariableValuation")
-    public JAXBElement<VariableValuation> createVariableValuation(VariableValuation value) {
-        return new JAXBElement<VariableValuation>(_VariableValuation_QNAME, VariableValuation.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Level }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Level")
-    public JAXBElement<Level> createLevel(Level value) {
-        return new JAXBElement<Level>(_Level_QNAME, Level.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Population")
+    public JAXBElement<Population> createPopulation(Population value) {
+        return new JAXBElement<Population>(_Population_QNAME, Population.class, null, value);
     }
 
     /**
@@ -389,12 +343,30 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AnalysisSpecification }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Variables }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "AnalysisSpecification")
-    public JAXBElement<AnalysisSpecification> createAnalysisSpecification(AnalysisSpecification value) {
-        return new JAXBElement<AnalysisSpecification>(_AnalysisSpecification_QNAME, AnalysisSpecification.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Variables")
+    public JAXBElement<Variables> createVariables(Variables value) {
+        return new JAXBElement<Variables>(_Variables_QNAME, Variables.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Variable }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Variable")
+    public JAXBElement<Variable> createVariable(Variable value) {
+        return new JAXBElement<Variable>(_Variable_QNAME, Variable.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Domain }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Domain")
+    public JAXBElement<Domain> createDomain(Domain value) {
+        return new JAXBElement<Domain>(_Domain_QNAME, Domain.class, null, value);
     }
 
     /**
@@ -434,21 +406,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Domain }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Domain")
-    public JAXBElement<Domain> createDomain(Domain value) {
-        return new JAXBElement<Domain>(_Domain_QNAME, Domain.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ExtensionDomain }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "ExtensionDomain")
     public JAXBElement<ExtensionDomain> createExtensionDomain(ExtensionDomain value) {
         return new JAXBElement<ExtensionDomain>(_ExtensionDomain_QNAME, ExtensionDomain.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Level }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Level")
+    public JAXBElement<Level> createLevel(Level value) {
+        return new JAXBElement<Level>(_Level_QNAME, Level.class, null, value);
     }
 
     /**
@@ -623,12 +595,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Variable }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link VariableValuation }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Variable")
-    public JAXBElement<Variable> createVariable(Variable value) {
-        return new JAXBElement<Variable>(_Variable_QNAME, Variable.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "VariableValuation")
+    public JAXBElement<VariableValuation> createVariableValuation(VariableValuation value) {
+        return new JAXBElement<VariableValuation>(_VariableValuation_QNAME, VariableValuation.class, null, value);
     }
 
 }

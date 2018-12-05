@@ -59,7 +59,7 @@ public class DatasetSpecificationParserTest {
         ed.getLevels().add(l1);
         ed.getLevels().add(l2);
         cf.setDomain(ed);
-        variables.getVariable().add(cf);
+        variables.getVariables().add(cf);
         Outcome outcome=new Outcome();
         outcome.setName("outcome");
         outcome.setKind(VariableKind.SCALAR);
@@ -68,14 +68,14 @@ public class DatasetSpecificationParserTest {
         fsc.setFundamentalSet(FundamentalSet.R);
         id.getConstraint().add(fsc);
         outcome.setDomain(id);
-        variables.getVariable().add(outcome);
+        variables.getVariables().add(outcome);
         l.setVariables(variables);
         
         DatasetSpecificationParser instance = new DatasetSpecificationParser();
         DatasetSpecification expResult = new DatasetSpecification();
         ValuationFilter vf=new ValuationFilter();
         VariableValuation vv=new VariableValuation();
-        vv.setVariable(cf);
+        vv.setVariable(cf.getName());
         vf.getVariableValuations().add(vv);
         expResult.getFilters().add(vf);
         //Projection p=new Projection();

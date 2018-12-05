@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
-import es.us.isa.sedl.core.SEDLEntity;
+import es.us.isa.sedl.core.SedlEntity;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisResult;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -37,7 +37,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="AnalysisResult"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core}SEDLEntity"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="datasetSpecification" type="{http://isa.us.es/sedl/core/analysis/datasetspecification}DatasetSpecification"/&gt;
  *       &lt;/sequence&gt;
@@ -56,7 +56,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     StatisticalAnalysisResult.class
 })
 public abstract class AnalysisResult
-    extends SEDLEntity
+    extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
 

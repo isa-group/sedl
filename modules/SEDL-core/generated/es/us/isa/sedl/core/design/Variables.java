@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -37,7 +37,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="variable" type="{http://isa.us.es/sedl/core/design}Variable" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="variables" type="{http://isa.us.es/sedl/core/design}Variable" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -48,7 +48,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Variables", propOrder = {
-    "variable"
+    "variables"
 })
 public class Variables
     extends AbstractVariables
@@ -56,21 +56,21 @@ public class Variables
 {
 
     @XmlElement(required = true)
-    protected List<Variable> variable;
+    protected List<Variable> variables;
 
     /**
-     * Gets the value of the variable property.
+     * Gets the value of the variables property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the variable property.
+     * This is why there is not a <CODE>set</CODE> method for the variables property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getVariable().add(newItem);
+     *    getVariables().add(newItem);
      * </pre>
      * 
      * 
@@ -80,11 +80,11 @@ public class Variables
      * 
      * 
      */
-    public List<Variable> getVariable() {
-        if (variable == null) {
-            variable = new ArrayList<Variable>();
+    public List<Variable> getVariables() {
+        if (variables == null) {
+            variables = new ArrayList<Variable>();
         }
-        return this.variable;
+        return this.variables;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
@@ -96,11 +96,11 @@ public class Variables
         }
         final Variables that = ((Variables) object);
         {
-            List<Variable> lhsVariable;
-            lhsVariable = (((this.variable!= null)&&(!this.variable.isEmpty()))?this.getVariable():null);
-            List<Variable> rhsVariable;
-            rhsVariable = (((that.variable!= null)&&(!that.variable.isEmpty()))?that.getVariable():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "variable", lhsVariable), LocatorUtils.property(thatLocator, "variable", rhsVariable), lhsVariable, rhsVariable)) {
+            List<Variable> lhsVariables;
+            lhsVariables = (((this.variables!= null)&&(!this.variables.isEmpty()))?this.getVariables():null);
+            List<Variable> rhsVariables;
+            rhsVariables = (((that.variables!= null)&&(!that.variables.isEmpty()))?that.getVariables():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "variables", lhsVariables), LocatorUtils.property(thatLocator, "variables", rhsVariables), lhsVariables, rhsVariables)) {
                 return false;
             }
         }
@@ -115,9 +115,9 @@ public class Variables
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
         {
-            List<Variable> theVariable;
-            theVariable = (((this.variable!= null)&&(!this.variable.isEmpty()))?this.getVariable():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variable", theVariable), currentHashCode, theVariable);
+            List<Variable> theVariables;
+            theVariables = (((this.variables!= null)&&(!this.variables.isEmpty()))?this.getVariables():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "variables", theVariables), currentHashCode, theVariables);
         }
         return currentHashCode;
     }
@@ -140,18 +140,18 @@ public class Variables
         final Object draftCopy = ((target == null)?createNewInstance():target);
         if (draftCopy instanceof Variables) {
             final Variables copy = ((Variables) draftCopy);
-            if ((this.variable!= null)&&(!this.variable.isEmpty())) {
-                List<Variable> sourceVariable;
-                sourceVariable = (((this.variable!= null)&&(!this.variable.isEmpty()))?this.getVariable():null);
+            if ((this.variables!= null)&&(!this.variables.isEmpty())) {
+                List<Variable> sourceVariables;
+                sourceVariables = (((this.variables!= null)&&(!this.variables.isEmpty()))?this.getVariables():null);
                 @SuppressWarnings("unchecked")
-                List<Variable> copyVariable = ((List<Variable> ) strategy.copy(LocatorUtils.property(locator, "variable", sourceVariable), sourceVariable));
-                copy.variable = null;
-                if (copyVariable!= null) {
-                    List<Variable> uniqueVariablel = copy.getVariable();
-                    uniqueVariablel.addAll(copyVariable);
+                List<Variable> copyVariables = ((List<Variable> ) strategy.copy(LocatorUtils.property(locator, "variables", sourceVariables), sourceVariables));
+                copy.variables = null;
+                if (copyVariables!= null) {
+                    List<Variable> uniqueVariablesl = copy.getVariables();
+                    uniqueVariablesl.addAll(copyVariables);
                 }
             } else {
-                copy.variable = null;
+                copy.variables = null;
             }
         }
         return draftCopy;

@@ -79,12 +79,12 @@ public class JSONMarshallerTest extends TestCase {
         Factor f=new ControllableFactor();
         f.setName("Treatment");
         f.setDomain(ed);        
-        Design design=new Design();
+        Design design=new Design() {};
         Variables vars=new Variables();
         design.setVariables(vars);
         exp.setDesign(design);        
-        design.getVariables().getVariable().add(f);
-        design.getVariables().getVariable().add(out);
+        design.getVariables().getVariables().add(f);
+        design.getVariables().getVariables().add(out);
         JSONMarshaller instance = new JSONMarshaller();        
         String result = instance.asString(exp);
         System.out.println(result);

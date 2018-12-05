@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -32,6 +32,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Statistic_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "Statistic");
+    private final static QName _StatisticalAnalysisSpec_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "StatisticalAnalysisSpec");
     private final static QName _Ranking_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "Ranking");
     private final static QName _DescriptiveStatistic_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "DescriptiveStatistic");
     private final static QName _RankingResult_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "RankingResult");
@@ -51,7 +52,7 @@ public class ObjectFactory {
     private final static QName _CorrelationCoeficient_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "CorrelationCoeficient");
     private final static QName _AssociationalAnalysis_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "AssociationalAnalysis");
     private final static QName _TestOfHypothesis_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "TestOfHypothesis");
-    private final static QName _NHST_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "NHST");
+    private final static QName _Nhst_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "Nhst");
     private final static QName _PValue_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "PValue");
     private final static QName _DescriptiveStatisticValue_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "DescriptiveStatisticValue");
     private final static QName _ConfidenceIntervalValue_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "ConfidenceIntervalValue");
@@ -70,6 +71,14 @@ public class ObjectFactory {
      */
     public Statistic createStatistic() {
         return new Statistic();
+    }
+
+    /**
+     * Create an instance of {@link StatisticalAnalysisSpec }
+     * 
+     */
+    public StatisticalAnalysisSpec createStatisticalAnalysisSpec() {
+        return new StatisticalAnalysisSpec();
     }
 
     /**
@@ -217,11 +226,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link NHST }
+     * Create an instance of {@link Nhst }
      * 
      */
-    public NHST createNHST() {
-        return new NHST();
+    public Nhst createNhst() {
+        return new Nhst();
     }
 
     /**
@@ -263,6 +272,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "Statistic")
     public JAXBElement<Statistic> createStatistic(Statistic value) {
         return new JAXBElement<Statistic>(_Statistic_QNAME, Statistic.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link StatisticalAnalysisSpec }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "StatisticalAnalysisSpec")
+    public JAXBElement<StatisticalAnalysisSpec> createStatisticalAnalysisSpec(StatisticalAnalysisSpec value) {
+        return new JAXBElement<StatisticalAnalysisSpec>(_StatisticalAnalysisSpec_QNAME, StatisticalAnalysisSpec.class, null, value);
     }
 
     /**
@@ -437,12 +455,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link NHST }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Nhst }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "NHST")
-    public JAXBElement<NHST> createNHST(NHST value) {
-        return new JAXBElement<NHST>(_NHST_QNAME, NHST.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "Nhst")
+    public JAXBElement<Nhst> createNhst(Nhst value) {
+        return new JAXBElement<Nhst>(_Nhst_QNAME, Nhst.class, null, value);
     }
 
     /**

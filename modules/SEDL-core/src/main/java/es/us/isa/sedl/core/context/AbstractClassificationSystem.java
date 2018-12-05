@@ -12,8 +12,8 @@ import java.util.Set;
  * @author japarejo
  */
 public abstract class AbstractClassificationSystem {
-    public abstract Set<ClassificationEntry> supportedClasses();
-    public abstract boolean isValid(ClassificationEntry entry);
-    public abstract Set<ClassificationEntry> matchingClasses(String desc);
-    public abstract ClassificationEntry findByCode(String code);
+    public abstract Set<ClassificationTerm> supportedClasses();
+    public abstract boolean isValid(ClassificationTerm entry);
+    public abstract Set<ClassificationTerm> matchingClasses(String desc);
+    public abstract ClassificationTerm findByCode(String code);
 }

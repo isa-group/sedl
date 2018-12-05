@@ -6,12 +6,12 @@ package es.us.isa.sedl.core.design;
  */
 public abstract class AbstractVariableValuation {
 
-    public abstract Variable getVariable();
-    public abstract Level getLevel();
+    public abstract String getVariable();
+    public abstract String getLevel();
     
     @Override
     public String toString() {
-    return getVariable().getName()+"<-"+getLevel().getValue();
+    return getVariable()+"<-"+getLevel();
     }
 
     

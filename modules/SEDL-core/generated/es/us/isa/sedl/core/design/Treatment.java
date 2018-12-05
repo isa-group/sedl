@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.06.26 a las 12:16:30 PM CEST 
+// Generado el: 2018.12.05 a las 03:15:37 PM CET 
 //
 
 
@@ -29,8 +29,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 /**
  * A treatment implies to perform an action that sets the value of an independent variable of
- *                 the experiment to a specific value. Consequently, the treatment must specify the levels of
- *                 the independent variables that are set.
+ * 				the experiment to a specific value. Consequently, the treatment must specify the levels of
+ * 				the independent variables that are set.
  * 
  * <p>Clase Java para Treatment complex type.
  * 
