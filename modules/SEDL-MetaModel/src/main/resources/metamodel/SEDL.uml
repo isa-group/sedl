@@ -16,7 +16,7 @@
               <packagedElement xmi:type="uml:Package" xmi:id="_VdzeUFqDEeKds5mCqHf9IQ" name="execution" URI="http://isa.us.es/sedl/core/execution">
                 <packagedElement xmi:type="uml:Class" xmi:id="_YFXWcFqDEeKds5mCqHf9IQ" name="Execution">
                   <generalization xmi:type="uml:Generalization" xmi:id="_u8c44HtyEeKHo4aJlOjd_w" general="_m97YkHtxEeKHo4aJlOjd_w"/>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_Nfr-0NOxEeKCjJ7PmQnFqg" name="start" visibility="public" isUnique="false">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_Nfr-0NOxEeKCjJ7PmQnFqg" name="start" visibility="protected" isUnique="false">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Date"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RVw4gNOxEeKCjJ7PmQnFqg" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RV1J8NOxEeKCjJ7PmQnFqg" value="1"/>
@@ -24,7 +24,7 @@
                       <value xsi:nil="true"/>
                     </defaultValue>
                   </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_SdkOENOxEeKCjJ7PmQnFqg" name="finish" visibility="public" isUnique="false">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_SdkOENOxEeKCjJ7PmQnFqg" name="finish" visibility="protected" isUnique="false">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Date"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XYfP8NOxEeKCjJ7PmQnFqg" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XYgeENOxEeKCjJ7PmQnFqg" value="1"/>
@@ -32,19 +32,19 @@
                       <value xsi:nil="true"/>
                     </defaultValue>
                   </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_mYiuwNOxEeKCjJ7PmQnFqg" name="log" type="_a5Zx8NOxEeKCjJ7PmQnFqg" aggregation="composite" association="_mYj84NOxEeKCjJ7PmQnFqg">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_mYiuwNOxEeKCjJ7PmQnFqg" name="log" visibility="protected" type="_a5Zx8NOxEeKCjJ7PmQnFqg" aggregation="composite" association="_mYj84NOxEeKCjJ7PmQnFqg">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mYiuwdOxEeKCjJ7PmQnFqg"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mYiuwtOxEeKCjJ7PmQnFqg" value="1"/>
                   </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_T4mMMNOyEeKCjJ7PmQnFqg" name="results" type="_ESKp4NOyEeKCjJ7PmQnFqg" aggregation="composite" association="_T4mMM9OyEeKCjJ7PmQnFqg">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_T4mMMNOyEeKCjJ7PmQnFqg" name="results" visibility="protected" type="_ESKp4NOyEeKCjJ7PmQnFqg" aggregation="composite" association="_T4mMM9OyEeKCjJ7PmQnFqg">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_T4mMMdOyEeKCjJ7PmQnFqg"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_T4mMMtOyEeKCjJ7PmQnFqg" value="*"/>
                   </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_ie36AOfzEeKXqeRW3H6iKA" name="experimentalSetting" type="_HfhXIHtUEeKvAvMvaV8KgQ" aggregation="composite" association="_ie4hEOfzEeKXqeRW3H6iKA">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_ie36AOfzEeKXqeRW3H6iKA" name="experimentalSetting" visibility="protected" type="_HfhXIHtUEeKvAvMvaV8KgQ" aggregation="composite" association="_ie4hEOfzEeKXqeRW3H6iKA">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ie36AefzEeKXqeRW3H6iKA"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ie36AufzEeKXqeRW3H6iKA" value="1"/>
                   </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_AZHQ8NWwEeKDCoC4128qnw" name="analysisResults" type="_lhtKUFqEEeKds5mCqHf9IQ" aggregation="composite" association="_AZH4ANWwEeKDCoC4128qnw">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_AZHQ8NWwEeKDCoC4128qnw" name="analysisResults" visibility="protected" type="_lhtKUFqEEeKds5mCqHf9IQ" aggregation="composite" association="_AZH4ANWwEeKDCoC4128qnw">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AZHQ8dWwEeKDCoC4128qnw"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZHQ8tWwEeKDCoC4128qnw" value="*"/>
                   </ownedAttribute>
@@ -296,7 +296,7 @@
                   </ownedEnd>
                 </nestedClassifier>
               </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_dYThoFqBEeKds5mCqHf9IQ" name="BasicExperiment">
+              <packagedElement xmi:type="uml:Class" xmi:id="_dYThoFqBEeKds5mCqHf9IQ" name="ControlledExperiment">
                 <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F2shkIQ7EeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
                   <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_LAQcYIQ7EeKoq7krZqrSBw" key="documentation" value="BasicExperiment is the main element provided by SEDL. It supports the description of the context of the experiment (organization, people and projects involved),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;the hypothesis of the experiment, its design, conduction, results and analysis performed.&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Moreover, it contains an attribute that defines the version of SEDL used in the description."/>
                 </eAnnotations>
@@ -306,10 +306,6 @@
 				Moreover, it contains an attribute that defines the version of SEDL used in the description.</body>
                 </ownedComment>
                 <generalization xmi:type="uml:Generalization" xmi:id="_DdLL8HtoEeKHo4aJlOjd_w" general="_bO7UALQKEeKq15p9jILFoQ"/>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_SDZ7EFvjEeKVr4SekrOH2A" name="context" type="_huLgQFqCEeKds5mCqHf9IQ" aggregation="composite" association="_SDcXUFvjEeKVr4SekrOH2A">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SDZ7EVvjEeKVr4SekrOH2A" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SDZ7ElvjEeKVr4SekrOH2A" value="1"/>
-                </ownedAttribute>
                 <ownedAttribute xmi:type="uml:Property" xmi:id="_Vic00FvjEeKVr4SekrOH2A" name="design" type="_yrAqQFqBEeKds5mCqHf9IQ" aggregation="composite" association="_VieC8FvjEeKVr4SekrOH2A">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Vic00VvjEeKVr4SekrOH2A" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Vic00lvjEeKVr4SekrOH2A" value="1"/>
@@ -341,25 +337,7 @@
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_t_KbU1vjEeKVr4SekrOH2A" value="1"/>
                 </ownedEnd>
               </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_m97YkHtxEeKHo4aJlOjd_w" name="SEDLEntity">
-                <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MZme0IREEeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
-                  <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NorhEIREEeKoq7krZqrSBw" key="documentation" value="The SEDLEntity is the base type of any univocally identifiable element of the experiment. It extends SEDLBase by adding an identifier (that should be unique for al the SEDLEntities of the document), a name, and a meta-identifier (that allows to provide some context to the element and create globally unique identifiers).&#xD;&#xA;"/>
-                </eAnnotations>
-                <ownedComment xmi:type="uml:Comment" xmi:id="_iqqPUAAeEeSf7_iXgQi_Qw">
-                  <body>The SEDLEntity is the base type of any univocally identifiable element of the experiment. It extends SEDLBase by adding an identifier (that should be unique for al the SEDLEntities of the document), a name, and a meta-identifier (that allows to provide some context to the element and create globally unique identifiers).&#xD;
-</body>
-                </ownedComment>
-                <generalization xmi:type="uml:Generalization" xmi:id="_1rSk4HtxEeKHo4aJlOjd_w" general="_0fRi4HtfEeKHo4aJlOjd_w"/>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_Gavp8HtgEeKHo4aJlOjd_w" name="id" visibility="public" isID="true">
-                  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8Z9LQIRDEeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
-                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8_F4oIRDEeKoq7krZqrSBw" key="documentation" value="The type SEDLId is used throughout SEDL as the type of the 'id' attributes on the elements of experiments.&#xD;&#xA;"/>
-                  </eAnnotations>
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_K0bXQHtxEeKHo4aJlOjd_w" value="1"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K0b-UHtxEeKHo4aJlOjd_w" value="1"/>
-                </ownedAttribute>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Class" xmi:id="_bO7UALQKEeKq15p9jILFoQ" name="Experiment" isAbstract="true">
+              <packagedElement xmi:type="uml:Class" xmi:id="_bO7UALQKEeKq15p9jILFoQ" name="EmpiricalStudy" isAbstract="true">
                 <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_WGbBYLY0EeKAj9U6q3959Q" source="http://www.eclipse.org/emf/2002/GenModel">
                   <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_b2ydgLY0EeKAj9U6q3959Q" key="documentation" value="Abstract class to be extended by any domain-specific experiment. It is also extended &#xD;&#xA;by the 'canonical' Basic Experiment, that describes all the details of the experiment &#xD;&#xA;using SEDL elements."/>
                 </eAnnotations>
@@ -393,13 +371,6 @@ using SEDL elements.</body>
                     <value xsi:nil="true"/>
                   </defaultValue>
                 </ownedAttribute>
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_T7E6MLTXEeOID6ygLbtEXQ" name="classifications" visibility="public" type="_sfbrsLTVEeOID6ygLbtEXQ" isUnique="false">
-                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dHKPQLTXEeOID6ygLbtEXQ"/>
-                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dHKPQbTXEeOID6ygLbtEXQ" value="*"/>
-                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_dHK2ULTXEeOID6ygLbtEXQ">
-                    <value xsi:nil="true"/>
-                  </defaultValue>
-                </ownedAttribute>
                 <ownedAttribute xmi:type="uml:Property" xmi:id="_-1bMtPbqEeiNQPhXo2GK0g" name="goal" type="_ALZd8PbnEeiNQPhXo2GK0g" aggregation="composite" association="_-1bMsPbqEeiNQPhXo2GK0g">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-1bMtfbqEeiNQPhXo2GK0g" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-1bMtvbqEeiNQPhXo2GK0g" value="1"/>
@@ -407,6 +378,28 @@ using SEDL elements.</body>
                 <ownedAttribute xmi:type="uml:Property" xmi:id="_UZb9NPbqEeiNQPhXo2GK0g" name="abstract" type="_Vz4pUPbnEeiNQPhXo2GK0g" aggregation="composite" association="_UZb9MPbqEeiNQPhXo2GK0g">
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UZb9NfbqEeiNQPhXo2GK0g" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UZb9NvbqEeiNQPhXo2GK0g" value="1"/>
+                </ownedAttribute>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_SDZ7EFvjEeKVr4SekrOH2A" name="context" type="_huLgQFqCEeKds5mCqHf9IQ" aggregation="composite" association="_SDcXUFvjEeKVr4SekrOH2A">
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SDZ7EVvjEeKVr4SekrOH2A"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SDZ7ElvjEeKVr4SekrOH2A" value="1"/>
+                </ownedAttribute>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_m97YkHtxEeKHo4aJlOjd_w" name="SEDLEntity">
+                <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MZme0IREEeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
+                  <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_NorhEIREEeKoq7krZqrSBw" key="documentation" value="The SEDLEntity is the base type of any univocally identifiable element of the experiment. It extends SEDLBase by adding an identifier (that should be unique for al the SEDLEntities of the document), a name, and a meta-identifier (that allows to provide some context to the element and create globally unique identifiers).&#xD;&#xA;"/>
+                </eAnnotations>
+                <ownedComment xmi:type="uml:Comment" xmi:id="_iqqPUAAeEeSf7_iXgQi_Qw">
+                  <body>The SEDLEntity is the base type of any univocally identifiable element of the experiment. It extends SEDLBase by adding an identifier (that should be unique for al the SEDLEntities of the document), a name, and a meta-identifier (that allows to provide some context to the element and create globally unique identifiers).&#xD;
+</body>
+                </ownedComment>
+                <generalization xmi:type="uml:Generalization" xmi:id="_1rSk4HtxEeKHo4aJlOjd_w" general="_0fRi4HtfEeKHo4aJlOjd_w"/>
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_Gavp8HtgEeKHo4aJlOjd_w" name="id" visibility="public" isID="true">
+                  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8Z9LQIRDEeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_8_F4oIRDEeKoq7krZqrSBw" key="documentation" value="The type SEDLId is used throughout SEDL as the type of the 'id' attributes on the elements of experiments.&#xD;&#xA;"/>
+                  </eAnnotations>
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+                  <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_K0bXQHtxEeKHo4aJlOjd_w" value="1"/>
+                  <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K0b-UHtxEeKHo4aJlOjd_w" value="1"/>
                 </ownedAttribute>
               </packagedElement>
               <packagedElement xmi:type="uml:Package" xmi:id="_2W67UFqBEeKds5mCqHf9IQ" name="configuration" URI="http://isa.us.es/sedl/core/configuration">
@@ -1306,7 +1299,7 @@ using SEDL elements.</body>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XJBDkufIEeKyTso9DEKYGA" value="*"/>
                   </ownedAttribute>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Association" xmi:id="_EQV3AFvnEeKh0NqYXxovXA" name="" visibility="private" memberEnd="_EQV3AVvnEeKh0NqYXxovXA _EQUo4FvnEeKh0NqYXxovXA">
+                <packagedElement xmi:type="uml:Association" xmi:id="_EQV3AFvnEeKh0NqYXxovXA" name="" visibility="public" memberEnd="_EQV3AVvnEeKh0NqYXxovXA _EQUo4FvnEeKh0NqYXxovXA">
                   <ownedEnd xmi:type="uml:Property" xmi:id="_EQV3AVvnEeKh0NqYXxovXA" name="design" type="_yrAqQFqBEeKds5mCqHf9IQ" association="_EQV3AFvnEeKh0NqYXxovXA">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EQV3AlvnEeKh0NqYXxovXA" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EQV3A1vnEeKh0NqYXxovXA" value="1"/>
@@ -2255,7 +2248,7 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                     <body>Organizations are a specific type of stakeholder that can contain a set or members (persons) and other organizations.</body>
                   </ownedComment>
                   <generalization xmi:type="uml:Generalization" xmi:id="_khL5wFqKEeKwpo1GBM8uuA" general="_HfSQ0FqKEeKwpo1GBM8uuA"/>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_41_2wFqKEeKwpo1GBM8uuA" name="department" type="_F9qtEFqKEeKwpo1GBM8uuA" aggregation="composite" association="_41_2w1qKEeKwpo1GBM8uuA">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_41_2wFqKEeKwpo1GBM8uuA" name="departments" type="_F9qtEFqKEeKwpo1GBM8uuA" aggregation="composite" association="_41_2w1qKEeKwpo1GBM8uuA">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_41_2wVqKEeKwpo1GBM8uuA"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_41_2wlqKEeKwpo1GBM8uuA" value="*"/>
                   </ownedAttribute>
@@ -2387,7 +2380,7 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                   </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_SDcXUFvjEeKVr4SekrOH2A" name="" memberEnd="_SDcXUVvjEeKVr4SekrOH2A _SDZ7EFvjEeKVr4SekrOH2A">
-                  <ownedEnd xmi:type="uml:Property" xmi:id="_SDcXUVvjEeKVr4SekrOH2A" name="" type="_dYThoFqBEeKds5mCqHf9IQ" association="_SDcXUFvjEeKVr4SekrOH2A">
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_SDcXUVvjEeKVr4SekrOH2A" name="" type="_bO7UALQKEeKq15p9jILFoQ" association="_SDcXUFvjEeKVr4SekrOH2A">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SDcXUlvjEeKVr4SekrOH2A"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SDcXU1vjEeKVr4SekrOH2A" value="1"/>
                   </ownedEnd>
@@ -2430,7 +2423,7 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                 </ownedAttribute>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_aa20cPbnEeiNQPhXo2GK0g" name="StructuredAbstract">
-                <ownedAttribute xmi:type="uml:Property" xmi:id="_NzQv4PbpEeiNQPhXo2GK0g" name="background" isUnique="false">
+                <ownedAttribute xmi:type="uml:Property" xmi:id="_NzQv4PbpEeiNQPhXo2GK0g" name="background" visibility="protected" isUnique="false">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
                 </ownedAttribute>
                 <ownedAttribute xmi:type="uml:Property" xmi:id="_TlcJ4PbpEeiNQPhXo2GK0g" name="aim" visibility="protected" isUnique="false">

@@ -8,6 +8,9 @@
             <emfPageIdentifier href="papyrus.welcome:dynamic#/"/>
           </children>
           <children>
+            <emfPageIdentifier href="papyrus.welcome:dynamic#/"/>
+          </children>
+          <children>
             <emfPageIdentifier href="SEDL.notation#_cDfq0FqBEeKds5mCqHf9IQ"/>
           </children>
           <children>
@@ -18,9 +21,6 @@
           </children>
           <children>
             <emfPageIdentifier href="SEDL.notation#_ypH3gOelEeKVkOFJBoRv-g"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="papyrus.welcome:dynamic#/"/>
           </children>
           <children>
             <emfPageIdentifier href="SEDL.notation#_5iqvsFqvEeKSssWuOcwhaw"/>
@@ -39,6 +39,12 @@
           </children>
           <children>
             <emfPageIdentifier href="SEDL.notation#_6gWQIHtBEeK6Y5IizshdMw"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_kZyRIAQsEem7zoda_FGExQ"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_U3JC8FqvEeKSssWuOcwhaw"/>
           </children>
         </children>
       </windows>
