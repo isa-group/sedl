@@ -1181,6 +1181,10 @@ using SEDL elements.</body>
 /*</body>
                   </ownedComment>
                   <generalization xmi:type="uml:Generalization" xmi:id="_N_NZYFuBEeK_Vtw9NZRQig" general="_ix2-YFuAEeK_Vtw9NZRQig"/>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_O1HfoAnbEemSr6uAKaOriw" name="getFullSpecification">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_f8l98AnbEemSr6uAKaOriw" name="population" type="_7Dd1QIRKEeKoq7krZqrSBw"/>
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_pqtpEAnbEemSr6uAKaOriw" name="variables" type="_Au2ycPe6EeilSMzqKo3OiA"/>
+                  </ownedOperation>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_Sw2jcFuBEeK_Vtw9NZRQig" name="AssignmentMethod">
                   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_w3qagIRIEeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1357,7 +1361,7 @@ using SEDL elements.</body>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_lRGsw1voEeKGca93458OUg" value="1"/>
                   </ownedEnd>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_sAO3MFvoEeKGca93458OUg" name="Literal">
+                <packagedElement xmi:type="uml:Class" xmi:id="_sAO3MFvoEeKGca93458OUg" name="LiteralSizing">
                   <generalization xmi:type="uml:Generalization" xmi:id="_ufThsFvoEeKGca93458OUg" general="_XST2oFvoEeKh0NqYXxovXA"/>
                   <ownedAttribute xmi:type="uml:Property" xmi:id="_w1ShoFvoEeKGca93458OUg" name="value" visibility="public" isUnique="false">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Integer"/>
@@ -1656,6 +1660,9 @@ using SEDL elements.</body>
                     <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_b5XhQfiREeia88fgUSTP6g" key="nature" value="UML_Nature"/>
                   </eAnnotations>
                   <ownedEnd xmi:type="uml:Property" xmi:id="_b5bysPiREeia88fgUSTP6g" name="measurement" type="_4ynPcFvmEeKh0NqYXxovXA" association="_b5VFAPiREeia88fgUSTP6g"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_F42FAAnXEemRwokJKAxKEA" name="EvenSizing">
+                  <generalization xmi:type="uml:Generalization" xmi:id="_Q5r8QAnXEemRwokJKAxKEA" general="_XST2oFvoEeKh0NqYXxovXA"/>
                 </packagedElement>
               </packagedElement>
               <packagedElement xmi:type="uml:Package" xmi:id="_lE_ggFqBEeKds5mCqHf9IQ" name="hypothesis" URI="http://isa.us.es/sedl/core/hypothesis">

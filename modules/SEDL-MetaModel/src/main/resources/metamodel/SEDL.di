@@ -46,6 +46,15 @@
           <children>
             <emfPageIdentifier href="SEDL.notation#_U3JC8FqvEeKSssWuOcwhaw"/>
           </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_RWbhcAm9EemVteGw7GRIZw"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_ut7UAAnKEemRwokJKAxKEA"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_JHfaAAnREemRwokJKAxKEA"/>
+          </children>
         </children>
       </windows>
     </sashModel>
