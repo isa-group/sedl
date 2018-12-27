@@ -1161,10 +1161,6 @@ using SEDL elements.</body>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p_OukVuBEeK_Vtw9NZRQig" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p_OukluBEeK_Vtw9NZRQig" value="1"/>
                   </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_XqR1QFvpEeKGca93458OUg" name="blockingVariables" type="_aZcYcFqwEeKSssWuOcwhaw" association="_XqTqcFvpEeKGca93458OUg">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XqR1QVvpEeKGca93458OUg"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XqR1QlvpEeKGca93458OUg" value="*"/>
-                  </ownedAttribute>
                   <ownedAttribute xmi:type="uml:Property" xmi:id="_RKHQoOfSEeKyTso9DEKYGA" name="groups" type="_0qn6QFuBEeK_Vtw9NZRQig" aggregation="composite" association="_RKH3sOfSEeKyTso9DEKYGA">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RKHQoefSEeKyTso9DEKYGA"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RKHQoufSEeKyTso9DEKYGA" value="*"/>
@@ -1210,6 +1206,10 @@ using SEDL elements.</body>
                   </ownedAttribute>
                   <ownedAttribute xmi:type="uml:Property" xmi:id="_gp0eYFuBEeK_Vtw9NZRQig" name="random">
                     <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Boolean"/>
+                  </ownedAttribute>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_3CLSEAneEemSr6uAKaOriw" name="blockingVariables" type="_6ol18FqvEeKSssWuOcwhaw" aggregation="shared" association="_3CI10AneEemSr6uAKaOriw">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_3CLSEQneEemSr6uAKaOriw"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3CLSEgneEemSr6uAKaOriw" value="*"/>
                   </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_p_P8sFuBEeK_Vtw9NZRQig" name="" memberEnd="_p_P8sVuBEeK_Vtw9NZRQig _p_OukFuBEeK_Vtw9NZRQig">
@@ -1384,12 +1384,6 @@ using SEDL elements.</body>
                   <ownedEnd xmi:type="uml:Property" xmi:id="_KvmHgVvpEeKGca93458OUg" name="" type="_6AcCkFvoEeKGca93458OUg" association="_KvmHgFvpEeKGca93458OUg">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KvmHglvpEeKGca93458OUg" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KvmHg1vpEeKGca93458OUg" value="1"/>
-                  </ownedEnd>
-                </packagedElement>
-                <packagedElement xmi:type="uml:Association" xmi:id="_XqTqcFvpEeKGca93458OUg" name="" memberEnd="_XqTqcVvpEeKGca93458OUg _XqR1QFvpEeKGca93458OUg">
-                  <ownedEnd xmi:type="uml:Property" xmi:id="_XqTqcVvpEeKGca93458OUg" name="" type="_9EioAFuAEeK_Vtw9NZRQig" association="_XqTqcFvpEeKGca93458OUg">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_XqTqclvpEeKGca93458OUg" value="1"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_XqTqc1vpEeKGca93458OUg" value="1"/>
                   </ownedEnd>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_uxVQYFvpEeKGca93458OUg" name="AnalysisSpecificationGroup">
@@ -1663,6 +1657,12 @@ using SEDL elements.</body>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_F42FAAnXEemRwokJKAxKEA" name="EvenSizing">
                   <generalization xmi:type="uml:Generalization" xmi:id="_Q5r8QAnXEemRwokJKAxKEA" general="_XST2oFvoEeKh0NqYXxovXA"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_3CI10AneEemSr6uAKaOriw" memberEnd="_3CLSEAneEemSr6uAKaOriw _3CL5IAneEemSr6uAKaOriw">
+                  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_3CKD8AneEemSr6uAKaOriw" source="org.eclipse.papyrus">
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_3CKrAAneEemSr6uAKaOriw" key="nature" value="UML_Nature"/>
+                  </eAnnotations>
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_3CL5IAneEemSr6uAKaOriw" name="assignmentmethod" type="_Sw2jcFuBEeK_Vtw9NZRQig" association="_3CI10AneEemSr6uAKaOriw"/>
                 </packagedElement>
               </packagedElement>
               <packagedElement xmi:type="uml:Package" xmi:id="_lE_ggFqBEeKds5mCqHf9IQ" name="hypothesis" URI="http://isa.us.es/sedl/core/hypothesis">
