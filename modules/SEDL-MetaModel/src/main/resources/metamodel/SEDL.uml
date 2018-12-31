@@ -49,12 +49,7 @@
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AZHQ8tWwEeKDCoC4128qnw" value="*"/>
                   </ownedAttribute>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_a5Zx8NOxEeKCjJ7PmQnFqg" name="Log">
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_RNVuANWuEeKDCoC4128qnw" name="lines" type="_NVWIwNWuEeKDCoC4128qnw" aggregation="composite" association="_RNW8INWuEeKDCoC4128qnw">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RNVuAdWuEeKDCoC4128qnw" value="1"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RNVuAtWuEeKDCoC4128qnw" value="*"/>
-                  </ownedAttribute>
-                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_a5Zx8NOxEeKCjJ7PmQnFqg" name="Log"/>
                 <packagedElement xmi:type="uml:Association" xmi:id="_mYj84NOxEeKCjJ7PmQnFqg" name="execution_log_1" memberEnd="_mYj84dOxEeKCjJ7PmQnFqg _mYiuwNOxEeKCjJ7PmQnFqg">
                   <ownedEnd xmi:type="uml:Property" xmi:id="_mYj84dOxEeKCjJ7PmQnFqg" name="execution" type="_YFXWcFqDEeKds5mCqHf9IQ" association="_mYj84NOxEeKCjJ7PmQnFqg">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mYj84tOxEeKCjJ7PmQnFqg" value="1"/>
@@ -234,7 +229,7 @@
                   </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_RNW8INWuEeKDCoC4128qnw" name="log_logLine_1" memberEnd="_RNW8IdWuEeKDCoC4128qnw _RNVuANWuEeKDCoC4128qnw">
-                  <ownedEnd xmi:type="uml:Property" xmi:id="_RNW8IdWuEeKDCoC4128qnw" name="log" type="_a5Zx8NOxEeKCjJ7PmQnFqg" association="_RNW8INWuEeKDCoC4128qnw">
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_RNW8IdWuEeKDCoC4128qnw" name="log" type="_zeQNMAzwEempw9OeoyUNEg" association="_RNW8INWuEeKDCoC4128qnw">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RNW8ItWuEeKDCoC4128qnw" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RNW8I9WuEeKDCoC4128qnw" value="1"/>
                   </ownedEnd>
@@ -256,6 +251,19 @@
                     <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_FrqzIh8FEeWBceBSdYhLMw" key="nature" value="UML_Nature"/>
                   </eAnnotations>
                   <ownedEnd xmi:type="uml:Property" xmi:id="_FrraMB8FEeWBceBSdYhLMw" name="resultsfile" type="_fiMFgNOyEeKCjJ7PmQnFqg" association="_FrqzIB8FEeWBceBSdYhLMw"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_zeQNMAzwEempw9OeoyUNEg" name="ComplexLog">
+                  <generalization xmi:type="uml:Generalization" xmi:id="_FGGiwAzzEempw9OeoyUNEg" general="_a5Zx8NOxEeKCjJ7PmQnFqg"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_RNVuANWuEeKDCoC4128qnw" name="lines" type="_NVWIwNWuEeKDCoC4128qnw" aggregation="composite" association="_RNW8INWuEeKDCoC4128qnw">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RNVuAdWuEeKDCoC4128qnw" value="1"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RNVuAtWuEeKDCoC4128qnw" value="*"/>
+                  </ownedAttribute>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_EjMU4AzxEempw9OeoyUNEg" name="SimpleLog">
+                  <generalization xmi:type="uml:Generalization" xmi:id="_NsjGEAzxEempw9OeoyUNEg" general="_a5Zx8NOxEeKCjJ7PmQnFqg"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_I2S24AzzEempw9OeoyUNEg" name="description" visibility="private">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+                  </ownedAttribute>
                 </packagedElement>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_0fRi4HtfEeKHo4aJlOjd_w" name="SEDLBase">
@@ -996,6 +1004,12 @@ using SEDL elements.</body>
                     <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rCuwoB6LEeWBceBSdYhLMw" key="nature" value="UML_Nature"/>
                   </eAnnotations>
                   <ownedEnd xmi:type="uml:Property" xmi:id="_rCuwoh6LEeWBceBSdYhLMw" name="file" type="_WS99AB6LEeWBceBSdYhLMw" association="_rCuJkB6LEeWBceBSdYhLMw"/>
+                </packagedElement>
+                <packagedElement xmi:type="uml:Class" xmi:id="_5qUYwAzuEempw9OeoyUNEg" name="PhysicalEnvironment">
+                  <generalization xmi:type="uml:Generalization" xmi:id="_ECzPgAzvEempw9OeoyUNEg" general="_Y5kr0HtXEeKvAvMvaV8KgQ"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_KO9PwAzvEempw9OeoyUNEg" name="description">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+                  </ownedAttribute>
                 </packagedElement>
               </packagedElement>
               <packagedElement xmi:type="uml:Package" xmi:id="_vb4b0FqBEeKds5mCqHf9IQ" name="design" URI="http://isa.us.es/sedl/core/design">

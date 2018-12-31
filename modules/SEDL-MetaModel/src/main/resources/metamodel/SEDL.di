@@ -5,6 +5,9 @@
       <windows>
         <children xsi:type="di:TabFolder">
           <children>
+            <emfPageIdentifier href="SEDL.notation#_kZyRIAQsEem7zoda_FGExQ"/>
+          </children>
+          <children>
             <emfPageIdentifier href="papyrus.welcome:dynamic#/"/>
           </children>
           <children>
@@ -41,19 +44,13 @@
             <emfPageIdentifier href="SEDL.notation#_6gWQIHtBEeK6Y5IizshdMw"/>
           </children>
           <children>
-            <emfPageIdentifier href="SEDL.notation#_kZyRIAQsEem7zoda_FGExQ"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SEDL.notation#_U3JC8FqvEeKSssWuOcwhaw"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SEDL.notation#_RWbhcAm9EemVteGw7GRIZw"/>
-          </children>
-          <children>
-            <emfPageIdentifier href="SEDL.notation#_ut7UAAnKEemRwokJKAxKEA"/>
-          </children>
-          <children>
             <emfPageIdentifier href="SEDL.notation#_JHfaAAnREemRwokJKAxKEA"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_dWO8QAznEempw9OeoyUNEg"/>
+          </children>
+          <children>
+            <emfPageIdentifier href="SEDL.notation#_xlvdUAz5EemXl-aoBWx-WA"/>
           </children>
         </children>
       </windows>
