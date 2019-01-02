@@ -97,6 +97,10 @@
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_b7QskNQqEeK-XvXvDOD05g" name="ColumnBasedDataMapping" isAbstract="true">
                   <generalization xmi:type="uml:Generalization" xmi:id="_zziMcNQuEeK-XvXvDOD05g" general="__f1t4NOyEeKCjJ7PmQnFqg"/>
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_W-LZoNRNEeK0hJLzhlIYKg" name="columnIndexToVariable" type="_4uZoUNRMEeK0hJLzhlIYKg" aggregation="composite" association="_W-MAsNRNEeK0hJLzhlIYKg">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W-LZodRNEeK0hJLzhlIYKg" value="1"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W-LZotRNEeK0hJLzhlIYKg" value="*"/>
+                  </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_wb6T4NQvEeK-XvXvDOD05g" name="FileFormat">
                   <ownedComment xmi:type="uml:Comment" xmi:id="_UTzg4ABSEeSmo8h8vK7CUg">
@@ -158,19 +162,9 @@
                   <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_9ekVENQzEeK3nez6ydtLUg" name="ExperimentalGroupId"/>
                   <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_jICR8NROEeK0hJLzhlIYKg" name="Timestamp"/>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_MRao4NQ1EeKZMc_hxai_UA" name="ByColumnLabel" isAbstract="true">
-                  <generalization xmi:type="uml:Generalization" xmi:id="_b6i54NQ1EeKZMc_hxai_UA" general="_b7QskNQqEeK-XvXvDOD05g"/>
-                </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_q0SVUNQ1EeKZMc_hxai_UA" name="ByColumnIndex" isAbstract="true">
-                  <generalization xmi:type="uml:Generalization" xmi:id="_vLWcMNQ1EeKZMc_hxai_UA" general="_b7QskNQqEeK-XvXvDOD05g"/>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_W-LZoNRNEeK0hJLzhlIYKg" name="columnIndexToVariable" type="_4uZoUNRMEeK0hJLzhlIYKg" aggregation="composite" association="_W-MAsNRNEeK0hJLzhlIYKg">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W-LZodRNEeK0hJLzhlIYKg" value="1"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W-LZotRNEeK0hJLzhlIYKg" value="*"/>
-                  </ownedAttribute>
-                </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_4uZoUNRMEeK0hJLzhlIYKg" name="ColumnIndexMapper" isAbstract="true">
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_FXcMcNRNEeK0hJLzhlIYKg" name="index" visibility="public" isUnique="false">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Integer"/>
+                <packagedElement xmi:type="uml:Class" xmi:id="_4uZoUNRMEeK0hJLzhlIYKg" name="ColumnMapper" isAbstract="true">
+                  <ownedAttribute xmi:type="uml:Property" xmi:id="_FXcMcNRNEeK0hJLzhlIYKg" name="indexer" visibility="public" isUnique="false">
+                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JRRkwNRNEeK0hJLzhlIYKg" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JRUoENRNEeK0hJLzhlIYKg" value="1"/>
                     <defaultValue xmi:type="uml:LiteralString" xmi:id="_JRb80NRNEeK0hJLzhlIYKg">
@@ -179,7 +173,7 @@
                   </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_W-MAsNRNEeK0hJLzhlIYKg" name="byColumnIndex_columnIndexToVariable_1" memberEnd="_W-MAsdRNEeK0hJLzhlIYKg _W-LZoNRNEeK0hJLzhlIYKg">
-                  <ownedEnd xmi:type="uml:Property" xmi:id="_W-MAsdRNEeK0hJLzhlIYKg" name="byColumnIndex" type="_q0SVUNQ1EeKZMc_hxai_UA" association="_W-MAsNRNEeK0hJLzhlIYKg">
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_W-MAsdRNEeK0hJLzhlIYKg" name="byColumnIndex" type="_b7QskNQqEeK-XvXvDOD05g" association="_W-MAsNRNEeK0hJLzhlIYKg">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_W-MAstRNEeK0hJLzhlIYKg" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_W-MAs9RNEeK0hJLzhlIYKg" value="1"/>
                   </ownedEnd>
@@ -1400,7 +1394,7 @@ using SEDL elements.</body>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KvmHg1vpEeKGca93458OUg" value="1"/>
                   </ownedEnd>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_uxVQYFvpEeKGca93458OUg" name="AnalysisSpecificationGroup">
+                <packagedElement xmi:type="uml:Class" xmi:id="_uxVQYFvpEeKGca93458OUg" name="AnalysisSpecificationGroup" isAbstract="true">
                   <ownedComment xmi:type="uml:Comment" xmi:id="_RxzeMABSEeSmo8h8vK7CUg">
                     <body>*/&#xD;
 @ExtensionPoint &#xD;
