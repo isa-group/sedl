@@ -463,7 +463,7 @@ using SEDL elements.</body>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_0y7xo3tSEeKvAvMvaV8KgQ" value="1"/>
                   </ownedEnd>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_Gv67oHtTEeKvAvMvaV8KgQ" name="ExperimentalProcedure">
+                <packagedElement xmi:type="uml:Class" xmi:id="_Gv67oHtTEeKvAvMvaV8KgQ" name="ExperimentalProcedure" isAbstract="true">
                   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_wV9skIRREeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
                     <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_wfJdwIRREeKoq7krZqrSBw" key="documentation" value="An experimental producedure is a detailed description of the steps that should be performed for&#xD;&#xA;&#x9;&#x9;conducting the experiment in the especific context of its configuration. &#xD;&#xA;&#x9;&#x9;In this sense, the experimental procedure can be a much richer and detailed description than &#xD;&#xA;&#x9;&#x9;the experimental protocol, that only specifies the experimentation process in terms of group treatments&#xD;&#xA;&#x9;&#x9;and dependent variable measurements.&#xD;&#xA;&#x9;&#x9;The use of an appropriate language for describing experimental procedures is a key point for the achieving&#xD;&#xA;&#x9;&#x9;exactly replicable experiment and even for the automatic experimental replication in those enviroments that&#xD;&#xA;&#x9;&#x9;could alow it (such as for instance computer science). &#xD;&#xA;&#x9;&#x9;This element has been declared abstract to emphasize the need os specifying a concrete type of procedure&#xD;&#xA;&#x9;&#x9;in this sense, the elements that extend the experimentalProcedureType element would define a experimental &#xD;&#xA;&#x9;&#x9;procedure description language. This is one of the main extension points of SEDL that should be used to &#xD;&#xA;&#x9;&#x9;define domain specific experimental procedures description languages in the scientific areas that require it.&#xD;&#xA;&#x9;&#x9;However, for simple applications, we provide a basic experimental procedure description language based on the&#xD;&#xA;&#x9;&#x9; execution of a sequence of tasks (that are another possible extension point if no control flow or decission &#xD;&#xA;&#x9;&#x9; structures are needed), and an specific type of task that enables the execution of commands in a OS shell for&#xD;&#xA;&#x9;&#x9; enabling the replication of Computer Science experiments as described below.&#xD;&#xA;"/>
                   </eAnnotations>
@@ -490,6 +490,9 @@ using SEDL elements.</body>
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Vv_9sXtVEeKvAvMvaV8KgQ" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Vv_9sntVEeKvAvMvaV8KgQ" value="*"/>
                   </ownedAttribute>
+                  <ownedOperation xmi:type="uml:Operation" xmi:id="_2qIpcA9YEemAuMyDr4FvyQ" name="execute" concurrency="concurrent">
+                    <ownedParameter xmi:type="uml:Parameter" xmi:id="_JtmTUA9ZEemAuMyDr4FvyQ" type="_YFXWcFqDEeKds5mCqHf9IQ" direction="return"/>
+                  </ownedOperation>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_K03XwHtTEeKvAvMvaV8KgQ" name="configuration_experimentalProcedure_1" memberEnd="_K03XwXtTEeKvAvMvaV8KgQ _K02wsHtTEeKvAvMvaV8KgQ">
                   <ownedEnd xmi:type="uml:Property" xmi:id="_K03XwXtTEeKvAvMvaV8KgQ" name="configuration" type="_47tMQFqBEeKds5mCqHf9IQ" association="_K03XwHtTEeKvAvMvaV8KgQ">
@@ -1952,6 +1955,10 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_vKyq0OgmEeKXqeRW3H6iKA" value="1"/>
                       <defaultValue xmi:type="uml:LiteralString" xmi:id="_vK2VMOgmEeKXqeRW3H6iKA" value="0.05"/>
                     </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_Ci-HYA9TEemAuMyDr4FvyQ" name="postHoc" type="_CIRBIFvwEeKvx6H3g4H3MA" aggregation="composite" association="_CisakA9TEemAuMyDr4FvyQ">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ci-ucA9TEemAuMyDr4FvyQ"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ci_8kA9TEemAuMyDr4FvyQ" value="*"/>
+                    </ownedAttribute>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Class" xmi:id="_KTQsoFvwEeKvx6H3g4H3MA" name="StatisticalTestAssertion">
                     <generalization xmi:type="uml:Generalization" xmi:id="_7wnbMFvyEeKvx6H3g4H3MA" general="_cSmLEFqzEeKSssWuOcwhaw"/>
@@ -1991,6 +1998,10 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                       <defaultValue xmi:type="uml:LiteralString" xmi:id="_L5Bw4OgnEeKXqeRW3H6iKA">
                         <value xsi:nil="true"/>
                       </defaultValue>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_SMjEUQ9TEemAuMyDr4FvyQ" name="postHoc" type="_yq3CgFvwEeKvx6H3g4H3MA" aggregation="composite" association="_SMh2MA9TEemAuMyDr4FvyQ">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SMsOQA9TEemAuMyDr4FvyQ"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SMv4oA9TEemAuMyDr4FvyQ" value="*"/>
                     </ownedAttribute>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Class" xmi:id="__MA18FvwEeKvx6H3g4H3MA" name="StatisticalAnalysisResult" isAbstract="true">
@@ -2115,6 +2126,40 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7gXgUn3XEeOombJwbPPtLA" value="1"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7gXgU33XEeOombJwbPPtLA" value="1"/>
                     </ownedEnd>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_CisakA9TEemAuMyDr4FvyQ" memberEnd="_Ci-HYA9TEemAuMyDr4FvyQ _CjAjoA9TEemAuMyDr4FvyQ">
+                    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Ci518A9TEemAuMyDr4FvyQ" source="org.eclipse.papyrus">
+                      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ci6dAA9TEemAuMyDr4FvyQ" key="nature" value="UML_Nature"/>
+                    </eAnnotations>
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_CjAjoA9TEemAuMyDr4FvyQ" name="nhst" type="_CIRBIFvwEeKvx6H3g4H3MA" association="_CisakA9TEemAuMyDr4FvyQ"/>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_SMh2MA9TEemAuMyDr4FvyQ" memberEnd="_SMjEUQ9TEemAuMyDr4FvyQ _SMy78A9TEemAuMyDr4FvyQ">
+                    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SMidQA9TEemAuMyDr4FvyQ" source="org.eclipse.papyrus">
+                      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SMjEUA9TEemAuMyDr4FvyQ" key="nature" value="UML_Nature"/>
+                    </eAnnotations>
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_SMy78A9TEemAuMyDr4FvyQ" name="pvalue" type="_yq3CgFvwEeKvx6H3g4H3MA" association="_SMh2MA9TEemAuMyDr4FvyQ"/>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Class" xmi:id="_kGLYUA9TEemAuMyDr4FvyQ" name="EffectSizeEstimator">
+                    <generalization xmi:type="uml:Generalization" xmi:id="_9lY9oA9TEemAuMyDr4FvyQ" general="_w6g4gFvrEeKGca93458OUg"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_shgl4A9TEemAuMyDr4FvyQ" name="name">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+                    </ownedAttribute>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Class" xmi:id="_GBMFQA9UEemAuMyDr4FvyQ" name="EffectSizeEstimate">
+                    <generalization xmi:type="uml:Generalization" xmi:id="_hEALUA9UEemAuMyDr4FvyQ" general="__MA18FvwEeKvx6H3g4H3MA"/>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_XnwTUA9UEemAuMyDr4FvyQ" name="value">
+                      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Double"/>
+                    </ownedAttribute>
+                    <ownedAttribute xmi:type="uml:Property" xmi:id="_bp_kQA9VEemAuMyDr4FvyQ" name="effectsizeestimator" type="_kGLYUA9TEemAuMyDr4FvyQ" association="_bp9vEA9VEemAuMyDr4FvyQ">
+                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bp_kQQ9VEemAuMyDr4FvyQ" value="1"/>
+                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bqALUA9VEemAuMyDr4FvyQ" value="1"/>
+                    </ownedAttribute>
+                  </packagedElement>
+                  <packagedElement xmi:type="uml:Association" xmi:id="_bp9vEA9VEemAuMyDr4FvyQ" visibility="package" memberEnd="_bp_kQA9VEemAuMyDr4FvyQ _bqALUQ9VEemAuMyDr4FvyQ">
+                    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bp-9MA9VEemAuMyDr4FvyQ" source="org.eclipse.papyrus">
+                      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bp-9MQ9VEemAuMyDr4FvyQ" key="nature" value="UML_Nature"/>
+                    </eAnnotations>
+                    <ownedEnd xmi:type="uml:Property" xmi:id="_bqALUQ9VEemAuMyDr4FvyQ" name="effectsizeestimate" type="_GBMFQA9UEemAuMyDr4FvyQ" association="_bp9vEA9VEemAuMyDr4FvyQ"/>
                   </packagedElement>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Package" xmi:id="_xlGjEFvqEeKGca93458OUg" name="datasetspecification" URI="http://isa.us.es/sedl/core/analysis/datasetspecification">
@@ -2521,4 +2566,5 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
   <Profile:ExtensionPoint xmi:id="_MgRloOf8EeKXqeRW3H6iKA" base_Class="_cSmLEFqzEeKSssWuOcwhaw"/>
   <Profile:ExtensionPoint xmi:id="_PfE7oAEYEeSOwoGRP-xMLQ" base_Class="_D912sP3vEeOyisdzx7AHgA"/>
   <Profile:ExtensionPoint xmi:id="_yX-_APhzEeia88fgUSTP6g" base_Class="_LkDIYLTYEeOID6ygLbtEXQ"/>
+  <Profile:ExtensionPoint xmi:id="_jWlxoA9XEemAuMyDr4FvyQ" base_Class="_Gv67oHtTEeKvAvMvaV8KgQ"/>
 </xmi:XMI>
