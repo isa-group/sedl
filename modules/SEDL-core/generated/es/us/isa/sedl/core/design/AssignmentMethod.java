@@ -2,12 +2,14 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
 package es.us.isa.sedl.core.design;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -45,6 +47,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;attribute name="description" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="random" use="required" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
+ *       &lt;attribute name="blockingVariables"&gt;
+ *         &lt;simpleType&gt;
+ *           &lt;list itemType="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+ *         &lt;/simpleType&gt;
+ *       &lt;/attribute&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -62,6 +69,8 @@ public class AssignmentMethod
     protected String description;
     @XmlAttribute(name = "random", required = true)
     protected boolean random;
+    @XmlAttribute(name = "blockingVariables")
+    protected List<String> blockingVariables;
 
     /**
      * Obtiene el valor de la propiedad description.
@@ -103,6 +112,35 @@ public class AssignmentMethod
         this.random = value;
     }
 
+    /**
+     * Gets the value of the blockingVariables property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the blockingVariables property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getBlockingVariables().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getBlockingVariables() {
+        if (blockingVariables == null) {
+            blockingVariables = new ArrayList<String>();
+        }
+        return this.blockingVariables;
+    }
+
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof AssignmentMethod)) {
             return false;
@@ -129,6 +167,15 @@ public class AssignmentMethod
                 return false;
             }
         }
+        {
+            List<String> lhsBlockingVariables;
+            lhsBlockingVariables = (((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty()))?this.getBlockingVariables():null);
+            List<String> rhsBlockingVariables;
+            rhsBlockingVariables = (((that.blockingVariables!= null)&&(!that.blockingVariables.isEmpty()))?that.getBlockingVariables():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "blockingVariables", lhsBlockingVariables), LocatorUtils.property(thatLocator, "blockingVariables", rhsBlockingVariables), lhsBlockingVariables, rhsBlockingVariables)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -148,6 +195,11 @@ public class AssignmentMethod
             boolean theRandom;
             theRandom = (true?this.isRandom():false);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "random", theRandom), currentHashCode, theRandom);
+        }
+        {
+            List<String> theBlockingVariables;
+            theBlockingVariables = (((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty()))?this.getBlockingVariables():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "blockingVariables", theBlockingVariables), currentHashCode, theBlockingVariables);
         }
         return currentHashCode;
     }
@@ -182,6 +234,19 @@ public class AssignmentMethod
             sourceRandom = (true?this.isRandom():false);
             boolean copyRandom = strategy.copy(LocatorUtils.property(locator, "random", sourceRandom), sourceRandom);
             copy.setRandom(copyRandom);
+            if ((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty())) {
+                List<String> sourceBlockingVariables;
+                sourceBlockingVariables = (((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty()))?this.getBlockingVariables():null);
+                @SuppressWarnings("unchecked")
+                List<String> copyBlockingVariables = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "blockingVariables", sourceBlockingVariables), sourceBlockingVariables));
+                copy.blockingVariables = null;
+                if (copyBlockingVariables!= null) {
+                    List<String> uniqueBlockingVariablesl = copy.getBlockingVariables();
+                    uniqueBlockingVariablesl.addAll(copyBlockingVariables);
+                }
+            } else {
+                copy.blockingVariables = null;
+            }
         }
         return draftCopy;
     }

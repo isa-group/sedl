@@ -5,7 +5,7 @@ import es.us.isa.jdataset.Column;
 import es.us.isa.jdataset.DataSet;
 import es.us.isa.jdataset.ListColumn;
 import es.us.isa.jdataset.SimpleDataSet;
-import es.us.isa.sedl.core.BasicExperiment;
+import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.ExtensionDomain;
 import es.us.isa.sedl.core.design.Level;
@@ -54,7 +54,7 @@ public abstract class AbstractDatasetSpecification {
         return result;
     }
     
-    public List<DatasetSpecification> expand(BasicExperiment experiment)
+    public List<DatasetSpecification> expand(ControlledExperiment experiment)
     {
         List<DatasetSpecification> result=new ArrayList<DatasetSpecification>();
         List<Variable> variablesToExpand=findVariablesToExpand(experiment.getDesign().getVariables());
@@ -185,7 +185,7 @@ public abstract class AbstractDatasetSpecification {
         return apply(dataset,null);
     }
     
-    public DataSet apply(DataSet dataset, BasicExperiment experiment)
+    public DataSet apply(DataSet dataset, ControlledExperiment experiment)
     {
                 
         List<String> observation=null;
@@ -196,7 +196,7 @@ public abstract class AbstractDatasetSpecification {
         return result;
     }
 
-    private DataSet applyFiltersAndProjections(DataSet dataset, BasicExperiment exp) {
+    private DataSet applyFiltersAndProjections(DataSet dataset, ControlledExperiment exp) {
         DataSet result=applyProjections(dataset,exp);
         List<String> observation;
         boolean includeRow=true;
@@ -224,7 +224,7 @@ public abstract class AbstractDatasetSpecification {
         }
     }
 
-    private DataSet applyProjections(DataSet dataset,BasicExperiment exp) {
+    private DataSet applyProjections(DataSet dataset,ControlledExperiment exp) {
         DataSet result=new SimpleDataSet();        
         Collection<Column<?>> columns;
         List<Projection> applicableProjections=getNonGroupingProjections();
@@ -239,7 +239,7 @@ public abstract class AbstractDatasetSpecification {
         return result;
     }
     
-    private Projection generateDefaultProjection(DataSet dataset,BasicExperiment experiment)
+    private Projection generateDefaultProjection(DataSet dataset,ControlledExperiment experiment)
     {
         Projection projection=new Projection();
         if(experiment==null || !getGroupings().isEmpty()){
@@ -259,14 +259,14 @@ public abstract class AbstractDatasetSpecification {
         return projection;
     }
     
-    private void generateDefaultProjections(List<DatasetSpecification> result, BasicExperiment experiment) {        
+    private void generateDefaultProjections(List<DatasetSpecification> result, ControlledExperiment experiment) {        
         Projection projection=generateDefaultProjection(null,experiment);
         for(DatasetSpecification spec:result)
             spec.getProjections().add(projection);
     }
     
     
-    private DataSet applyGroupings(DataSet dataset, BasicExperiment experiment)
+    private DataSet applyGroupings(DataSet dataset, ControlledExperiment experiment)
     {
         List<Variable> groupingVariables=new ArrayList<Variable>();
         Variable variable=null;

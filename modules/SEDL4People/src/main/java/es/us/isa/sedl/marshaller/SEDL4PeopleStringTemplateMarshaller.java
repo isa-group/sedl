@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.marshaller;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.design.Group;
 import es.us.isa.sedl.core.design.Level;
@@ -42,13 +42,13 @@ public class SEDL4PeopleStringTemplateMarshaller  implements SEDLMarshaller {
     }
     
     @Override
-    public List<String> write(Experiment exp, OutputStream os) throws IOException {
+    public List<String> write(EmpiricalStudy exp, OutputStream os) throws IOException {
         os.write(asString(exp).getBytes(Charset.forName("UTF-8")));
         return Collections.EMPTY_LIST;
     }
 
     @Override
-    public String asString(Experiment exp) {                        
+    public String asString(EmpiricalStudy exp) {                        
         st.add("e",exp);
         return st.render();
     }

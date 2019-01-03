@@ -6,7 +6,7 @@
 
 package es.us.isa.sedl.core.util.doe;
 
-import es.us.isa.sedl.core.BasicExperiment;
+import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.design.Constraint;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.Domain;
@@ -28,7 +28,7 @@ import java.util.Set;
  * @author japarejo
  */
 public class DOEHelper {
-    public Set<Set<VariableValuation>> possibleFactorCombinations(BasicExperiment experiment)
+    public Set<Set<VariableValuation>> possibleFactorCombinations(ControlledExperiment experiment)
     {
         Set<Set<VariableValuation>> result=new HashSet<Set<VariableValuation>>();
         List<Variable> variables=experiment.getDesign().getVariables().getVariables();

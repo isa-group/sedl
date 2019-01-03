@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.sedl4json;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.util.Error;
 import java.io.InputStream;
 import java.util.List;
@@ -64,7 +64,7 @@ public class JSONUnmarshallerTest extends TestCase {
     public void testFromString() {
         System.out.println("fromString");
         String experimentDescription = "{\n" +
-"  \"@type\" : \"BasicExperiment\",\n" +
+"  \"@type\" : \"ControlledExperiment\",\n" +
 "  \"notes\" : [ ],\n" +
 "  \"annotations\" : [ ],\n" +
 "  \"id\" : \"Mind-1\",\n" +
@@ -237,9 +237,11 @@ public class JSONUnmarshallerTest extends TestCase {
 "      \"random\" : true\n" +
 "    },\n" +
 "    \"designParameters\" : [ {\n" +
+"      \"@type\" : \"SimpleParameter\",\n" +
 "      \"name\" : \"NSessions\",\n" +
 "      \"value\" : \"16\"\n" +
 "    }, {\n" +
+"      \"@type\" : \"SimpleParameter\",\n" +
 "      \"name\" : \"sessionsDuration\",\n" +
 "      \"value\" : \"10\"\n" +
 "    } ],\n" +
@@ -332,7 +334,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "        \"@type\" : \"StatisticalAnalysisSpec\",\n" +
 "        \"id\" : \"NHST\",\n" +
 "        \"statistic\" : [ {\n" +
-"          \"@type\" : \"NHST\",\n" +
+"          \"@type\" : \"Nhst\",\n" +
 "          \"datasetSpecification\" : {\n" +
 "            \"projections\" : [ {\n" +
 "              \"@type\" : \"GroupingProjection\",\n" +
@@ -351,7 +353,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "          \"statisticalDistribution\" : null,\n" +
 "          \"alpha\" : 0.05\n" +
 "        }, {\n" +
-"          \"@type\" : \"NHST\",\n" +
+"          \"@type\" : \"Nhst\",\n" +
 "          \"datasetSpecification\" : {\n" +
 "            \"projections\" : [ {\n" +
 "              \"@type\" : \"GroupingProjection\",\n" +
@@ -370,7 +372,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "          \"statisticalDistribution\" : null,\n" +
 "          \"alpha\" : 0.05\n" +
 "        }, {\n" +
-"          \"@type\" : \"NHST\",\n" +
+"          \"@type\" : \"Nhst\",\n" +
 "          \"datasetSpecification\" : {\n" +
 "            \"projections\" : [ {\n" +
 "              \"@type\" : \"GroupingProjection\",\n" +
@@ -379,48 +381,16 @@ public class JSONUnmarshallerTest extends TestCase {
 "            \"filters\" : [ {\n" +
 "              \"@type\" : \"ValuationFilter\",\n" +
 "              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
+"                \"level\" : \"EoDP\",\n" +
+"                \"variable\" : \"exercise\" \n"+
 "              } ]\n" +
 "            } ],\n" +
 "            \"nonGroupingProjections\" : [ ],\n" +
 "            \"valuationFilters\" : [ {\n" +
 "              \"@type\" : \"ValuationFilter\",\n" +
 "              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
+"                \"level\" : \"EoDP\",\n" +
+"                \"variable\" :  \"exercise\"\n" +                    
 "              } ]\n" +
 "            } ],\n" +
 "            \"groupings\" : [ {\n" +
@@ -433,7 +403,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "          \"statisticalDistribution\" : null,\n" +
 "          \"alpha\" : 0.05\n" +
 "        }, {\n" +
-"          \"@type\" : \"NHST\",\n" +
+"          \"@type\" : \"Nhst\",\n" +
 "          \"datasetSpecification\" : {\n" +
 "            \"projections\" : [ {\n" +
 "              \"@type\" : \"GroupingProjection\",\n" +
@@ -442,48 +412,16 @@ public class JSONUnmarshallerTest extends TestCase {
 "            \"filters\" : [ {\n" +
 "              \"@type\" : \"ValuationFilter\",\n" +
 "              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
+"                \"level\" : \"EoDP\",\n" +
+"                \"variable\" : \"exercise\"\n" +
 "              } ]\n" +
 "            } ],\n" +
 "            \"nonGroupingProjections\" : [ ],\n" +
 "            \"valuationFilters\" : [ {\n" +
 "              \"@type\" : \"ValuationFilter\",\n" +
 "              \"variableValuations\" : [ {\n" +
-"                \"level\" : {\n" +
-"                  \"value\" : \"\\\"EoDP\\\"\"\n" +
-"                },\n" +
-"                \"variable\" : {\n" +
-"                  \"@type\" : \"ControllableFactor\",\n" +
-"                  \"domain\" : {\n" +
-"                    \"@type\" : \"ExtensionDomain\",\n" +
-"                    \"levels\" : [ {\n" +
-"                      \"value\" : \"Erasmus\"\n" +
-"                    }, {\n" +
-"                      \"value\" : \"EoDP\"\n" +
-"                    } ],\n" +
-"                    \"finite\" : true\n" +
-"                  },\n" +
-"                  \"kind\" : \"NOMINAL\",\n" +
-"                  \"name\" : \"exercise\",\n" +
-"                  \"units\" : null\n" +
-"                }\n" +
+"                \"level\" : \"EoDP\",\n" +
+"                \"variable\" : \"exercise\"\n" +
 "              } ]\n" +
 "            } ],\n" +
 "            \"groupings\" : [ {\n" +
@@ -722,9 +660,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "    \"annotations\" : [ ],\n" +
 "    \"id\" : \"C1\",\n" +
 "    \"context\" : null,\n" +
-"    \"experimentalProcedure\" : {\n" +
-"      \"tasks\" : [ ]\n" +
-"    },\n" +
+"    \"experimentalProcedure\" : null,\n" +
 "    \"experimentalSetting\" : null,\n" +
 "    \"experimentalInputs\" : null,\n" +
 "    \"experimentalOutputs\" : {\n" +
@@ -741,6 +677,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "      \"id\" : \"Replica\",\n" +
 "      \"log\" : null,\n" +
 "      \"results\" : [ {\n" +
+"        \"@type\" : \"ResultsFile\",\n" +
 "        \"variableMapping\" : null,\n" +
 "        \"fileFormat\" : null,\n" +
 "        \"file\" : {\n" +
@@ -757,7 +694,7 @@ public class JSONUnmarshallerTest extends TestCase {
 "  } ]\n" +
 "}";
         JSONUnmarshaller instance = new JSONUnmarshaller();        
-        Experiment result = instance.fromString(experimentDescription);
+        EmpiricalStudy result = instance.fromString(experimentDescription);
         assertNotNull(result);                
     }
     

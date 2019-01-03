@@ -5,7 +5,7 @@
 package es.us.isa.sedl.sedl4json;
 
 import com.google.common.collect.Lists;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.design.IntensionDomain;
 import es.us.isa.sedl.core.util.Error;
 import es.us.isa.sedl.core.util.SEDLUnmarshaller;
@@ -33,8 +33,8 @@ public class JSONUnmarshaller implements SEDLUnmarshaller {
     List<Error> errors = Collections.EMPTY_LIST;
 
     @Override
-    public Experiment read(InputStream stream) {
-        Experiment result = null;
+    public EmpiricalStudy read(InputStream stream) {
+        EmpiricalStudy result = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
             DateFormat df=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
@@ -43,7 +43,7 @@ public class JSONUnmarshaller implements SEDLUnmarshaller {
             SEDLModule module = new SEDLModule();
             mapper.registerModule(module);
             module.configure(mapper);
-            result = mapper.readValue(stream, Experiment.class);
+            result = mapper.readValue(stream, EmpiricalStudy.class);
         } catch (Exception ex) {
             Logger.getLogger(JSONUnmarshaller.class.getName()).log(Level.SEVERE, null, ex);
             errors = Lists.newArrayList(new Error(0, Error.ERROR_SEVERITY.FATAL, ex.getLocalizedMessage()));
@@ -57,8 +57,8 @@ public class JSONUnmarshaller implements SEDLUnmarshaller {
     }
 
     @Override
-    public Experiment fromString(String experimentDescription) {
-        Experiment result = null;
+    public EmpiricalStudy fromString(String experimentDescription) {
+        EmpiricalStudy result = null;
         try {
             ObjectMapper mapper = new ObjectMapper();
             DateFormat df=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
@@ -67,7 +67,7 @@ public class JSONUnmarshaller implements SEDLUnmarshaller {
             SEDLModule module = new SEDLModule();
             mapper.registerModule(module);
             module.configure(mapper);
-            result = mapper.readValue(experimentDescription, Experiment.class);
+            result = mapper.readValue(experimentDescription, EmpiricalStudy.class);
         } catch (Exception ex) {
             Logger.getLogger(JSONUnmarshaller.class.getName()).log(Level.SEVERE, null, ex);
             errors = Lists.newArrayList(new Error(0, Error.ERROR_SEVERITY.FATAL, ex.getLocalizedMessage()));

@@ -11,7 +11,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import com.google.common.collect.Lists;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 
 import es.us.isa.sedl.core.util.Error;
 import es.us.isa.sedl.core.util.SEDLUnmarshaller;
@@ -36,9 +36,9 @@ public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller {
     
     
     @Override
-    public Experiment read(InputStream stream) {
+    public EmpiricalStudy read(InputStream stream) {
     	
-        Experiment result=null;        
+        EmpiricalStudy result=null;        
         errors.clear();
         errorListener = new  SEDL4PeopleErrorListener();
         errorListener.clearErrors();
@@ -95,7 +95,7 @@ public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller {
 	}
 
 
-	public Experiment fromString(String experimentDescription) {
+	public EmpiricalStudy fromString(String experimentDescription) {
         return read(new ByteArrayInputStream(experimentDescription.getBytes()));
     }
 

@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.marshaller.analysis.statistic;
 
-import es.us.isa.sedl.core.BasicExperiment;
+import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.datasetspecification.GroupingProjection;
 import es.us.isa.sedl.core.analysis.datasetspecification.Projection;
@@ -114,7 +114,7 @@ public class DatasetSpecificationParser implements Parser<DatasetSpecification, 
 
     public DatasetSpecification defaultDatsetSpecification(SEDL4PeopleExtendedListener listener, Class<? extends Statistic> statisticType, String statisticName) {
         DatasetSpecification defaultSpec = new DatasetSpecification();
-        BasicExperiment experiment = (BasicExperiment) listener.getExperimentModel();
+        ControlledExperiment experiment = (ControlledExperiment) listener.getExperimentModel();
         List<Outcome> outcomes = experiment.getDesign().getVariables().getVariablesByType(Outcome.class);
         Projection projection = new Projection();
         for (Outcome outcome : outcomes) {

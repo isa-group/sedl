@@ -28,7 +28,7 @@
   <xsd:element ecore:ignore="true" name="PredefinedExperimentalDesign" type="sedl.es.us.isa.sedl.core.design:PredefinedExperimentalDesign"/>
   <xsd:element ecore:ignore="true" name="Measurement" type="sedl.es.us.isa.sedl.core.design:Measurement"/>
   <xsd:element ecore:ignore="true" name="Treatment" type="sedl.es.us.isa.sedl.core.design:Treatment"/>
-  <xsd:element ecore:ignore="true" name="Literal" type="sedl.es.us.isa.sedl.core.design:Literal"/>
+  <xsd:element ecore:ignore="true" name="LiteralSizing" type="sedl.es.us.isa.sedl.core.design:LiteralSizing"/>
   <xsd:element ecore:ignore="true" name="VariableSizing" type="sedl.es.us.isa.sedl.core.design:VariableSizing"/>
   <xsd:element ecore:ignore="true" name="SizingExpression" type="sedl.es.us.isa.sedl.core.design:SizingExpression"/>
   <xsd:element ecore:ignore="true" name="Nuisance" type="sedl.es.us.isa.sedl.core.design:Nuisance"/>
@@ -36,6 +36,7 @@
   <xsd:element ecore:ignore="true" name="IntervalConstraint" type="sedl.es.us.isa.sedl.core.design:IntervalConstraint"/>
   <xsd:element ecore:ignore="true" name="FundamentalSetConstraint" type="sedl.es.us.isa.sedl.core.design:FundamentalSetConstraint"/>
   <xsd:element ecore:ignore="true" name="IntensionDomain" type="sedl.es.us.isa.sedl.core.design:IntensionDomain"/>
+  <xsd:element ecore:ignore="true" name="EvenSizing" type="sedl.es.us.isa.sedl.core.design:EvenSizing"/>
   <xsd:element ecore:ignore="true" name="VariableValuation" type="sedl.es.us.isa.sedl.core.design:VariableValuation"/>
   <xsd:complexType name="Design">
     <xsd:annotation>
@@ -89,7 +90,7 @@
       <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="intendedAnalyses" type="sedl.es.us.isa.sedl.core.design:AnalysisSpecificationGroup"/>
     </xsd:sequence>
   </xsd:complexType>
-  <xsd:complexType name="AnalysisSpecificationGroup">
+  <xsd:complexType abstract="true" name="AnalysisSpecificationGroup">
     <xsd:attribute name="id" type="types:String" use="required"/>
   </xsd:complexType>
   <xsd:complexType name="Variables">
@@ -179,11 +180,6 @@
           <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="groups" type="sedl.es.us.isa.sedl.core.design:Group"/>
           <xsd:element ecore:resolveProxies="true" name="experimentalProtocol" type="sedl.es.us.isa.sedl.core.design:ExperimentalProtocol"/>
         </xsd:sequence>
-        <xsd:attribute ecore:ordered="false" ecore:reference="sedl.es.us.isa.sedl.core.design:NonControllableFactor" name="blockingVariables">
-          <xsd:simpleType>
-            <xsd:list itemType="xsd:anyURI"/>
-          </xsd:simpleType>
-        </xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -200,6 +196,11 @@
     </xsd:annotation>
     <xsd:attribute name="description" type="xsd:string" use="required"/>
     <xsd:attribute ecore:unsettable="false" name="random" type="xsd:boolean" use="required"/>
+    <xsd:attribute ecore:ordered="false" ecore:reference="sedl.es.us.isa.sedl.core.design:Variable" name="blockingVariables">
+      <xsd:simpleType>
+        <xsd:list itemType="xsd:anyURI"/>
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
   <xsd:complexType name="Group">
     <xsd:annotation>
@@ -249,6 +250,14 @@ A protocol step type makes reference to a set of groups where it is applied. If 
   </xsd:simpleType>
   <xsd:complexType abstract="true" name="ProtocolConstraint"/>
   <xsd:complexType name="PredefinedExperimentalDesign">
+    <xsd:annotation>
+      <xsd:appinfo ecore:key="operations" source="http://www.eclipse.org/emf/2002/Ecore">
+        <operation lowerBound="1" name="getFullSpecification" ordered="false">
+          <parameter lowerBound="1" name="population" ordered="false" type="sedl.es.us.isa.sedl.core.design:Population"/>
+          <parameter lowerBound="1" name="variables" ordered="false" type="sedl.es.us.isa.sedl.core.design:Variables"/>
+        </operation>
+      </xsd:appinfo>
+    </xsd:annotation>
     <xsd:complexContent>
       <xsd:extension base="sedl.es.us.isa.sedl.core.design:ExperimentalDesign"/>
     </xsd:complexContent>
@@ -285,7 +294,7 @@ A protocol step type makes reference to a set of groups where it is applied. If 
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="Literal">
+  <xsd:complexType name="LiteralSizing">
     <xsd:complexContent>
       <xsd:extension base="sedl.es.us.isa.sedl.core.design:Sizing">
         <xsd:attribute name="value" type="xsd:integer" use="required"/>
@@ -348,6 +357,11 @@ A protocol step type makes reference to a set of groups where it is applied. If 
           <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="constraint" type="sedl.es.us.isa.sedl.core.design:Constraint"/>
         </xsd:sequence>
       </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EvenSizing">
+    <xsd:complexContent>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.design:Sizing"/>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="VariableValuation">

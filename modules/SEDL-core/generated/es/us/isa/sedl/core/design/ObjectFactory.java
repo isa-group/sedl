@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -56,7 +56,7 @@ public class ObjectFactory {
     private final static QName _PredefinedExperimentalDesign_QNAME = new QName("http://isa.us.es/sedl/core/design", "PredefinedExperimentalDesign");
     private final static QName _Measurement_QNAME = new QName("http://isa.us.es/sedl/core/design", "Measurement");
     private final static QName _Treatment_QNAME = new QName("http://isa.us.es/sedl/core/design", "Treatment");
-    private final static QName _Literal_QNAME = new QName("http://isa.us.es/sedl/core/design", "Literal");
+    private final static QName _LiteralSizing_QNAME = new QName("http://isa.us.es/sedl/core/design", "LiteralSizing");
     private final static QName _VariableSizing_QNAME = new QName("http://isa.us.es/sedl/core/design", "VariableSizing");
     private final static QName _SizingExpression_QNAME = new QName("http://isa.us.es/sedl/core/design", "SizingExpression");
     private final static QName _Nuisance_QNAME = new QName("http://isa.us.es/sedl/core/design", "Nuisance");
@@ -64,6 +64,7 @@ public class ObjectFactory {
     private final static QName _IntervalConstraint_QNAME = new QName("http://isa.us.es/sedl/core/design", "IntervalConstraint");
     private final static QName _FundamentalSetConstraint_QNAME = new QName("http://isa.us.es/sedl/core/design", "FundamentalSetConstraint");
     private final static QName _IntensionDomain_QNAME = new QName("http://isa.us.es/sedl/core/design", "IntensionDomain");
+    private final static QName _EvenSizing_QNAME = new QName("http://isa.us.es/sedl/core/design", "EvenSizing");
     private final static QName _VariableValuation_QNAME = new QName("http://isa.us.es/sedl/core/design", "VariableValuation");
 
     /**
@@ -95,14 +96,6 @@ public class ObjectFactory {
      */
     public Population createPopulation() {
         return new Population();
-    }
-
-    /**
-     * Create an instance of {@link AnalysisSpecificationGroup }
-     * 
-     */
-    public AnalysisSpecificationGroup createAnalysisSpecificationGroup() {
-        return new AnalysisSpecificationGroup();
     }
 
     /**
@@ -226,11 +219,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Literal }
+     * Create an instance of {@link LiteralSizing }
      * 
      */
-    public Literal createLiteral() {
-        return new Literal();
+    public LiteralSizing createLiteralSizing() {
+        return new LiteralSizing();
     }
 
     /**
@@ -287,6 +280,14 @@ public class ObjectFactory {
      */
     public IntensionDomain createIntensionDomain() {
         return new IntensionDomain();
+    }
+
+    /**
+     * Create an instance of {@link EvenSizing }
+     * 
+     */
+    public EvenSizing createEvenSizing() {
+        return new EvenSizing();
     }
 
     /**
@@ -523,12 +524,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Literal }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LiteralSizing }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "Literal")
-    public JAXBElement<Literal> createLiteral(Literal value) {
-        return new JAXBElement<Literal>(_Literal_QNAME, Literal.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "LiteralSizing")
+    public JAXBElement<LiteralSizing> createLiteralSizing(LiteralSizing value) {
+        return new JAXBElement<LiteralSizing>(_LiteralSizing_QNAME, LiteralSizing.class, null, value);
     }
 
     /**
@@ -592,6 +593,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "IntensionDomain")
     public JAXBElement<IntensionDomain> createIntensionDomain(IntensionDomain value) {
         return new JAXBElement<IntensionDomain>(_IntensionDomain_QNAME, IntensionDomain.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EvenSizing }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/design", name = "EvenSizing")
+    public JAXBElement<EvenSizing> createEvenSizing(EvenSizing value) {
+        return new JAXBElement<EvenSizing>(_EvenSizing_QNAME, EvenSizing.class, null, value);
     }
 
     /**

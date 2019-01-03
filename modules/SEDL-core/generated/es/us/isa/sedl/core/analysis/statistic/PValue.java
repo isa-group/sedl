@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -41,6 +41,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *     &lt;extension base="{http://isa.us.es/sedl/core/analysis/statistic}StatisticalAnalysisResult"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="freedomDegrees" type="{http://www.w3.org/2001/XMLSchema}integer" maxOccurs="unbounded"/&gt;
+ *         &lt;element name="postHoc" type="{http://isa.us.es/sedl/core/analysis/statistic}PValue" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="nhst" use="required" type="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
  *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}double" /&gt;
@@ -55,7 +56,8 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "PValue", propOrder = {
-    "freedomDegrees"
+    "freedomDegrees",
+    "postHoc"
 })
 public class PValue
     extends StatisticalAnalysisResult
@@ -64,6 +66,7 @@ public class PValue
 
     @XmlElement(required = true, nillable = true)
     protected List<BigInteger> freedomDegrees;
+    protected List<PValue> postHoc;
     @XmlAttribute(name = "nhst", required = true)
     @XmlSchemaType(name = "anyURI")
     protected String nhst;
@@ -101,6 +104,35 @@ public class PValue
             freedomDegrees = new ArrayList<BigInteger>();
         }
         return this.freedomDegrees;
+    }
+
+    /**
+     * Gets the value of the postHoc property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the postHoc property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPostHoc().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PValue }
+     * 
+     * 
+     */
+    public List<PValue> getPostHoc() {
+        if (postHoc == null) {
+            postHoc = new ArrayList<PValue>();
+        }
+        return this.postHoc;
     }
 
     /**
@@ -216,6 +248,15 @@ public class PValue
             }
         }
         {
+            List<PValue> lhsPostHoc;
+            lhsPostHoc = (((this.postHoc!= null)&&(!this.postHoc.isEmpty()))?this.getPostHoc():null);
+            List<PValue> rhsPostHoc;
+            rhsPostHoc = (((that.postHoc!= null)&&(!that.postHoc.isEmpty()))?that.getPostHoc():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "postHoc", lhsPostHoc), LocatorUtils.property(thatLocator, "postHoc", rhsPostHoc), lhsPostHoc, rhsPostHoc)) {
+                return false;
+            }
+        }
+        {
             String lhsNhst;
             lhsNhst = this.getNhst();
             String rhsNhst;
@@ -265,6 +306,11 @@ public class PValue
             List<BigInteger> theFreedomDegrees;
             theFreedomDegrees = (((this.freedomDegrees!= null)&&(!this.freedomDegrees.isEmpty()))?this.getFreedomDegrees():null);
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "freedomDegrees", theFreedomDegrees), currentHashCode, theFreedomDegrees);
+        }
+        {
+            List<PValue> thePostHoc;
+            thePostHoc = (((this.postHoc!= null)&&(!this.postHoc.isEmpty()))?this.getPostHoc():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "postHoc", thePostHoc), currentHashCode, thePostHoc);
         }
         {
             String theNhst;
@@ -320,6 +366,19 @@ public class PValue
                 }
             } else {
                 copy.freedomDegrees = null;
+            }
+            if ((this.postHoc!= null)&&(!this.postHoc.isEmpty())) {
+                List<PValue> sourcePostHoc;
+                sourcePostHoc = (((this.postHoc!= null)&&(!this.postHoc.isEmpty()))?this.getPostHoc():null);
+                @SuppressWarnings("unchecked")
+                List<PValue> copyPostHoc = ((List<PValue> ) strategy.copy(LocatorUtils.property(locator, "postHoc", sourcePostHoc), sourcePostHoc));
+                copy.postHoc = null;
+                if (copyPostHoc!= null) {
+                    List<PValue> uniquePostHocl = copy.getPostHoc();
+                    uniquePostHocl.addAll(copyPostHoc);
+                }
+            } else {
+                copy.postHoc = null;
             }
             if (this.nhst!= null) {
                 String sourceNhst;

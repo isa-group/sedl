@@ -5,11 +5,12 @@
 package es.us.isa.sedl.jlibsedl.util;
 
 import com.google.common.collect.Lists;
-import es.us.isa.sedl.core.BasicExperiment;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.ControlledExperiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.configuration.Configuration;
 import es.us.isa.sedl.core.configuration.CommandExperimentalTask;
 import es.us.isa.sedl.core.configuration.ExperimentalProcedure;
+import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
 import es.us.isa.sedl.jlibsedl.JLibSEDL;
 import es.us.isa.sedl.jlibsedl.SEDLDocument;
 import es.us.isa.sedl.jlibsedl.SerializationFormat;
@@ -31,9 +32,9 @@ public class GenerateSampleExperiments {
         if(args.length!=0) {
             basePath=args[0];
         }
-        List<Experiment> experiments=Lists.newArrayList(createEmptyExperiment(),createSimpleExperiment(),createSimpleCommandExperiment());
+        List<EmpiricalStudy> experiments=Lists.newArrayList(createEmptyExperiment(),createSimpleExperiment(),createSimpleCommandExperiment());
         File f;
-        for(Experiment experiment:experiments)
+        for(EmpiricalStudy experiment:experiments)
         {
             for(SerializationFormat format:SerializationFormat.values())
             {
@@ -43,9 +44,9 @@ public class GenerateSampleExperiments {
         }
     }
         
-        public static Experiment createEmptyExperiment() {
+        public static EmpiricalStudy createEmptyExperiment() {
         // Create Experiment:               
-        Experiment experiment=new BasicExperiment();
+        EmpiricalStudy experiment=new ControlledExperiment();
         experiment.setName("Empty_Experiment");
         experiment.setId("Empty_Experiment");                
         experiment.setVersion("1.0.0-SNAPSHOT");        
@@ -54,23 +55,23 @@ public class GenerateSampleExperiments {
     }
     
     
-    public static Experiment createSimpleExperiment() {
+    public static EmpiricalStudy createSimpleExperiment() {
         // Create Experiment:               
-        Experiment experiment=new BasicExperiment();
+        EmpiricalStudy experiment=new ControlledExperiment();
         experiment.setName("SimpleExperiment");
         experiment.setId("SimpleExperiment");                
         experiment.setVersion("1.0.0-SNAPSHOT");        
         return experiment;
     }
 
-    public static Experiment createSimpleCommandExperiment() {
-        BasicExperiment result = new BasicExperiment();
+    public static EmpiricalStudy createSimpleCommandExperiment() {
+        ControlledExperiment result = new ControlledExperiment();
         result.setName("SimpleCommandExperiment");
         result.setVersion("1.0.0-SNAPSHOT");        
         result.setId(result.getName());
         Configuration config = new Configuration();
         config.setId("executableConfig");
-        ExperimentalProcedure exScheme = new ExperimentalProcedure();
+        TaskBasedExperimentalProcedure exScheme = new TaskBasedExperimentalProcedure();
         CommandExperimentalTask command = new CommandExperimentalTask();
         command.setName("mkdir");
         command.getParameters().add("DONE");
@@ -81,7 +82,7 @@ public class GenerateSampleExperiments {
         return result;
     }
     
-    private Experiment createComplexDocument() {
+    private EmpiricalStudy createComplexDocument() {
         return null;
     }
 

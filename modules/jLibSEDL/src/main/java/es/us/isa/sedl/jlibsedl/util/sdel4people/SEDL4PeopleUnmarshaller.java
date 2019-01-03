@@ -5,7 +5,7 @@
 package es.us.isa.sedl.jlibsedl.util.sdel4people;
 
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.util.SEDLUnmarshaller;
 import es.us.isa.sedl.core.util.Error;
 
@@ -20,7 +20,7 @@ import java.util.List;
 public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller{
 
     @Override
-    public Experiment read(InputStream stream) {
+    public EmpiricalStudy read(InputStream stream) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -30,7 +30,7 @@ public class SEDL4PeopleUnmarshaller implements SEDLUnmarshaller{
     }
 
     @Override
-    public Experiment fromString(String string) {
+    public EmpiricalStudy fromString(String string) {
         return read(new ByteArrayInputStream(string.getBytes()));
     }
     

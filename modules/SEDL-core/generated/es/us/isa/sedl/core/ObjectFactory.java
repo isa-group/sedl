@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -33,8 +33,8 @@ public class ObjectFactory {
 
     private final static QName _SedlEntity_QNAME = new QName("http://isa.us.es/sedl/core", "SedlEntity");
     private final static QName _SedlBase_QNAME = new QName("http://isa.us.es/sedl/core", "SedlBase");
-    private final static QName _BasicExperiment_QNAME = new QName("http://isa.us.es/sedl/core", "BasicExperiment");
-    private final static QName _Experiment_QNAME = new QName("http://isa.us.es/sedl/core", "Experiment");
+    private final static QName _ControlledExperiment_QNAME = new QName("http://isa.us.es/sedl/core", "ControlledExperiment");
+    private final static QName _EmpiricalStudy_QNAME = new QName("http://isa.us.es/sedl/core", "EmpiricalStudy");
     private final static QName _Goal_QNAME = new QName("http://isa.us.es/sedl/core", "Goal");
     private final static QName _Abstract_QNAME = new QName("http://isa.us.es/sedl/core", "Abstract");
     private final static QName _ExtensionPoint_QNAME = new QName("http://isa.us.es/sedl/core", "ExtensionPoint");
@@ -67,11 +67,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BasicExperiment }
+     * Create an instance of {@link ControlledExperiment }
      * 
      */
-    public BasicExperiment createBasicExperiment() {
-        return new BasicExperiment();
+    public ControlledExperiment createControlledExperiment() {
+        return new ControlledExperiment();
     }
 
     /**
@@ -125,21 +125,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BasicExperiment }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ControlledExperiment }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core", name = "BasicExperiment")
-    public JAXBElement<BasicExperiment> createBasicExperiment(BasicExperiment value) {
-        return new JAXBElement<BasicExperiment>(_BasicExperiment_QNAME, BasicExperiment.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core", name = "ControlledExperiment")
+    public JAXBElement<ControlledExperiment> createControlledExperiment(ControlledExperiment value) {
+        return new JAXBElement<ControlledExperiment>(_ControlledExperiment_QNAME, ControlledExperiment.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Experiment }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link EmpiricalStudy }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core", name = "Experiment")
-    public JAXBElement<Experiment> createExperiment(Experiment value) {
-        return new JAXBElement<Experiment>(_Experiment_QNAME, Experiment.class, null, value);
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core", name = "EmpiricalStudy")
+    public JAXBElement<EmpiricalStudy> createEmpiricalStudy(EmpiricalStudy value) {
+        return new JAXBElement<EmpiricalStudy>(_EmpiricalStudy_QNAME, EmpiricalStudy.class, null, value);
     }
 
     /**

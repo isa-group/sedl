@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.marshaller;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +16,6 @@ import java.util.Map;
  */
 public interface SEDL4PeopleExtensionPointsUnmarshaller {    
        
-    public List<es.us.isa.sedl.core.util.Error> unmarshall(List<String> importedModules, Map<String, List<ExtensionPointElement>> extensionPointsInstantiations, Experiment experiment); 
+    public List<es.us.isa.sedl.core.util.Error> unmarshall(List<String> importedModules, Map<String, List<ExtensionPointElement>> extensionPointsInstantiations, EmpiricalStudy experiment); 
 
 }

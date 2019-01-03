@@ -31,6 +31,8 @@
   <xsd:element ecore:ignore="true" name="DescriptiveStatisticValue" type="sedl.es.us.isa.sedl.core.analysis.statistic:DescriptiveStatisticValue"/>
   <xsd:element ecore:ignore="true" name="ConfidenceIntervalValue" type="sedl.es.us.isa.sedl.core.analysis.statistic:ConfidenceIntervalValue"/>
   <xsd:element ecore:ignore="true" name="CorrelationValue" type="sedl.es.us.isa.sedl.core.analysis.statistic:CorrelationValue"/>
+  <xsd:element ecore:ignore="true" name="EffectSizeEstimator" type="sedl.es.us.isa.sedl.core.analysis.statistic:EffectSizeEstimator"/>
+  <xsd:element ecore:ignore="true" name="EffectSizeEstimate" type="sedl.es.us.isa.sedl.core.analysis.statistic:EffectSizeEstimate"/>
   <xsd:complexType name="Statistic">
     <xsd:sequence>
       <xsd:element ecore:resolveProxies="true" minOccurs="0" name="datasetSpecification" type="sedl.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
@@ -158,6 +160,9 @@
   <xsd:complexType name="Nhst" org.eclipse.uml2._2._0._0.uml:originalName="NHST">
     <xsd:complexContent>
       <xsd:extension base="sedl.es.us.isa.sedl.core.analysis.statistic:TestOfHypothesis">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="postHoc" type="sedl.es.us.isa.sedl.core.analysis.statistic:Nhst"/>
+        </xsd:sequence>
         <xsd:attribute name="name" type="types:String" use="required"/>
         <xsd:attribute name="statisticalDistribution" type="types:String" use="required"/>
         <xsd:attribute default="0.05" ecore:unsettable="false" name="alpha" type="xsd:double"/>
@@ -169,6 +174,7 @@
       <xsd:extension base="sedl.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
         <xsd:sequence>
           <xsd:element ecore:ordered="false" maxOccurs="unbounded" name="freedomDegrees" nillable="true" type="xsd:integer"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="postHoc" type="sedl.es.us.isa.sedl.core.analysis.statistic:PValue"/>
         </xsd:sequence>
         <xsd:attribute ecore:reference="sedl.es.us.isa.sedl.core.analysis.statistic:Nhst" name="nhst" org.eclipse.uml2._2._0._0.uml:originalName="nHST" type="xsd:anyURI" use="required"/>
         <xsd:attribute ecore:unsettable="false" name="value" type="xsd:double" use="required"/>
@@ -200,6 +206,21 @@
         <xsd:attribute ecore:reference="sedl.es.us.isa.sedl.core.analysis.statistic:CorrelationCoeficient" name="correlationCoeficient" type="xsd:anyURI" use="required"/>
         <xsd:attribute ecore:unsettable="false" name="value" type="xsd:double" use="required"/>
         <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EffectSizeEstimator">
+    <xsd:complexContent>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.analysis.statistic:InferentialStatistic">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EffectSizeEstimate">
+    <xsd:complexContent>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisResult">
+        <xsd:attribute ecore:unsettable="false" name="value" type="xsd:double" use="required"/>
+        <xsd:attribute ecore:reference="sedl.es.us.isa.sedl.core.analysis.statistic:EffectSizeEstimator" name="effectsizeestimator" type="xsd:anyURI" use="required"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

@@ -1,7 +1,7 @@
 package es.us.isa.sedl.semantic;
 
-import es.us.isa.sedl.core.BasicExperiment;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.ControlledExperiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.design.Factor;
 import es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign;
 import es.us.isa.sedl.core.design.Group;
@@ -20,12 +20,12 @@ import org.antlr.v4.runtime.tree.RuleNode;
 
 public class SEDLSemanticChecker implements SemanticChecker {
 
-	private Experiment experiment;
+	private EmpiricalStudy experiment;
 	private List<Error> errors;
 	private Map<Object,RuleNode> objectNodeMap;
 	private CommonTokenStream tokens;
 	
-	public SEDLSemanticChecker( Experiment exp, Map<Object,RuleNode> objectNodeMap, CommonTokenStream tokens ) {
+	public SEDLSemanticChecker( EmpiricalStudy exp, Map<Object,RuleNode> objectNodeMap, CommonTokenStream tokens ) {
 		this.experiment = exp;
 		errors = new ArrayList<Error>();
 		this.objectNodeMap = objectNodeMap;

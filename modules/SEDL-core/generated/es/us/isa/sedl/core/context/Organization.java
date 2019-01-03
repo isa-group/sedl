@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -39,7 +39,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://isa.us.es/sedl/core/context}Stakeholder"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="department" type="{http://isa.us.es/sedl/core/context}Organization" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="departments" type="{http://isa.us.es/sedl/core/context}Organization" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
@@ -50,28 +50,28 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Organization", propOrder = {
-    "department"
+    "departments"
 })
 public class Organization
     extends Stakeholder
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    protected List<Organization> department;
+    protected List<Organization> departments;
 
     /**
-     * Gets the value of the department property.
+     * Gets the value of the departments property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the department property.
+     * This is why there is not a <CODE>set</CODE> method for the departments property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getDepartment().add(newItem);
+     *    getDepartments().add(newItem);
      * </pre>
      * 
      * 
@@ -81,11 +81,11 @@ public class Organization
      * 
      * 
      */
-    public List<Organization> getDepartment() {
-        if (department == null) {
-            department = new ArrayList<Organization>();
+    public List<Organization> getDepartments() {
+        if (departments == null) {
+            departments = new ArrayList<Organization>();
         }
-        return this.department;
+        return this.departments;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
@@ -100,11 +100,11 @@ public class Organization
         }
         final Organization that = ((Organization) object);
         {
-            List<Organization> lhsDepartment;
-            lhsDepartment = (((this.department!= null)&&(!this.department.isEmpty()))?this.getDepartment():null);
-            List<Organization> rhsDepartment;
-            rhsDepartment = (((that.department!= null)&&(!that.department.isEmpty()))?that.getDepartment():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "department", lhsDepartment), LocatorUtils.property(thatLocator, "department", rhsDepartment), lhsDepartment, rhsDepartment)) {
+            List<Organization> lhsDepartments;
+            lhsDepartments = (((this.departments!= null)&&(!this.departments.isEmpty()))?this.getDepartments():null);
+            List<Organization> rhsDepartments;
+            rhsDepartments = (((that.departments!= null)&&(!that.departments.isEmpty()))?that.getDepartments():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "departments", lhsDepartments), LocatorUtils.property(thatLocator, "departments", rhsDepartments), lhsDepartments, rhsDepartments)) {
                 return false;
             }
         }
@@ -119,9 +119,9 @@ public class Organization
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
-            List<Organization> theDepartment;
-            theDepartment = (((this.department!= null)&&(!this.department.isEmpty()))?this.getDepartment():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "department", theDepartment), currentHashCode, theDepartment);
+            List<Organization> theDepartments;
+            theDepartments = (((this.departments!= null)&&(!this.departments.isEmpty()))?this.getDepartments():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "departments", theDepartments), currentHashCode, theDepartments);
         }
         return currentHashCode;
     }
@@ -145,18 +145,18 @@ public class Organization
         super.copyTo(locator, draftCopy, strategy);
         if (draftCopy instanceof Organization) {
             final Organization copy = ((Organization) draftCopy);
-            if ((this.department!= null)&&(!this.department.isEmpty())) {
-                List<Organization> sourceDepartment;
-                sourceDepartment = (((this.department!= null)&&(!this.department.isEmpty()))?this.getDepartment():null);
+            if ((this.departments!= null)&&(!this.departments.isEmpty())) {
+                List<Organization> sourceDepartments;
+                sourceDepartments = (((this.departments!= null)&&(!this.departments.isEmpty()))?this.getDepartments():null);
                 @SuppressWarnings("unchecked")
-                List<Organization> copyDepartment = ((List<Organization> ) strategy.copy(LocatorUtils.property(locator, "department", sourceDepartment), sourceDepartment));
-                copy.department = null;
-                if (copyDepartment!= null) {
-                    List<Organization> uniqueDepartmentl = copy.getDepartment();
-                    uniqueDepartmentl.addAll(copyDepartment);
+                List<Organization> copyDepartments = ((List<Organization> ) strategy.copy(LocatorUtils.property(locator, "departments", sourceDepartments), sourceDepartments));
+                copy.departments = null;
+                if (copyDepartments!= null) {
+                    List<Organization> uniqueDepartmentsl = copy.getDepartments();
+                    uniqueDepartmentsl.addAll(copyDepartments);
                 }
             } else {
-                copy.department = null;
+                copy.departments = null;
             }
         }
         return draftCopy;

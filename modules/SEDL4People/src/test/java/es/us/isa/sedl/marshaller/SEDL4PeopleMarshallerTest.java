@@ -8,7 +8,7 @@ package es.us.isa.sedl.marshaller;
 
 import es.us.isa.jdataset.DataSet;
 import es.us.isa.jdataset.SimpleDataSet;
-import es.us.isa.sedl.core.BasicExperiment;
+import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.datasetspecification.Filter;
 import es.us.isa.sedl.core.analysis.datasetspecification.GroupFilter;
@@ -52,12 +52,14 @@ import es.us.isa.sedl.core.design.Group;
 import es.us.isa.sedl.core.design.IntensionDomain;
 import es.us.isa.sedl.core.design.IntervalConstraint;
 import es.us.isa.sedl.core.design.Level;
-import es.us.isa.sedl.core.design.Literal;
+import es.us.isa.sedl.core.design.LiteralSizing;
 import es.us.isa.sedl.core.design.NonControllableFactor;
 import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.SamplingMethod;
 import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
+import es.us.isa.sedl.core.design.Factor;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
@@ -89,7 +91,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     public void testExperimentPreamble1()
     {
         // Create experiment
-        BasicExperiment exp=new BasicExperiment();
+        ControlledExperiment exp=new ControlledExperiment();
         exp.setName("myExperiment");
         exp.setVersion("1.0");        
         
@@ -111,7 +113,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         //ST st=getTemplate("population",p,"p");        
         //String result=st.render();
         
-        BasicExperiment e=new BasicExperiment();
+        ControlledExperiment e=new ControlledExperiment();
         Design d=new Design();
         e.setDesign(d);
         d.setPopulation(p);
@@ -135,7 +137,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testExperimentConstants()
     {
-        BasicExperiment e = new BasicExperiment();
+        ControlledExperiment e = new ControlledExperiment();
         Design design=new Design();
         SimpleParameter constant = new SimpleParameter();
         constant.setName("C");
@@ -154,7 +156,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
      @Test
     public void testExperimentComplexConstants()
     {
-        BasicExperiment e = new BasicExperiment();
+        ControlledExperiment e = new ControlledExperiment();
         Design design=new Design();
         ComplexParameter constant = new ComplexParameter();
         constant.setName("RandomNumberGenerator");
@@ -180,7 +182,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testExperimentVariables()
     {
-        BasicExperiment e=new BasicExperiment();
+        ControlledExperiment e=new ControlledExperiment();
         Design design=new Design();
         e.setDesign(design);
         Variables vars=new Variables();        
@@ -227,18 +229,21 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testFullySpecifiedExperimentalDesign()
     {
-        BasicExperiment e = new BasicExperiment();
+        ControlledExperiment e = new ControlledExperiment();
         Design design=new Design();
+        design.setVariables(new Variables());
+        ControllableFactor f=new ControllableFactor();
+        f.setName("Vname");
+        design.getVariables().getVariables().add(f);
         FullySpecifiedExperimentalDesign fsed=buildFullySpecifiedExperimentalDesign(buildVariable());
         design.setExperimentalDesign(fsed);
         e.setDesign(design);
         String expectedResult=
                 "Design :"+NEW_LINE
-                + TAB+"Assignment: Random"+NEW_LINE;
-                /*+ TAB+"Blocking: Vname"+NEW_LINE
-                + TAB+"Groups:"+NEW_LINE
-                + TAB+TAB+"by Vname sizing 40"+NEW_LINE
-                + TAB+"Protocol:Random"+NEW_LINE   
+                + TAB+"Assignment : Random"+NEW_LINE
+                + TAB+"Blocking : Vname"+NEW_LINE
+                + TAB+"Groups : g1() sizing 40"+NEW_LINE
+                + TAB+"Protocol :";/*Random"+NEW_LINE   
                 + TAB+"Analyses:"+NEW_LINE;               */
         //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
         //String result=st.render();
@@ -250,7 +255,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testExperimentalDesign()
     {
-        BasicExperiment e = new BasicExperiment();
+        ControlledExperiment e = new ControlledExperiment();
         Design design=new Design();
         FullySpecifiedExperimentalDesign fsed=buildFullySpecifiedExperimentalDesign(buildVariable());
         design.setExperimentalDesign(fsed);
@@ -272,7 +277,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testExperimentalDesignWithAnalyses()
     {
-        BasicExperiment e = new BasicExperiment();
+        ControlledExperiment e = new ControlledExperiment();
         Design design=new Design();
         FullySpecifiedExperimentalDesign fsed=buildFullySpecifiedExperimentalDesign(buildVariable());
        
@@ -372,7 +377,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         VariableValuation v=new VariableValuation();
         v.setVariable(factor.getName());        
         v.setLevel(null);
-        Literal sizing=new Literal();
+        LiteralSizing sizing=new LiteralSizing();
         sizing.setValue(BigInteger.valueOf(40));
         g.setSizing(sizing);
         g.getValuations().add(v);
@@ -381,8 +386,8 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         sampling.setRandom(true);
         AssignmentMethod assignment=new AssignmentMethod();
         assignment.setRandom(true);
-        fsed.setAssignmentMethod(assignment);
-        fsed.getBlockingVariables().add("Vname");        
+        assignment.getBlockingVariables().add("Vname");        
+        fsed.setAssignmentMethod(assignment);        
         return fsed;
     }
     
@@ -491,7 +496,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     @Test
     public void testDifferentialHypothesis()
     {
-        BasicExperiment e=new BasicExperiment();
+        ControlledExperiment e=new ControlledExperiment();
         DifferentialHypothesis dh=new DifferentialHypothesis();
         e.getHypotheses().add(dh);
         
@@ -559,7 +564,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     }
     
     protected ExperimentalProcedure buildExperimentalProcedure() {
-        ExperimentalProcedure proc=new ExperimentalProcedure();
+        TaskBasedExperimentalProcedure proc=new TaskBasedExperimentalProcedure();
         CommandExperimentalTask task=new CommandExperimentalTask();
         task.setExperimentalTaskType("Treatment");
         task.getParameters().add("JaCoPHeuristic");

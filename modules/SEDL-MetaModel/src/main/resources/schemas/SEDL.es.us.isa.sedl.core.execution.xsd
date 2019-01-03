@@ -6,20 +6,20 @@
   <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
   <xsd:element ecore:ignore="true" name="Execution" type="sedl.es.us.isa.sedl.core.execution:Execution"/>
   <xsd:element ecore:ignore="true" name="Log" type="sedl.es.us.isa.sedl.core.execution:Log"/>
-  <xsd:element ecore:ignore="true" name="LogLine" type="sedl.es.us.isa.sedl.core.execution:LogLine"/>
   <xsd:element ecore:ignore="true" name="ExperimentalResult" type="sedl.es.us.isa.sedl.core.execution:ExperimentalResult"/>
   <xsd:element ecore:ignore="true" name="ResultsFile" type="sedl.es.us.isa.sedl.core.execution:ResultsFile"/>
   <xsd:element ecore:ignore="true" name="DataMapping" type="sedl.es.us.isa.sedl.core.execution:DataMapping"/>
   <xsd:element ecore:ignore="true" name="FileFormat" type="sedl.es.us.isa.sedl.core.execution:FileFormat"/>
   <xsd:element ecore:ignore="true" name="ColumnBasedDataMapping" type="sedl.es.us.isa.sedl.core.execution:ColumnBasedDataMapping"/>
+  <xsd:element ecore:ignore="true" name="ColumnMapper" type="sedl.es.us.isa.sedl.core.execution:ColumnMapper"/>
   <xsd:element ecore:ignore="true" name="Csv" type="sedl.es.us.isa.sedl.core.execution:Csv"/>
   <xsd:element ecore:ignore="true" name="Excel" type="sedl.es.us.isa.sedl.core.execution:Excel"/>
   <xsd:element ecore:ignore="true" name="PlainText" type="sedl.es.us.isa.sedl.core.execution:PlainText"/>
-  <xsd:element ecore:ignore="true" name="ByColumnLabel" type="sedl.es.us.isa.sedl.core.execution:ByColumnLabel"/>
-  <xsd:element ecore:ignore="true" name="ByColumnIndex" type="sedl.es.us.isa.sedl.core.execution:ByColumnIndex"/>
-  <xsd:element ecore:ignore="true" name="ColumnIndexMapper" type="sedl.es.us.isa.sedl.core.execution:ColumnIndexMapper"/>
   <xsd:element ecore:ignore="true" name="ToVariable" type="sedl.es.us.isa.sedl.core.execution:ToVariable"/>
   <xsd:element ecore:ignore="true" name="ToConstant" type="sedl.es.us.isa.sedl.core.execution:ToConstant"/>
+  <xsd:element ecore:ignore="true" name="LogLine" type="sedl.es.us.isa.sedl.core.execution:LogLine"/>
+  <xsd:element ecore:ignore="true" name="ComplexLog" type="sedl.es.us.isa.sedl.core.execution:ComplexLog"/>
+  <xsd:element ecore:ignore="true" name="SimpleLog" type="sedl.es.us.isa.sedl.core.execution:SimpleLog"/>
   <xsd:complexType name="Execution">
     <xsd:complexContent>
       <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
@@ -34,15 +34,7 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType name="Log">
-    <xsd:sequence>
-      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="lines" type="sedl.es.us.isa.sedl.core.execution:LogLine"/>
-    </xsd:sequence>
-  </xsd:complexType>
-  <xsd:complexType name="LogLine">
-    <xsd:attribute name="timestamp" type="xsd:date" use="required"/>
-    <xsd:attribute name="message" type="xsd:string" use="required"/>
-  </xsd:complexType>
+  <xsd:complexType name="Log"/>
   <xsd:complexType name="ExperimentalResult"/>
   <xsd:complexType name="ResultsFile">
     <xsd:complexContent>
@@ -61,8 +53,15 @@
   </xsd:complexType>
   <xsd:complexType abstract="true" name="ColumnBasedDataMapping">
     <xsd:complexContent>
-      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:DataMapping"/>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:DataMapping">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="columnIndexToVariable" type="sedl.es.us.isa.sedl.core.execution:ColumnMapper"/>
+        </xsd:sequence>
+      </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ColumnMapper">
+    <xsd:attribute name="indexer" type="xsd:string" use="required"/>
   </xsd:complexType>
   <xsd:complexType name="Csv" org.eclipse.uml2._2._0._0.uml:originalName="CSV">
     <xsd:complexContent>
@@ -92,34 +91,37 @@
       <xsd:enumeration org.eclipse.uml2._2._0._0.uml:originalName="Timestamp" value="timestamp"/>
     </xsd:restriction>
   </xsd:simpleType>
-  <xsd:complexType abstract="true" name="ByColumnLabel">
-    <xsd:complexContent>
-      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:ColumnBasedDataMapping"/>
-    </xsd:complexContent>
-  </xsd:complexType>
-  <xsd:complexType abstract="true" name="ByColumnIndex">
-    <xsd:complexContent>
-      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:ColumnBasedDataMapping">
-        <xsd:sequence>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="columnIndexToVariable" type="sedl.es.us.isa.sedl.core.execution:ColumnIndexMapper"/>
-        </xsd:sequence>
-      </xsd:extension>
-    </xsd:complexContent>
-  </xsd:complexType>
-  <xsd:complexType abstract="true" name="ColumnIndexMapper">
-    <xsd:attribute name="index" type="xsd:integer" use="required"/>
-  </xsd:complexType>
   <xsd:complexType abstract="true" name="ToVariable">
     <xsd:complexContent>
-      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:ColumnIndexMapper">
+      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:ColumnMapper">
         <xsd:attribute ecore:reference="sedl.es.us.isa.sedl.core.design:Variable" name="variable" type="xsd:anyURI" use="required"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType abstract="true" name="ToConstant">
     <xsd:complexContent>
-      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:ColumnIndexMapper">
+      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:ColumnMapper">
         <xsd:attribute ecore:unsettable="false" name="columnConstants" type="sedl.es.us.isa.sedl.core.execution:ColumnConstants" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="LogLine">
+    <xsd:attribute name="timestamp" type="xsd:date" use="required"/>
+    <xsd:attribute name="message" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="ComplexLog">
+    <xsd:complexContent>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:Log">
+        <xsd:sequence>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="lines" type="sedl.es.us.isa.sedl.core.execution:LogLine"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SimpleLog">
+    <xsd:complexContent>
+      <xsd:extension base="sedl.es.us.isa.sedl.core.execution:Log">
+        <xsd:attribute name="description" type="xsd:string" use="required"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

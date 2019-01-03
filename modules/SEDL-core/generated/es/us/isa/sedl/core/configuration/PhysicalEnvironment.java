@@ -2,13 +2,12 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
-package es.us.isa.sedl.core.design;
+package es.us.isa.sedl.core.configuration;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -27,15 +26,15 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para Literal complex type.
+ * <p>Clase Java para PhysicalEnvironment complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="Literal"&gt;
+ * &lt;complexType name="PhysicalEnvironment"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core/design}Sizing"&gt;
- *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" /&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core/configuration}ExperimentalEnvironment"&gt;
+ *       &lt;attribute name="description" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -44,41 +43,41 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Literal")
-public class Literal
-    extends Sizing
+@XmlType(name = "PhysicalEnvironment")
+public class PhysicalEnvironment
+    extends ExperimentalEnvironment
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlAttribute(name = "value", required = true)
-    protected BigInteger value;
+    @XmlAttribute(name = "description", required = true)
+    protected String description;
 
     /**
-     * Obtiene el valor de la propiedad value.
+     * Obtiene el valor de la propiedad description.
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getValue() {
-        return value;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * Define el valor de la propiedad value.
+     * Define el valor de la propiedad description.
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setValue(BigInteger value) {
-        this.value = value;
+    public void setDescription(String value) {
+        this.description = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof Literal)) {
+        if (!(object instanceof PhysicalEnvironment)) {
             return false;
         }
         if (this == object) {
@@ -87,13 +86,13 @@ public class Literal
         if (!super.equals(thisLocator, thatLocator, object, strategy)) {
             return false;
         }
-        final Literal that = ((Literal) object);
+        final PhysicalEnvironment that = ((PhysicalEnvironment) object);
         {
-            BigInteger lhsValue;
-            lhsValue = this.getValue();
-            BigInteger rhsValue;
-            rhsValue = that.getValue();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "value", lhsValue), LocatorUtils.property(thatLocator, "value", rhsValue), lhsValue, rhsValue)) {
+            String lhsDescription;
+            lhsDescription = this.getDescription();
+            String rhsDescription;
+            rhsDescription = that.getDescription();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "description", lhsDescription), LocatorUtils.property(thatLocator, "description", rhsDescription), lhsDescription, rhsDescription)) {
                 return false;
             }
         }
@@ -108,9 +107,9 @@ public class Literal
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
-            BigInteger theValue;
-            theValue = this.getValue();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "value", theValue), currentHashCode, theValue);
+            String theDescription;
+            theDescription = this.getDescription();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "description", theDescription), currentHashCode, theDescription);
         }
         return currentHashCode;
     }
@@ -132,22 +131,22 @@ public class Literal
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
         super.copyTo(locator, draftCopy, strategy);
-        if (draftCopy instanceof Literal) {
-            final Literal copy = ((Literal) draftCopy);
-            if (this.value!= null) {
-                BigInteger sourceValue;
-                sourceValue = this.getValue();
-                BigInteger copyValue = ((BigInteger) strategy.copy(LocatorUtils.property(locator, "value", sourceValue), sourceValue));
-                copy.setValue(copyValue);
+        if (draftCopy instanceof PhysicalEnvironment) {
+            final PhysicalEnvironment copy = ((PhysicalEnvironment) draftCopy);
+            if (this.description!= null) {
+                String sourceDescription;
+                sourceDescription = this.getDescription();
+                String copyDescription = ((String) strategy.copy(LocatorUtils.property(locator, "description", sourceDescription), sourceDescription));
+                copy.setDescription(copyDescription);
             } else {
-                copy.value = null;
+                copy.description = null;
             }
         }
         return draftCopy;
     }
 
     public Object createNewInstance() {
-        return new Literal();
+        return new PhysicalEnvironment();
     }
 
 }

@@ -45,7 +45,7 @@
     <xsd:complexContent>
       <xsd:extension base="sedl.es.us.isa.sedl.core.context:Stakeholder">
         <xsd:sequence>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="department" type="sedl.es.us.isa.sedl.core.context:Organization"/>
+          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="departments" type="sedl.es.us.isa.sedl.core.context:Organization"/>
         </xsd:sequence>
       </xsd:extension>
     </xsd:complexContent>

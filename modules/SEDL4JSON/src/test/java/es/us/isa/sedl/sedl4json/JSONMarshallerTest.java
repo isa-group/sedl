@@ -5,12 +5,15 @@
  */
 package es.us.isa.sedl.sedl4json;
 
-import es.us.isa.sedl.core.BasicExperiment;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.ControlledExperiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
+import es.us.isa.sedl.core.analysis.statistic.Mean;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.Design;
 import es.us.isa.sedl.core.design.ExtensionDomain;
 import es.us.isa.sedl.core.design.Factor;
+import es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign;
 import es.us.isa.sedl.core.design.FundamentalSet;
 import es.us.isa.sedl.core.design.FundamentalSetConstraint;
 import es.us.isa.sedl.core.design.IntensionDomain;
@@ -62,7 +65,7 @@ public class JSONMarshallerTest extends TestCase {
      */
     public void testAsString() {
         System.out.println("asString");
-        BasicExperiment exp = new BasicExperiment();
+        ControlledExperiment exp = new ControlledExperiment();
         FundamentalSetConstraint integerConstraint=new FundamentalSetConstraint();
         integerConstraint.setFundamentalSet(FundamentalSet.N);
         IntensionDomain d=new IntensionDomain();        
@@ -85,7 +88,14 @@ public class JSONMarshallerTest extends TestCase {
         exp.setDesign(design);        
         design.getVariables().getVariables().add(f);
         design.getVariables().getVariables().add(out);
-        JSONMarshaller instance = new JSONMarshaller();        
+        Mean mean=new Mean();
+        StatisticalAnalysisSpec spec=new StatisticalAnalysisSpec();
+        spec.setId("DescriptiveStatistics");
+        spec.getStatistic().add(mean);        
+        FullySpecifiedExperimentalDesign expDesign=new FullySpecifiedExperimentalDesign();
+        expDesign.getIntendedAnalyses().add(spec);
+        design.setExperimentalDesign(expDesign);
+        JSONMarshaller instance = new JSONMarshaller();          
         String result = instance.asString(exp);
         System.out.println(result);
         assertTrue(true);

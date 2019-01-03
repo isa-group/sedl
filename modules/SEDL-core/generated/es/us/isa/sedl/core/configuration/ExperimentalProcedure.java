@@ -2,17 +2,15 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
 package es.us.isa.sedl.core.configuration;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -24,7 +22,6 @@ import org.jvnet.jaxb2_commons.lang.JAXBCopyStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBEqualsStrategy;
 import org.jvnet.jaxb2_commons.lang.JAXBHashCodeStrategy;
 import org.jvnet.jaxb2_commons.locator.ObjectLocator;
-import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
@@ -54,9 +51,6 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * &lt;complexType name="ExperimentalProcedure"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="tasks" type="{http://isa.us.es/sedl/core/configuration}ExperimentalTask" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -65,44 +59,14 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ExperimentalProcedure", propOrder = {
-    "tasks"
+@XmlType(name = "ExperimentalProcedure")
+@XmlSeeAlso({
+    TaskBasedExperimentalProcedure.class
 })
-public class ExperimentalProcedure
+public abstract class ExperimentalProcedure
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlElement(required = true)
-    protected List<ExperimentalTask> tasks;
-
-    /**
-     * Gets the value of the tasks property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the tasks property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getTasks().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link ExperimentalTask }
-     * 
-     * 
-     */
-    public List<ExperimentalTask> getTasks() {
-        if (tasks == null) {
-            tasks = new ArrayList<ExperimentalTask>();
-        }
-        return this.tasks;
-    }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof ExperimentalProcedure)) {
@@ -110,16 +74,6 @@ public class ExperimentalProcedure
         }
         if (this == object) {
             return true;
-        }
-        final ExperimentalProcedure that = ((ExperimentalProcedure) object);
-        {
-            List<ExperimentalTask> lhsTasks;
-            lhsTasks = (((this.tasks!= null)&&(!this.tasks.isEmpty()))?this.getTasks():null);
-            List<ExperimentalTask> rhsTasks;
-            rhsTasks = (((that.tasks!= null)&&(!that.tasks.isEmpty()))?that.getTasks():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "tasks", lhsTasks), LocatorUtils.property(thatLocator, "tasks", rhsTasks), lhsTasks, rhsTasks)) {
-                return false;
-            }
         }
         return true;
     }
@@ -131,11 +85,6 @@ public class ExperimentalProcedure
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
-        {
-            List<ExperimentalTask> theTasks;
-            theTasks = (((this.tasks!= null)&&(!this.tasks.isEmpty()))?this.getTasks():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "tasks", theTasks), currentHashCode, theTasks);
-        }
         return currentHashCode;
     }
 
@@ -154,28 +103,10 @@ public class ExperimentalProcedure
     }
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
-        final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof ExperimentalProcedure) {
-            final ExperimentalProcedure copy = ((ExperimentalProcedure) draftCopy);
-            if ((this.tasks!= null)&&(!this.tasks.isEmpty())) {
-                List<ExperimentalTask> sourceTasks;
-                sourceTasks = (((this.tasks!= null)&&(!this.tasks.isEmpty()))?this.getTasks():null);
-                @SuppressWarnings("unchecked")
-                List<ExperimentalTask> copyTasks = ((List<ExperimentalTask> ) strategy.copy(LocatorUtils.property(locator, "tasks", sourceTasks), sourceTasks));
-                copy.tasks = null;
-                if (copyTasks!= null) {
-                    List<ExperimentalTask> uniqueTasksl = copy.getTasks();
-                    uniqueTasksl.addAll(copyTasks);
-                }
-            } else {
-                copy.tasks = null;
-            }
+        if (null == target) {
+            throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
         }
-        return draftCopy;
-    }
-
-    public Object createNewInstance() {
-        return new ExperimentalProcedure();
+        return target;
     }
 
 }

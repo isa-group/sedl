@@ -2,14 +2,12 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
 package es.us.isa.sedl.core;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -17,6 +15,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import es.us.isa.sedl.core.context.Context;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
 import org.jvnet.jaxb2_commons.lang.Equals;
@@ -35,26 +34,22 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * by the 'canonical' Basic Experiment, that describes all the details of the experiment 
  * using SEDL elements.
  * 
- * <p>Clase Java para Experiment complex type.
+ * <p>Clase Java para EmpiricalStudy complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="Experiment"&gt;
+ * &lt;complexType name="EmpiricalStudy"&gt;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="goal" type="{http://isa.us.es/sedl/core}Goal"/&gt;
  *         &lt;element name="abstract" type="{http://isa.us.es/sedl/core}Abstract"/&gt;
+ *         &lt;element name="context" type="{http://isa.us.es/sedl/core/context}Context" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="metaid" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="version" use="required" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
- *       &lt;attribute name="classifications"&gt;
- *         &lt;simpleType&gt;
- *           &lt;list itemType="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *         &lt;/simpleType&gt;
- *       &lt;/attribute&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -63,15 +58,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Experiment", propOrder = {
+@XmlType(name = "EmpiricalStudy", propOrder = {
     "goal",
-    "_abstract"
+    "_abstract",
+    "context"
 })
 @XmlSeeAlso({
-    BasicExperiment.class
+    ControlledExperiment.class
 })
 @XmlTransient
-public abstract class Experiment
+public abstract class EmpiricalStudy
     extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
@@ -80,14 +76,13 @@ public abstract class Experiment
     protected Goal goal;
     @XmlElement(name = "abstract", required = true)
     protected Abstract _abstract;
+    protected Context context;
     @XmlAttribute(name = "metaid", required = true)
     protected String metaid;
     @XmlAttribute(name = "name", required = true)
     protected String name;
     @XmlAttribute(name = "version", required = true)
     protected String version;
-    @XmlAttribute(name = "classifications")
-    protected List<String> classifications;
 
     /**
      * Obtiene el valor de la propiedad goal.
@@ -135,6 +130,30 @@ public abstract class Experiment
      */
     public void setAbstract(Abstract value) {
         this._abstract = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad context.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Context }
+     *     
+     */
+    public Context getContext() {
+        return context;
+    }
+
+    /**
+     * Define el valor de la propiedad context.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Context }
+     *     
+     */
+    public void setContext(Context value) {
+        this.context = value;
     }
 
     /**
@@ -209,37 +228,8 @@ public abstract class Experiment
         this.version = value;
     }
 
-    /**
-     * Gets the value of the classifications property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the classifications property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getClassifications().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getClassifications() {
-        if (classifications == null) {
-            classifications = new ArrayList<String>();
-        }
-        return this.classifications;
-    }
-
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof Experiment)) {
+        if (!(object instanceof EmpiricalStudy)) {
             return false;
         }
         if (this == object) {
@@ -248,7 +238,7 @@ public abstract class Experiment
         if (!super.equals(thisLocator, thatLocator, object, strategy)) {
             return false;
         }
-        final Experiment that = ((Experiment) object);
+        final EmpiricalStudy that = ((EmpiricalStudy) object);
         {
             Goal lhsGoal;
             lhsGoal = this.getGoal();
@@ -264,6 +254,15 @@ public abstract class Experiment
             Abstract rhsAbstract;
             rhsAbstract = that.getAbstract();
             if (!strategy.equals(LocatorUtils.property(thisLocator, "_abstract", lhsAbstract), LocatorUtils.property(thatLocator, "_abstract", rhsAbstract), lhsAbstract, rhsAbstract)) {
+                return false;
+            }
+        }
+        {
+            Context lhsContext;
+            lhsContext = this.getContext();
+            Context rhsContext;
+            rhsContext = that.getContext();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "context", lhsContext), LocatorUtils.property(thatLocator, "context", rhsContext), lhsContext, rhsContext)) {
                 return false;
             }
         }
@@ -294,15 +293,6 @@ public abstract class Experiment
                 return false;
             }
         }
-        {
-            List<String> lhsClassifications;
-            lhsClassifications = (((this.classifications!= null)&&(!this.classifications.isEmpty()))?this.getClassifications():null);
-            List<String> rhsClassifications;
-            rhsClassifications = (((that.classifications!= null)&&(!that.classifications.isEmpty()))?that.getClassifications():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "classifications", lhsClassifications), LocatorUtils.property(thatLocator, "classifications", rhsClassifications), lhsClassifications, rhsClassifications)) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -324,6 +314,11 @@ public abstract class Experiment
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "_abstract", theAbstract), currentHashCode, theAbstract);
         }
         {
+            Context theContext;
+            theContext = this.getContext();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "context", theContext), currentHashCode, theContext);
+        }
+        {
             String theMetaid;
             theMetaid = this.getMetaid();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "metaid", theMetaid), currentHashCode, theMetaid);
@@ -337,11 +332,6 @@ public abstract class Experiment
             String theVersion;
             theVersion = this.getVersion();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "version", theVersion), currentHashCode, theVersion);
-        }
-        {
-            List<String> theClassifications;
-            theClassifications = (((this.classifications!= null)&&(!this.classifications.isEmpty()))?this.getClassifications():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "classifications", theClassifications), currentHashCode, theClassifications);
         }
         return currentHashCode;
     }
@@ -365,8 +355,8 @@ public abstract class Experiment
             throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
         }
         super.copyTo(locator, target, strategy);
-        if (target instanceof Experiment) {
-            final Experiment copy = ((Experiment) target);
+        if (target instanceof EmpiricalStudy) {
+            final EmpiricalStudy copy = ((EmpiricalStudy) target);
             if (this.goal!= null) {
                 Goal sourceGoal;
                 sourceGoal = this.getGoal();
@@ -382,6 +372,14 @@ public abstract class Experiment
                 copy.setAbstract(copyAbstract);
             } else {
                 copy._abstract = null;
+            }
+            if (this.context!= null) {
+                Context sourceContext;
+                sourceContext = this.getContext();
+                Context copyContext = ((Context) strategy.copy(LocatorUtils.property(locator, "context", sourceContext), sourceContext));
+                copy.setContext(copyContext);
+            } else {
+                copy.context = null;
             }
             if (this.metaid!= null) {
                 String sourceMetaid;
@@ -406,19 +404,6 @@ public abstract class Experiment
                 copy.setVersion(copyVersion);
             } else {
                 copy.version = null;
-            }
-            if ((this.classifications!= null)&&(!this.classifications.isEmpty())) {
-                List<String> sourceClassifications;
-                sourceClassifications = (((this.classifications!= null)&&(!this.classifications.isEmpty()))?this.getClassifications():null);
-                @SuppressWarnings("unchecked")
-                List<String> copyClassifications = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "classifications", sourceClassifications), sourceClassifications));
-                copy.classifications = null;
-                if (copyClassifications!= null) {
-                    List<String> uniqueClassificationsl = copy.getClassifications();
-                    uniqueClassificationsl.addAll(copyClassifications);
-                }
-            } else {
-                copy.classifications = null;
             }
         }
         return target;

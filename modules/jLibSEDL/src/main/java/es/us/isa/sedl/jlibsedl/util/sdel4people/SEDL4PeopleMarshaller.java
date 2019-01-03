@@ -5,7 +5,7 @@
 package es.us.isa.sedl.jlibsedl.util.sdel4people;
 
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.util.SEDLMarshaller;
 
 import java.io.IOException;
@@ -20,12 +20,12 @@ import java.util.List;
 public class SEDL4PeopleMarshaller implements SEDLMarshaller{
 
     @Override
-    public List<String> write(Experiment exp, OutputStream os) throws IOException {
+    public List<String> write(EmpiricalStudy exp, OutputStream os) throws IOException {
         return Collections.EMPTY_LIST;
     }
 
     @Override
-    public String asString(Experiment exp) {
+    public String asString(EmpiricalStudy exp) {
         return "";
     }
  }

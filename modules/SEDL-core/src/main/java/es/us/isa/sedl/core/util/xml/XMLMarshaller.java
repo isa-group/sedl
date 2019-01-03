@@ -22,7 +22,7 @@ import javax.xml.bind.Marshaller;
 import javax.xml.namespace.QName;
 
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 
 import es.us.isa.sedl.core.util.SEDLMarshaller;
 import javax.xml.bind.JAXBIntrospector;
@@ -84,7 +84,7 @@ public class XMLMarshaller implements SEDLMarshaller{
     }
     
     @Override
-    public List<String>write(final Experiment exp, final OutputStream os) throws IOException
+    public List<String>write(final EmpiricalStudy exp, final OutputStream os) throws IOException
     {    	
         //ObjectFactory of=new ObjectFactory();
         //JAXBElement<Experiment> element=of.createExperiment(exp);
@@ -121,12 +121,12 @@ public class XMLMarshaller implements SEDLMarshaller{
     }
 
     @Override
-    public String asString(Experiment exp) {
+    public String asString(EmpiricalStudy exp) {
         String result=null;
         try {
             String packageName = exp.getClass().getPackage().getName();
             JAXBContext context = JAXBContext.newInstance(packageName);
-            JAXBElement<Experiment> experimentElementent=new JAXBElement<Experiment>(new QName("uri","local"),(Class<Experiment>)exp.getClass(),exp);
+            JAXBElement<EmpiricalStudy> experimentElementent=new JAXBElement<EmpiricalStudy>(new QName("uri","local"),(Class<EmpiricalStudy>)exp.getClass(),exp);
             Marshaller m = context.createMarshaller();            
             m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);	
             m.setProperty("com.sun.xml.bind.namespacePrefixMapper", namespacePrefixMapper);                

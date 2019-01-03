@@ -10,7 +10,7 @@ package es.us.isa.sedl.module.sedl4people;
 import es.us.isa.sedl.module.SEDLModule;
 import es.us.isa.sedl.module.SEDLModuleRegistry;
 import es.us.isa.sedl.module.SEDLModuleUnmarshaller;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.util.Error;
 import es.us.isa.sedl.marshaller.SEDL4PeopleExtensionPointsUnmarshaller;
@@ -27,7 +27,7 @@ public class SEDL4PeopleExtensionPointsUnmarshallerImplementation implements SED
 
     private final SEDLModuleRegistry registry=new SEDLModuleRegistry();
     
-    public List<Error> unmarshall(List<String> importedModules, Map<String, List<ExtensionPointElement>> extensionPointsInstantiations, Experiment experiment) {
+    public List<Error> unmarshall(List<String> importedModules, Map<String, List<ExtensionPointElement>> extensionPointsInstantiations, EmpiricalStudy experiment) {
         List<Error> errors=new ArrayList<Error>();
         SEDLModule module;
         SEDLModuleUnmarshaller unmarshaller;

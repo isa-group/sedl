@@ -1,6 +1,6 @@
 package es.us.isa.sedl.module;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.util.Error;
 import java.util.Collection;
@@ -11,6 +11,6 @@ import java.util.Collection;
  */
 public interface SEDLModuleUnmarshaller {
 
-    public Collection<? extends Error> unmarshall(ExtensionPointElement element, Experiment experiment); 
+    public Collection<? extends Error> unmarshall(ExtensionPointElement element, EmpiricalStudy experiment); 
 
 }

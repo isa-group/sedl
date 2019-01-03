@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.marshaller.execution;
 
-import es.us.isa.sedl.core.BasicExperiment;
+import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.analysis.AnalysisResult;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.statistic.ConfidenceIntervalValue;
@@ -243,7 +243,7 @@ public class ExecutionsParser implements Parser<List<Execution>, SEDL4PeoplePars
     private DatasetSpecification parseDatasetSpecification(String actualFunction, AnalysesExecBlockContext a, ExeFunctionContext exe, SEDL4PeopleExtendedListener listener) {
         DatasetSpecification result=new DatasetSpecification();
         String analysisId=a.id().getText();
-        BasicExperiment exp=(BasicExperiment)listener.getExperimentModel();
+        ControlledExperiment exp=(ControlledExperiment)listener.getExperimentModel();
         AnalysisSpecificationGroup specgroup=exp.getDesign().getAnalysisSpecById(analysisId);        
         Statistic  statistic=null;
         /**

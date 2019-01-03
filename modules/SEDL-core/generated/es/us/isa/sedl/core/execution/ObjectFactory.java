@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -33,20 +33,20 @@ public class ObjectFactory {
 
     private final static QName _Execution_QNAME = new QName("http://isa.us.es/sedl/core/execution", "Execution");
     private final static QName _Log_QNAME = new QName("http://isa.us.es/sedl/core/execution", "Log");
-    private final static QName _LogLine_QNAME = new QName("http://isa.us.es/sedl/core/execution", "LogLine");
     private final static QName _ExperimentalResult_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ExperimentalResult");
     private final static QName _ResultsFile_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ResultsFile");
     private final static QName _DataMapping_QNAME = new QName("http://isa.us.es/sedl/core/execution", "DataMapping");
     private final static QName _FileFormat_QNAME = new QName("http://isa.us.es/sedl/core/execution", "FileFormat");
     private final static QName _ColumnBasedDataMapping_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ColumnBasedDataMapping");
+    private final static QName _ColumnMapper_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ColumnMapper");
     private final static QName _Csv_QNAME = new QName("http://isa.us.es/sedl/core/execution", "Csv");
     private final static QName _Excel_QNAME = new QName("http://isa.us.es/sedl/core/execution", "Excel");
     private final static QName _PlainText_QNAME = new QName("http://isa.us.es/sedl/core/execution", "PlainText");
-    private final static QName _ByColumnLabel_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ByColumnLabel");
-    private final static QName _ByColumnIndex_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ByColumnIndex");
-    private final static QName _ColumnIndexMapper_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ColumnIndexMapper");
     private final static QName _ToVariable_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ToVariable");
     private final static QName _ToConstant_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ToConstant");
+    private final static QName _LogLine_QNAME = new QName("http://isa.us.es/sedl/core/execution", "LogLine");
+    private final static QName _ComplexLog_QNAME = new QName("http://isa.us.es/sedl/core/execution", "ComplexLog");
+    private final static QName _SimpleLog_QNAME = new QName("http://isa.us.es/sedl/core/execution", "SimpleLog");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: es.us.isa.sedl.core.execution
@@ -69,14 +69,6 @@ public class ObjectFactory {
      */
     public Log createLog() {
         return new Log();
-    }
-
-    /**
-     * Create an instance of {@link LogLine }
-     * 
-     */
-    public LogLine createLogLine() {
-        return new LogLine();
     }
 
     /**
@@ -120,6 +112,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link LogLine }
+     * 
+     */
+    public LogLine createLogLine() {
+        return new LogLine();
+    }
+
+    /**
+     * Create an instance of {@link ComplexLog }
+     * 
+     */
+    public ComplexLog createComplexLog() {
+        return new ComplexLog();
+    }
+
+    /**
+     * Create an instance of {@link SimpleLog }
+     * 
+     */
+    public SimpleLog createSimpleLog() {
+        return new SimpleLog();
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Execution }{@code >}}
      * 
      */
@@ -135,15 +151,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "Log")
     public JAXBElement<Log> createLog(Log value) {
         return new JAXBElement<Log>(_Log_QNAME, Log.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LogLine }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "LogLine")
-    public JAXBElement<LogLine> createLogLine(LogLine value) {
-        return new JAXBElement<LogLine>(_LogLine_QNAME, LogLine.class, null, value);
     }
 
     /**
@@ -192,6 +199,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ColumnMapper }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "ColumnMapper")
+    public JAXBElement<ColumnMapper> createColumnMapper(ColumnMapper value) {
+        return new JAXBElement<ColumnMapper>(_ColumnMapper_QNAME, ColumnMapper.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Csv }{@code >}}
      * 
      */
@@ -219,33 +235,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ByColumnLabel }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "ByColumnLabel")
-    public JAXBElement<ByColumnLabel> createByColumnLabel(ByColumnLabel value) {
-        return new JAXBElement<ByColumnLabel>(_ByColumnLabel_QNAME, ByColumnLabel.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ByColumnIndex }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "ByColumnIndex")
-    public JAXBElement<ByColumnIndex> createByColumnIndex(ByColumnIndex value) {
-        return new JAXBElement<ByColumnIndex>(_ByColumnIndex_QNAME, ByColumnIndex.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ColumnIndexMapper }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "ColumnIndexMapper")
-    public JAXBElement<ColumnIndexMapper> createColumnIndexMapper(ColumnIndexMapper value) {
-        return new JAXBElement<ColumnIndexMapper>(_ColumnIndexMapper_QNAME, ColumnIndexMapper.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ToVariable }{@code >}}
      * 
      */
@@ -261,6 +250,33 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "ToConstant")
     public JAXBElement<ToConstant> createToConstant(ToConstant value) {
         return new JAXBElement<ToConstant>(_ToConstant_QNAME, ToConstant.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LogLine }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "LogLine")
+    public JAXBElement<LogLine> createLogLine(LogLine value) {
+        return new JAXBElement<LogLine>(_LogLine_QNAME, LogLine.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ComplexLog }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "ComplexLog")
+    public JAXBElement<ComplexLog> createComplexLog(ComplexLog value) {
+        return new JAXBElement<ComplexLog>(_ComplexLog_QNAME, ComplexLog.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SimpleLog }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/execution", name = "SimpleLog")
+    public JAXBElement<SimpleLog> createSimpleLog(SimpleLog value) {
+        return new JAXBElement<SimpleLog>(_SimpleLog_QNAME, SimpleLog.class, null, value);
     }
 
 }

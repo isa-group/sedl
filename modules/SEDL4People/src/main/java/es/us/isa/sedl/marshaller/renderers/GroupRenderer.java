@@ -6,7 +6,7 @@
 package es.us.isa.sedl.marshaller.renderers;
 
 import es.us.isa.sedl.core.design.Group;
-import es.us.isa.sedl.core.design.Literal;
+import es.us.isa.sedl.core.design.LiteralSizing;
 import es.us.isa.sedl.core.design.VariableValuation;
 import java.util.Locale;
 import org.stringtemplate.v4.ST;
@@ -51,7 +51,7 @@ public class GroupRenderer extends Renderer<Group>{
                 
             if(group.getSizing()!=null){
                 sb.append(" sizing ");
-                Literal size =  (Literal) group.getSizing();
+                LiteralSizing size =  (LiteralSizing) group.getSizing();
                 sb.append(size.getValue());
             }
             

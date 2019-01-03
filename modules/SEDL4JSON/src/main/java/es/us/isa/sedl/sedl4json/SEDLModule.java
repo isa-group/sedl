@@ -6,7 +6,7 @@ package es.us.isa.sedl.sedl4json;
 
 import com.google.common.collect.Lists;
 import es.us.isa.sedl.core.Abstract;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.Goal;
 import es.us.isa.sedl.core.analysis.AnalysisResult;
 import es.us.isa.sedl.core.analysis.datasetspecification.Filter;
@@ -14,6 +14,7 @@ import es.us.isa.sedl.core.analysis.datasetspecification.Projection;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
 import es.us.isa.sedl.core.analysis.statistic.StatisticalTestAssertion;
 import es.us.isa.sedl.core.configuration.ExperimentalEnvironment;
+import es.us.isa.sedl.core.configuration.ExperimentalProcedure;
 import es.us.isa.sedl.core.configuration.ExperimentalTask;
 import es.us.isa.sedl.core.configuration.Parameter;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
@@ -121,10 +122,10 @@ public class SEDLModule extends SimpleModule {
 
     private void initializeClasses() {
         // Variation Points of the own Experiment descrition
-        extensionPoints.add(Experiment.class);
+        extensionPoints.add(EmpiricalStudy.class);
         extensionPoints.add(Abstract.class);
         extensionPoints.add(Goal.class);
-        // Variation Points of Analysis
+        // Variation Points of Hypothesis
         extensionPoints.add(Hypothesis.class);
         extensionPoints.add(Assertion.class);
         // Variation Points of Design
@@ -139,6 +140,7 @@ public class SEDLModule extends SimpleModule {
         extensionPoints.add(ExperimentalTask.class);
         extensionPoints.add(ExperimentalEnvironment.class);
         extensionPoints.add(ExperimentalResult.class);
+        extensionPoints.add(ExperimentalProcedure.class);
         // Variation Points of Execution
 
         // Variation Points of Analysis

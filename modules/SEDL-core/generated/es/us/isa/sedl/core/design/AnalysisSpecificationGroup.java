@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -49,7 +49,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 @XmlSeeAlso({
     StatisticalAnalysisSpec.class
 })
-public class AnalysisSpecificationGroup
+public abstract class AnalysisSpecificationGroup
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
@@ -130,9 +130,11 @@ public class AnalysisSpecificationGroup
     }
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
-        final Object draftCopy = ((target == null)?createNewInstance():target);
-        if (draftCopy instanceof AnalysisSpecificationGroup) {
-            final AnalysisSpecificationGroup copy = ((AnalysisSpecificationGroup) draftCopy);
+        if (null == target) {
+            throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
+        }
+        if (target instanceof AnalysisSpecificationGroup) {
+            final AnalysisSpecificationGroup copy = ((AnalysisSpecificationGroup) target);
             if (this.id!= null) {
                 String sourceId;
                 sourceId = this.getId();
@@ -142,11 +144,7 @@ public class AnalysisSpecificationGroup
                 copy.id = null;
             }
         }
-        return draftCopy;
-    }
-
-    public Object createNewInstance() {
-        return new AnalysisSpecificationGroup();
+        return target;
     }
 
 }

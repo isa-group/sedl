@@ -2,12 +2,14 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
 package es.us.isa.sedl.core.analysis.statistic;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -34,6 +36,9 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * &lt;complexType name="Nhst"&gt;
  *   &lt;complexContent&gt;
  *     &lt;extension base="{http://isa.us.es/sedl/core/analysis/statistic}TestOfHypothesis"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="postHoc" type="{http://isa.us.es/sedl/core/analysis/statistic}Nhst" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *       &lt;/sequence&gt;
  *       &lt;attribute name="name" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="statisticalDistribution" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="alpha" type="{http://www.w3.org/2001/XMLSchema}double" default="0.05" /&gt;
@@ -45,18 +50,50 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Nhst")
+@XmlType(name = "Nhst", propOrder = {
+    "postHoc"
+})
 public class Nhst
     extends TestOfHypothesis
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
+    protected List<Nhst> postHoc;
     @XmlAttribute(name = "name", required = true)
     protected String name;
     @XmlAttribute(name = "statisticalDistribution", required = true)
     protected String statisticalDistribution;
     @XmlAttribute(name = "alpha")
     protected Double alpha;
+
+    /**
+     * Gets the value of the postHoc property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the postHoc property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPostHoc().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Nhst }
+     * 
+     * 
+     */
+    public List<Nhst> getPostHoc() {
+        if (postHoc == null) {
+            postHoc = new ArrayList<Nhst>();
+        }
+        return this.postHoc;
+    }
 
     /**
      * Obtiene el valor de la propiedad name.
@@ -146,6 +183,15 @@ public class Nhst
         }
         final Nhst that = ((Nhst) object);
         {
+            List<Nhst> lhsPostHoc;
+            lhsPostHoc = (((this.postHoc!= null)&&(!this.postHoc.isEmpty()))?this.getPostHoc():null);
+            List<Nhst> rhsPostHoc;
+            rhsPostHoc = (((that.postHoc!= null)&&(!that.postHoc.isEmpty()))?that.getPostHoc():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "postHoc", lhsPostHoc), LocatorUtils.property(thatLocator, "postHoc", rhsPostHoc), lhsPostHoc, rhsPostHoc)) {
+                return false;
+            }
+        }
+        {
             String lhsName;
             lhsName = this.getName();
             String rhsName;
@@ -183,6 +229,11 @@ public class Nhst
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
+            List<Nhst> thePostHoc;
+            thePostHoc = (((this.postHoc!= null)&&(!this.postHoc.isEmpty()))?this.getPostHoc():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "postHoc", thePostHoc), currentHashCode, thePostHoc);
+        }
+        {
             String theName;
             theName = this.getName();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "name", theName), currentHashCode, theName);
@@ -219,6 +270,19 @@ public class Nhst
         super.copyTo(locator, draftCopy, strategy);
         if (draftCopy instanceof Nhst) {
             final Nhst copy = ((Nhst) draftCopy);
+            if ((this.postHoc!= null)&&(!this.postHoc.isEmpty())) {
+                List<Nhst> sourcePostHoc;
+                sourcePostHoc = (((this.postHoc!= null)&&(!this.postHoc.isEmpty()))?this.getPostHoc():null);
+                @SuppressWarnings("unchecked")
+                List<Nhst> copyPostHoc = ((List<Nhst> ) strategy.copy(LocatorUtils.property(locator, "postHoc", sourcePostHoc), sourcePostHoc));
+                copy.postHoc = null;
+                if (copyPostHoc!= null) {
+                    List<Nhst> uniquePostHocl = copy.getPostHoc();
+                    uniquePostHocl.addAll(copyPostHoc);
+                }
+            } else {
+                copy.postHoc = null;
+            }
             if (this.name!= null) {
                 String sourceName;
                 sourceName = this.getName();

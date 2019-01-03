@@ -22,7 +22,7 @@ import javax.xml.transform.stream.StreamSource;
 import es.us.isa.sedl.core.util.Error;
 
 import es.us.isa.sedl.core.util.SEDLUnmarshaller;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 
 /**
  *
@@ -106,12 +106,12 @@ public class XMLUnmarshaller<T> implements SEDLUnmarshaller{
     }
 
     @Override
-    public Experiment read(InputStream stream) {
-        return (Experiment)load(Experiment.class,stream);
+    public EmpiricalStudy read(InputStream stream) {
+        return (EmpiricalStudy)load(EmpiricalStudy.class,stream);
     }
 
     @Override
-    public Experiment fromString(String experimentDescription) {
+    public EmpiricalStudy fromString(String experimentDescription) {
         return read(new ByteArrayInputStream(experimentDescription.getBytes()));
     }
             

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -16,7 +16,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import es.us.isa.sedl.core.configuration.Configuration;
-import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.design.Design;
 import es.us.isa.sedl.core.hypothesis.Hypothesis;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -37,16 +36,15 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 				the hypothesis of the experiment, its design, conduction, results and analysis performed.
  * 				Moreover, it contains an attribute that defines the version of SEDL used in the description.
  * 
- * <p>Clase Java para BasicExperiment complex type.
+ * <p>Clase Java para ControlledExperiment complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="BasicExperiment"&gt;
+ * &lt;complexType name="ControlledExperiment"&gt;
  *   &lt;complexContent&gt;
- *     &lt;extension base="{http://isa.us.es/sedl/core}Experiment"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}EmpiricalStudy"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="context" type="{http://isa.us.es/sedl/core/context}Context"/&gt;
  *         &lt;element name="design" type="{http://isa.us.es/sedl/core/design}Design"/&gt;
  *         &lt;element name="configurations" type="{http://isa.us.es/sedl/core/configuration}Configuration" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="hypotheses" type="{http://isa.us.es/sedl/core/hypothesis}Hypothesis" maxOccurs="unbounded"/&gt;
@@ -59,49 +57,22 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BasicExperiment", propOrder = {
-    "context",
+@XmlType(name = "ControlledExperiment", propOrder = {
     "design",
     "configurations",
     "hypotheses"
 })
-@XmlRootElement(name = "BasicExperiment")
-public class BasicExperiment
-    extends Experiment
+@XmlRootElement(name = "ControlledExperiment")
+public class ControlledExperiment
+    extends EmpiricalStudy
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlElement(required = true)
-    protected Context context;
     @XmlElement(required = true)
     protected Design design;
     protected List<Configuration> configurations;
     @XmlElement(required = true)
     protected List<Hypothesis> hypotheses;
-
-    /**
-     * Obtiene el valor de la propiedad context.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Context }
-     *     
-     */
-    public Context getContext() {
-        return context;
-    }
-
-    /**
-     * Define el valor de la propiedad context.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Context }
-     *     
-     */
-    public void setContext(Context value) {
-        this.context = value;
-    }
 
     /**
      * Obtiene el valor de la propiedad design.
@@ -186,7 +157,7 @@ public class BasicExperiment
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof BasicExperiment)) {
+        if (!(object instanceof ControlledExperiment)) {
             return false;
         }
         if (this == object) {
@@ -195,16 +166,7 @@ public class BasicExperiment
         if (!super.equals(thisLocator, thatLocator, object, strategy)) {
             return false;
         }
-        final BasicExperiment that = ((BasicExperiment) object);
-        {
-            Context lhsContext;
-            lhsContext = this.getContext();
-            Context rhsContext;
-            rhsContext = that.getContext();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "context", lhsContext), LocatorUtils.property(thatLocator, "context", rhsContext), lhsContext, rhsContext)) {
-                return false;
-            }
-        }
+        final ControlledExperiment that = ((ControlledExperiment) object);
         {
             Design lhsDesign;
             lhsDesign = this.getDesign();
@@ -243,11 +205,6 @@ public class BasicExperiment
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = super.hashCode(locator, strategy);
         {
-            Context theContext;
-            theContext = this.getContext();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "context", theContext), currentHashCode, theContext);
-        }
-        {
             Design theDesign;
             theDesign = this.getDesign();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "design", theDesign), currentHashCode, theDesign);
@@ -282,16 +239,8 @@ public class BasicExperiment
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
         super.copyTo(locator, draftCopy, strategy);
-        if (draftCopy instanceof BasicExperiment) {
-            final BasicExperiment copy = ((BasicExperiment) draftCopy);
-            if (this.context!= null) {
-                Context sourceContext;
-                sourceContext = this.getContext();
-                Context copyContext = ((Context) strategy.copy(LocatorUtils.property(locator, "context", sourceContext), sourceContext));
-                copy.setContext(copyContext);
-            } else {
-                copy.context = null;
-            }
+        if (draftCopy instanceof ControlledExperiment) {
+            final ControlledExperiment copy = ((ControlledExperiment) draftCopy);
             if (this.design!= null) {
                 Design sourceDesign;
                 sourceDesign = this.getDesign();
@@ -331,7 +280,7 @@ public class BasicExperiment
     }
 
     public Object createNewInstance() {
-        return new BasicExperiment();
+        return new ControlledExperiment();
     }
 
 }

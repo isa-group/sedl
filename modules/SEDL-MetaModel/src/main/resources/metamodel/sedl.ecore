@@ -47,12 +47,10 @@
                 </eAnnotations>
               </eStructuralFeatures>
             </eClassifiers>
-            <eClassifiers xsi:type="ecore:EClass" name="BasicExperiment" eSuperTypes="#//es/us/isa/sedl/core/Experiment">
+            <eClassifiers xsi:type="ecore:EClass" name="ControlledExperiment" eSuperTypes="#//es/us/isa/sedl/core/EmpiricalStudy">
               <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                 <details key="documentation" value="BasicExperiment is the main element provided by SEDL. It supports the description of the context of the experiment (organization, people and projects involved),&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;the hypothesis of the experiment, its design, conduction, results and analysis performed.&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;Moreover, it contains an attribute that defines the version of SEDL used in the description."/>
               </eAnnotations>
-              <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
-                  lowerBound="1" eType="#//es/us/isa/sedl/core/context/Context" containment="true"/>
               <eStructuralFeatures xsi:type="ecore:EReference" name="design" ordered="false"
                   lowerBound="1" eType="#//es/us/isa/sedl/core/design/Design" containment="true"/>
               <eStructuralFeatures xsi:type="ecore:EReference" name="configurations"
@@ -62,7 +60,7 @@
                   lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/hypothesis/Hypothesis"
                   containment="true"/>
             </eClassifiers>
-            <eClassifiers xsi:type="ecore:EClass" name="Experiment" abstract="true"
+            <eClassifiers xsi:type="ecore:EClass" name="EmpiricalStudy" abstract="true"
                 eSuperTypes="#//es/us/isa/sedl/core/SedlEntity">
               <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                 <details key="documentation" value="Abstract class to be extended by any domain-specific experiment. It is also extended &#xD;&#xA;by the 'canonical' Basic Experiment, that describes all the details of the experiment &#xD;&#xA;using SEDL elements."/>
@@ -73,12 +71,12 @@
                   unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
               <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" ordered="false"
                   unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-              <eStructuralFeatures xsi:type="ecore:EReference" name="classifications"
-                  ordered="false" unique="false" upperBound="-1" eType="#//es/us/isa/sedl/core/context/ClassificationTerm"/>
               <eStructuralFeatures xsi:type="ecore:EReference" name="goal" ordered="false"
                   lowerBound="1" eType="#//es/us/isa/sedl/core/Goal" containment="true"/>
               <eStructuralFeatures xsi:type="ecore:EReference" name="abstract" ordered="false"
                   lowerBound="1" eType="#//es/us/isa/sedl/core/Abstract" containment="true"/>
+              <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
+                  eType="#//es/us/isa/sedl/core/context/Context" containment="true"/>
             </eClassifiers>
             <eClassifiers xsi:type="ecore:EClass" name="Goal" abstract="true" interface="true"/>
             <eClassifiers xsi:type="ecore:EClass" name="Abstract" abstract="true"
@@ -139,17 +137,7 @@
                     ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/analysis/AnalysisResult"
                     containment="true"/>
               </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="Log">
-                <eStructuralFeatures xsi:type="ecore:EReference" name="lines" ordered="false"
-                    lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/execution/LogLine"
-                    containment="true"/>
-              </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="LogLine">
-                <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp"
-                    ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
-                <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" ordered="false"
-                    unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
-              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="Log"/>
               <eClassifiers xsi:type="ecore:EClass" name="ExperimentalResult"/>
               <eClassifiers xsi:type="ecore:EClass" name="ResultsFile" eSuperTypes="#//es/us/isa/sedl/core/execution/ExperimentalResult">
                 <eStructuralFeatures xsi:type="ecore:EReference" name="variableMapping"
@@ -168,7 +156,15 @@
                     unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
               </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="ColumnBasedDataMapping"
-                  abstract="true" eSuperTypes="#//es/us/isa/sedl/core/execution/DataMapping"/>
+                  abstract="true" eSuperTypes="#//es/us/isa/sedl/core/execution/DataMapping">
+                <eStructuralFeatures xsi:type="ecore:EReference" name="columnIndexToVariable"
+                    ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/execution/ColumnMapper"
+                    containment="true"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="ColumnMapper" abstract="true">
+                <eStructuralFeatures xsi:type="ecore:EAttribute" name="indexer" ordered="false"
+                    unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+              </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="Csv" eSuperTypes="#//es/us/isa/sedl/core/execution/FileFormat">
                 <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
                   <details key="originalName" value="CSV"/>
@@ -207,27 +203,30 @@
                   </eAnnotations>
                 </eLiterals>
               </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="ByColumnLabel" abstract="true"
-                  eSuperTypes="#//es/us/isa/sedl/core/execution/ColumnBasedDataMapping"/>
-              <eClassifiers xsi:type="ecore:EClass" name="ByColumnIndex" abstract="true"
-                  eSuperTypes="#//es/us/isa/sedl/core/execution/ColumnBasedDataMapping">
-                <eStructuralFeatures xsi:type="ecore:EReference" name="columnIndexToVariable"
-                    ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/execution/ColumnIndexMapper"
-                    containment="true"/>
-              </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="ColumnIndexMapper" abstract="true">
-                <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" ordered="false"
-                    unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Integer"/>
-              </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="ToVariable" abstract="true"
-                  eSuperTypes="#//es/us/isa/sedl/core/execution/ColumnIndexMapper">
+                  eSuperTypes="#//es/us/isa/sedl/core/execution/ColumnMapper">
                 <eStructuralFeatures xsi:type="ecore:EReference" name="variable" ordered="false"
                     lowerBound="1" eType="#//es/us/isa/sedl/core/design/Variable"/>
               </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="ToConstant" abstract="true"
-                  eSuperTypes="#//es/us/isa/sedl/core/execution/ColumnIndexMapper">
+                  eSuperTypes="#//es/us/isa/sedl/core/execution/ColumnMapper">
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnConstants"
                     ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/execution/ColumnConstants"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="LogLine">
+                <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp"
+                    ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
+                <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" ordered="false"
+                    unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="ComplexLog" eSuperTypes="#//es/us/isa/sedl/core/execution/Log">
+                <eStructuralFeatures xsi:type="ecore:EReference" name="lines" ordered="false"
+                    lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/execution/LogLine"
+                    containment="true"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="SimpleLog" eSuperTypes="#//es/us/isa/sedl/core/execution/Log">
+                <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
+                    ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
               </eClassifiers>
             </eSubpackages>
             <eSubpackages name="configuration" nsURI="http://isa.us.es/sedl/core/configuration"
@@ -260,22 +259,12 @@
                     ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/execution/Execution"
                     containment="true"/>
               </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="ExperimentalProcedure">
+              <eClassifiers xsi:type="ecore:EClass" name="ExperimentalProcedure" abstract="true">
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                   <details key="documentation" value="An experimental producedure is a detailed description of the steps that should be performed for&#xD;&#xA;&#x9;&#x9;conducting the experiment in the especific context of its configuration. &#xD;&#xA;&#x9;&#x9;In this sense, the experimental procedure can be a much richer and detailed description than &#xD;&#xA;&#x9;&#x9;the experimental protocol, that only specifies the experimentation process in terms of group treatments&#xD;&#xA;&#x9;&#x9;and dependent variable measurements.&#xD;&#xA;&#x9;&#x9;The use of an appropriate language for describing experimental procedures is a key point for the achieving&#xD;&#xA;&#x9;&#x9;exactly replicable experiment and even for the automatic experimental replication in those enviroments that&#xD;&#xA;&#x9;&#x9;could alow it (such as for instance computer science). &#xD;&#xA;&#x9;&#x9;This element has been declared abstract to emphasize the need os specifying a concrete type of procedure&#xD;&#xA;&#x9;&#x9;in this sense, the elements that extend the experimentalProcedureType element would define a experimental &#xD;&#xA;&#x9;&#x9;procedure description language. This is one of the main extension points of SEDL that should be used to &#xD;&#xA;&#x9;&#x9;define domain specific experimental procedures description languages in the scientific areas that require it.&#xD;&#xA;&#x9;&#x9;However, for simple applications, we provide a basic experimental procedure description language based on the&#xD;&#xA;&#x9;&#x9; execution of a sequence of tasks (that are another possible extension point if no control flow or decission &#xD;&#xA;&#x9;&#x9; structures are needed), and an specific type of task that enables the execution of commands in a OS shell for&#xD;&#xA;&#x9;&#x9; enabling the replication of Computer Science experiments as described below.&#xD;&#xA;"/>
                 </eAnnotations>
-                <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" ordered="false"
-                    lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/configuration/ExperimentalTask"
-                    containment="true"/>
+                <eOperations name="execute" ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/execution/Execution"/>
               </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="ExperimentalTask" abstract="true">
-                <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-                  <details key="documentation" value="An experimental tasks is a simple step of a sequential experimental procedure. Experimental tasks are an  extension point of SEDL. In this sense, if no&#xD;&#xA;&#x9;&#x9; control flow or decission making structures are needed during the conduction of the experiments, an &#xD;&#xA;&#x9;&#x9; execution scheme can be use to describe the experimental procedure, and user defined tasks can&#xD;&#xA;&#x9;&#x9; be used to provide the information needed for a accurate and replicable experimetal conduction description.&#xD;&#xA;"/>
-                </eAnnotations>
-                <eStructuralFeatures xsi:type="ecore:EReference" name="experimentalTaskType"
-                    ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/configuration/ExperimentalTaskType"/>
-              </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="ExperimentalTaskType"/>
               <eClassifiers xsi:type="ecore:EClass" name="ExperimentalInputs">
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                   <details key="documentation" value="&#xD;&#xA;Experimental Inputs are a description of the input data required for the execution of the experiment&#xD;&#xA;&#x9;&#x9; in the specific configuration. This description could be used to test the replicability of the experiment&#xD;&#xA;&#x9;&#x9; in an specific evironment, by checking the availability of those inputs. Currently it is composed of&#xD;&#xA;&#x9;&#x9; a set of inputDataSources.       &#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;&#x9;&#x9; &#xD;&#xA;"/>
@@ -385,6 +374,14 @@
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" ordered="false"
                     unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
               </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="ExperimentalTask" abstract="true">
+                <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+                  <details key="documentation" value="An experimental tasks is a simple step of a sequential experimental procedure. Experimental tasks are an  extension point of SEDL. In this sense, if no&#xD;&#xA;&#x9;&#x9; control flow or decission making structures are needed during the conduction of the experiments, an &#xD;&#xA;&#x9;&#x9; execution scheme can be use to describe the experimental procedure, and user defined tasks can&#xD;&#xA;&#x9;&#x9; be used to provide the information needed for a accurate and replicable experimetal conduction description.&#xD;&#xA;"/>
+                </eAnnotations>
+                <eStructuralFeatures xsi:type="ecore:EReference" name="experimentalTaskType"
+                    ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/configuration/ExperimentalTaskType"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="ExperimentalTaskType"/>
               <eClassifiers xsi:type="ecore:EClass" name="ComplexParameter" eSuperTypes="#//es/us/isa/sedl/core/configuration/Parameter">
                 <eStructuralFeatures xsi:type="ecore:EReference" name="parameters"
                     ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/configuration/Parameter"
@@ -441,6 +438,16 @@
               <eClassifiers xsi:type="ecore:EClass" name="Postprocessing" eSuperTypes="#//es/us/isa/sedl/core/configuration/ExperimentalTaskType"/>
               <eClassifiers xsi:type="ecore:EClass" name="TreatmentAndMeasurement"
                   eSuperTypes="#//es/us/isa/sedl/core/configuration/ExperimentalTaskType"/>
+              <eClassifiers xsi:type="ecore:EClass" name="PhysicalEnvironment" eSuperTypes="#//es/us/isa/sedl/core/configuration/ExperimentalEnvironment">
+                <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
+                    ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+              </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="TaskBasedExperimentalProcedure"
+                  eSuperTypes="#//es/us/isa/sedl/core/configuration/ExperimentalProcedure">
+                <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" ordered="false"
+                    lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/configuration/ExperimentalTask"
+                    containment="true"/>
+              </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="ExperimentalSetting">
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                   <details key="documentation" value="&#xD;&#xA;&#x9; Experimental settings describe the specific context in which experiments executions are run. An experimental&#xD;&#xA;&#x9;&#x9; setting containts a general set of parameters (factors affecting the experiment), and a description of the &#xD;&#xA;&#x9;&#x9; experimental environment, that describe those factors due to the environment (lab. conditions for chemical, &#xD;&#xA;&#x9;&#x9; physical and biological experiments, and the runtime plattform for computer science experiments).    &#x9;&#x9;&#x9;&#x9; &#x9;&#x9;&#x9;&#x9;  &#x9;&#x9;&#x9;&#x9; &#xD;&#xA;"/>
@@ -489,7 +496,7 @@
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                   <details key="documentation" value="Organizations are a specific type of stakeholder that can contain a set or members (persons) and other organizations.&#xD;&#xA;"/>
                 </eAnnotations>
-                <eStructuralFeatures xsi:type="ecore:EReference" name="department"
+                <eStructuralFeatures xsi:type="ecore:EReference" name="departments"
                     ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/context/Organization"
                     containment="true"/>
               </eClassifiers>
@@ -602,7 +609,8 @@
                     ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/design/AnalysisSpecificationGroup"
                     containment="true"/>
               </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="AnalysisSpecificationGroup">
+              <eClassifiers xsi:type="ecore:EClass" name="AnalysisSpecificationGroup"
+                  abstract="true">
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" ordered="false"
                     lowerBound="1" eType="ecore:EDataType types.ecore#//String"/>
               </eClassifiers>
@@ -666,8 +674,6 @@
                 <eStructuralFeatures xsi:type="ecore:EReference" name="assignmentMethod"
                     ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/design/AssignmentMethod"
                     containment="true"/>
-                <eStructuralFeatures xsi:type="ecore:EReference" name="blockingVariables"
-                    ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/design/NonControllableFactor"/>
                 <eStructuralFeatures xsi:type="ecore:EReference" name="groups" ordered="false"
                     upperBound="-1" eType="#//es/us/isa/sedl/core/design/Group" containment="true"/>
                 <eStructuralFeatures xsi:type="ecore:EReference" name="experimentalProtocol"
@@ -682,6 +688,8 @@
                     ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="random" ordered="false"
                     lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Boolean"/>
+                <eStructuralFeatures xsi:type="ecore:EReference" name="blockingVariables"
+                    ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/design/Variable"/>
               </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="Group">
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -736,7 +744,12 @@
               </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="ProtocolConstraint" abstract="true"/>
               <eClassifiers xsi:type="ecore:EClass" name="PredefinedExperimentalDesign"
-                  eSuperTypes="#//es/us/isa/sedl/core/design/ExperimentalDesign"/>
+                  eSuperTypes="#//es/us/isa/sedl/core/design/ExperimentalDesign">
+                <eOperations name="getFullSpecification" ordered="false" lowerBound="1">
+                  <eParameters name="population" ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/design/Population"/>
+                  <eParameters name="variables" ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/design/Variables"/>
+                </eOperations>
+              </eClassifiers>
               <eClassifiers xsi:type="ecore:EClass" name="Measurement" eSuperTypes="#//es/us/isa/sedl/core/design/ExperimentalProtocolStep">
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                   <details key="documentation" value="A measurement implies to obtain the current value of a set of variables on a set of groups.&#xD;&#xA;"/>
@@ -755,7 +768,7 @@
                     ordered="false" lowerBound="1" upperBound="-1" eType="#//es/us/isa/sedl/core/design/VariableValuation"
                     containment="true"/>
               </eClassifiers>
-              <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//es/us/isa/sedl/core/design/Sizing">
+              <eClassifiers xsi:type="ecore:EClass" name="LiteralSizing" eSuperTypes="#//es/us/isa/sedl/core/design/Sizing">
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
                     unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Integer"/>
               </eClassifiers>
@@ -819,6 +832,7 @@
                     ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/design/Constraint"
                     containment="true"/>
               </eClassifiers>
+              <eClassifiers xsi:type="ecore:EClass" name="EvenSizing" eSuperTypes="#//es/us/isa/sedl/core/design/Sizing"/>
               <eClassifiers xsi:type="ecore:EClass" name="VariableValuation">
                 <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
                   <details key="documentation" value="Variable valuations assign a specific level to the value of a variable."/>
@@ -929,6 +943,9 @@
                   <eStructuralFeatures xsi:type="ecore:EAttribute" name="alpha" ordered="false"
                       unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"
                       defaultValueLiteral="0.05"/>
+                  <eStructuralFeatures xsi:type="ecore:EReference" name="postHoc"
+                      ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/analysis/statistic/Nhst"
+                      containment="true"/>
                 </eClassifiers>
                 <eClassifiers xsi:type="ecore:EClass" name="PValue" eSuperTypes="#//es/us/isa/sedl/core/analysis/statistic/StatisticalAnalysisResult">
                   <eStructuralFeatures xsi:type="ecore:EReference" name="nhst" ordered="false"
@@ -947,6 +964,9 @@
                       defaultValueLiteral="0.05"/>
                   <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
                       ordered="false" unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+                  <eStructuralFeatures xsi:type="ecore:EReference" name="postHoc"
+                      ordered="false" upperBound="-1" eType="#//es/us/isa/sedl/core/analysis/statistic/PValue"
+                      containment="true"/>
                 </eClassifiers>
                 <eClassifiers xsi:type="ecore:EClass" name="DescriptiveStatisticValue"
                     eSuperTypes="#//es/us/isa/sedl/core/analysis/statistic/StatisticalAnalysisResult">
@@ -971,6 +991,16 @@
                       unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
                   <eStructuralFeatures xsi:type="ecore:EAttribute" name="description"
                       ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+                </eClassifiers>
+                <eClassifiers xsi:type="ecore:EClass" name="EffectSizeEstimator" eSuperTypes="#//es/us/isa/sedl/core/analysis/statistic/InferentialStatistic">
+                  <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+                      lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//String"/>
+                </eClassifiers>
+                <eClassifiers xsi:type="ecore:EClass" name="EffectSizeEstimate" eSuperTypes="#//es/us/isa/sedl/core/analysis/statistic/StatisticalAnalysisResult">
+                  <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+                      lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Double"/>
+                  <eStructuralFeatures xsi:type="ecore:EReference" name="effectsizeestimator"
+                      ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/analysis/statistic/EffectSizeEstimator"/>
                 </eClassifiers>
               </eSubpackages>
               <eSubpackages name="datasetspecification" nsURI="http://isa.us.es/sedl/core/analysis/datasetspecification"

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -57,6 +57,8 @@ public class ObjectFactory {
     private final static QName _DescriptiveStatisticValue_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "DescriptiveStatisticValue");
     private final static QName _ConfidenceIntervalValue_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "ConfidenceIntervalValue");
     private final static QName _CorrelationValue_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "CorrelationValue");
+    private final static QName _EffectSizeEstimator_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "EffectSizeEstimator");
+    private final static QName _EffectSizeEstimate_QNAME = new QName("http://isa.us.es/sedl/core/analysis/statistic", "EffectSizeEstimate");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: es.us.isa.sedl.core.analysis.statistic
@@ -263,6 +265,22 @@ public class ObjectFactory {
      */
     public CorrelationValue createCorrelationValue() {
         return new CorrelationValue();
+    }
+
+    /**
+     * Create an instance of {@link EffectSizeEstimator }
+     * 
+     */
+    public EffectSizeEstimator createEffectSizeEstimator() {
+        return new EffectSizeEstimator();
+    }
+
+    /**
+     * Create an instance of {@link EffectSizeEstimate }
+     * 
+     */
+    public EffectSizeEstimate createEffectSizeEstimate() {
+        return new EffectSizeEstimate();
     }
 
     /**
@@ -497,6 +515,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "CorrelationValue")
     public JAXBElement<CorrelationValue> createCorrelationValue(CorrelationValue value) {
         return new JAXBElement<CorrelationValue>(_CorrelationValue_QNAME, CorrelationValue.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EffectSizeEstimator }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "EffectSizeEstimator")
+    public JAXBElement<EffectSizeEstimator> createEffectSizeEstimator(EffectSizeEstimator value) {
+        return new JAXBElement<EffectSizeEstimator>(_EffectSizeEstimator_QNAME, EffectSizeEstimator.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EffectSizeEstimate }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://isa.us.es/sedl/core/analysis/statistic", name = "EffectSizeEstimate")
+    public JAXBElement<EffectSizeEstimate> createEffectSizeEstimate(EffectSizeEstimate value) {
+        return new JAXBElement<EffectSizeEstimate>(_EffectSizeEstimate_QNAME, EffectSizeEstimate.class, null, value);
     }
 
 }

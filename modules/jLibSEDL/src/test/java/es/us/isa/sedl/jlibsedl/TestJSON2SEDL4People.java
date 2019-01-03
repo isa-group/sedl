@@ -5,7 +5,7 @@
  */
 package es.us.isa.sedl.jlibsedl;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.marshaller.SEDL4PeopleMarshaller;
 import es.us.isa.sedl.marshaller.SEDL4PeopleUnmarshaller;
 import es.us.isa.sedl.sedl4json.JSONMarshaller;
@@ -125,7 +125,7 @@ public class TestJSON2SEDL4People {
         System.out.println(originalExperimentDescription);
         
         SEDL4PeopleUnmarshaller sedl4PeopleUnmarshaller=new SEDL4PeopleUnmarshaller();
-        Experiment result = sedl4PeopleUnmarshaller.fromString(originalExperimentDescription);
+        EmpiricalStudy result = sedl4PeopleUnmarshaller.fromString(originalExperimentDescription);
         if(!sedl4PeopleUnmarshaller.getErrors().isEmpty()){
             System.out.println("ERRORS FOUND!:");
             for(es.us.isa.sedl.core.util.Error error:sedl4PeopleUnmarshaller.getErrors())
@@ -139,7 +139,7 @@ public class TestJSON2SEDL4People {
         System.out.println(jsonExperimentDescription);
         
         JSONUnmarshaller instance = new JSONUnmarshaller();          
-        Experiment result2 = instance.fromString(jsonExperimentDescription);
+        EmpiricalStudy result2 = instance.fromString(jsonExperimentDescription);
         SEDL4PeopleMarshaller marshaller =new SEDL4PeopleMarshaller();
         String reifiedExperimentDescription=marshaller.asString(result);
         assertEquals(result,result2);
@@ -147,7 +147,7 @@ public class TestJSON2SEDL4People {
         System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
         System.out.println(reifiedExperimentDescription);
         System.out.println("=============== REIFIED EXPERIMENT DESCRIPTION ======================");
-        Experiment result3=sedl4PeopleUnmarshaller.fromString(reifiedExperimentDescription);
+        EmpiricalStudy result3=sedl4PeopleUnmarshaller.fromString(reifiedExperimentDescription);
                 
         assertEquals(result2,result3);
     }

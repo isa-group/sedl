@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -46,11 +45,6 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *         &lt;element name="groups" type="{http://isa.us.es/sedl/core/design}Group" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="experimentalProtocol" type="{http://isa.us.es/sedl/core/design}ExperimentalProtocol"/&gt;
  *       &lt;/sequence&gt;
- *       &lt;attribute name="blockingVariables"&gt;
- *         &lt;simpleType&gt;
- *           &lt;list itemType="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
- *         &lt;/simpleType&gt;
- *       &lt;/attribute&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -74,8 +68,6 @@ public class FullySpecifiedExperimentalDesign
     protected List<Group> groups;
     @XmlElement(required = true)
     protected ExperimentalProtocol experimentalProtocol;
-    @XmlAttribute(name = "blockingVariables")
-    protected List<String> blockingVariables;
 
     /**
      * Obtiene el valor de la propiedad assignmentMethod.
@@ -154,35 +146,6 @@ public class FullySpecifiedExperimentalDesign
         this.experimentalProtocol = value;
     }
 
-    /**
-     * Gets the value of the blockingVariables property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the blockingVariables property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getBlockingVariables().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getBlockingVariables() {
-        if (blockingVariables == null) {
-            blockingVariables = new ArrayList<String>();
-        }
-        return this.blockingVariables;
-    }
-
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof FullySpecifiedExperimentalDesign)) {
             return false;
@@ -221,15 +184,6 @@ public class FullySpecifiedExperimentalDesign
                 return false;
             }
         }
-        {
-            List<String> lhsBlockingVariables;
-            lhsBlockingVariables = (((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty()))?this.getBlockingVariables():null);
-            List<String> rhsBlockingVariables;
-            rhsBlockingVariables = (((that.blockingVariables!= null)&&(!that.blockingVariables.isEmpty()))?that.getBlockingVariables():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "blockingVariables", lhsBlockingVariables), LocatorUtils.property(thatLocator, "blockingVariables", rhsBlockingVariables), lhsBlockingVariables, rhsBlockingVariables)) {
-                return false;
-            }
-        }
         return true;
     }
 
@@ -254,11 +208,6 @@ public class FullySpecifiedExperimentalDesign
             ExperimentalProtocol theExperimentalProtocol;
             theExperimentalProtocol = this.getExperimentalProtocol();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "experimentalProtocol", theExperimentalProtocol), currentHashCode, theExperimentalProtocol);
-        }
-        {
-            List<String> theBlockingVariables;
-            theBlockingVariables = (((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty()))?this.getBlockingVariables():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "blockingVariables", theBlockingVariables), currentHashCode, theBlockingVariables);
         }
         return currentHashCode;
     }
@@ -310,19 +259,6 @@ public class FullySpecifiedExperimentalDesign
                 copy.setExperimentalProtocol(copyExperimentalProtocol);
             } else {
                 copy.experimentalProtocol = null;
-            }
-            if ((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty())) {
-                List<String> sourceBlockingVariables;
-                sourceBlockingVariables = (((this.blockingVariables!= null)&&(!this.blockingVariables.isEmpty()))?this.getBlockingVariables():null);
-                @SuppressWarnings("unchecked")
-                List<String> copyBlockingVariables = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "blockingVariables", sourceBlockingVariables), sourceBlockingVariables));
-                copy.blockingVariables = null;
-                if (copyBlockingVariables!= null) {
-                    List<String> uniqueBlockingVariablesl = copy.getBlockingVariables();
-                    uniqueBlockingVariablesl.addAll(copyBlockingVariables);
-                }
-            } else {
-                copy.blockingVariables = null;
             }
         }
         return draftCopy;

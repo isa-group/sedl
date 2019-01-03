@@ -4,7 +4,7 @@
  */
 package es.us.isa.sedl.jlibsedl.validator;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.jlibsedl.fixer.SEDLFixer;
 import java.util.List;
 
@@ -47,5 +47,5 @@ public abstract class ValidationRule<X> {
         return description;
     }
         
-    public abstract List<ValidationError> validate(X element, Experiment experiment);
+    public abstract List<ValidationError> validate(X element, EmpiricalStudy experiment);
 }

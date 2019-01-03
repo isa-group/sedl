@@ -17,8 +17,8 @@ import org.antlr.v4.runtime.tree.RuleNode;
 import org.apache.log4j.Logger;
 
 import es.us.isa.sedl.core.SedlBase;
-import es.us.isa.sedl.core.BasicExperiment;
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.ControlledExperiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.ExtensionPointElement;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.statistic.CentralTendencyMeasure;
@@ -77,7 +77,7 @@ import es.us.isa.sedl.core.design.Group;
 import es.us.isa.sedl.core.design.IntensionDomain;
 import es.us.isa.sedl.core.design.IntervalConstraint;
 import es.us.isa.sedl.core.design.Level;
-import es.us.isa.sedl.core.design.Literal;
+import es.us.isa.sedl.core.design.LiteralSizing;
 import es.us.isa.sedl.core.design.NonControllableFactor;
 import es.us.isa.sedl.core.design.Nuisance;
 import es.us.isa.sedl.core.design.Outcome;
@@ -85,6 +85,7 @@ import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.ProtocolScheme;
 import es.us.isa.sedl.core.design.SamplingMethod;
 import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
+import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
@@ -93,6 +94,7 @@ import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.Log;
 import es.us.isa.sedl.core.execution.LogLine;
 import es.us.isa.sedl.core.execution.ResultsFile;
+import es.us.isa.sedl.core.execution.SimpleLog;
 import es.us.isa.sedl.core.hypothesis.AssociationalHypothesis;
 import es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis;
 import es.us.isa.sedl.core.hypothesis.DifferentialHypothesis;
@@ -107,6 +109,7 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.ConstantDeclarationContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.EnumDeclarationContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.ExperimentalProcedureContext;
+import es.us.isa.sedl.grammar.SEDL4PeopleParser.ExtraneousDeclarationContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FactorDeclarationRangeContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FactorDeclarationTypeContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.FactorsContext;
@@ -142,7 +145,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     private static final String SEQUENTIAL = "Sequential";
 
     // Statistic
-    private BasicExperiment experiment;
+    private ControlledExperiment experiment;
     private Context context;
     private Variables variables;
     private Design design;
@@ -177,7 +180,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterDocument(@NotNull SEDL4PeopleParser.DocumentContext ctx) {
         log.info("Entering document");
-        experiment = new BasicExperiment();
+        experiment = new ControlledExperiment();
         context = new Context();
         context.setPeople(new People());
         population = new Population();
@@ -375,10 +378,10 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public void enterFactorDeclaration(@NotNull SEDL4PeopleParser.FactorDeclarationContext ctx) {
 
         Variables aux = getVariables();
-        Variable variable = new ControllableFactor();
+        Variable variable = null;
 
         if (ctx.getParent() instanceof FactorsContext) {
-
+            variable = new ControllableFactor();
         }
 
         if (ctx.getParent() instanceof NcfactorsContext) {
@@ -387,6 +390,10 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
         if (ctx.getParent() instanceof OutcomeDeclarationContext) {
             variable = new Outcome();
+        }
+        
+        if (ctx.getParent() instanceof ExtraneousDeclarationContext){
+            variable = new Nuisance();
         }
 
         extractNotes(variable, ctx);
@@ -543,7 +550,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         }
         for (Variable outcome : vars.getVariablesByType(Outcome.class)) {
             dh = new DifferentialHypothesis();
-            dh.setDependentVariable(outcome.getName());
+            dh.setId(generateHypothesisId());
+            dh.setDependentVariable(outcome.getName());            
             for (Variable factor : vars.getVariablesByType(ControllableFactor.class)) {
                 dh.getIndependentVariables().add(factor.getName());
             }
@@ -684,10 +692,10 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         for (IdContext blockingVariableCtx : blockingVariables) {
             Variable var = findVariableById(blockingVariableCtx, true, Factor.class);
             if (var != null) {
-                expDesign.getBlockingVariables().add(var.getName());
+                expDesign.getAssignmentMethod().getBlockingVariables().add(var.getName());
             }
         }
-        objectNodeMap.put(expDesign.getBlockingVariables(), ctx);
+        objectNodeMap.put(expDesign.getAssignmentMethod().getBlockingVariables(), ctx);
     }
 
     @Override
@@ -872,7 +880,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
     private Group generateGroup(SEDL4PeopleParser.FunctionalDeclarationContext groupDecl, SizingSentenceContext sizing) {
         Group g = new Group();
-        Literal l = new Literal();
+        LiteralSizing l = new LiteralSizing();
         l.setValue(BigInteger.valueOf(Long.valueOf(sizing.IntegerLiteral().getText())));
         g.setName(groupDecl.id().getText());
         g.setSizing(l);
@@ -919,8 +927,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                         idCtx.Identifier().getSymbol().getStopIndex(),
                         es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
                         "The variable " + idCtx.getText() + " is an outcome of the experiment , "
-                        + "you cannot generate the "
-                        + " set of groups of the design from it.");
+                        + "you cannot generate the set of groups of the design from it.");
             }
             if (var instanceof Nuisance) {
                 SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
@@ -928,8 +935,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                         idCtx.Identifier().getSymbol().getStopIndex(),
                         es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
                         "The variable " + idCtx.getText() + " is a nuisance of the experiment , "
-                        + "you cannot generate the "
-                        + " set of groups of the design from it.");
+                        + "you cannot generate the set of groups of the design from it.");
             }
         }
         int sizing = Integer.parseInt(ctx.sizingSentence().IntegerLiteral().toString());
@@ -937,7 +943,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         // We assume a complete factorial balanced design:
         Group group = new Group();
         group.setName("");
-        Literal sizingObject = new Literal();
+        LiteralSizing sizingObject = new LiteralSizing();
         sizingObject.setValue(BigInteger.valueOf((long) sizing));
         group.setSizing(sizingObject);
         VariableValuation vv = null;
@@ -956,7 +962,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         Variable var = vars.get(0);
         Group g = null;
         VariableValuation vv = null;
-        Literal sizingObject = new Literal();
+        LiteralSizing sizingObject = new LiteralSizing();
         sizingObject.setValue(BigInteger.valueOf((long) sizing));
         for (Level l : var.getDomain().getLevels()) {
             vv = new VariableValuation();
@@ -1304,7 +1310,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         // PROCEDURE
         if (ctx.experimentalProcedure() != null) {
             ExperimentalProcedureContext procCtx = ctx.experimentalProcedure();
-            ExperimentalProcedure procedure = new ExperimentalProcedure();
+            TaskBasedExperimentalProcedure procedure = new TaskBasedExperimentalProcedure();
             ExperimentalTask task = null;
 
             if (procCtx.unstructuredProcedureDefinition() != null) {
@@ -1356,10 +1362,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
             }
         }
         if(ctx.log()!=null){
-            Log log=new Log();
-            LogLine line=new LogLine();
-            line.setMessage(ctx.log().StringLiteral().getText().replace("'","").replace("\"",""));
-            log.getLines().add(line);
+            SimpleLog log=new SimpleLog();
+            log.setDescription(ctx.log().StringLiteral().getText().replace("'","").replace("\"",""));            
             result.setLog(log);
         }
         ResultsFile rf = null;
@@ -1409,7 +1413,7 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         return objectNodeMap;
     }
 
-    public Experiment getExperimentModel() {
+    public EmpiricalStudy getExperimentModel() {
         return experiment;
     }
 

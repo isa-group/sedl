@@ -6,7 +6,7 @@
 
 package es.us.isa.sedl.semantic;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.marshaller.SEDL4PeopleUnmarshaller;
 import es.us.isa.sedl.sedl4people.grammar.test.CodeSample;
 import es.us.isa.sedl.sedl4people.grammar.test.ExternalizedSamplesSectionTest;
@@ -39,7 +39,7 @@ public class SEDL4PeopleSemanticalTest extends ExternalizedSamplesSectionTest{
     public void testSemantics()
     {
         
-        Experiment experiment=null;
+        EmpiricalStudy experiment=null;
         SEDL4PeopleUnmarshaller unmarshaller = new SEDL4PeopleUnmarshaller();
         for(CodeSample codeSample:codeSamples)       
         {                                   
@@ -54,7 +54,7 @@ public class SEDL4PeopleSemanticalTest extends ExternalizedSamplesSectionTest{
         }
     }
     
-    private void testSemanticSpec(String codeSampleId,Experiment experiment, SemanticsSpec semanticSpec) {
+    private void testSemanticSpec(String codeSampleId,EmpiricalStudy experiment, SemanticsSpec semanticSpec) {
         System.out.println("Checking the semantics of '"+semanticSpec.getExpression()+"'");
         Expression exp = expressionParser.parseExpression(semanticSpec.getExpression());
         Object actualSemantics=exp.getValue(experiment);
@@ -67,7 +67,7 @@ public class SEDL4PeopleSemanticalTest extends ExternalizedSamplesSectionTest{
     public void testAssertions()
     {
         
-        Experiment experiment=null;
+        EmpiricalStudy experiment=null;
         SEDL4PeopleUnmarshaller unmarshaller = new SEDL4PeopleUnmarshaller();
         for(CodeSample codeSample:codeSamples)       
         {
@@ -82,7 +82,7 @@ public class SEDL4PeopleSemanticalTest extends ExternalizedSamplesSectionTest{
         }
     }
 
-    private void testAssertion(String codeSampleId,String assertion, Experiment experiment) {
+    private void testAssertion(String codeSampleId,String assertion, EmpiricalStudy experiment) {
         System.out.print("Checking the assertion '"+assertion+"'...");
         Expression exp = expressionParser.parseExpression(assertion);
         Object assertionResult=exp.getValue(experiment);

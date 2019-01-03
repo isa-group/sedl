@@ -6,7 +6,7 @@
 
 package es.us.isa.sedl.marshaller;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser;
 import es.us.isa.sedl.sedl4people.grammar.test.CodeSample;
 import es.us.isa.sedl.sedl4people.grammar.test.ExternalizedSamplesSectionTest;
@@ -24,13 +24,13 @@ import org.junit.Test;
  */
 public abstract class SEDL4PeopleUnmarshallingTest extends ExternalizedSamplesSectionTest{
     public static final String RULE ="document";    
-    Map<String,Experiment> experiments;
-    public SEDL4PeopleUnmarshallingTest(String path, Map<String,Experiment> experiments) throws IOException
+    Map<String,EmpiricalStudy> experiments;
+    public SEDL4PeopleUnmarshallingTest(String path, Map<String,EmpiricalStudy> experiments) throws IOException
     {
         this("",path,experiments);
     }
     
-    public SEDL4PeopleUnmarshallingTest(String description,String path, Map<String,Experiment> experiments) throws IOException
+    public SEDL4PeopleUnmarshallingTest(String description,String path, Map<String,EmpiricalStudy> experiments) throws IOException
     {
         super(RULE,description,path);
         this.experiments=experiments;
@@ -41,14 +41,14 @@ public abstract class SEDL4PeopleUnmarshallingTest extends ExternalizedSamplesSe
     {
         for(CodeSample codeSample:codeSamples)
         {
-            Experiment exp=experiments.get(codeSample.getIdentifier());
+            EmpiricalStudy exp=experiments.get(codeSample.getIdentifier());
             if(exp==null)
                 throw new IllegalStateException("The code sample with identifier "+codeSample.getIdentifier()+" has not a corresponding experiment.");
             assertTrue(checkEquals(codeSample,exp));
         }
     }
     
-    public boolean checkEquals(CodeSample codeSample, Experiment experiment)
+    public boolean checkEquals(CodeSample codeSample, EmpiricalStudy experiment)
     {
         boolean result=false;
         try {

@@ -2,17 +2,16 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2018.12.05 a las 03:15:37 PM CET 
+// Generado el: 2019.01.05 a las 01:22:58 PM CET 
 //
 
 
-package es.us.isa.sedl.core.execution;
+package es.us.isa.sedl.core.design;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -28,16 +27,16 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
 
 
 /**
- * <p>Clase Java para ColumnIndexMapper complex type.
+ * <p>Clase Java para LiteralSizing complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="ColumnIndexMapper"&gt;
+ * &lt;complexType name="LiteralSizing"&gt;
  *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;attribute name="index" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" /&gt;
- *     &lt;/restriction&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core/design}Sizing"&gt;
+ *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}integer" /&gt;
+ *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
@@ -45,56 +44,56 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ColumnIndexMapper")
-@XmlSeeAlso({
-    ToVariable.class,
-    ToConstant.class
-})
-public abstract class ColumnIndexMapper
+@XmlType(name = "LiteralSizing")
+public class LiteralSizing
+    extends Sizing
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlAttribute(name = "index", required = true)
-    protected BigInteger index;
+    @XmlAttribute(name = "value", required = true)
+    protected BigInteger value;
 
     /**
-     * Obtiene el valor de la propiedad index.
+     * Obtiene el valor de la propiedad value.
      * 
      * @return
      *     possible object is
      *     {@link BigInteger }
      *     
      */
-    public BigInteger getIndex() {
-        return index;
+    public BigInteger getValue() {
+        return value;
     }
 
     /**
-     * Define el valor de la propiedad index.
+     * Define el valor de la propiedad value.
      * 
      * @param value
      *     allowed object is
      *     {@link BigInteger }
      *     
      */
-    public void setIndex(BigInteger value) {
-        this.index = value;
+    public void setValue(BigInteger value) {
+        this.value = value;
     }
 
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
-        if (!(object instanceof ColumnIndexMapper)) {
+        if (!(object instanceof LiteralSizing)) {
             return false;
         }
         if (this == object) {
             return true;
         }
-        final ColumnIndexMapper that = ((ColumnIndexMapper) object);
+        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
+            return false;
+        }
+        final LiteralSizing that = ((LiteralSizing) object);
         {
-            BigInteger lhsIndex;
-            lhsIndex = this.getIndex();
-            BigInteger rhsIndex;
-            rhsIndex = that.getIndex();
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "index", lhsIndex), LocatorUtils.property(thatLocator, "index", rhsIndex), lhsIndex, rhsIndex)) {
+            BigInteger lhsValue;
+            lhsValue = this.getValue();
+            BigInteger rhsValue;
+            rhsValue = that.getValue();
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "value", lhsValue), LocatorUtils.property(thatLocator, "value", rhsValue), lhsValue, rhsValue)) {
                 return false;
             }
         }
@@ -107,11 +106,11 @@ public abstract class ColumnIndexMapper
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
+        int currentHashCode = super.hashCode(locator, strategy);
         {
-            BigInteger theIndex;
-            theIndex = this.getIndex();
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "index", theIndex), currentHashCode, theIndex);
+            BigInteger theValue;
+            theValue = this.getValue();
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "value", theValue), currentHashCode, theValue);
         }
         return currentHashCode;
     }
@@ -131,21 +130,24 @@ public abstract class ColumnIndexMapper
     }
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
-        if (null == target) {
-            throw new IllegalArgumentException("Target argument must not be null for abstract copyable classes.");
-        }
-        if (target instanceof ColumnIndexMapper) {
-            final ColumnIndexMapper copy = ((ColumnIndexMapper) target);
-            if (this.index!= null) {
-                BigInteger sourceIndex;
-                sourceIndex = this.getIndex();
-                BigInteger copyIndex = ((BigInteger) strategy.copy(LocatorUtils.property(locator, "index", sourceIndex), sourceIndex));
-                copy.setIndex(copyIndex);
+        final Object draftCopy = ((target == null)?createNewInstance():target);
+        super.copyTo(locator, draftCopy, strategy);
+        if (draftCopy instanceof LiteralSizing) {
+            final LiteralSizing copy = ((LiteralSizing) draftCopy);
+            if (this.value!= null) {
+                BigInteger sourceValue;
+                sourceValue = this.getValue();
+                BigInteger copyValue = ((BigInteger) strategy.copy(LocatorUtils.property(locator, "value", sourceValue), sourceValue));
+                copy.setValue(copyValue);
             } else {
-                copy.index = null;
+                copy.value = null;
             }
         }
-        return target;
+        return draftCopy;
+    }
+
+    public Object createNewInstance() {
+        return new LiteralSizing();
     }
 
 }

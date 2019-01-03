@@ -7,7 +7,7 @@ package es.us.isa.sedl.sedl4json;
 
 
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.design.AbstractIntensionDomain;
 import es.us.isa.sedl.core.design.IntensionDomain;
 import es.us.isa.sedl.core.util.SEDLMarshaller;
@@ -33,7 +33,7 @@ import org.codehaus.jackson.map.SerializationConfig;
 public class JSONMarshaller implements SEDLMarshaller {
 
     @Override
-    public List<String> write(Experiment exp, OutputStream os) {
+    public List<String> write(EmpiricalStudy exp, OutputStream os) {
         List<String> result = new ArrayList<String>();
         try {
             ObjectMapper mapper = buildObjectMapper();
@@ -52,7 +52,7 @@ public class JSONMarshaller implements SEDLMarshaller {
     }
 
     @Override
-    public String asString(Experiment exp) {
+    public String asString(EmpiricalStudy exp) {
         String result;
         try {
             ObjectMapper mapper = buildObjectMapper();

@@ -9,13 +9,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 
 /**
  *
  * @author japarejo
  */
 public interface SEDLMarshaller {
-    List<String> write(final Experiment exp, final OutputStream os) throws IOException;
-    String asString(Experiment exp);
+    List<String> write(final EmpiricalStudy exp, final OutputStream os) throws IOException;
+    String asString(EmpiricalStudy exp);
 }

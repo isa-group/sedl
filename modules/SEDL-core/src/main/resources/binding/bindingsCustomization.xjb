@@ -113,10 +113,10 @@
         version="2.1">    
 
         <jaxb:bindings schemaLocation="../../../../../SEDL-MetaModel/src/main/resources/schemas/SEDL.es.us.isa.sedl.core.xsd" node="/xs:schema">
-            <jaxb:bindings node="xs:complexType[@name='BasicExperiment']">
-                <annox:annotateClass>@javax.xml.bind.annotation.XmlRootElement(name="BasicExperiment")</annox:annotateClass>
+            <jaxb:bindings node="xs:complexType[@name='ControlledExperiment']">
+                <annox:annotateClass>@javax.xml.bind.annotation.XmlRootElement(name="ControlledExperiment")</annox:annotateClass>
             </jaxb:bindings>
-            <jaxb:bindings node="xs:complexType[@name='Experiment']">
+            <jaxb:bindings node="xs:complexType[@name='EmpiricalStudy']">
                 <annox:annotateClass>@javax.xml.bind.annotation.XmlTransient</annox:annotateClass>
             </jaxb:bindings>
         </jaxb:bindings>

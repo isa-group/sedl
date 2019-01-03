@@ -4,7 +4,7 @@
  */
 package es.us.isa.sedl.jlibsedl;
 
-import es.us.isa.sedl.core.Experiment;
+import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.util.Error;
 import es.us.isa.sedl.core.util.SEDLMarshaller;
 import es.us.isa.sedl.core.util.SEDLUnmarshaller;
@@ -92,7 +92,7 @@ public class JLibSEDL {
     }
 
     private static SEDLDocument readDocument(InputStream stream,SEDLUnmarshaller unmarshaller) {        
-        Experiment experiment = unmarshaller.read(stream);                                 
+        EmpiricalStudy experiment = unmarshaller.read(stream);                                 
         return new SEDLDocument(experiment, unmarshaller.getErrors());
     }
 
@@ -136,15 +136,15 @@ public class JLibSEDL {
         return result;
     }
 
-    public static List<Error> saveDocument(Experiment exp, OutputStream stream) {
+    public static List<Error> saveDocument(EmpiricalStudy exp, OutputStream stream) {
         return saveDocument(exp, stream, DEFAULT_SERIALIZATION_FORMAT);
     }
     
-    public static List<Error> saveDocument(Experiment exp, OutputStream stream, SerializationFormat format) {       
+    public static List<Error> saveDocument(EmpiricalStudy exp, OutputStream stream, SerializationFormat format) {       
         return saveDocument(exp,stream,format.getMarshaller());
     }
 
-    public static List<Error> saveDocument(Experiment exp, OutputStream stream,SEDLMarshaller marshaller) {
+    public static List<Error> saveDocument(EmpiricalStudy exp, OutputStream stream,SEDLMarshaller marshaller) {
         List<Error> errors = new ArrayList<Error>();
         if (stream != null) {
             try {                
@@ -164,7 +164,7 @@ public class JLibSEDL {
         return errors;
     }
     
-    public static String getXML(Experiment exp, OutputStream stream, SEDLMarshaller marshaller) {
+    public static String getXML(EmpiricalStudy exp, OutputStream stream, SEDLMarshaller marshaller) {
         if (stream != null) {
             try {                
                 marshaller.write(exp, stream);
@@ -184,7 +184,7 @@ public class JLibSEDL {
         return stream.toString();
     }
 
-    public static List<Error> saveDocument(Experiment experiment, File f) {
+    public static List<Error> saveDocument(EmpiricalStudy experiment, File f) {
         List<Error> errors = new ArrayList<Error>();
         if (f != null) {
             try {
@@ -226,15 +226,15 @@ public class JLibSEDL {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private static void saveDocumentSEDL4People(Experiment exp, OutputStream stream) {
+    private static void saveDocumentSEDL4People(EmpiricalStudy exp, OutputStream stream) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private static void saveDocumentJSON(Experiment exp, OutputStream stream) {
+    private static void saveDocumentJSON(EmpiricalStudy exp, OutputStream stream) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
     
-    private String getAs(Experiment exp, SerializationFormat format)
+    private String getAs(EmpiricalStudy exp, SerializationFormat format)
     {
         String result=null;
         switch(format){

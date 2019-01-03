@@ -32,7 +32,9 @@ public class ExtensionPointImplementationsRegistry<T>  {
 
     public void refreshRegistry() {
         // We use  org.Reflections for static identification of subclasses 
-        Reflections reflections = new Reflections(extensionPointClass.getPackage().getName());
+        String packageName=extensionPointClass.getPackage().getName();
+        String parentPackageName=packageName.substring(0, packageName.lastIndexOf("."));
+        Reflections reflections = new Reflections(parentPackageName);
         Set<Class<?>> subTypes = (Set<Class<?>>) reflections.getSubTypesOf((Class) extensionPointClass);
         for(Class<?> classOfType:subTypes)
         {
