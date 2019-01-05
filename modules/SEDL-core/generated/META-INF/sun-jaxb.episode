@@ -5,83 +5,30 @@
 Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-Generado el: 2018.12.05 a las 03:15:37 PM CET 
+Generado el: 2019.01.05 a las 01:44:54 PM CET 
 
   -->
-  <bindings xmlns:tns="http://isa.us.es/sedl/core" if-exists="true" scd="x-schema::tns">
+  <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/datasetspecification" if-exists="true" scd="x-schema::tns">
     <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core"/>
+      <package name="es.us.isa.sedl.core.analysis.datasetspecification"/>
     </schemaBindings>
-    <bindings if-exists="true" scd="~tns:SedlEntity">
-      <class ref="es.us.isa.sedl.core.SedlEntity"/>
+    <bindings if-exists="true" scd="~tns:Filter">
+      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Filter"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:SedlBase">
-      <class ref="es.us.isa.sedl.core.SedlBase"/>
+    <bindings if-exists="true" scd="~tns:Projection">
+      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Projection"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:BasicExperiment">
-      <class ref="es.us.isa.sedl.core.BasicExperiment"/>
+    <bindings if-exists="true" scd="~tns:GroupFilter">
+      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupFilter"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:Experiment">
-      <class ref="es.us.isa.sedl.core.Experiment"/>
+    <bindings if-exists="true" scd="~tns:ValuationFilter">
+      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.ValuationFilter"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:Goal">
-      <class ref="es.us.isa.sedl.core.Goal"/>
+    <bindings if-exists="true" scd="~tns:GroupingProjection">
+      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupingProjection"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:Abstract">
-      <class ref="es.us.isa.sedl.core.Abstract"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExtensionPoint">
-      <class ref="es.us.isa.sedl.core.ExtensionPoint"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SimpleGoal">
-      <class ref="es.us.isa.sedl.core.SimpleGoal"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:GqmGoal">
-      <class ref="es.us.isa.sedl.core.GqmGoal"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SimpleAbstract">
-      <class ref="es.us.isa.sedl.core.SimpleAbstract"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:StructuredAbstract">
-      <class ref="es.us.isa.sedl.core.StructuredAbstract"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/hypothesis" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.hypothesis"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Hypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.Hypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DescriptiveHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:RelationalHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.RelationalHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:AssociationalHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.AssociationalHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:RelationSpecification">
-      <class ref="es.us.isa.sedl.core.hypothesis.RelationSpecification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DifferentialHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.DifferentialHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:LinearRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.LinearRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:MathematicalRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.MathematicalRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:MonotonicRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.MonotonicRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:LogisticRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.LogisticRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Assertion">
-      <class ref="es.us.isa.sedl.core.hypothesis.Assertion"/>
+    <bindings if-exists="true" scd="~tns:DatasetSpecification">
+      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification"/>
     </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/design" if-exists="true" scd="x-schema::tns">
@@ -163,8 +110,8 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     <bindings if-exists="true" scd="~tns:Treatment">
       <class ref="es.us.isa.sedl.core.design.Treatment"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:Literal">
-      <class ref="es.us.isa.sedl.core.design.Literal"/>
+    <bindings if-exists="true" scd="~tns:LiteralSizing">
+      <class ref="es.us.isa.sedl.core.design.LiteralSizing"/>
     </bindings>
     <bindings if-exists="true" scd="~tns:VariableSizing">
       <class ref="es.us.isa.sedl.core.design.VariableSizing"/>
@@ -186,6 +133,9 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     </bindings>
     <bindings if-exists="true" scd="~tns:IntensionDomain">
       <class ref="es.us.isa.sedl.core.design.IntensionDomain"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:EvenSizing">
+      <class ref="es.us.isa.sedl.core.design.EvenSizing"/>
     </bindings>
     <bindings if-exists="true" scd="~tns:VariableValuation">
       <class ref="es.us.isa.sedl.core.design.VariableValuation"/>
@@ -209,12 +159,6 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     </bindings>
     <bindings if-exists="true" scd="~tns:ExperimentalProcedure">
       <class ref="es.us.isa.sedl.core.configuration.ExperimentalProcedure"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalTask">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalTask"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalTaskType">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalTaskType"/>
     </bindings>
     <bindings if-exists="true" scd="~tns:ExperimentalInputs">
       <class ref="es.us.isa.sedl.core.configuration.ExperimentalInputs"/>
@@ -242,6 +186,12 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     </bindings>
     <bindings if-exists="true" scd="~tns:CommandExperimentalTask">
       <class ref="es.us.isa.sedl.core.configuration.CommandExperimentalTask"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:ExperimentalTask">
+      <class ref="es.us.isa.sedl.core.configuration.ExperimentalTask"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:ExperimentalTaskType">
+      <class ref="es.us.isa.sedl.core.configuration.ExperimentalTaskType"/>
     </bindings>
     <bindings if-exists="true" scd="~tns:ComplexParameter">
       <class ref="es.us.isa.sedl.core.configuration.ComplexParameter"/>
@@ -288,6 +238,12 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     <bindings if-exists="true" scd="~tns:TreatmentAndMeasurement">
       <class ref="es.us.isa.sedl.core.configuration.TreatmentAndMeasurement"/>
     </bindings>
+    <bindings if-exists="true" scd="~tns:PhysicalEnvironment">
+      <class ref="es.us.isa.sedl.core.configuration.PhysicalEnvironment"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:TaskBasedExperimentalProcedure">
+      <class ref="es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure"/>
+    </bindings>
     <bindings if-exists="true" scd="~tns:ExperimentalSetting">
       <class ref="es.us.isa.sedl.core.configuration.ExperimentalSetting"/>
     </bindings>
@@ -305,9 +261,6 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     <bindings if-exists="true" scd="~tns:Log">
       <class ref="es.us.isa.sedl.core.execution.Log"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:LogLine">
-      <class ref="es.us.isa.sedl.core.execution.LogLine"/>
-    </bindings>
     <bindings if-exists="true" scd="~tns:ExperimentalResult">
       <class ref="es.us.isa.sedl.core.execution.ExperimentalResult"/>
     </bindings>
@@ -323,6 +276,9 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     <bindings if-exists="true" scd="~tns:ColumnBasedDataMapping">
       <class ref="es.us.isa.sedl.core.execution.ColumnBasedDataMapping"/>
     </bindings>
+    <bindings if-exists="true" scd="~tns:ColumnMapper">
+      <class ref="es.us.isa.sedl.core.execution.ColumnMapper"/>
+    </bindings>
     <bindings if-exists="true" scd="~tns:Csv">
       <class ref="es.us.isa.sedl.core.execution.Csv"/>
     </bindings>
@@ -332,20 +288,20 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     <bindings if-exists="true" scd="~tns:PlainText">
       <class ref="es.us.isa.sedl.core.execution.PlainText"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:ByColumnLabel">
-      <class ref="es.us.isa.sedl.core.execution.ByColumnLabel"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ByColumnIndex">
-      <class ref="es.us.isa.sedl.core.execution.ByColumnIndex"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ColumnIndexMapper">
-      <class ref="es.us.isa.sedl.core.execution.ColumnIndexMapper"/>
-    </bindings>
     <bindings if-exists="true" scd="~tns:ToVariable">
       <class ref="es.us.isa.sedl.core.execution.ToVariable"/>
     </bindings>
     <bindings if-exists="true" scd="~tns:ToConstant">
       <class ref="es.us.isa.sedl.core.execution.ToConstant"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:LogLine">
+      <class ref="es.us.isa.sedl.core.execution.LogLine"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:ComplexLog">
+      <class ref="es.us.isa.sedl.core.execution.ComplexLog"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:SimpleLog">
+      <class ref="es.us.isa.sedl.core.execution.SimpleLog"/>
     </bindings>
     <bindings if-exists="true" scd="~tns:ColumnConstants">
       <typesafeEnumClass ref="es.us.isa.sedl.core.execution.ColumnConstants"/>
@@ -359,27 +315,42 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
       <class ref="es.us.isa.sedl.core.analysis.AnalysisResult"/>
     </bindings>
   </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/datasetspecification" if-exists="true" scd="x-schema::tns">
+  <bindings xmlns:tns="http://isa.us.es/sedl/core" if-exists="true" scd="x-schema::tns">
     <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.analysis.datasetspecification"/>
+      <package name="es.us.isa.sedl.core"/>
     </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Filter">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Filter"/>
+    <bindings if-exists="true" scd="~tns:SedlEntity">
+      <class ref="es.us.isa.sedl.core.SedlEntity"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:Projection">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Projection"/>
+    <bindings if-exists="true" scd="~tns:SedlBase">
+      <class ref="es.us.isa.sedl.core.SedlBase"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:GroupFilter">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupFilter"/>
+    <bindings if-exists="true" scd="~tns:ControlledExperiment">
+      <class ref="es.us.isa.sedl.core.ControlledExperiment"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:ValuationFilter">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.ValuationFilter"/>
+    <bindings if-exists="true" scd="~tns:EmpiricalStudy">
+      <class ref="es.us.isa.sedl.core.EmpiricalStudy"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:GroupingProjection">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupingProjection"/>
+    <bindings if-exists="true" scd="~tns:Goal">
+      <class ref="es.us.isa.sedl.core.Goal"/>
     </bindings>
-    <bindings if-exists="true" scd="~tns:DatasetSpecification">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification"/>
+    <bindings if-exists="true" scd="~tns:Abstract">
+      <class ref="es.us.isa.sedl.core.Abstract"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:ExtensionPoint">
+      <class ref="es.us.isa.sedl.core.ExtensionPoint"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:SimpleGoal">
+      <class ref="es.us.isa.sedl.core.SimpleGoal"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:GqmGoal">
+      <class ref="es.us.isa.sedl.core.GqmGoal"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:SimpleAbstract">
+      <class ref="es.us.isa.sedl.core.SimpleAbstract"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:StructuredAbstract">
+      <class ref="es.us.isa.sedl.core.StructuredAbstract"/>
     </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/context" if-exists="true" scd="x-schema::tns">
@@ -411,12 +382,42 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
       <class ref="es.us.isa.sedl.core.context.Context"/>
     </bindings>
   </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration/fileformats" if-exists="true" scd="x-schema::tns">
+  <bindings xmlns:tns="http://isa.us.es/sedl/core/hypothesis" if-exists="true" scd="x-schema::tns">
     <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.configuration.fileformats"/>
+      <package name="es.us.isa.sedl.core.hypothesis"/>
     </schemaBindings>
-    <bindings if-exists="true" scd="~tns:CsvFileFormat">
-      <class ref="es.us.isa.sedl.core.configuration.fileformats.CsvFileFormat"/>
+    <bindings if-exists="true" scd="~tns:Hypothesis">
+      <class ref="es.us.isa.sedl.core.hypothesis.Hypothesis"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:DescriptiveHypothesis">
+      <class ref="es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:RelationalHypothesis">
+      <class ref="es.us.isa.sedl.core.hypothesis.RelationalHypothesis"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:AssociationalHypothesis">
+      <class ref="es.us.isa.sedl.core.hypothesis.AssociationalHypothesis"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:RelationSpecification">
+      <class ref="es.us.isa.sedl.core.hypothesis.RelationSpecification"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:DifferentialHypothesis">
+      <class ref="es.us.isa.sedl.core.hypothesis.DifferentialHypothesis"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:LinearRelation">
+      <class ref="es.us.isa.sedl.core.hypothesis.LinearRelation"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:MathematicalRelation">
+      <class ref="es.us.isa.sedl.core.hypothesis.MathematicalRelation"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:MonotonicRelation">
+      <class ref="es.us.isa.sedl.core.hypothesis.MonotonicRelation"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:LogisticRelation">
+      <class ref="es.us.isa.sedl.core.hypothesis.LogisticRelation"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:Assertion">
+      <class ref="es.us.isa.sedl.core.hypothesis.Assertion"/>
     </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/statistic" if-exists="true" scd="x-schema::tns">
@@ -501,6 +502,12 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     <bindings if-exists="true" scd="~tns:CorrelationValue">
       <class ref="es.us.isa.sedl.core.analysis.statistic.CorrelationValue"/>
     </bindings>
+    <bindings if-exists="true" scd="~tns:EffectSizeEstimator">
+      <class ref="es.us.isa.sedl.core.analysis.statistic.EffectSizeEstimator"/>
+    </bindings>
+    <bindings if-exists="true" scd="~tns:EffectSizeEstimate">
+      <class ref="es.us.isa.sedl.core.analysis.statistic.EffectSizeEstimate"/>
+    </bindings>
   </bindings>
   <bindings xmlns:tns="http://isa.us.es/sedl/core/classification" if-exists="true" scd="x-schema::tns">
     <schemaBindings map="false">
@@ -511,6 +518,14 @@ Generado el: 2018.12.05 a las 03:15:37 PM CET
     </bindings>
     <bindings if-exists="true" scd="~tns:ExperimentalClassificationType">
       <class ref="es.us.isa.sedl.core.classification.ExperimentalClassificationType"/>
+    </bindings>
+  </bindings>
+  <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration/fileformats" if-exists="true" scd="x-schema::tns">
+    <schemaBindings map="false">
+      <package name="es.us.isa.sedl.core.configuration.fileformats"/>
+    </schemaBindings>
+    <bindings if-exists="true" scd="~tns:CsvFileFormat">
+      <class ref="es.us.isa.sedl.core.configuration.fileformats.CsvFileFormat"/>
     </bindings>
   </bindings>
 </bindings>
