@@ -30,7 +30,7 @@
           <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="analysisResults" type="sedl.es.us.isa.sedl.core.analysis:AnalysisResult"/>
         </xsd:sequence>
         <xsd:attribute name="start" type="xsd:date" use="required"/>
-        <xsd:attribute name="finish" type="xsd:date" use="required"/>
+        <xsd:attribute name="finish" type="xsd:date"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

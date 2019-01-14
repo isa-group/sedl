@@ -124,7 +124,7 @@
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="start" ordered="false"
                     unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
                 <eStructuralFeatures xsi:type="ecore:EAttribute" name="finish" ordered="false"
-                    unique="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
+                    unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2003/XMLType#//Date"/>
                 <eStructuralFeatures xsi:type="ecore:EReference" name="log" ordered="false"
                     eType="#//es/us/isa/sedl/core/execution/Log" containment="true"/>
                 <eStructuralFeatures xsi:type="ecore:EReference" name="results" ordered="false"
@@ -241,7 +241,8 @@
                 <eStructuralFeatures xsi:type="ecore:EReference" name="context" ordered="false"
                     eType="#//es/us/isa/sedl/core/context/Context" containment="true"/>
                 <eStructuralFeatures xsi:type="ecore:EReference" name="experimentalProcedure"
-                    ordered="false" eType="#//es/us/isa/sedl/core/configuration/ExperimentalProcedure"
+                    ordered="false" unique="false" lowerBound="1" upperBound="-1"
+                    eType="#//es/us/isa/sedl/core/configuration/ExperimentalProcedure"
                     containment="true"/>
                 <eStructuralFeatures xsi:type="ecore:EReference" name="experimentalSetting"
                     ordered="false" lowerBound="1" eType="#//es/us/isa/sedl/core/configuration/ExperimentalSetting"
