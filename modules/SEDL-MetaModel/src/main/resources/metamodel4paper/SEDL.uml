@@ -1660,6 +1660,16 @@ using SEDL elements.</body>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_3CLSEgneEemSr6uAKaOriw" value="*"/>
                   </ownedEnd>
                 </packagedElement>
+                <packagedElement xmi:type="uml:Association" xmi:id="_EjcpcBirEemvXdOQG9KMhg" memberEnd="_EjtIIBirEemvXdOQG9KMhg _EjvkYBirEemvXdOQG9KMhg">
+                  <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_EjqE0BirEemvXdOQG9KMhg" source="org.eclipse.papyrus">
+                    <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Ejqr4BirEemvXdOQG9KMhg" key="nature" value="UML_Nature"/>
+                  </eAnnotations>
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_EjvkYBirEemvXdOQG9KMhg" name="fullyspecifiedexperimentaldesign" type="_9EioAFuAEeK_Vtw9NZRQig" association="_EjcpcBirEemvXdOQG9KMhg"/>
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_EjtIIBirEemvXdOQG9KMhg" name="withinSubjectsVariables" type="_6ol18FqvEeKSssWuOcwhaw" aggregation="shared" association="_EjcpcBirEemvXdOQG9KMhg">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EjuWQBirEemvXdOQG9KMhg"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Eju9UBirEemvXdOQG9KMhg" value="*"/>
+                  </ownedEnd>
+                </packagedElement>
               </packagedElement>
               <packagedElement xmi:type="uml:Package" xmi:id="_lE_ggFqBEeKds5mCqHf9IQ" name="hypothesis" URI="http://isa.us.es/sedl/core/hypothesis">
                 <packagedElement xmi:type="uml:Class" xmi:id="_rv4EIFqBEeKds5mCqHf9IQ" name="Hypothesis" isAbstract="true">
@@ -1826,7 +1836,7 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                   <packagedElement xmi:type="uml:Class" xmi:id="_w6g4gFvrEeKGca93458OUg" name="InferentialStatistic">
                     <generalization xmi:type="uml:Generalization" xmi:id="_2lT4IFvrEeKGca93458OUg" general="_bBzVQFvqEeKGca93458OUg"/>
                   </packagedElement>
-                  <packagedElement xmi:type="uml:Class" xmi:id="_-BmDgFvrEeKGca93458OUg" name="VariabilityMeasure">
+                  <packagedElement xmi:type="uml:Class" xmi:id="_-BmDgFvrEeKGca93458OUg" name="DispersionMeasure">
                     <generalization xmi:type="uml:Generalization" xmi:id="_DIN_EFvsEeKGca93458OUg" general="_rWrcgFvrEeKGca93458OUg"/>
                   </packagedElement>
                   <packagedElement xmi:type="uml:Class" xmi:id="_Iq0E8FvsEeKGca93458OUg" name="StandardDeviation">
@@ -2230,10 +2240,6 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_xupPAFqJEeKwpo1GBM8uuA" name="Person">
                   <generalization xmi:type="uml:Generalization" xmi:id="_lt918FqKEeKwpo1GBM8uuA" general="_HfSQ0FqKEeKwpo1GBM8uuA"/>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_Pxp6NFqLEeKwpo1GBM8uuA" name="organization" type="_F9qtEFqKEeKwpo1GBM8uuA" association="_Pxp6M1qLEeKwpo1GBM8uuA">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pxp6NVqLEeKwpo1GBM8uuA"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pxp6NlqLEeKwpo1GBM8uuA" value="*"/>
-                  </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Class" xmi:id="_CCpB8FqKEeKwpo1GBM8uuA" name="Project">
                   <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_djuBcIREEeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
@@ -2309,6 +2315,10 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                   <ownedEnd xmi:type="uml:Property" xmi:id="_Pxp6MFqLEeKwpo1GBM8uuA" name="members" type="_xupPAFqJEeKwpo1GBM8uuA" association="_Pxp6M1qLEeKwpo1GBM8uuA">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pxp6MVqLEeKwpo1GBM8uuA"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pxp6MlqLEeKwpo1GBM8uuA" value="1"/>
+                  </ownedEnd>
+                  <ownedEnd xmi:type="uml:Property" xmi:id="_Pxp6NFqLEeKwpo1GBM8uuA" name="organization" type="_F9qtEFqKEeKwpo1GBM8uuA" association="_Pxp6M1qLEeKwpo1GBM8uuA">
+                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Pxp6NVqLEeKwpo1GBM8uuA"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Pxp6NlqLEeKwpo1GBM8uuA" value="*"/>
                   </ownedEnd>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_saDBg1qMEeKwpo1GBM8uuA" name="Projects_in_Context" visibility="protected" memberEnd="_saDBhFqMEeKwpo1GBM8uuA _saDBgFqMEeKwpo1GBM8uuA">
