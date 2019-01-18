@@ -434,7 +434,7 @@ using SEDL elements.</body>
                   </ownedAttribute>
                   <ownedAttribute xmi:type="uml:Property" xmi:id="_K02wsHtTEeKvAvMvaV8KgQ" name="experimentalProcedure" type="_Gv67oHtTEeKvAvMvaV8KgQ" isUnique="false" aggregation="composite" association="_K03XwHtTEeKvAvMvaV8KgQ">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_K02wsXtTEeKvAvMvaV8KgQ" value="1"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K02wsntTEeKvAvMvaV8KgQ" value="*"/>
+                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_K02wsntTEeKvAvMvaV8KgQ" value="1"/>
                   </ownedAttribute>
                   <ownedAttribute xmi:type="uml:Property" xmi:id="_Oe6yMHtUEeKvAvMvaV8KgQ" name="experimentalSetting" type="_HfhXIHtUEeKvAvMvaV8KgQ" aggregation="composite" association="_Oe7ZQHtUEeKvAvMvaV8KgQ">
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Oe6yMXtUEeKvAvMvaV8KgQ" value="1"/>
