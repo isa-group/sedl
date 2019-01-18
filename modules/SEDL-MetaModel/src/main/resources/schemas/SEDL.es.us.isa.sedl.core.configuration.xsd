@@ -56,7 +56,7 @@
       <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
         <xsd:sequence>
           <xsd:element ecore:resolveProxies="true" minOccurs="0" name="context" type="sedl.es.us.isa.sedl.core.context:Context"/>
-          <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="experimentalProcedure" type="sedl.es.us.isa.sedl.core.configuration:ExperimentalProcedure"/>
+          <xsd:element ecore:resolveProxies="true" name="experimentalProcedure" type="sedl.es.us.isa.sedl.core.configuration:ExperimentalProcedure"/>
           <xsd:element ecore:resolveProxies="true" name="experimentalSetting" type="sedl.es.us.isa.sedl.core.configuration:ExperimentalSetting"/>
           <xsd:element ecore:resolveProxies="true" name="experimentalInputs" type="sedl.es.us.isa.sedl.core.configuration:ExperimentalInputs"/>
           <xsd:element ecore:resolveProxies="true" name="experimentalOutputs" type="sedl.es.us.isa.sedl.core.configuration:ExperimentalOutputs"/>

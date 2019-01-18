@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.uml2._2._0._0.uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:sedl.es.us.isa.sedl.core.configuration="http://isa.us.es/sedl/core/configuration" xmlns:sedl.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="sedl.es.us.isa.sedl.core.design" ecore:package="SEDL.es.us.isa.sedl.core.design" targetNamespace="http://isa.us.es/sedl/core/design">
-  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <!-- schemaLocation="" -->
   <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/configuration" schemaLocation="SEDL.es.us.isa.sedl.core.configuration.xsd"/>
   <xsd:element ecore:ignore="true" name="Design" type="sedl.es.us.isa.sedl.core.design:Design"/>
