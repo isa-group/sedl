@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ControlledExperiment xmlns:ns2="http://isa.us.es/sedl/core" name="Zendler2001Experiment" version="1.0" id="Zendler2001Experiment">
+    <notes> This experiment description is part of the material of the paper on the SEDL meta-model and EXEMPLAR to be published
+   
+    Experiment of the paper:
+     Andreas Zendler, Till Pfeiffer, Michael Eicks, Franz Lehner
+     &quot;Experimental comparison of coarse-grained concepts in UML, OML, and TOS&quot;
+      The Journal of Systems and Software 57 2001) 21-30
+      
+   Object-oriented approaches over coarse-grained modeling concepts to structure complex application systems consisting of
+hundreds or even thousands of classes. This paper analyses such concepts by using a software engineering experiment. Two factors
+are controlled: Factor A consists of three object-oriented approaches (uni®ed modeling language (UML), OPEN modeling language
+(OML), and taxonomic objectsystem (TOS)), and factor B consists of two application systems (a database-oriented application and
+a process-oriented application). The results show that the coarse-grained concepts of the object-oriented approaches OML and
+TOS are superior to those of UML when modeling a database-oriented application. From the results it can be concluded that the
+coarse-grained concepts of UML should be improved in further releases. The data were analysed by using advanced statistical
+methods.
+
+Criticism: No explicit research hypothesis were stated in the paper (statistical hypothese are stated however) so it is difficult
+to trace the relation of the results of the statistical hypothesis with the research questions.
+   
+</notes>
+    <annotations>Charts</annotations>
+    <context>
+        <people>
+            <person organization="University of Potsdam" name="Andreas Zendler" email="zna@mgm-edv.de" role="Responsible"/>
+            <person organization="University of Regensburg" name="Till Pfeiffer" role="Collaborator"/>
+            <person organization="University of Regensburg" name="Michael Eicks" role="Collaborator"/>
+            <person organization="University of Regensburg" name="Franz Lehner" role="Collaborator"/>
+        </people>
+    </context>
+    <design>
+        <notes>
+A split plot factorial (SPF) 3 x 2 design (a two-factor design with repeated measurements for factor B)
+</notes>
+        <samplingMethod description="Random" random="true"/>
+        <population/>
+        <experimentalDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:FullySpecifiedExperimentalDesign">
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="DescriptiveStatistics">
+                <statistic xsi:type="ns5:Mean">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="oo_aproach app_system"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Median">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="oo_aproach app_system"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:StandardDeviation">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="oo_aproach app_system"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic>
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="app_system"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic>
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="app_system"/>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="NHST">
+                <statistic xsi:type="ns5:Nhst" name="KruskalWalls" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="oo_aproach"/>
+                        <filters xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:ValuationFilter">
+                            <variableValuations level="DBOA" variable="app_system"/>
+                        </filters>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Nhst" name="KruskalWalls" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="oo_aproach"/>
+                        <filters xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:ValuationFilter">
+                            <variableValuations level="POA" variable="app_system"/>
+                        </filters>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Nhst" name="Chi Square" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="app_system oo_aproach"/>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <groups name="G-UML">
+                <sizing xsi:type="ns4:LiteralSizing" value="5"/>
+                <valuations level="&quot;UML&quot;" variable="oo_aproach"/>
+            </groups>
+            <groups name="G-OML">
+                <sizing xsi:type="ns4:LiteralSizing" value="5"/>
+                <valuations level="&quot;OML&quot;" variable="oo_aproach"/>
+            </groups>
+            <groups name="G-TOS">
+                <sizing xsi:type="ns4:LiteralSizing" value="5"/>
+                <valuations level="&quot;TOS&quot;" variable="oo_aproach"/>
+            </groups>
+            <experimentalProtocol scheme="sequential">
+                <steps xsi:type="ns4:Treatment" group="G-UML" id="S1">
+                    <variableValuation level="DBOA" variable="app_system"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-OML" id="S2">
+                    <variableValuation level="DBOA" variable="app_system"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-TOS" id="S3">
+                    <variableValuation level="DBOA" variable="app_system"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-UML" id="S4">
+                    <variableValuation level="POA" variable="app_system"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-OML" id="S5">
+                    <variableValuation level="POA" variable="app_system"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-TOS" id="S6">
+                    <variableValuation level="POA" variable="app_system"/>
+                </steps>
+            </experimentalProtocol>
+        </experimentalDesign>
+        <variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:ControllableFactor" kind="nominal" name="oo_aproach">
+                <notes>randomly assigned</notes>
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="UML"/>
+                    <levels value="OML"/>
+                    <levels value="TOS"/>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:ControllableFactor" kind="nominal" name="app_system">
+                <notes>database-oriented system or process-oriented system</notes>
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="DBOA"/>
+                    <levels value="POA"/>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:Outcome" kind="scalar" name="ts" units="minutes">
+                <notes> Time needed to structure an application system in minutes; it is interpreted as an efficiency measure</notes>
+                <domain xsi:type="ns4:IntensionDomain">
+                    <constraint xsi:type="ns4:FundamentalSetConstraint" fundamentalSet="R"/>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:Outcome" kind="ordinal" name="qs">
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="1"/>
+                    <levels value="2"/>
+                    <levels value="3"/>
+                    <levels value="4"/>
+                    <levels value="5"/>
+                    <levels value="6"/>
+                    <levels value="7"/>
+                    <levels value="8"/>
+                    <levels value="9"/>
+                    <levels value="10"/>
+                    <levels value="11"/>
+                    <levels value="12"/>
+                    <levels value="13"/>
+                    <levels value="14"/>
+                    <levels value="15"/>
+                    <levels value="16"/>
+                    <levels value="17"/>
+                    <levels value="18"/>
+                    <levels value="19"/>
+                    <levels value="20"/>
+                    <levels value="21"/>
+                    <levels value="22"/>
+                    <levels value="23"/>
+                    <levels value="24"/>
+                    <levels value="25"/>
+                    <levels value="26"/>
+                    <levels value="27"/>
+                    <levels value="28"/>
+                    <levels value="29"/>
+                    <levels value="30"/>
+                </domain>
+            </variables>
+        </variables>
+    </design>
+    <hypotheses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/hypothesis" xsi:type="ns4:DifferentialHypothesis" independentVariables="oo_aproach app_system" dependentVariable="ts" id="H1"/>
+    <hypotheses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/hypothesis" xsi:type="ns4:DifferentialHypothesis" independentVariables="oo_aproach app_system" dependentVariable="qs" id="H3">
+        <notes> Quality of system structure</notes>
+    </hypotheses>
+</ns2:ControlledExperiment>

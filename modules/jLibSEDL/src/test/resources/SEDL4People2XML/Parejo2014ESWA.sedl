@@ -1,0 +1,72 @@
+import Charts
+/*
+ This experiment description is part of the material of a paper on EXEMPLAR and the SEDL meta-model.
+
+    This document describes the experiment published as the paper:
+      "QoS-aware web services composition using GRASP with Path Relinking".
+      José Antonio Parejo, Sergio Segura rueda, Pablo Fernandez-Montés, Antonio Ruiz-Cortés
+       Expert Systems with Applictions, Volume 41, Issue 9, July 2014, Pages 4211-4223  https:doi.org/10.1016/j.eswa.2013.12.036
+   
+In service oriented scenarios, applications are created by composing atomic services and exposing the resulting added value logic as a service.
+When several alternative service providers are available for composition, quality of service (QoS) properties such as execution time, cost, or
+availability are taken into account to make the choice, leading to the creation of QoS-aware composite web services. Finding the set of service
+providers that result in the best QoS is a NP-hard optimization problem. This paper presents QoS-Gasp, a metaheuristic algorithm for performing
+QoS-aware web service composition at runtime. QoS-Gasp is an hybrid approach that combines GRASP with Path Relinking. For the evaluation of our
+approach we compared it with related metaheuristic algorithms found in the literature. Experiments show that when results must be available in 
+seconds, QoS-Gasp improves the results of previous proposals up to 40%. Beside this, QoS-Gasp found better solutions than any of the compared 
+techniques in a 92% of the runs when results must be available in 100 ms; i.e., it provides compositions with a better QoS, implying cost savings,
+increased availability and reduced execution times for the end-user.
+
+   
+*/
+EXPERIMENT: myExperiment version: 1.0 
+Subjects:
+	José Antonio Parejo (japarejo@us.es) from 'University of Sevilla' as Responsible
+	Sergio Segura (sergiosegura@us.es) from 'University of Sevilla' as Collaborator
+	Pablo Fernandez Montes (pafmon@us.es) from 'University of Sevilla' as Collaborator
+	Antonio Ruiz Cortés (aruiz@us.es) from 'University of Sevilla' as Collaborator
+Constants:
+	weightCost : '0.3'
+	weightExecutionTime : '0.3'
+	weightAvailability : '0.1'
+	weightSecurity : '0.2'
+	weightReliability : '0.1'
+Variables :
+	Factors :
+		// Please, change the values, domain and add the factors of your experiemnt
+		algorithm enum
+			// It uses the G1 function
+			 'GRASP',
+			// It uses the G6 or G2 function
+			 'QoSGasp',
+			// As defined by Canfora et al. in "An approach for QoS-aware service composition based on genetic algorithms. In GECCO ’05 (pp. 1069–1075)."
+			 'GeneticAlgorithm',
+			// As defined by Kao et al in "Quality-of-service oriented web service composition algorithm and planning architecture Journal of Systems and Software, 81 (11) (2008), pp. 2079-2090"
+			 'HybridTabuSearchWithSimulattedAnnealing'
+		problem enum Problem1(), Problem2(), Problem3(), Problem4(), Problem5(), Problem6(), Problem7(), Problem8(), Problem9(), Problem10()
+	Outcome :
+		globalQoS float 
+		executionTime float 
+Hypothesis: 	H1: algorithm impacts significantly on globalQoS
+// By default we assume a differential hypothesis, meaning
+// that the value of var1 has a significant effect on the
+// value of outome, i.e. it makes a difference.
+Design :
+	Sampling : Random
+	Groups : G-value1() sizing 30,G-valueN() sizing 30
+	Protocol : Random
+	Analyses :
+		DescriptiveStatitics:
+			Avg(by algorithm,problem)
+			Median(by algorithm,problem)
+			StdDev(by algorithm,problem)
+		NHST:
+			Kolmogorov-Smirnov(by algorithm,problem, 0.05)
+			KruskalWalls(by algorithm, 0.05)
+Configuration:
+	C1:
+		Procedure :
+		Runs:
+			Experiment1:
+				Result:
+					File: 'results/rawDataT100.csv'

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ControlledExperiment xmlns:ns2="http://isa.us.es/sedl/core" name="Mind-2" version="1.0" id="Mind-2">
+    <notes>  This experiment description is part of the material of a paper on EXEMPLAR and the SEDL meta-model.
+    
+    This document describes the experiment published as the paper:
+        &quot;An experimental replication on the effect of the practice of mindfulness in conceptual modeling performance&quot;
+        Beatriz Bernárdez, Amador Durán, José A. Parejo, Antonio Ruiz–Cortés.
+        Journal of Systems and Software, Volume 136, February 2018, Pages 153-172, DOI: https:doi.org/10.1016/j.jss.2016.06.104 
+       
+Context: Mindfulness is a meditation technique aimed to increase clearness of mind and awareness. In the 2013–2014 academic year, an experiment was carried out to test whether the practice of mindfulness during 4 weeks improved or not the conceptual modeling performance using UML class diagrams of 32 second–year students of Software Engineering at the University of Seville.
+
+Objective: An internal replication with some changes in the original design was performed in the first semester of the 2014–2015 academic year in order to confirm the insights provided by the original study and increase the confidence in its conclusions. The sample were 53 students with the same profile than in the original study.
+
+Method: Half the students (27 subjects) practiced mindfulness during 6 weeks, while the other half (26 subjects), i.e. the control group, received no treatment during that time. All the students developed two conceptual models using UML class diagrams from a transcript of an interview, one before and another after the 6 weeks of mindfulness sessions, and the results were compared in terms of conceptual modeling effectiveness and efficiency.
+
+Results: The results of both experiments were similar, showing that the practice of mindfulness significantly improves conceptual modeling efficiency. Regarding conceptual modeling effectiveness, an improvement is observed in practice, but the analysis shows that such improvement is not statistically significant. After a reanalysis of data, consistent results have also been obtained.
+
+Conclusion: After a replication that leads to the same conclusions as the original study, the adequacy of the original experiment is confirmed and the credibility of its results is increased. Thus, we can state that the practice of mindfulness can improve the efficiency of Software Engineering students in the development of conceptual models, although further experimentation is needed in order to confirm the results in other contexts and other Software Engineering activities different from conceptual modeling.
+       
+</notes>
+    <annotations>Charts</annotations>
+    <context>
+        <notes> the practice of mindfulness</notes>
+        <notes> &lt;span&gt; evaluating its effects&lt;/span&gt;</notes>
+        <notes> conceptual modeling performance</notes>
+        <notes> the researchers</notes>
+        <notes> second-year students of the degree in Software Engineering at the University of Seville.</notes>
+        <people>
+            <person organization="University of Sevilla" name="Beatriz Bernardez Jimenez" email="beat@us.es" role="Responsible">
+                <notes>She did almost everything</notes>
+            </person>
+            <person organization="University of Sevilla" name="Amador Duran Toro" email="amador@us.es" role="Collaborator">
+                <notes>Human compiler and excellent writer</notes>
+            </person>
+            <person organization="University of Sevilla" name="Jose Antonio Parejo Maestre" email="japarejo@us.es" role="Collaborator">
+                <notes>Statistics and experimental methodology support</notes>
+            </person>
+            <person organization="University of Sevilla" name="Antonio Ruiz-Cortes" email="aruiz@us.es" role="Collaborator">
+                <notes>Big Boss</notes>
+            </person>
+        </people>
+    </context>
+    <design>
+        <notes></notes>
+        <samplingMethod description="Random" random="true"/>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="24" name="NSessions">
+            <notes>Number of mindfullness sessions</notes>
+        </designParameters>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="12" name="SessionsDuration">
+            <units>minutes</units>
+        </designParameters>
+        <population/>
+        <experimentalDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:FullySpecifiedExperimentalDesign">
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="DescriptiveStatitics">
+                <statistic xsi:type="ns5:Mean">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="exercise"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Mean">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Mean">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Median">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:StandardDeviation">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="Charts">
+                <statistic>
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic>
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic>
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic>
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment exercise"/>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="NHST">
+                <statistic xsi:type="ns5:Nhst" name="Kolmogorov-Smirnov" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="exercise treatment"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Nhst" name="Levene" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="exercise treatment"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Nhst" name="TTest" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment"/>
+                        <filters xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:ValuationFilter">
+                            <variableValuations level="EoDP" variable="exercise"/>
+                        </filters>
+                    </datasetSpecification>
+                    <assumptions/>
+                    <assumptions/>
+                </statistic>
+                <statistic xsi:type="ns5:Nhst" name="Wilcoxon" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="treatment"/>
+                        <filters xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:ValuationFilter">
+                            <variableValuations level="EoDP" variable="exercise"/>
+                        </filters>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <assignmentMethod description="Random" random="true"/>
+            <groups name="G-MF">
+                <sizing xsi:type="ns4:LiteralSizing" value="27"/>
+            </groups>
+            <groups name="G-PS">
+                <sizing xsi:type="ns4:LiteralSizing" value="26"/>
+            </groups>
+            <experimentalProtocol scheme="sequential">
+                <steps xsi:type="ns4:Measurement" group="G-PS" id="S1">
+                    <variablevaluations level="Erasmus" variable="exercise"/>
+                </steps>
+                <steps xsi:type="ns4:Measurement" group="G-MF" id="S2">
+                    <variablevaluations level="Erasmus" variable="exercise"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-MF" id="S3">
+                    <variableValuation level="MF" variable="treatment"/>
+                </steps>
+                <steps xsi:type="ns4:Measurement" group="G-PS" id="S4">
+                    <variablevaluations level="EoDP" variable="exercise"/>
+                </steps>
+                <steps xsi:type="ns4:Measurement" group="G-MF" id="S5">
+                    <variablevaluations level="EoDP" variable="exercise"/>
+                </steps>
+                <steps xsi:type="ns4:Treatment" group="G-PS" id="S6">
+                    <variableValuation level="PS" variable="treatment"/>
+                </steps>
+            </experimentalProtocol>
+        </experimentalDesign>
+        <variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:ControllableFactor" kind="nominal" name="treatment">
+                <notes>This factor represents &lt;i&gt;the treatment allocated to the subjects in the training workshops&lt;/i&gt;.</notes>
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="MF">
+                        <notes>This level represents &lt;i&gt;the Mindfulness workshops&lt;/i&gt;. In the mindfulness workshops, the sessions were face-to-face, four days a week.All the sessions followed the same dynamics: the students and the researcher responsible for conducting the session met in a classroom; they all sat down, lights were turned off and curtains were drawn letting only some dim light in the room; when they all were in silence, an alarm was programmed; during the first five minutes, the subjects were guided in their body scan; then, during the remaining time, they were invited to focus solely on their breathing. Sometimes, the researcher asked &amp;#34;where is your mind now?&amp;#34; in order to re-focus them on breathing. In the event a student were late, they were instructed to enter the room making as less noise as possible and sit on one of the chairs that were intentionally left empty near the door.</notes>
+                    </levels>
+                    <levels value="PS">
+                        <notes>This level represents the &lt;i&gt;Public Speaking workshops&lt;/i&gt;. In the public speaking workshops, the subjects were given some basic guidelines on how to prepare a talk, some notions on non-verbal communication and some seminal talks were commented. Later, they were invited to look for related videos in the Internet and to prepare a script of a public presentation on a topic of their interest.</notes>
+                    </levels>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:ControllableFactor" kind="nominal" name="exercise">
+                <notes>This factor represents &lt;i&gt;the conceptual modeling exercises done before and after the treatment&lt;/i&gt;</notes>
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="Erasmus">
+                        <notes>Some data about the Erasmus exercise are:
+Number of words in the interview transcript: 951
+Number of classes ($CLASS_R$):               8
+Number of associations ($ASSOC_R$):          10
+Number of attributes ( $ATTR_R$):            17
+Average number of attributes per class:      2,29</notes>
+                    </levels>
+                    <levels value="EoDP">
+                        <notes>Number of words in the interview transcript: 1223
+Number of classes ($CLASS_R$):               8
+Number of associations ($ASSOC_R$):          10
+Number of attributes ( $ATTR_R$):            24
+Average number of attributes per class:      3</notes>
+                    </levels>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:Outcome" kind="scalar" name="Effectiveness">
+                <notes>Conceptual modeling effectiveness is defined as the percentage of semantic quality achieved by a subject</notes>
+                <domain xsi:type="ns4:IntensionDomain">
+                    <constraint xsi:type="ns4:FundamentalSetConstraint" fundamentalSet="R"/>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:Outcome" kind="scalar" name="Efficiency">
+                <notes>Conceptual modeling efficiency is defined as the quotient between the achieved semantic quality and the time in minutes spent by a subject in finishing a conceptual modeling exercise</notes>
+                <domain xsi:type="ns4:IntensionDomain">
+                    <constraint xsi:type="ns4:FundamentalSetConstraint" fundamentalSet="R"/>
+                    <constraint xsi:type="ns4:IntervalConstraint" min="0" max="1"/>
+                </domain>
+            </variables>
+        </variables>
+    </design>
+    <configurations id="C1">
+        <experimentalProcedure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:TaskBasedExperimentalProcedure"/>
+        <experimentalOutputs/>
+        <executions start="" finish="" id="Baseline">
+            <results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/execution" xsi:type="ns4:ResultsFile">
+                <file name="data/data2015.csv"/>
+            </results>
+        </executions>
+    </configurations>
+    <hypotheses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/hypothesis" xsi:type="ns4:DifferentialHypothesis" independentVariables="treatment" dependentVariable="Effectiveness" id="H1"/>
+    <hypotheses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/hypothesis" xsi:type="ns4:DifferentialHypothesis" independentVariables="treatment" dependentVariable="Efficiency" id="H2"/>
+</ns2:ControlledExperiment>

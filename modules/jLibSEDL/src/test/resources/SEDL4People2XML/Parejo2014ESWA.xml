@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ControlledExperiment xmlns:ns2="http://isa.us.es/sedl/core" name="myExperiment" version="1.0" id="myExperiment">
+    <notes>
+ This experiment description is part of the material of a paper on EXEMPLAR and the SEDL meta-model.
+
+    This document describes the experiment published as the paper:
+      &quot;QoS-aware web services composition using GRASP with Path Relinking&quot;.
+      José Antonio Parejo, Sergio Segura rueda, Pablo Fernandez-Montés, Antonio Ruiz-Cortés
+       Expert Systems with Applictions, Volume 41, Issue 9, July 2014, Pages 4211-4223  https:doi.org/10.1016/j.eswa.2013.12.036
+   
+In service oriented scenarios, applications are created by composing atomic services and exposing the resulting added value logic as a service.
+When several alternative service providers are available for composition, quality of service (QoS) properties such as execution time, cost, or
+availability are taken into account to make the choice, leading to the creation of QoS-aware composite web services. Finding the set of service
+providers that result in the best QoS is a NP-hard optimization problem. This paper presents QoS-Gasp, a metaheuristic algorithm for performing
+QoS-aware web service composition at runtime. QoS-Gasp is an hybrid approach that combines GRASP with Path Relinking. For the evaluation of our
+approach we compared it with related metaheuristic algorithms found in the literature. Experiments show that when results must be available in 
+seconds, QoS-Gasp improves the results of previous proposals up to 40%. Beside this, QoS-Gasp found better solutions than any of the compared 
+techniques in a 92% of the runs when results must be available in 100 ms; i.e., it provides compositions with a better QoS, implying cost savings,
+increased availability and reduced execution times for the end-user.
+
+   
+</notes>
+    <annotations>Charts</annotations>
+    <context>
+        <people>
+            <person organization="University of Sevilla" name="José Antonio Parejo" email="japarejo@us.es" role="Responsible"/>
+            <person organization="University of Sevilla" name="Sergio Segura" email="sergiosegura@us.es" role="Collaborator"/>
+            <person organization="University of Sevilla" name="Pablo Fernandez Montes" email="pafmon@us.es" role="Collaborator"/>
+            <person organization="University of Sevilla" name="Antonio Ruiz Cortés" email="aruiz@us.es" role="Collaborator"/>
+        </people>
+    </context>
+    <design>
+        <notes> By default we assume a differential hypothesis, meaning</notes>
+        <notes> that the value of var1 has a significant effect on the</notes>
+        <notes> value of outome, i.e. it makes a difference.</notes>
+        <samplingMethod description="Random" random="true"/>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="'0.3'" name="weightCost"/>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="'0.3'" name="weightExecutionTime"/>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="'0.1'" name="weightAvailability"/>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="'0.2'" name="weightSecurity"/>
+        <designParameters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:SimpleParameter" value="'0.1'" name="weightReliability"/>
+        <population/>
+        <experimentalDesign xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:FullySpecifiedExperimentalDesign">
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="DescriptiveStatitics">
+                <statistic xsi:type="ns5:Mean">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="algorithm problem"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Median">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="algorithm problem"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:StandardDeviation">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="algorithm problem"/>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <intendedAnalyses xmlns:ns5="http://isa.us.es/sedl/core/analysis/statistic" xsi:type="ns5:StatisticalAnalysisSpec" id="NHST">
+                <statistic xsi:type="ns5:Nhst" name="Kolmogorov-Smirnov" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="algorithm problem"/>
+                    </datasetSpecification>
+                </statistic>
+                <statistic xsi:type="ns5:Nhst" name="KruskalWalls" alpha="0.05">
+                    <datasetSpecification>
+                        <projections xmlns:ns6="http://isa.us.es/sedl/core/analysis/datasetspecification" xsi:type="ns6:GroupingProjection" projectedVariables="algorithm"/>
+                    </datasetSpecification>
+                </statistic>
+            </intendedAnalyses>
+            <groups name="G-value1">
+                <sizing xsi:type="ns4:LiteralSizing" value="30"/>
+            </groups>
+            <groups name="G-valueN">
+                <sizing xsi:type="ns4:LiteralSizing" value="30"/>
+            </groups>
+            <experimentalProtocol scheme="random"/>
+        </experimentalDesign>
+        <variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:ControllableFactor" kind="nominal" name="algorithm">
+                <notes> Please, change the values, domain and add the factors of your experiemnt</notes>
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="GRASP">
+                        <notes> It uses the G1 function</notes>
+                    </levels>
+                    <levels value="QoSGasp">
+                        <notes> It uses the G6 or G2 function</notes>
+                    </levels>
+                    <levels value="GeneticAlgorithm">
+                        <notes> As defined by Canfora et al. in &quot;An approach for QoS-aware service composition based on genetic algorithms. In GECCO ’05 (pp. 1069–1075).&quot;</notes>
+                    </levels>
+                    <levels value="HybridTabuSearchWithSimulattedAnnealing">
+                        <notes> As defined by Kao et al in &quot;Quality-of-service oriented web service composition algorithm and planning architecture Journal of Systems and Software, 81 (11) (2008), pp. 2079-2090&quot;</notes>
+                    </levels>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:ControllableFactor" kind="nominal" name="problem">
+                <domain xsi:type="ns4:ExtensionDomain">
+                    <levels value="Problem1()"/>
+                    <levels value="Problem2()"/>
+                    <levels value="Problem3()"/>
+                    <levels value="Problem4()"/>
+                    <levels value="Problem5()"/>
+                    <levels value="Problem6()"/>
+                    <levels value="Problem7()"/>
+                    <levels value="Problem8()"/>
+                    <levels value="Problem9()"/>
+                    <levels value="Problem10()"/>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:Outcome" kind="scalar" name="globalQoS">
+                <domain xsi:type="ns4:IntensionDomain">
+                    <constraint xsi:type="ns4:FundamentalSetConstraint" fundamentalSet="R"/>
+                </domain>
+            </variables>
+            <variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/design" xsi:type="ns4:Outcome" kind="scalar" name="executionTime">
+                <domain xsi:type="ns4:IntensionDomain">
+                    <constraint xsi:type="ns4:FundamentalSetConstraint" fundamentalSet="R"/>
+                </domain>
+            </variables>
+        </variables>
+    </design>
+    <configurations id="C1">
+        <experimentalProcedure xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/configuration" xsi:type="ns4:TaskBasedExperimentalProcedure"/>
+        <experimentalOutputs/>
+        <executions start="" finish="" id="Experiment1">
+            <results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/execution" xsi:type="ns4:ResultsFile">
+                <file name="results/rawDataT100.csv"/>
+            </results>
+        </executions>
+    </configurations>
+    <hypotheses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns4="http://isa.us.es/sedl/core/hypothesis" xsi:type="ns4:DifferentialHypothesis" independentVariables="algorithm" dependentVariable="globalQoS" id="H1"/>
+</ns2:ControlledExperiment>

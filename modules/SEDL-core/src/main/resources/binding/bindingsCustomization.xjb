@@ -117,7 +117,7 @@
                 <annox:annotateClass>@javax.xml.bind.annotation.XmlRootElement(name="ControlledExperiment")</annox:annotateClass>
             </jaxb:bindings>
             <jaxb:bindings node="xs:complexType[@name='EmpiricalStudy']">
-                <annox:annotateClass>@javax.xml.bind.annotation.XmlTransient</annox:annotateClass>
+                <!-- annox:annotateClass>@javax.xml.bind.annotation.XmlTransient</annox:annotateClass -->
             </jaxb:bindings>
         </jaxb:bindings>
 

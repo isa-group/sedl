@@ -1,0 +1,63 @@
+import Charts
+/*
+ This experiment description is part of the material of a paper on EXEMPLAR and the SEDL meta-model.
+
+    This document describes the experiment published as the paper:
+      "Automated generation of computationally hard feature models using evolutionary algorithms".
+      Sergio Segura Rueda, José Antonio Parejo, Rob Hierons, David Benavides, Antonio Ruiz-Cortés
+       Expert Systems with ApplicationsVolume 41, Issue 8, 15 June 2014, Pages 3975-3992, https:doi.org/10.1016/j.eswa.2013.12.028
+   
+A feature model is a compact representation of the products of a software product line. The automated extraction of information from
+feature models is a thriving topic involving numerous analysis operations, techniques and tools. Performance evaluations in this domain
+mainly rely on the use of random feature models. However, these only provide a rough idea of the behaviour of the tools with average problems
+and are not sufficient to reveal their real strengths and weaknesses. In this article, we propose to model the problem of finding computationally
+hard feature models as an optimization problem and we solve it using a novel evolutionary algorithm for optimized feature models (ETHOM). Given a
+tool and an analysis operation, ETHOM generates input models of a predefined size maximizing aspects such as the execution time or the memory
+consumption of the tool when performing the operation over the model. This allows users and developers to know the performance of tools in pessimistic
+cases providing a better idea of their real power and revealing performance bugs. Experiments using ETHOM on a number of analyses and tools have 
+successfully identified models producing much longer executions times and higher memory consumption than those obtained with random models of 
+identical or even larger size.
+
+   
+*/
+EXPERIMENT: myExperiment version: 1.0 
+Subjects:
+	Sergio Segura (sergiosegura@us.es) from 'University of Sevilla' as Collaborator
+	José Antonio Parejo (japarejo@us.es) from 'University of Sevilla' as Responsible
+	David Benavides (benavides@us.es) from 'University of Sevilla' as Collaborator
+	Antonio Ruiz Cortés (aruiz@us.es) from 'University of Sevilla' as Collaborator
+Variables :
+	Factors :
+		algorithm enum 'ETHOM', 'RandomSearch'
+		CTC enum 10, 20, 30, 40
+		features enum 200, 400, 600, 800, 1000
+	Outcome :
+		executionTime float 
+Hypothesis: 	H1: algorithm impacts significantly on executionTime
+// By default we assume a differential hypothesis, meaning
+// that the value of var1 has a significant effect on the
+// value of outome, i.e. it makes a difference.
+Design :
+	Sampling : Random
+	Assignment : Random
+	Blocking : CTC, features
+	Groups : G-ETHOM(algorithm:'ETHOM' ) sizing 600,G-RandomSearch(algorithm:'RandomSearch' ) sizing 600
+	Protocol : Random
+	Analyses :
+		DescriptiveStatitics:
+			Avg(by algorithm,CTC,features)
+			Median(by algorithm,CTC,features)
+			StdDev(by algorithm,CTC,features)
+		NHST:
+			Kolmogorov-Smirnov(by algorithm, 0.05)
+			Levene(by algorithm, 0.05)
+			Wilcoxon(by algorithm, 0.05)
+Configuration:
+	C1:
+		Procedure :
+		Runs:
+			Experiment1:
+				Result:
+					File: 'results/global.csv'
+					File: 'results/globalTimes.csv'
+					File: 'results/logs.txt'

@@ -1,0 +1,99 @@
+import Charts
+/*  This experiment description is part of the material of a paper on EXEMPLAR and the SEDL meta-model.
+
+    This document describes the experiment published as the paper:
+      "A controlled experiment to evaluate the effects of mindfulness in software engineering".
+       In Proceedings of the 8th ACM/IEEE International Symposium onEmpirical Software Engineering and Measurement (ESEM '14). ACM,
+       New York, NY, USA. DOI=http:dx.doi.org/10.1145/2652524.2652539        
+       
+        Context. Many reports support the fact that some psycho–social aspects of software engineers are key factors for the quality of the software development process and its resulting products. Based on the experience of some of the authors after more than a year of practising mindfulness—a meditation technique aimed to increase clearness of mind and awareness—we guessed that it could be interesting to empirically evaluate whether mindfulness affects positively not only the behaviour but also the professional performance of software engineers. 
+        Goal. In this paper, we present a quasi–experiment carried out at the University of Seville to evaluate whether Software Engineering & Information Systems students enhance their conceptual modelling skills after the continued daily practice of mindfulness during four weeks.
+        Method. Students were divided into two groups: one group practised mindfulness, and the other—the control group—were trained in public speaking. In order to study the possible cause–and–effect relationship, effectiveness (the rate of model elements correctly identified) and efficiency (the number of model elements correctly identified per unit of time) of the students developing conceptual modelling exercises were measured before and after taking the mindfulness and public speaking sessions.
+        Results. The experiment results have revealed that the students who practised mindfulness have become more efficient in developing conceptual models than those who attended the public speaking sessions. With respect to effectiveness, some enhancement have been observed, although not as significant as in the case of efficiency.
+        Conclusions. This rising trend in effectiveness suggests that the number of sessions could have been insufficient and that a longer period of sessions could have also enhanced effectiveness significantly.
+       
+*/
+EXPERIMENT: Mind-2 version: 1.0 
+	//Analyze the practice of mindfulness 
+	//for the purpose of <span> evaluating its effects</span> 
+	//with respect to conceptual modeling performance 
+	//from the point of view of the researchers 
+	//in the context of second-year students of the degree in Software Engineering at the University of Seville. 
+Subjects:
+	//She did almost everything
+	Beatriz Bernardez Jimenez (beat@us.es) from 'University of Sevilla' as Responsible
+	//Human compiler and excellent writer
+	Amador Duran Toro (amador@us.es) from 'University of Sevilla' as Collaborator
+	//Statistics and experimental methodology support
+	Jose Antonio Parejo Maestre (japarejo@us.es) from 'University of Sevilla' as Collaborator
+	//Big Boss
+	Antonio Ruiz-Cortes (aruiz@us.es) from 'University of Sevilla' as Collaborator
+Constants:
+	//Number of mindfullness sessions
+	NSessions : 16
+	SessionsDuration : 10 measured in minutes
+Variables :
+	Factors :
+		//This factor represents <i>the treatment allocated to the subjects in the training workshops</i>.
+		treatment enum
+			//This level represents <i>the Mindfulness workshops</i>. In the mindfulness workshops, the sessions were face-to-face, four days a week.All the sessions followed the same dynamics: the students and the researcher responsible for conducting the session met in a classroom; they all sat down, lights were turned off and curtains were drawn letting only some dim light in the room; when they all were in silence, an alarm was programmed; during the first five minutes, the subjects were guided in their body scan; then, during the remaining time, they were invited to focus solely on their breathing. Sometimes, the researcher asked &#34;where is your mind now?&#34; in order to re-focus them on breathing. In the event a student were late, they were instructed to enter the room making as less noise as possible and sit on one of the chairs that were intentionally left empty near the door.
+			 'MF',
+			//This level represents the <i>Public Speaking workshops</i>. In the public speaking workshops, the subjects were given some basic guidelines on how to prepare a talk, some notions on non-verbal communication and some seminal talks were commented. Later, they were invited to look for related videos in the Internet and to prepare a script of a public presentation on a topic of their interest.
+			 'PS'
+		//This factor represents <i>the conceptual modeling exercises done before and after the treatment</i>
+		exercise enum
+			/*Some data about the Erasmus exercise are:
+Number of words in the interview transcript: 951
+Number of classes ($CLASS_R$):               8
+Number of associations ($ASSOC_R$):          10
+Number of attributes ( $ATTR_R$):            17
+Average number of attributes per class:      2,29*/
+			 'Erasmus',
+			/*Number of words in the interview transcript: 1223
+Number of classes ($CLASS_R$):               8
+Number of associations ($ASSOC_R$):          10
+Number of attributes ( $ATTR_R$):            24
+Average number of attributes per class:      3*/
+			 'EoDP'
+	Outcome :
+		//Conceptual modeling effectiveness is defined as the percentage of semantic quality achieved by a subject
+		Effectiveness float 
+		//Conceptual modeling efficiency is defined as the quotient between the achieved semantic quality and the time in minutes spent by a subject in finishing a conceptual modeling exercise
+		Efficiency float range [0,1] 
+Hypothesis: 
+	H1: treatment impacts significantly on Effectiveness
+	H2: treatment impacts significantly on Efficiency
+Design :
+	Sampling : Random
+	Assignment : Custom
+	Groups : G-MF() sizing 16,G-PS() sizing 16
+	Protocol : 
+		Measurement G-PS(exercise:'Erasmus' )
+		Measurement G-MF(exercise:'Erasmus' )
+		Treatment G-MF(treatment:'MF' )
+		Treatment G-PS(treatment:'PS' )
+		Measurement G-PS(exercise:'EoDP' )
+		Measurement G-MF(exercise:'EoDP' )
+
+	Analyses :
+		DescriptiveStatitics:
+			Avg(by exercise)
+			Avg(by treatment)
+			Avg(by treatment,exercise)
+			Median(by treatment,exercise)
+			StdDev(by treatment,exercise)
+		Charts:
+			Charts::Histogram  by treatment,exercise 
+			Charts::BoxPlot by treatment,exercise 
+		NHST:
+			Kolmogorov-Smirnov(by exercise,treatment, 0.05)
+			Levene(by exercise,treatment, 0.05)
+			TTest(where exercise='EoDP' by treatment, 0.05)
+			Wilcoxon(where exercise='EoDP' by treatment, 0.05)
+Configuration:
+	C1:
+		Procedure :
+		Runs:
+			Baseline:
+				Result:
+					File: 'data/data2014.csv'

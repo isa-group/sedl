@@ -20,12 +20,16 @@ public class XsdDateTimeConverter {
     }
 
     public static String marshalDate(Date date) {
+        if(date==null)
+            return "";
         final GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(date);
         return DatatypeConverter.printDate(calendar);
     }
 
     public static String marshalDateTime(Date dateTime) {
+        if(dateTime==null)
+            return "";
         final GregorianCalendar calendar = new GregorianCalendar();
         calendar.setTime(dateTime);
         return DatatypeConverter.printDateTime(calendar);

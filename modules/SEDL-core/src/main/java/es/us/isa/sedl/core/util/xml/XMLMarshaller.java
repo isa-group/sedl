@@ -103,6 +103,7 @@ public class XMLMarshaller implements SEDLMarshaller{
         } catch (JAXBException ex) {
             //Logger.getLogger(XMLMarshaller.class.getName()).log(Level.SEVERE,"Error in marshalling to XML.", ex);
             errors.add(ex.getLocalizedMessage());
+            ex.printStackTrace();
         }
         return errors;
     }
