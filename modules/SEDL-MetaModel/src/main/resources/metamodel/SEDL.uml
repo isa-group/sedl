@@ -291,12 +291,6 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Dlx-cFvkEeKVr4SekrOH2A"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DlzzoFvkEeKVr4SekrOH2A" value="*"/>
                 </ownedAttribute>
-                <nestedClassifier xmi:type="uml:Association" xmi:id="_JAjbcLTZEeOID6ygLbtEXQ" name="experimentalClassification_experimentalClassificationType_1" memberEnd="_JAjbcbTZEeOID6ygLbtEXQ _JAiNULTZEeOID6ygLbtEXQ">
-                  <ownedEnd xmi:type="uml:Property" xmi:id="_JAiNULTZEeOID6ygLbtEXQ" name="experimentalClassificationType" type="_LkDIYLTYEeOID6ygLbtEXQ" association="_JAjbcLTZEeOID6ygLbtEXQ">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JAiNUbTZEeOID6ygLbtEXQ" value="1"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JAiNUrTZEeOID6ygLbtEXQ" value="1"/>
-                  </ownedEnd>
-                </nestedClassifier>
               </packagedElement>
               <packagedElement xmi:type="uml:Class" xmi:id="_dYThoFqBEeKds5mCqHf9IQ" name="ControlledExperiment">
                 <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_F2shkIQ7EeKoq7krZqrSBw" source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1188,7 +1182,7 @@ using SEDL elements.</body>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_5VAZERjAEemvXdOQG9KMhg" value="*"/>
                   </ownedAttribute>
                 </packagedElement>
-                <packagedElement xmi:type="uml:Class" xmi:id="_FP4RwFuBEeK_Vtw9NZRQig" name="PredefinedExperimentalDesign">
+                <packagedElement xmi:type="uml:Class" xmi:id="_FP4RwFuBEeK_Vtw9NZRQig" name="PredefinedExperimentalDesign" isAbstract="true">
                   <ownedComment xmi:type="uml:Comment" xmi:id="_SM--UABSEeSmo8h8vK7CUg">
                     <body>*/&#xD;
 @ExtensionPoint &#xD;
@@ -1830,6 +1824,7 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                 </packagedElement>
                 <packagedElement xmi:type="uml:Package" xmi:id="_V2DpIFvqEeKGca93458OUg" name="statistic" URI="http://isa.us.es/sedl/core/analysis/statistic">
                   <packagedElement xmi:type="uml:Class" xmi:id="_bBzVQFvqEeKGca93458OUg" name="Statistic">
+                    <generalization xmi:type="uml:Generalization" xmi:id="_aAX1UBstEemy9--GX7D8vg" general="_m97YkHtxEeKHo4aJlOjd_w"/>
                     <ownedAttribute xmi:type="uml:Property" xmi:id="_7gW5QH3XEeOombJwbPPtLA" name="datasetSpecification" type="_ckp5AFvzEeKvx6H3g4H3MA" aggregation="composite" association="_7gXgUH3XEeOombJwbPPtLA">
                       <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7gW5QX3XEeOombJwbPPtLA"/>
                       <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_7gW5Qn3XEeOombJwbPPtLA" value="1"/>
@@ -2446,10 +2441,6 @@ the hypothesis of the experiment, or usen a formal assertion such as an statisti
                     <defaultValue xmi:type="uml:LiteralString" xmi:id="_zMddALTYEeOID6ygLbtEXQ">
                       <value xsi:nil="true"/>
                     </defaultValue>
-                  </ownedAttribute>
-                  <ownedAttribute xmi:type="uml:Property" xmi:id="_JAjbcbTZEeOID6ygLbtEXQ" name="experimentalClassification" type="_sfbrsLTVEeOID6ygLbtEXQ" aggregation="composite" association="_JAjbcLTZEeOID6ygLbtEXQ">
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JAjbcrTZEeOID6ygLbtEXQ" value="1"/>
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JAjbc7TZEeOID6ygLbtEXQ" value="*"/>
                   </ownedAttribute>
                 </packagedElement>
                 <packagedElement xmi:type="uml:Association" xmi:id="_SDcXUFvjEeKVr4SekrOH2A" name="" memberEnd="_SDcXUVvjEeKVr4SekrOH2A _SDZ7EFvjEeKVr4SekrOH2A">

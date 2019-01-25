@@ -76,9 +76,6 @@
     <xsd:attribute name="code" type="types:String" use="required"/>
   </xsd:complexType>
   <xsd:complexType abstract="true" name="ClassificationSystem">
-    <xsd:sequence>
-      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" name="experimentalClassification" type="sedl.es.us.isa.sedl.core.context:ClassificationTerm"/>
-    </xsd:sequence>
     <xsd:attribute name="name" type="types:String" use="required"/>
     <xsd:attribute name="description" type="types:String"/>
     <xsd:attribute name="url" type="types:String"/>

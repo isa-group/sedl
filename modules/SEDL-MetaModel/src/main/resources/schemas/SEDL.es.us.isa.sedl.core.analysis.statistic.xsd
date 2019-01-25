@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.uml2._2._0._0.uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:sedl.es.us.isa.sedl.core.analysis="http://isa.us.es/sedl/core/analysis" xmlns:sedl.es.us.isa.sedl.core.analysis.datasetspecification="http://isa.us.es/sedl/core/analysis/datasetspecification" xmlns:sedl.es.us.isa.sedl.core.analysis.statistic="http://isa.us.es/sedl/core/analysis/statistic" xmlns:sedl.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:sedl.es.us.isa.sedl.core.hypothesis="http://isa.us.es/sedl/core/hypothesis" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="sedl.es.us.isa.sedl.core.analysis.statistic" ecore:package="SEDL.es.us.isa.sedl.core.analysis.statistic" targetNamespace="http://isa.us.es/sedl/core/analysis/statistic">
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.uml2._2._0._0.uml="http://www.eclipse.org/uml2/2.0.0/UML" xmlns:sedl.es.us.isa.sedl.core="http://isa.us.es/sedl/core" xmlns:sedl.es.us.isa.sedl.core.analysis="http://isa.us.es/sedl/core/analysis" xmlns:sedl.es.us.isa.sedl.core.analysis.datasetspecification="http://isa.us.es/sedl/core/analysis/datasetspecification" xmlns:sedl.es.us.isa.sedl.core.analysis.statistic="http://isa.us.es/sedl/core/analysis/statistic" xmlns:sedl.es.us.isa.sedl.core.design="http://isa.us.es/sedl/core/design" xmlns:sedl.es.us.isa.sedl.core.hypothesis="http://isa.us.es/sedl/core/hypothesis" xmlns:types="http://www.eclipse.org/uml2/5.0.0/Types" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="sedl.es.us.isa.sedl.core.analysis.statistic" ecore:package="SEDL.es.us.isa.sedl.core.analysis.statistic" targetNamespace="http://isa.us.es/sedl/core/analysis/statistic">
   <xsd:import namespace="http://www.eclipse.org/uml2/5.0.0/Types" schemaLocation="Types.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/hypothesis" schemaLocation="SEDL.es.us.isa.sedl.core.hypothesis.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/analysis" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/design" schemaLocation="SEDL.es.us.isa.sedl.core.design.xsd"/>
   <xsd:import namespace="http://isa.us.es/sedl/core/analysis/datasetspecification" schemaLocation="SEDL.es.us.isa.sedl.core.analysis.datasetspecification.xsd"/>
+  <xsd:import namespace="http://isa.us.es/sedl/core" schemaLocation="SEDL.es.us.isa.sedl.core.xsd"/>
   <xsd:element ecore:ignore="true" name="Statistic" type="sedl.es.us.isa.sedl.core.analysis.statistic:Statistic"/>
   <xsd:element ecore:ignore="true" name="StatisticalAnalysisSpec" type="sedl.es.us.isa.sedl.core.analysis.statistic:StatisticalAnalysisSpec"/>
   <xsd:element ecore:ignore="true" name="Ranking" type="sedl.es.us.isa.sedl.core.analysis.statistic:Ranking"/>
@@ -34,9 +35,13 @@
   <xsd:element ecore:ignore="true" name="EffectSizeEstimator" type="sedl.es.us.isa.sedl.core.analysis.statistic:EffectSizeEstimator"/>
   <xsd:element ecore:ignore="true" name="EffectSizeEstimate" type="sedl.es.us.isa.sedl.core.analysis.statistic:EffectSizeEstimate"/>
   <xsd:complexType name="Statistic">
-    <xsd:sequence>
-      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="datasetSpecification" type="sedl.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
-    </xsd:sequence>
+    <xsd:complexContent>
+      <xsd:extension base="sedl.es.us.isa.sedl.core:SedlEntity">
+        <xsd:sequence>
+          <xsd:element ecore:resolveProxies="true" minOccurs="0" name="datasetSpecification" type="sedl.es.us.isa.sedl.core.analysis.datasetspecification:DatasetSpecification"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="StatisticalAnalysisSpec">
     <xsd:complexContent>
