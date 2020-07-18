@@ -47,14 +47,17 @@
         <dependency>
             <groupId>org.jvnet.jaxb2_commons</groupId>
             <artifactId>jaxb2-basics-runtime</artifactId>
-            <version>0.6.3</version>
+            <version>0.12.0</version>
+        </dependency>        
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.1</version>           
         </dependency>
         <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <version>2.2.4</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.antlr</groupId>
@@ -103,8 +106,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -159,7 +162,7 @@
             <plugin> 
                 <groupId>org.jvnet.jaxb2.maven2</groupId> 
                 <artifactId>maven-jaxb22-plugin</artifactId> 
-                <version>0.13.1</version>
+                <version>0.14.0</version>
                 <executions> 
                     <execution> 
                         <goals> 

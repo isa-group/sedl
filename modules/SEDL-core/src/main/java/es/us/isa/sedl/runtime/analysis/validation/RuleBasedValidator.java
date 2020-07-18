@@ -4,7 +4,7 @@
  */
 package es.us.isa.sedl.runtime.analysis.validation;
 
-import es.us.isa.exemplar.commons.util.Error;
+import es.us.isa.sedl.util.Error;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;

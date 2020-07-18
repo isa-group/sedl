@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2019.01.05 a las 01:49:52 PM CET 
+// Generado el: 2020.07.14 a las 12:52:39 PM CEST 
 //
 
 
@@ -50,7 +50,7 @@ import org.w3._2001.xmlschema.Adapter2;
  *         &lt;element name="analysisResults" type="{http://isa.us.es/sedl/core/analysis}AnalysisResult" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="start" use="required" type="{http://www.w3.org/2001/XMLSchema}date" /&gt;
- *       &lt;attribute name="finish" use="required" type="{http://www.w3.org/2001/XMLSchema}date" /&gt;
+ *       &lt;attribute name="finish" type="{http://www.w3.org/2001/XMLSchema}date" /&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -78,7 +78,7 @@ public class Execution
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
     protected Date start;
-    @XmlAttribute(name = "finish", required = true)
+    @XmlAttribute(name = "finish")
     @XmlJavaTypeAdapter(Adapter2 .class)
     @XmlSchemaType(name = "date")
     protected Date finish;

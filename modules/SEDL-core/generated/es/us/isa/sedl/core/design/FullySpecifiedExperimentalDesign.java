@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2019.01.05 a las 01:49:52 PM CET 
+// Generado el: 2020.07.14 a las 12:52:39 PM CEST 
 //
 
 
@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
@@ -45,6 +46,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *         &lt;element name="groups" type="{http://isa.us.es/sedl/core/design}Group" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="experimentalProtocol" type="{http://isa.us.es/sedl/core/design}ExperimentalProtocol"/&gt;
  *       &lt;/sequence&gt;
+ *       &lt;attribute name="withinSubjectsVariables"&gt;
+ *         &lt;simpleType&gt;
+ *           &lt;list itemType="{http://www.w3.org/2001/XMLSchema}anyURI" /&gt;
+ *         &lt;/simpleType&gt;
+ *       &lt;/attribute&gt;
  *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -68,6 +74,8 @@ public class FullySpecifiedExperimentalDesign
     protected List<Group> groups;
     @XmlElement(required = true)
     protected ExperimentalProtocol experimentalProtocol;
+    @XmlAttribute(name = "withinSubjectsVariables")
+    protected List<String> withinSubjectsVariables;
 
     /**
      * Obtiene el valor de la propiedad assignmentMethod.
@@ -146,6 +154,35 @@ public class FullySpecifiedExperimentalDesign
         this.experimentalProtocol = value;
     }
 
+    /**
+     * Gets the value of the withinSubjectsVariables property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the withinSubjectsVariables property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getWithinSubjectsVariables().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getWithinSubjectsVariables() {
+        if (withinSubjectsVariables == null) {
+            withinSubjectsVariables = new ArrayList<String>();
+        }
+        return this.withinSubjectsVariables;
+    }
+
     public boolean equals(ObjectLocator thisLocator, ObjectLocator thatLocator, Object object, EqualsStrategy strategy) {
         if (!(object instanceof FullySpecifiedExperimentalDesign)) {
             return false;
@@ -184,6 +221,15 @@ public class FullySpecifiedExperimentalDesign
                 return false;
             }
         }
+        {
+            List<String> lhsWithinSubjectsVariables;
+            lhsWithinSubjectsVariables = (((this.withinSubjectsVariables!= null)&&(!this.withinSubjectsVariables.isEmpty()))?this.getWithinSubjectsVariables():null);
+            List<String> rhsWithinSubjectsVariables;
+            rhsWithinSubjectsVariables = (((that.withinSubjectsVariables!= null)&&(!that.withinSubjectsVariables.isEmpty()))?that.getWithinSubjectsVariables():null);
+            if (!strategy.equals(LocatorUtils.property(thisLocator, "withinSubjectsVariables", lhsWithinSubjectsVariables), LocatorUtils.property(thatLocator, "withinSubjectsVariables", rhsWithinSubjectsVariables), lhsWithinSubjectsVariables, rhsWithinSubjectsVariables)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -208,6 +254,11 @@ public class FullySpecifiedExperimentalDesign
             ExperimentalProtocol theExperimentalProtocol;
             theExperimentalProtocol = this.getExperimentalProtocol();
             currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "experimentalProtocol", theExperimentalProtocol), currentHashCode, theExperimentalProtocol);
+        }
+        {
+            List<String> theWithinSubjectsVariables;
+            theWithinSubjectsVariables = (((this.withinSubjectsVariables!= null)&&(!this.withinSubjectsVariables.isEmpty()))?this.getWithinSubjectsVariables():null);
+            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "withinSubjectsVariables", theWithinSubjectsVariables), currentHashCode, theWithinSubjectsVariables);
         }
         return currentHashCode;
     }
@@ -259,6 +310,19 @@ public class FullySpecifiedExperimentalDesign
                 copy.setExperimentalProtocol(copyExperimentalProtocol);
             } else {
                 copy.experimentalProtocol = null;
+            }
+            if ((this.withinSubjectsVariables!= null)&&(!this.withinSubjectsVariables.isEmpty())) {
+                List<String> sourceWithinSubjectsVariables;
+                sourceWithinSubjectsVariables = (((this.withinSubjectsVariables!= null)&&(!this.withinSubjectsVariables.isEmpty()))?this.getWithinSubjectsVariables():null);
+                @SuppressWarnings("unchecked")
+                List<String> copyWithinSubjectsVariables = ((List<String> ) strategy.copy(LocatorUtils.property(locator, "withinSubjectsVariables", sourceWithinSubjectsVariables), sourceWithinSubjectsVariables));
+                copy.withinSubjectsVariables = null;
+                if (copyWithinSubjectsVariables!= null) {
+                    List<String> uniqueWithinSubjectsVariablesl = copy.getWithinSubjectsVariables();
+                    uniqueWithinSubjectsVariablesl.addAll(copyWithinSubjectsVariables);
+                }
+            } else {
+                copy.withinSubjectsVariables = null;
             }
         }
         return draftCopy;

@@ -1,531 +1,1053 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <bindings xmlns="http://java.sun.com/xml/ns/jaxb" if-exists="true" version="2.1">
-  <!--
+      
+    <!--
 
 Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-Generado el: 2019.01.05 a las 01:49:52 PM CET 
+Generado el: 2020.07.14 a las 12:52:38 PM CEST 
 
   -->
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/datasetspecification" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.analysis.datasetspecification"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Filter">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Filter"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Projection">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Projection"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:GroupFilter">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupFilter"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ValuationFilter">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.ValuationFilter"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:GroupingProjection">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupingProjection"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DatasetSpecification">
-      <class ref="es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/design" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.design"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Design">
-      <class ref="es.us.isa.sedl.core.design.Design"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SamplingMethod">
-      <class ref="es.us.isa.sedl.core.design.SamplingMethod"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Population">
-      <class ref="es.us.isa.sedl.core.design.Population"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalDesign">
-      <class ref="es.us.isa.sedl.core.design.ExperimentalDesign"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:AnalysisSpecificationGroup">
-      <class ref="es.us.isa.sedl.core.design.AnalysisSpecificationGroup"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Variables">
-      <class ref="es.us.isa.sedl.core.design.Variables"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Variable">
-      <class ref="es.us.isa.sedl.core.design.Variable"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Domain">
-      <class ref="es.us.isa.sedl.core.design.Domain"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Outcome">
-      <class ref="es.us.isa.sedl.core.design.Outcome"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Factor">
-      <class ref="es.us.isa.sedl.core.design.Factor"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:NonControllableFactor">
-      <class ref="es.us.isa.sedl.core.design.NonControllableFactor"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ControllableFactor">
-      <class ref="es.us.isa.sedl.core.design.ControllableFactor"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExtensionDomain">
-      <class ref="es.us.isa.sedl.core.design.ExtensionDomain"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Level">
-      <class ref="es.us.isa.sedl.core.design.Level"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Constraint">
-      <class ref="es.us.isa.sedl.core.design.Constraint"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:FullySpecifiedExperimentalDesign">
-      <class ref="es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:AssignmentMethod">
-      <class ref="es.us.isa.sedl.core.design.AssignmentMethod"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Group">
-      <class ref="es.us.isa.sedl.core.design.Group"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Sizing">
-      <class ref="es.us.isa.sedl.core.design.Sizing"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalProtocol">
-      <class ref="es.us.isa.sedl.core.design.ExperimentalProtocol"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalProtocolStep">
-      <class ref="es.us.isa.sedl.core.design.ExperimentalProtocolStep"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ProtocolConstraint">
-      <class ref="es.us.isa.sedl.core.design.ProtocolConstraint"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:PredefinedExperimentalDesign">
-      <class ref="es.us.isa.sedl.core.design.PredefinedExperimentalDesign"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Measurement">
-      <class ref="es.us.isa.sedl.core.design.Measurement"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Treatment">
-      <class ref="es.us.isa.sedl.core.design.Treatment"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:LiteralSizing">
-      <class ref="es.us.isa.sedl.core.design.LiteralSizing"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:VariableSizing">
-      <class ref="es.us.isa.sedl.core.design.VariableSizing"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SizingExpression">
-      <class ref="es.us.isa.sedl.core.design.SizingExpression"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Nuisance">
-      <class ref="es.us.isa.sedl.core.design.Nuisance"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Precedence">
-      <class ref="es.us.isa.sedl.core.design.Precedence"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:IntervalConstraint">
-      <class ref="es.us.isa.sedl.core.design.IntervalConstraint"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:FundamentalSetConstraint">
-      <class ref="es.us.isa.sedl.core.design.FundamentalSetConstraint"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:IntensionDomain">
-      <class ref="es.us.isa.sedl.core.design.IntensionDomain"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:EvenSizing">
-      <class ref="es.us.isa.sedl.core.design.EvenSizing"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:VariableValuation">
-      <class ref="es.us.isa.sedl.core.design.VariableValuation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:VariableKind">
-      <typesafeEnumClass ref="es.us.isa.sedl.core.design.VariableKind"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ProtocolScheme">
-      <typesafeEnumClass ref="es.us.isa.sedl.core.design.ProtocolScheme"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:FundamentalSet">
-      <typesafeEnumClass ref="es.us.isa.sedl.core.design.FundamentalSet"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.configuration"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Configuration">
-      <class ref="es.us.isa.sedl.core.configuration.Configuration"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalProcedure">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalProcedure"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalInputs">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalInputs"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:InputDataSource">
-      <class ref="es.us.isa.sedl.core.configuration.InputDataSource"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:FileSpecification">
-      <class ref="es.us.isa.sedl.core.configuration.FileSpecification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:FileFormatSpecification">
-      <class ref="es.us.isa.sedl.core.configuration.FileFormatSpecification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Parameter">
-      <class ref="es.us.isa.sedl.core.configuration.Parameter"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:File">
-      <class ref="es.us.isa.sedl.core.configuration.File"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalOutputs">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalOutputs"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:OutputDataSource">
-      <class ref="es.us.isa.sedl.core.configuration.OutputDataSource"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:CommandExperimentalTask">
-      <class ref="es.us.isa.sedl.core.configuration.CommandExperimentalTask"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalTask">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalTask"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalTaskType">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalTaskType"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ComplexParameter">
-      <class ref="es.us.isa.sedl.core.configuration.ComplexParameter"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalEnvironment">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalEnvironment"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ComputationEnvironment">
-      <class ref="es.us.isa.sedl.core.configuration.ComputationEnvironment"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:HardwarePlatform">
-      <class ref="es.us.isa.sedl.core.configuration.HardwarePlatform"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SoftwarePlatform">
-      <class ref="es.us.isa.sedl.core.configuration.SoftwarePlatform"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Runtime">
-      <class ref="es.us.isa.sedl.core.configuration.Runtime"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ArtifactSpecification">
-      <class ref="es.us.isa.sedl.core.configuration.ArtifactSpecification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Library">
-      <class ref="es.us.isa.sedl.core.configuration.Library"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:OperatingSystem">
-      <class ref="es.us.isa.sedl.core.configuration.OperatingSystem"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SimpleParameter">
-      <class ref="es.us.isa.sedl.core.configuration.SimpleParameter"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Preprocessing">
-      <class ref="es.us.isa.sedl.core.configuration.Preprocessing"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Treatment">
-      <class ref="es.us.isa.sedl.core.configuration.Treatment"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Measurement">
-      <class ref="es.us.isa.sedl.core.configuration.Measurement"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Postprocessing">
-      <class ref="es.us.isa.sedl.core.configuration.Postprocessing"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:TreatmentAndMeasurement">
-      <class ref="es.us.isa.sedl.core.configuration.TreatmentAndMeasurement"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:PhysicalEnvironment">
-      <class ref="es.us.isa.sedl.core.configuration.PhysicalEnvironment"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:TaskBasedExperimentalProcedure">
-      <class ref="es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalSetting">
-      <class ref="es.us.isa.sedl.core.configuration.ExperimentalSetting"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:OutputDataSourceRole">
-      <typesafeEnumClass ref="es.us.isa.sedl.core.configuration.OutputDataSourceRole"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/execution" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.execution"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Execution">
-      <class ref="es.us.isa.sedl.core.execution.Execution"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Log">
-      <class ref="es.us.isa.sedl.core.execution.Log"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalResult">
-      <class ref="es.us.isa.sedl.core.execution.ExperimentalResult"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ResultsFile">
-      <class ref="es.us.isa.sedl.core.execution.ResultsFile"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DataMapping">
-      <class ref="es.us.isa.sedl.core.execution.DataMapping"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:FileFormat">
-      <class ref="es.us.isa.sedl.core.execution.FileFormat"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ColumnBasedDataMapping">
-      <class ref="es.us.isa.sedl.core.execution.ColumnBasedDataMapping"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ColumnMapper">
-      <class ref="es.us.isa.sedl.core.execution.ColumnMapper"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Csv">
-      <class ref="es.us.isa.sedl.core.execution.Csv"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Excel">
-      <class ref="es.us.isa.sedl.core.execution.Excel"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:PlainText">
-      <class ref="es.us.isa.sedl.core.execution.PlainText"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ToVariable">
-      <class ref="es.us.isa.sedl.core.execution.ToVariable"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ToConstant">
-      <class ref="es.us.isa.sedl.core.execution.ToConstant"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:LogLine">
-      <class ref="es.us.isa.sedl.core.execution.LogLine"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ComplexLog">
-      <class ref="es.us.isa.sedl.core.execution.ComplexLog"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SimpleLog">
-      <class ref="es.us.isa.sedl.core.execution.SimpleLog"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ColumnConstants">
-      <typesafeEnumClass ref="es.us.isa.sedl.core.execution.ColumnConstants"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.analysis"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:AnalysisResult">
-      <class ref="es.us.isa.sedl.core.analysis.AnalysisResult"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:SedlEntity">
-      <class ref="es.us.isa.sedl.core.SedlEntity"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SedlBase">
-      <class ref="es.us.isa.sedl.core.SedlBase"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ControlledExperiment">
-      <class ref="es.us.isa.sedl.core.ControlledExperiment"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:EmpiricalStudy">
-      <class ref="es.us.isa.sedl.core.EmpiricalStudy"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Goal">
-      <class ref="es.us.isa.sedl.core.Goal"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Abstract">
-      <class ref="es.us.isa.sedl.core.Abstract"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExtensionPoint">
-      <class ref="es.us.isa.sedl.core.ExtensionPoint"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SimpleGoal">
-      <class ref="es.us.isa.sedl.core.SimpleGoal"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:GqmGoal">
-      <class ref="es.us.isa.sedl.core.GqmGoal"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:SimpleAbstract">
-      <class ref="es.us.isa.sedl.core.SimpleAbstract"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:StructuredAbstract">
-      <class ref="es.us.isa.sedl.core.StructuredAbstract"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/context" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.context"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Person">
-      <class ref="es.us.isa.sedl.core.context.Person"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Stakeholder">
-      <class ref="es.us.isa.sedl.core.context.Stakeholder"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Organization">
-      <class ref="es.us.isa.sedl.core.context.Organization"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Project">
-      <class ref="es.us.isa.sedl.core.context.Project"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:People">
-      <class ref="es.us.isa.sedl.core.context.People"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ClassificationTerm">
-      <class ref="es.us.isa.sedl.core.context.ClassificationTerm"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ClassificationSystem">
-      <class ref="es.us.isa.sedl.core.context.ClassificationSystem"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Context">
-      <class ref="es.us.isa.sedl.core.context.Context"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/hypothesis" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.hypothesis"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Hypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.Hypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DescriptiveHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:RelationalHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.RelationalHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:AssociationalHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.AssociationalHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:RelationSpecification">
-      <class ref="es.us.isa.sedl.core.hypothesis.RelationSpecification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DifferentialHypothesis">
-      <class ref="es.us.isa.sedl.core.hypothesis.DifferentialHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:LinearRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.LinearRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:MathematicalRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.MathematicalRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:MonotonicRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.MonotonicRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:LogisticRelation">
-      <class ref="es.us.isa.sedl.core.hypothesis.LogisticRelation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Assertion">
-      <class ref="es.us.isa.sedl.core.hypothesis.Assertion"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/statistic" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.analysis.statistic"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:Statistic">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Statistic"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:StatisticalAnalysisSpec">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Ranking">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Ranking"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DescriptiveStatistic">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.DescriptiveStatistic"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:RankingResult">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.RankingResult"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:StatisticalAnalysisResult">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisResult"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Rank">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Rank"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:CentralTendencyMeasure">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.CentralTendencyMeasure"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:InferentialStatistic">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.InferentialStatistic"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:StatisticalTestAssertion">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.StatisticalTestAssertion"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:VariabilityMeasure">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.VariabilityMeasure"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:StandardDeviation">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.StandardDeviation"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:InterquartileRange">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.InterquartileRange"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Range">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Range"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Mean">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Mean"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Median">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Median"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Mode">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Mode"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ConfidenceInterval">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.ConfidenceInterval"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:CorrelationCoeficient">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.CorrelationCoeficient"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:AssociationalAnalysis">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.AssociationalAnalysis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:TestOfHypothesis">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.TestOfHypothesis"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:Nhst">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.Nhst"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:PValue">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.PValue"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:DescriptiveStatisticValue">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.DescriptiveStatisticValue"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ConfidenceIntervalValue">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.ConfidenceIntervalValue"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:CorrelationValue">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.CorrelationValue"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:EffectSizeEstimator">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.EffectSizeEstimator"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:EffectSizeEstimate">
-      <class ref="es.us.isa.sedl.core.analysis.statistic.EffectSizeEstimate"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/classification" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.classification"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalClassification">
-      <class ref="es.us.isa.sedl.core.classification.ExperimentalClassification"/>
-    </bindings>
-    <bindings if-exists="true" scd="~tns:ExperimentalClassificationType">
-      <class ref="es.us.isa.sedl.core.classification.ExperimentalClassificationType"/>
-    </bindings>
-  </bindings>
-  <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration/fileformats" if-exists="true" scd="x-schema::tns">
-    <schemaBindings map="false">
-      <package name="es.us.isa.sedl.core.configuration.fileformats"/>
-    </schemaBindings>
-    <bindings if-exists="true" scd="~tns:CsvFileFormat">
-      <class ref="es.us.isa.sedl.core.configuration.fileformats.CsvFileFormat"/>
-    </bindings>
-  </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/datasetspecification" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.analysis.datasetspecification"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Filter">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Filter"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Projection">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.datasetspecification.Projection"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:GroupFilter">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupFilter"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ValuationFilter">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.datasetspecification.ValuationFilter"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:GroupingProjection">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.datasetspecification.GroupingProjection"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DatasetSpecification">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/design" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.design"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Design">
+                  
+            <class ref="es.us.isa.sedl.core.design.Design"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SamplingMethod">
+                  
+            <class ref="es.us.isa.sedl.core.design.SamplingMethod"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Population">
+                  
+            <class ref="es.us.isa.sedl.core.design.Population"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalDesign">
+                  
+            <class ref="es.us.isa.sedl.core.design.ExperimentalDesign"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:AnalysisSpecificationGroup">
+                  
+            <class ref="es.us.isa.sedl.core.design.AnalysisSpecificationGroup"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Variables">
+                  
+            <class ref="es.us.isa.sedl.core.design.Variables"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Variable">
+                  
+            <class ref="es.us.isa.sedl.core.design.Variable"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Domain">
+                  
+            <class ref="es.us.isa.sedl.core.design.Domain"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Outcome">
+                  
+            <class ref="es.us.isa.sedl.core.design.Outcome"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Factor">
+                  
+            <class ref="es.us.isa.sedl.core.design.Factor"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:NonControllableFactor">
+                  
+            <class ref="es.us.isa.sedl.core.design.NonControllableFactor"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ControllableFactor">
+                  
+            <class ref="es.us.isa.sedl.core.design.ControllableFactor"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExtensionDomain">
+                  
+            <class ref="es.us.isa.sedl.core.design.ExtensionDomain"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Level">
+                  
+            <class ref="es.us.isa.sedl.core.design.Level"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Constraint">
+                  
+            <class ref="es.us.isa.sedl.core.design.Constraint"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:FullySpecifiedExperimentalDesign">
+                  
+            <class ref="es.us.isa.sedl.core.design.FullySpecifiedExperimentalDesign"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:AssignmentMethod">
+                  
+            <class ref="es.us.isa.sedl.core.design.AssignmentMethod"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Group">
+                  
+            <class ref="es.us.isa.sedl.core.design.Group"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Sizing">
+                  
+            <class ref="es.us.isa.sedl.core.design.Sizing"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalProtocol">
+                  
+            <class ref="es.us.isa.sedl.core.design.ExperimentalProtocol"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalProtocolStep">
+                  
+            <class ref="es.us.isa.sedl.core.design.ExperimentalProtocolStep"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ProtocolConstraint">
+                  
+            <class ref="es.us.isa.sedl.core.design.ProtocolConstraint"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:PredefinedExperimentalDesign">
+                  
+            <class ref="es.us.isa.sedl.core.design.PredefinedExperimentalDesign"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Measurement">
+                  
+            <class ref="es.us.isa.sedl.core.design.Measurement"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Treatment">
+                  
+            <class ref="es.us.isa.sedl.core.design.Treatment"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:LiteralSizing">
+                  
+            <class ref="es.us.isa.sedl.core.design.LiteralSizing"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:VariableSizing">
+                  
+            <class ref="es.us.isa.sedl.core.design.VariableSizing"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SizingExpression">
+                  
+            <class ref="es.us.isa.sedl.core.design.SizingExpression"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Nuisance">
+                  
+            <class ref="es.us.isa.sedl.core.design.Nuisance"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Precedence">
+                  
+            <class ref="es.us.isa.sedl.core.design.Precedence"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:IntervalConstraint">
+                  
+            <class ref="es.us.isa.sedl.core.design.IntervalConstraint"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:FundamentalSetConstraint">
+                  
+            <class ref="es.us.isa.sedl.core.design.FundamentalSetConstraint"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:IntensionDomain">
+                  
+            <class ref="es.us.isa.sedl.core.design.IntensionDomain"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:EvenSizing">
+                  
+            <class ref="es.us.isa.sedl.core.design.EvenSizing"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:VariableValuation">
+                  
+            <class ref="es.us.isa.sedl.core.design.VariableValuation"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:VariableKind">
+                  
+            <typesafeEnumClass ref="es.us.isa.sedl.core.design.VariableKind"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ProtocolScheme">
+                  
+            <typesafeEnumClass ref="es.us.isa.sedl.core.design.ProtocolScheme"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:FundamentalSet">
+                  
+            <typesafeEnumClass ref="es.us.isa.sedl.core.design.FundamentalSet"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.configuration"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Configuration">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Configuration"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalProcedure">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalProcedure"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalInputs">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalInputs"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:InputDataSource">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.InputDataSource"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:FileSpecification">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.FileSpecification"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:FileFormatSpecification">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.FileFormatSpecification"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Parameter">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Parameter"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:File">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.File"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalOutputs">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalOutputs"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:OutputDataSource">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.OutputDataSource"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:CommandExperimentalTask">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.CommandExperimentalTask"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalTask">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalTask"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalTaskType">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalTaskType"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ComplexParameter">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ComplexParameter"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalEnvironment">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalEnvironment"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ComputationEnvironment">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ComputationEnvironment"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:HardwarePlatform">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.HardwarePlatform"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SoftwarePlatform">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.SoftwarePlatform"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Runtime">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Runtime"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ArtifactSpecification">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ArtifactSpecification"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Library">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Library"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:OperatingSystem">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.OperatingSystem"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SimpleParameter">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.SimpleParameter"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Preprocessing">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Preprocessing"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Treatment">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Treatment"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Measurement">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Measurement"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Postprocessing">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.Postprocessing"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:TreatmentAndMeasurement">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.TreatmentAndMeasurement"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:PhysicalEnvironment">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.PhysicalEnvironment"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:TaskBasedExperimentalProcedure">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalSetting">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.ExperimentalSetting"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:OutputDataSourceRole">
+                  
+            <typesafeEnumClass ref="es.us.isa.sedl.core.configuration.OutputDataSourceRole"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/execution" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.execution"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Execution">
+                  
+            <class ref="es.us.isa.sedl.core.execution.Execution"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Log">
+                  
+            <class ref="es.us.isa.sedl.core.execution.Log"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalResult">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ExperimentalResult"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ResultsFile">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ResultsFile"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DataMapping">
+                  
+            <class ref="es.us.isa.sedl.core.execution.DataMapping"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:FileFormat">
+                  
+            <class ref="es.us.isa.sedl.core.execution.FileFormat"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ColumnBasedDataMapping">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ColumnBasedDataMapping"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ColumnMapper">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ColumnMapper"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Csv">
+                  
+            <class ref="es.us.isa.sedl.core.execution.Csv"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Excel">
+                  
+            <class ref="es.us.isa.sedl.core.execution.Excel"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:PlainText">
+                  
+            <class ref="es.us.isa.sedl.core.execution.PlainText"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ToVariable">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ToVariable"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ToConstant">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ToConstant"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:LogLine">
+                  
+            <class ref="es.us.isa.sedl.core.execution.LogLine"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ComplexLog">
+                  
+            <class ref="es.us.isa.sedl.core.execution.ComplexLog"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SimpleLog">
+                  
+            <class ref="es.us.isa.sedl.core.execution.SimpleLog"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ColumnConstants">
+                  
+            <typesafeEnumClass ref="es.us.isa.sedl.core.execution.ColumnConstants"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.analysis"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:AnalysisResult">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.AnalysisResult"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:SedlEntity">
+                  
+            <class ref="es.us.isa.sedl.core.SedlEntity"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SedlBase">
+                  
+            <class ref="es.us.isa.sedl.core.SedlBase"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ControlledExperiment">
+                  
+            <class ref="es.us.isa.sedl.core.ControlledExperiment"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:EmpiricalStudy">
+                  
+            <class ref="es.us.isa.sedl.core.EmpiricalStudy"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Goal">
+                  
+            <class ref="es.us.isa.sedl.core.Goal"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Abstract">
+                  
+            <class ref="es.us.isa.sedl.core.Abstract"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExtensionPoint">
+                  
+            <class ref="es.us.isa.sedl.core.ExtensionPoint"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SimpleGoal">
+                  
+            <class ref="es.us.isa.sedl.core.SimpleGoal"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:GqmGoal">
+                  
+            <class ref="es.us.isa.sedl.core.GqmGoal"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:SimpleAbstract">
+                  
+            <class ref="es.us.isa.sedl.core.SimpleAbstract"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:StructuredAbstract">
+                  
+            <class ref="es.us.isa.sedl.core.StructuredAbstract"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/context" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.context"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Person">
+                  
+            <class ref="es.us.isa.sedl.core.context.Person"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Stakeholder">
+                  
+            <class ref="es.us.isa.sedl.core.context.Stakeholder"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Organization">
+                  
+            <class ref="es.us.isa.sedl.core.context.Organization"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Project">
+                  
+            <class ref="es.us.isa.sedl.core.context.Project"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:People">
+                  
+            <class ref="es.us.isa.sedl.core.context.People"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ClassificationTerm">
+                  
+            <class ref="es.us.isa.sedl.core.context.ClassificationTerm"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ClassificationSystem">
+                  
+            <class ref="es.us.isa.sedl.core.context.ClassificationSystem"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Context">
+                  
+            <class ref="es.us.isa.sedl.core.context.Context"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/hypothesis" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.hypothesis"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Hypothesis">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.Hypothesis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DescriptiveHypothesis">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.DescriptiveHypothesis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:RelationalHypothesis">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.RelationalHypothesis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:AssociationalHypothesis">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.AssociationalHypothesis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:RelationSpecification">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.RelationSpecification"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DifferentialHypothesis">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.DifferentialHypothesis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:LinearRelation">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.LinearRelation"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:MathematicalRelation">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.MathematicalRelation"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:MonotonicRelation">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.MonotonicRelation"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:LogisticRelation">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.LogisticRelation"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Assertion">
+                  
+            <class ref="es.us.isa.sedl.core.hypothesis.Assertion"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/analysis/statistic" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.analysis.statistic"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:Statistic">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Statistic"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:StatisticalAnalysisSpec">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Ranking">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Ranking"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DescriptiveStatistic">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.DescriptiveStatistic"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:RankingResult">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.RankingResult"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:StatisticalAnalysisResult">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisResult"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Rank">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Rank"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:CentralTendencyMeasure">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.CentralTendencyMeasure"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:InferentialStatistic">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.InferentialStatistic"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:StatisticalTestAssertion">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.StatisticalTestAssertion"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:VariabilityMeasure">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.VariabilityMeasure"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:StandardDeviation">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.StandardDeviation"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:InterquartileRange">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.InterquartileRange"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Range">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Range"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Mean">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Mean"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Median">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Median"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Mode">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Mode"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ConfidenceInterval">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.ConfidenceInterval"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:CorrelationCoeficient">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.CorrelationCoeficient"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:AssociationalAnalysis">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.AssociationalAnalysis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:TestOfHypothesis">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.TestOfHypothesis"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:Nhst">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.Nhst"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:PValue">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.PValue"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:DescriptiveStatisticValue">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.DescriptiveStatisticValue"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ConfidenceIntervalValue">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.ConfidenceIntervalValue"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:CorrelationValue">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.CorrelationValue"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:EffectSizeEstimator">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.EffectSizeEstimator"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:EffectSizeEstimate">
+                  
+            <class ref="es.us.isa.sedl.core.analysis.statistic.EffectSizeEstimate"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/classification" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.classification"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalClassification">
+                  
+            <class ref="es.us.isa.sedl.core.classification.ExperimentalClassification"/>
+                
+        </bindings>
+            
+        <bindings if-exists="true" scd="~tns:ExperimentalClassificationType">
+                  
+            <class ref="es.us.isa.sedl.core.classification.ExperimentalClassificationType"/>
+                
+        </bindings>
+          
+    </bindings>
+      
+    <bindings xmlns:tns="http://isa.us.es/sedl/core/configuration/fileformats" if-exists="true" scd="x-schema::tns">
+            
+        <schemaBindings map="false">
+                  
+            <package name="es.us.isa.sedl.core.configuration.fileformats"/>
+                
+        </schemaBindings>
+            
+        <bindings if-exists="true" scd="~tns:CsvFileFormat">
+                  
+            <class ref="es.us.isa.sedl.core.configuration.fileformats.CsvFileFormat"/>
+                
+        </bindings>
+          
+    </bindings>
+    
 </bindings>

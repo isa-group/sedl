@@ -6,17 +6,22 @@
 
 package es.us.isa.sedl.marshaller;
 
-import es.us.isa.jdataset.DataSet;
-import es.us.isa.jdataset.SimpleDataSet;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.Test;
+import org.stringtemplate.v4.ST;
+
 import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
-import es.us.isa.sedl.core.analysis.datasetspecification.Filter;
-import es.us.isa.sedl.core.analysis.datasetspecification.GroupFilter;
 import es.us.isa.sedl.core.analysis.datasetspecification.GroupingProjection;
 import es.us.isa.sedl.core.analysis.datasetspecification.Projection;
 import es.us.isa.sedl.core.analysis.datasetspecification.ValuationFilter;
 import es.us.isa.sedl.core.analysis.statistic.Mean;
 import es.us.isa.sedl.core.analysis.statistic.Median;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.configuration.CommandExperimentalTask;
 import es.us.isa.sedl.core.configuration.ComplexParameter;
 import es.us.isa.sedl.core.configuration.ComputationEnvironment;
@@ -26,22 +31,20 @@ import es.us.isa.sedl.core.configuration.ExperimentalOutputs;
 import es.us.isa.sedl.core.configuration.ExperimentalProcedure;
 import es.us.isa.sedl.core.configuration.ExperimentalSetting;
 import es.us.isa.sedl.core.configuration.File;
-import es.us.isa.sedl.core.configuration.FileFormatSpecification;
-import es.us.isa.sedl.core.configuration.FileSpecification;
 import es.us.isa.sedl.core.configuration.InputDataSource;
 import es.us.isa.sedl.core.configuration.Library;
 import es.us.isa.sedl.core.configuration.OutputDataSource;
 import es.us.isa.sedl.core.configuration.OutputDataSourceRole;
-import es.us.isa.sedl.core.configuration.SoftwarePlatform;
 import es.us.isa.sedl.core.configuration.Runtime;
 import es.us.isa.sedl.core.configuration.SimpleParameter;
+import es.us.isa.sedl.core.configuration.SoftwarePlatform;
+import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
 import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.context.People;
 import es.us.isa.sedl.core.context.Person;
 import es.us.isa.sedl.core.context.Project;
 import es.us.isa.sedl.core.design.AnalysisSpecificationGroup;
 import es.us.isa.sedl.core.design.AssignmentMethod;
-import es.us.isa.sedl.core.design.Constraint;
 import es.us.isa.sedl.core.design.ControllableFactor;
 import es.us.isa.sedl.core.design.Design;
 import es.us.isa.sedl.core.design.ExtensionDomain;
@@ -57,9 +60,6 @@ import es.us.isa.sedl.core.design.NonControllableFactor;
 import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.SamplingMethod;
-import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
-import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
-import es.us.isa.sedl.core.design.Factor;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
@@ -67,11 +67,6 @@ import es.us.isa.sedl.core.design.Variables;
 import es.us.isa.sedl.core.execution.Execution;
 import es.us.isa.sedl.core.execution.ResultsFile;
 import es.us.isa.sedl.core.hypothesis.DifferentialHypothesis;
-import java.math.BigInteger;
-import java.util.Date;
-import org.apache.xmlbeans.impl.piccolo.io.FileFormatException;
-import org.junit.Test;
-import org.stringtemplate.v4.ST;
 
 /**
  *
@@ -92,15 +87,18 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     {
         // Create experiment
         ControlledExperiment exp=new ControlledExperiment();
-        exp.setName("myExperiment");
+        exp.setId("myExperiment");
         exp.setVersion("1.0");        
         
-        String expectedResult="EXPERIMENT:myExperiment version:1.0";        
+        String expectedResult="EXPERIMENT: myExperiment version: 1.0";        
         
-        ST st=getTemplate("preamble",exp,"e");        
-        String result=st.render();
-        
-        assertEquals(result,expectedResult);
+        /*ST st=getTemplate("preamble",exp,"e");        
+        String result=st.render();*/
+
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeExperimentPreamble(exp);       
+
+        assertEquals(result.trim(),expectedResult.trim());
     }
     
     @Test
@@ -146,10 +144,12 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         e.setDesign(design);
         String expectedResult=
                   "Constants:"+NEW_LINE
-                + "    C:test";        
-        ST st=getTemplate("constants",e,"e");   
+                + TAB+"C : 'test'";        
+       // ST st=getTemplate("constants",e,"e");   
         //st.inspect();
-        String result=st.render();
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeConstantsBlock(e);       
         assertEquals(expectedResult.trim(),result.trim());                
     }
     
@@ -172,10 +172,12 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         e.setDesign(design);
         String expectedResult=
                   "Constants:"+NEW_LINE
-                + "    RandomNumberGenerator: { desc:'Standard Java RND',class:'java.util.Random' }";
-        ST st=getTemplate("constants",e,"e");   
+                + TAB + "RandomNumberGenerator : {desc:'Standard Java RND',class:'java.util.Random'}";
+        //ST st=getTemplate("constants",e,"e");   
         //st.inspect();
-        String result=st.render();
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeConstantsBlock(e);       
         assertEquals(expectedResult.trim(),result.trim());                
     }
     
@@ -242,7 +244,8 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
                 "Design :"+NEW_LINE
                 + TAB+"Assignment : Random"+NEW_LINE
                 + TAB+"Blocking : Vname"+NEW_LINE
-                + TAB+"Groups : g1() sizing 40"+NEW_LINE
+                + TAB+"Groups : "+NEW_LINE
+                + TAB+TAB+"by Vname sizing 40"+NEW_LINE
                 + TAB+"Protocol :";/*Random"+NEW_LINE   
                 + TAB+"Analyses:"+NEW_LINE;               */
         //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
@@ -257,20 +260,24 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     {
         ControlledExperiment e = new ControlledExperiment();
         Design design=new Design();
-        FullySpecifiedExperimentalDesign fsed=buildFullySpecifiedExperimentalDesign(buildVariable());
+        Variables vars=new Variables();       
+        design.setVariables(vars); 
+        Variable var=buildVariable();
+        vars.getVariables().add(var);
+        FullySpecifiedExperimentalDesign fsed=buildFullySpecifiedExperimentalDesign(var);
         design.setExperimentalDesign(fsed);
-        e.setDesign(design);
+        design.getVariables().getVariables().add(var);
+        e.setDesign(design);                
         String expectedResult=
-                  "Design:"+NEW_LINE
-                + "        Sampling: Custom"+NEW_LINE
-                + "        Assignment: Random"+NEW_LINE
-                + "        Blocking: Vname"+NEW_LINE
-                + "        Groups:"+NEW_LINE
-                + "             by Vname sizing 40"+NEW_LINE
-                + "        Protocol:Random"+NEW_LINE
-                + "        Analyses:                 ";                
-        ST st=getTemplate("design",e,"e");        
-        String result=st.render();
+                  "Design :"+NEW_LINE
+                //+ "        Sampling : Custom"+NEW_LINE
+                +TAB+"Assignment : Random"+NEW_LINE
+                +TAB+"Blocking : Vname"+NEW_LINE
+                +TAB+"Groups : "+NEW_LINE
+                +TAB+TAB+ "by Vname sizing 40"+NEW_LINE
+                +TAB+"Protocol :";
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeDesign(e);       
         assertEquals(expectedResult.trim(),result.trim());                
     }
     
@@ -296,9 +303,10 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         e.setDesign(design);
         String expectedResult=
                   TAB+"Analyses :"+NEW_LINE
-                + TAB+TAB+ "A1:"+NEW_LINE
+                + TAB+TAB+"A1:"+NEW_LINE
                 + TAB+TAB+TAB+"Avg()" +NEW_LINE 		
- 		+ TAB+TAB+TAB+"Median()"+NEW_LINE;               
+                + TAB+TAB+"A2:"+NEW_LINE
+                +TAB+TAB+TAB+"Median()"+NEW_LINE;               
         //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
         //String result=st.render();
         SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
@@ -498,15 +506,18 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     {
         ControlledExperiment e=new ControlledExperiment();
         DifferentialHypothesis dh=new DifferentialHypothesis();
+        dh.setId("H1");
         e.getHypotheses().add(dh);
         
-        String expectedResult="Hypothesis:Differential";
+        String expectedResult="Hypothesis: "+TAB+"H1: Differential";
         
-        ST st=getTemplate("hypotheses",e,"e");                
+        //ST st=getTemplate("hypotheses",e,"e");                
         //st.inspect();
-        String result=st.render();
+        //String result=st.render();
         
-        assertEquals(expectedResult, result);                
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.writeHypothesis(e);       
+        assertEquals(expectedResult.trim(), result.trim());                
     }
     
     //==================================
@@ -521,12 +532,14 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     {
         ExperimentalSetting setting=buildExperimentalSetting();
         
-        ST st=getTemplate("setting", setting, "s");        
-        String result=st.render();
+        //ST st=getTemplate("setting", setting, "s");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printExperimentalSetting(setting);       
         String expectedResult=
-                  "    Setting: "+NEW_LINE
-                + "        Runtimes: java 1.7"+NEW_LINE
-                + "        Libraries: FOM 0.5"+NEW_LINE;
+                    TAB +"Setting: "+NEW_LINE
+                + TAB + TAB +"Runtimes: java 1.7 "+NEW_LINE
+                + TAB + TAB +"Libraries: FOM 0.5"+NEW_LINE;
         assertEquals(expectedResult, result);
         
     }
@@ -554,13 +567,15 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     {
         ExperimentalProcedure procedure=buildExperimentalProcedure();
         
-        ST st=getTemplate("procedure", procedure, "p");        
-        String result=st.render();
+        //ST st=getTemplate("procedure", procedure, "p");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printExperimentalProcedure(procedure);          
         String expectedResult=
-                  "Procedure: "+NEW_LINE
-                + "    Command as Treatment (JaCoPHeuristic,NFeatures,CTC):"+NEW_LINE
-                + "        'java -jar ETHOM Results-ETHOM-4.csv'";
-        assertEquals(expectedResult, result);
+                  "Procedure :"+NEW_LINE
+                + TAB+TAB+"Command as Treatment (JaCoPHeuristic, NFeatures, CTC ):"+NEW_LINE
+                + TAB+TAB+TAB+"'java -jar ETHOM Results-ETHOM-4.csv'";
+        assertEquals(expectedResult.trim(), result.trim());
     }
     
     protected ExperimentalProcedure buildExperimentalProcedure() {
@@ -580,12 +595,14 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     public void testExecution()
     {
         Execution exec=buildExecution();
-        ST st=getTemplate("run",exec, "r");        
-        String result=st.render();
+        //ST st=getTemplate("run",exec, "r");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printExecution(exec,1,0);       
         String expectedResult=
-                  "    E1:  Start: 'Sun May 02 00:00:00 CEST 3915'   End: 'Sun May 02 00:00:00 CEST 3915'    "+NEW_LINE
-                + "        Result: File 'myExecResults.csv'     "+NEW_LINE
-                + "        Analyses: ";
+                  "E1: Start:'3915-05-02T00:00:00' End:'3915-05-02T00:00:00'"+NEW_LINE
+                    +TAB+"Result:"+NEW_LINE
+                    +TAB+TAB+"File: 'myExecResults.csv'";
         assertEquals(expectedResult, result);
     }
     
@@ -608,10 +625,12 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     public void testInputs()
     {
         ExperimentalInputs inputs=buildInputs();
-        ST st=getTemplate("inputs",inputs,"is");
-        String result=st.render();
-        String expectedResult="Inputs: File 'inputs.csv' ";
-        assertEquals(expectedResult, result);
+        //ST st=getTemplate("inputs",inputs,"is");
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printInputs(inputs,0);       
+        String expectedResult="Inputs: File 'inputs.csv'";
+        assertEquals(expectedResult.trim(), result.trim());
     }
     
     public ExperimentalInputs buildInputs()
@@ -629,10 +648,12 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     public void testOutputs()
     {
         ExperimentalOutputs outputs=buildOutputs();
-        ST st=getTemplate("outputs",outputs,"outs");
-        String result=st.render();
-        String expectedResult="Outputs: File 'results.csv' role:MainResult ";
-        assertEquals(expectedResult, result);
+        //ST st=getTemplate("outputs",outputs,"outs");
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printOutputs(outputs);       
+        String expectedResult="Outputs: File 'results.csv' role:MAIN_RESULT";
+        assertEquals(expectedResult.trim(), result.trim());
     }
     
     public ExperimentalOutputs buildOutputs()
@@ -641,7 +662,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         OutputDataSource ods=new OutputDataSource();
         File f=new File();
         f.setName("results.csv");
-        ods.setRole(OutputDataSourceRole.fromValue("MainResult"));
+        ods.setRole(OutputDataSourceRole.MAIN_RESULT);
         ods.setFileSpecification(null);
         ods.setFile(f);
         outputs.getOutputDataSources().add(ods);
@@ -652,18 +673,20 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
     public void testConfiguration()
     {
         Configuration c=buildConfiguration();        
-        ST st=getTemplate("configuration", c, "c");                
-        String result=st.render();
+        //ST st=getTemplate("configuration", c, "c");                
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printConfiguration(c,0);       
         String expectedResult=
                   "C1:"+NEW_LINE
-                + "    Inputs: File 'inputs.csv' "+NEW_LINE
-                + "    Outputs: File 'results.csv' role:MainResult "+NEW_LINE
-                + "        Setting: "+NEW_LINE
-                + "            Runtimes: java 1.7"+NEW_LINE
-                + "            Libraries: FOM 0.5"+NEW_LINE+NEW_LINE
-                + "    Procedure: "+NEW_LINE
-                + "        Command as Treatment (JaCoPHeuristic,NFeatures,CTC):"+NEW_LINE
-                + "            'java -jar ETHOM Results-ETHOM-4.csv'";
+                + TAB +"Inputs: File 'inputs.csv'"+NEW_LINE
+                + TAB +"Outputs: File 'results.csv' role:MAIN_RESULT"+NEW_LINE
+                + TAB +"Setting: "+NEW_LINE
+                + TAB + TAB + "Runtimes: java 1.7 "+NEW_LINE
+                + TAB + TAB +"Libraries: FOM 0.5"+NEW_LINE
+                + TAB + "Procedure :"+NEW_LINE
+                + TAB + TAB +"Command as Treatment (JaCoPHeuristic, NFeatures, CTC ):"+NEW_LINE
+                + TAB + TAB + TAB +"'java -jar ETHOM Results-ETHOM-4.csv'";
         assertEquals(expectedResult.trim(), result.trim());
     }
     
@@ -723,7 +746,7 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
 
         VariableValuation vv=new VariableValuation();
         vv.setVariable(v.getName());        
-        vv.setLevel(null);
+        vv.setLevel("l2");
         
         ValuationFilter vf = new ValuationFilter();
         vf.getVariableValuations().add(vv);
@@ -745,14 +768,16 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         
         StatisticalAnalysisSpec a1 = new StatisticalAnalysisSpec();
         a1.setId("A1");
-        a1.getStatistic().add(mean);
+        a1.getStatistic().add(mean);        
         
         
         String expectedResult=
                   "A1:"+NEW_LINE
-                  + "        Avg(where var1 of var3 by var2 )" +NEW_LINE;               
-        ST st=getTemplate("analyses",a1,"a");        
-        String result=st.render();
+                  +TAB+"Avg( of var3 where var1='l2' by var2)" +NEW_LINE;               
+        //ST st=getTemplate("analyses",a1,"a");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printAnalysisGroup(a1,0);
         assertEquals(expectedResult.trim(), result.trim());
     }
     

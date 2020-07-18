@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2019.01.05 a las 01:49:52 PM CET 
+// Generado el: 2020.07.14 a las 12:52:39 PM CEST 
 //
 
 
@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
+import es.us.isa.sedl.core.SedlEntity;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -34,11 +35,11 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * <pre>
  * &lt;complexType name="Statistic"&gt;
  *   &lt;complexContent&gt;
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="datasetSpecification" type="{http://isa.us.es/sedl/core/analysis/datasetspecification}DatasetSpecification" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
- *     &lt;/restriction&gt;
+ *     &lt;/extension&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
@@ -55,6 +56,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
     InferentialStatistic.class
 })
 public class Statistic
+    extends SedlEntity
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
@@ -91,6 +93,9 @@ public class Statistic
         if (this == object) {
             return true;
         }
+        if (!super.equals(thisLocator, thatLocator, object, strategy)) {
+            return false;
+        }
         final Statistic that = ((Statistic) object);
         {
             DatasetSpecification lhsDatasetSpecification;
@@ -110,7 +115,7 @@ public class Statistic
     }
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
-        int currentHashCode = 1;
+        int currentHashCode = super.hashCode(locator, strategy);
         {
             DatasetSpecification theDatasetSpecification;
             theDatasetSpecification = this.getDatasetSpecification();
@@ -135,6 +140,7 @@ public class Statistic
 
     public Object copyTo(ObjectLocator locator, Object target, CopyStrategy strategy) {
         final Object draftCopy = ((target == null)?createNewInstance():target);
+        super.copyTo(locator, draftCopy, strategy);
         if (draftCopy instanceof Statistic) {
             final Statistic copy = ((Statistic) draftCopy);
             if (this.datasetSpecification!= null) {

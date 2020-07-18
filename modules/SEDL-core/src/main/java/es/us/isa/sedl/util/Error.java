@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.us.isa.exemplar.commons.util;
+package es.us.isa.sedl.util;
 
 /**
  *

@@ -2,7 +2,7 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2019.01.05 a las 01:49:52 PM CET 
+// Generado el: 2020.07.14 a las 12:52:39 PM CEST 
 //
 
 
@@ -55,7 +55,7 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  *     &lt;extension base="{http://isa.us.es/sedl/core}SedlEntity"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="context" type="{http://isa.us.es/sedl/core/context}Context" minOccurs="0"/&gt;
- *         &lt;element name="experimentalProcedure" type="{http://isa.us.es/sedl/core/configuration}ExperimentalProcedure" minOccurs="0"/&gt;
+ *         &lt;element name="experimentalProcedure" type="{http://isa.us.es/sedl/core/configuration}ExperimentalProcedure"/&gt;
  *         &lt;element name="experimentalSetting" type="{http://isa.us.es/sedl/core/configuration}ExperimentalSetting"/&gt;
  *         &lt;element name="experimentalInputs" type="{http://isa.us.es/sedl/core/configuration}ExperimentalInputs"/&gt;
  *         &lt;element name="experimentalOutputs" type="{http://isa.us.es/sedl/core/configuration}ExperimentalOutputs"/&gt;
@@ -85,6 +85,7 @@ public class Configuration
 {
 
     protected Context context;
+    @XmlElement(required = true)
     protected ExperimentalProcedure experimentalProcedure;
     @XmlElement(required = true)
     protected ExperimentalSetting experimentalSetting;

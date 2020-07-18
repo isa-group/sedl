@@ -1,0 +1,33 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Documentation<SEDL4People>",
+            "request": "launch",
+            "mainClass": "es.us.isa.sedl.grammar.doc.Documentation",
+            "projectName": "SEDL4People"
+        },
+        {
+            "name": "antlr4-SEDL",
+            "type": "antlr-debug",
+            "request": "launch",
+            //"input": "${workspaceFolder}/${command:AskForTestInput}",
+            "input": "src/main/resources/es/us/isa/sedl/grammar/samples/1-Preamble/5-PreambleWithExperimentType",
+            "grammar": "src/main/antlr4/es/us/isa/sedl/grammar/SEDL4People.g4",
+            "startRule": "experimentPreamble",
+            "printParseTree": true,
+            "visualParseTree": true
+        }
+    ]
+}

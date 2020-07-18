@@ -8,6 +8,8 @@ package es.us.isa.sedl.sedl4people.grammar.test.sections;
 
 import java.io.IOException;
 
+import org.junit.Test;
+
 import es.us.isa.sedl.sedl4people.grammar.test.ExternalizedSamplesSectionTest;
 
 /**
@@ -20,5 +22,11 @@ public class ConstantsTest extends ExternalizedSamplesSectionTest{
 
     public ConstantsTest() throws IOException {
         super(RULE, DESCRIPTION,DEFAULT_BASE_PATH+"/3-Constants");
+    }
+    
+    @Test
+    @Override
+    public void testCorrectCodeSamples(){
+        super.testCorrectCodeSamples();
     }
 }

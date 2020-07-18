@@ -21,8 +21,9 @@ public class PreambleTest extends ExternalizedSamplesSectionTest{
 
     public PreambleTest() throws IOException {
         super(RULE, DESCRIPTION,DEFAULT_BASE_PATH+"/1-Preamble");
-    }            
-    @Test
+    }    
+
+    @Test    
     @Override
     public void testCorrectCodeSamples(){
         super.testCorrectCodeSamples();

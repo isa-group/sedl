@@ -2,18 +2,15 @@
 // Este archivo ha sido generado por la arquitectura JavaTM para la implantación de la referencia de enlace (JAXB) XML v2.2.11 
 // Visite <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
-// Generado el: 2019.01.05 a las 01:49:52 PM CET 
+// Generado el: 2020.07.14 a las 12:52:39 PM CEST 
 //
 
 
 package es.us.isa.sedl.core.context;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 import org.jvnet.jaxb2_commons.lang.CopyStrategy;
 import org.jvnet.jaxb2_commons.lang.CopyTo;
@@ -37,9 +34,6 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * &lt;complexType name="ClassificationSystem"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
- *       &lt;sequence&gt;
- *         &lt;element name="experimentalClassification" type="{http://isa.us.es/sedl/core/context}ClassificationTerm" maxOccurs="unbounded"/&gt;
- *       &lt;/sequence&gt;
  *       &lt;attribute name="name" use="required" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="description" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
  *       &lt;attribute name="url" type="{http://www.eclipse.org/uml2/5.0.0/Types}String" /&gt;
@@ -51,51 +45,18 @@ import org.jvnet.jaxb2_commons.locator.util.LocatorUtils;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "ClassificationSystem", propOrder = {
-    "experimentalClassification"
-})
+@XmlType(name = "ClassificationSystem")
 public abstract class ClassificationSystem
     extends AbstractClassificationSystem
     implements Cloneable, CopyTo, Equals, HashCode
 {
 
-    @XmlElement(required = true)
-    protected List<ClassificationTerm> experimentalClassification;
     @XmlAttribute(name = "name", required = true)
     protected String name;
     @XmlAttribute(name = "description")
     protected String description;
     @XmlAttribute(name = "url")
     protected String url;
-
-    /**
-     * Gets the value of the experimentalClassification property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the experimentalClassification property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getExperimentalClassification().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link ClassificationTerm }
-     * 
-     * 
-     */
-    public List<ClassificationTerm> getExperimentalClassification() {
-        if (experimentalClassification == null) {
-            experimentalClassification = new ArrayList<ClassificationTerm>();
-        }
-        return this.experimentalClassification;
-    }
 
     /**
      * Obtiene el valor de la propiedad name.
@@ -178,15 +139,6 @@ public abstract class ClassificationSystem
         }
         final ClassificationSystem that = ((ClassificationSystem) object);
         {
-            List<ClassificationTerm> lhsExperimentalClassification;
-            lhsExperimentalClassification = (((this.experimentalClassification!= null)&&(!this.experimentalClassification.isEmpty()))?this.getExperimentalClassification():null);
-            List<ClassificationTerm> rhsExperimentalClassification;
-            rhsExperimentalClassification = (((that.experimentalClassification!= null)&&(!that.experimentalClassification.isEmpty()))?that.getExperimentalClassification():null);
-            if (!strategy.equals(LocatorUtils.property(thisLocator, "experimentalClassification", lhsExperimentalClassification), LocatorUtils.property(thatLocator, "experimentalClassification", rhsExperimentalClassification), lhsExperimentalClassification, rhsExperimentalClassification)) {
-                return false;
-            }
-        }
-        {
             String lhsName;
             lhsName = this.getName();
             String rhsName;
@@ -223,11 +175,6 @@ public abstract class ClassificationSystem
 
     public int hashCode(ObjectLocator locator, HashCodeStrategy strategy) {
         int currentHashCode = 1;
-        {
-            List<ClassificationTerm> theExperimentalClassification;
-            theExperimentalClassification = (((this.experimentalClassification!= null)&&(!this.experimentalClassification.isEmpty()))?this.getExperimentalClassification():null);
-            currentHashCode = strategy.hashCode(LocatorUtils.property(locator, "experimentalClassification", theExperimentalClassification), currentHashCode, theExperimentalClassification);
-        }
         {
             String theName;
             theName = this.getName();
@@ -266,19 +213,6 @@ public abstract class ClassificationSystem
         }
         if (target instanceof ClassificationSystem) {
             final ClassificationSystem copy = ((ClassificationSystem) target);
-            if ((this.experimentalClassification!= null)&&(!this.experimentalClassification.isEmpty())) {
-                List<ClassificationTerm> sourceExperimentalClassification;
-                sourceExperimentalClassification = (((this.experimentalClassification!= null)&&(!this.experimentalClassification.isEmpty()))?this.getExperimentalClassification():null);
-                @SuppressWarnings("unchecked")
-                List<ClassificationTerm> copyExperimentalClassification = ((List<ClassificationTerm> ) strategy.copy(LocatorUtils.property(locator, "experimentalClassification", sourceExperimentalClassification), sourceExperimentalClassification));
-                copy.experimentalClassification = null;
-                if (copyExperimentalClassification!= null) {
-                    List<ClassificationTerm> uniqueExperimentalClassificationl = copy.getExperimentalClassification();
-                    uniqueExperimentalClassificationl.addAll(copyExperimentalClassification);
-                }
-            } else {
-                copy.experimentalClassification = null;
-            }
             if (this.name!= null) {
                 String sourceName;
                 sourceName = this.getName();

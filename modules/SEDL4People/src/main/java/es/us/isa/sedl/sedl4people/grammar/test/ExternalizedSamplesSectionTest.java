@@ -270,7 +270,7 @@ public abstract class ExternalizedSamplesSectionTest extends ExperimentalDescrip
             else
                 rule=sample.getSpecificRule();
             System.out.println("Using rule "+rule+" for parsing...");
-            generatesNoErrors=generatesNoErrors(rule,sample.getCode());
+            generatesNoErrors=generatesNoErrors(rule,sample.getCode().trim());
             message="The code sample '"+sample.getIdentifier()+"' at '"+
                       path+"' should not generate errors, but "+errors.size()+" errors "+
                       "were found: \n";

@@ -23,8 +23,7 @@ import java.util.HashMap;
 }
 
 options
-{
-    
+{   
 } 
 
 /*=====================================
@@ -39,7 +38,7 @@ document: moduleImports experimentPreamble constants? variables hypothesis desig
 // Experiment preamble
 //---------------------------------------
 
-moduleImports: moduleImport*;
+moduleImports: moduleImport*; 
 
 moduleImport: IMPORT Identifier {importedModules.add(_localctx.Identifier().getText());};
 
@@ -60,9 +59,9 @@ annotations: ANNOTATIONS COLON (StringLiteral)+;
 
 classification: CLASSIFIED_AS COLON (classification_entry)+;
 
-classification_entry: id CLASSIFIER; 
+classification_entry: id  (StringLiteral  ',')* StringLiteral; // Classifiers content; 
 
-keywords: KEYWORDS COLON (KEYWORD)+;
+keywords: KEYWORDS COLON (StringLiteral  ',')* StringLiteral; // Keywords content;
 
 subjects: SUBJECTS COLON stakeholder+;
 
@@ -449,11 +448,6 @@ extensionPoint : Identifier EXTENSION_POINT_CONTENT ;
 /*=====================================
             LEXICAL RULES
  ======================================*/
-CLASSIFIER: COLON .*? '\r'? ('\n'|';') // Classifier content
-    ;
-
-KEYWORD: .*? '\r'? ('\n'|',') // Keyword content
-    ;
 
 EXTENSION_POINT_CONTENT: DOUBLECOLON OPEN_BRA .*? CLOSE_BRA // Multiple lines content
                        | DOUBLECOLON .*? '\r'? '\n' // Single Line Content 
@@ -679,21 +673,22 @@ Identifier: Letter ('-'|'_'|LetterOrDigit)*
 
 fragment
     Letter
-    :   [a-zA-Z$_áéíóúÁÉÍÓÚ]
+    :   [a-zA-Z$_á-Ú]
     ;
 
 fragment
     LetterOrDigit
-    :   [a-zA-Z0-9$_áéíóúÁÉÍÓÚ]  
+    :   [a-zA-Z0-9$_á-Ú]  
     ;
 
 
-// Comments
-COMMENT
-    :   ( '/*' .*? '*/'  )  -> channel(COMMENTS);
+// Boolean Literals
 
-LINE_COMMENT
-    :  ( '//' ~[\r\n]*  )  -> channel(COMMENTS);
+BooleanLiteral
+    :   'true'
+    |   'false'
+    ;
+
 
 // Literals
 
@@ -783,12 +778,6 @@ FloatTypeSuffix
     ;
 
 
-// Boolean Literals
-
-BooleanLiteral
-    :   'true'
-    |   'false'
-    ;
 
 // Character Literals
 
@@ -802,7 +791,7 @@ SingleCharacter
     ;
 
 // String Literals
-StringLiteral : '\'' ('\\\''|~['])* '\''
+ StringLiteral : '\'' ('\\\''|~['])* '\''
               | '"' ('\\"'|~["])* '"'
     ;
 
@@ -831,10 +820,19 @@ COMMA: ',';
 COLON: ':';
 DOUBLECOLON: '::';
 
+
 //---------------------------------------
-// Ingoner spaces, tabs, newlines
+// Comments
+//---------------------------------------
+COMMENT
+    :   ( '/*' .*? '*/'  )  -> channel(2); // COMMENTS channel
+
+LINE_COMMENT
+    :  ( '//' ~[\r\n]*  )  -> channel(2); // COMMENTS channel 
+
+
+//---------------------------------------
+// Ignore spaces, tabs, newlines
 //---------------------------------------
 
 WS : [ \t\r\n]+ -> skip ;
-
-

@@ -1,25 +1,35 @@
 package es.us.isa.sedl.marshaller;
 
-import com.google.common.collect.Lists;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.ADDITIONAL_EVIDENCE;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.MAIN_RESULT;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.MISCELLANEOUS;
 import static es.us.isa.sedl.grammar.SEDL4PeopleParser.tokenNames;
 
+import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
+import com.google.common.collect.Lists;
+
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.misc.Interval;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.RuleNode;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.log4j.Logger;
 
-import es.us.isa.sedl.core.SedlBase;
 import es.us.isa.sedl.core.ControlledExperiment;
 import es.us.isa.sedl.core.EmpiricalStudy;
 import es.us.isa.sedl.core.ExtensionPointElement;
+import es.us.isa.sedl.core.SedlBase;
 import es.us.isa.sedl.core.analysis.datasetspecification.DatasetSpecification;
 import es.us.isa.sedl.core.analysis.statistic.CentralTendencyMeasure;
 import es.us.isa.sedl.core.analysis.statistic.InterquartileRange;
@@ -30,6 +40,7 @@ import es.us.isa.sedl.core.analysis.statistic.Nhst;
 import es.us.isa.sedl.core.analysis.statistic.Range;
 import es.us.isa.sedl.core.analysis.statistic.StandardDeviation;
 import es.us.isa.sedl.core.analysis.statistic.Statistic;
+import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
 import es.us.isa.sedl.core.analysis.statistic.VariabilityMeasure;
 import es.us.isa.sedl.core.configuration.CommandExperimentalTask;
 import es.us.isa.sedl.core.configuration.ComplexParameter;
@@ -37,7 +48,6 @@ import es.us.isa.sedl.core.configuration.ComputationEnvironment;
 import es.us.isa.sedl.core.configuration.Configuration;
 import es.us.isa.sedl.core.configuration.ExperimentalInputs;
 import es.us.isa.sedl.core.configuration.ExperimentalOutputs;
-import es.us.isa.sedl.core.configuration.ExperimentalProcedure;
 import es.us.isa.sedl.core.configuration.ExperimentalSetting;
 import es.us.isa.sedl.core.configuration.ExperimentalTask;
 import es.us.isa.sedl.core.configuration.ExperimentalTaskType;
@@ -54,9 +64,8 @@ import es.us.isa.sedl.core.configuration.Preprocessing;
 import es.us.isa.sedl.core.configuration.Runtime;
 import es.us.isa.sedl.core.configuration.SimpleParameter;
 import es.us.isa.sedl.core.configuration.SoftwarePlatform;
+import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
 import es.us.isa.sedl.core.configuration.Treatment;
-import es.us.isa.sedl.core.context.BiLevelClassificationSystem;
-import es.us.isa.sedl.core.context.ClassificationSystem;
 import es.us.isa.sedl.core.context.ClassificationTerm;
 import es.us.isa.sedl.core.context.Context;
 import es.us.isa.sedl.core.context.People;
@@ -84,15 +93,11 @@ import es.us.isa.sedl.core.design.Outcome;
 import es.us.isa.sedl.core.design.Population;
 import es.us.isa.sedl.core.design.ProtocolScheme;
 import es.us.isa.sedl.core.design.SamplingMethod;
-import es.us.isa.sedl.core.analysis.statistic.StatisticalAnalysisSpec;
-import es.us.isa.sedl.core.configuration.TaskBasedExperimentalProcedure;
 import es.us.isa.sedl.core.design.Variable;
 import es.us.isa.sedl.core.design.VariableKind;
 import es.us.isa.sedl.core.design.VariableValuation;
 import es.us.isa.sedl.core.design.Variables;
 import es.us.isa.sedl.core.execution.Execution;
-import es.us.isa.sedl.core.execution.Log;
-import es.us.isa.sedl.core.execution.LogLine;
 import es.us.isa.sedl.core.execution.ResultsFile;
 import es.us.isa.sedl.core.execution.SimpleLog;
 import es.us.isa.sedl.core.hypothesis.AssociationalHypothesis;
@@ -126,15 +131,6 @@ import es.us.isa.sedl.grammar.SEDL4PeopleParser.SizingSentenceContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.StatisticFunctionContext;
 import es.us.isa.sedl.grammar.SEDL4PeopleParser.StructValueContext;
 import es.us.isa.sedl.marshaller.analysis.statistic.StatisticalAnalysisSpecParser;
-import java.math.BigInteger;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.misc.Interval;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
 
@@ -267,24 +263,36 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterClassification(SEDL4PeopleParser.ClassificationContext ctx) { 
         for(SEDL4PeopleParser.Classification_entryContext cectx:ctx.classification_entry()){
+            
             String classificationSystemId=cectx.id().getText();
-            String classificationEntry=cectx.CLASSIFIER().getText().replaceFirst(":", "").trim();
-            if(classificationEntry.endsWith(";"))
-                classificationEntry=classificationEntry.substring(0, classificationEntry.length()-1);
-            int separatorIndex=classificationEntry.indexOf(" ");
-            String classificationCode=classificationEntry.substring(0, separatorIndex-1);
-            String classificationText=classificationEntry.substring(separatorIndex,classificationEntry.length()-1);            
-            ClassificationTerm ce=new ClassificationTerm();
-            ce.setCode(classificationCode);
-            ce.setName(classificationText);
-            ce.setClassificationSystem(classificationSystemId);
-            experiment.getContext().getClassificationTerms().add(ce);
+            for(int i=0;i<cectx.StringLiteral().size();i=i+2)
+            {
+                String classificationCode=cectx.StringLiteral(i).getText();
+                if(cectx.StringLiteral().size()<i+1){
+                    String classificationText=cectx.StringLiteral(i+1).getText();            
+                    ClassificationTerm ce=new ClassificationTerm();
+                    ce.setCode(classificationCode);
+                    ce.setName(classificationText);
+                    ce.setClassificationSystem(classificationSystemId);
+                    experiment.getContext().getClassificationTerms().add(ce);
+                }else {
+                    SEDL4PeopleError error = new SEDL4PeopleError(cectx.id().getStart().getLine() - 1,
+                        cectx.id().getStart().getStartIndex(),
+                        cectx.id().getStart().getStopIndex(),
+                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
+                        "The classification shouls specify both code and name, but only an id is provided " + cectx.id().getText());                
+                    if (errorListener != null) {
+                        errorListener.getErrors().add(error);
+                    }
+                }
+            }                                    
+            
         }
     }
     
     @Override 
     public void enterKeywords(SEDL4PeopleParser.KeywordsContext ctx) { 
-        for(TerminalNode kwd:ctx.KEYWORD()){
+        for(TerminalNode kwd:ctx.StringLiteral()){
             experiment.getContext().getKeywords().add(kwd.getText().replace(",","").trim());
         }
     }
@@ -522,7 +530,6 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     public String generateHypothesisId() {
         int i = 0;
         String result = "";
-        boolean isUnique = false;
         do {
             i++;
             result = "H" + i;
@@ -607,7 +614,6 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     @Override
     public void enterExplicitAssociationalHypothesis(SEDL4PeopleParser.ExplicitAssociationalHypothesisContext ctx) {
         AssociationalHypothesis ah = new AssociationalHypothesis();
-        String varName = null;
         ah.setDependentVariable(findVariableById(ctx.outcome().id().getText(), true, Outcome.class).getName());
         for (SEDL4PeopleParser.IdContext factorid : ctx.factorList().idList().id()) {
             ah.getIndependentVariables().add(findVariableById(factorid, true, Factor.class).getName());
@@ -770,7 +776,6 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     private ExperimentalProtocolStep buildTreatment(SEDL4PeopleParser.TreatmentContext treatmentCtx) {
         es.us.isa.sedl.core.design.Treatment treatment = new es.us.isa.sedl.core.design.Treatment();
         treatment.setId(treatmentCtx.id().toString());
-        Group g = findGroupByName(treatmentCtx.functionalDeclaration().id(), true);
         treatment.setGroup(treatmentCtx.functionalDeclaration().id().getText());
         Variable v = null;
         VariableValuation vv;
@@ -790,7 +795,6 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
     private ExperimentalProtocolStep buildMeasurement(SEDL4PeopleParser.MeasurementContext measurementCtx) {
         es.us.isa.sedl.core.design.Measurement measurement = new es.us.isa.sedl.core.design.Measurement();
         measurement.setId(measurementCtx.functionalDeclaration().id().getText());
-        Group g = findGroupByName(measurementCtx.functionalDeclaration().id(), true);
         measurement.setGroup(measurementCtx.functionalDeclaration().id().getText());
         Variable v = null;
         VariableValuation vv;
@@ -922,20 +926,8 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 }
             }
             if (var instanceof Outcome) {
-                SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
-                        idCtx.Identifier().getSymbol().getStartIndex(),
-                        idCtx.Identifier().getSymbol().getStopIndex(),
-                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
-                        "The variable " + idCtx.getText() + " is an outcome of the experiment , "
-                        + "you cannot generate the set of groups of the design from it.");
             }
             if (var instanceof Nuisance) {
-                SEDL4PeopleError error = new SEDL4PeopleError(idCtx.Identifier().getSymbol().getLine() - 1,
-                        idCtx.Identifier().getSymbol().getStartIndex(),
-                        idCtx.Identifier().getSymbol().getStopIndex(),
-                        es.us.isa.sedl.core.util.Error.ERROR_SEVERITY.ERROR,
-                        "The variable " + idCtx.getText() + " is a nuisance of the experiment , "
-                        + "you cannot generate the set of groups of the design from it.");
             }
         }
         int sizing = Integer.parseInt(ctx.sizingSentence().IntegerLiteral().toString());
@@ -1016,21 +1008,18 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
         StatisticalAnalysisSpec analysis = new StatisticalAnalysisSpec();
         analysis.setId(ctx.getChild(0).getChild(0).getText());
         locator = Lists.newArrayList(analysis.getId());
-        boolean added = false;
         if (!ctx.statisticFunction().isEmpty()) {
             for (StatisticFunctionContext statisticFunctionCtx : ctx.statisticFunction()) {
                 if (statisticFunctionCtx != null) {
-                    List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();                    
-                    //if(statisticFunctionCtx.id()!=null)
-                    //    spec.setId(statisticFunctionCtx.id().getText());
-                    //else
+                    List<Statistic> s = statAnalysisSpecParser.parse(statisticFunctionCtx, this).getStatistic();
+                    // if(statisticFunctionCtx.id()!=null)
+                    // spec.setId(statisticFunctionCtx.id().getText());
+                    // else
                     analysis.setId(generateAnalysisId(getExperimentalDesign()));
-                    added = false;
                     if (s != null && !s.isEmpty()) {
                         for (Statistic stat : s) {
                             if (stat != null) {
                                 analysis.getStatistic().addAll(s);
-                                added = true;
                             }
                         }
                     }                    
@@ -1248,7 +1237,6 @@ public class SEDL4PeopleExtendedListener extends SEDL4PeopleBaseListener {
                 }
 
                 if (fCtx.format() != null) {
-                    FileSpecification fileSpec = new FileSpecification();
 
                     //			FileFormatSpecification format = new 
                     //			outFile.setFileFormatSpecification(value);
