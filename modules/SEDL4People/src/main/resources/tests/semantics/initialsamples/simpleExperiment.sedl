@@ -6,8 +6,8 @@
 
 EXPERIMENT: AntipyreticalDrug version: 1.0 rep: http://moses.us.es/E3
 	Subjects:                                    // Experimental subjects, people promotes and conducts the experiment 
-        Jose_Antonio_Parejo (japarejo@us.es) from Univeristy_of_Sevilla as Responsible 	                                                      
-        Sergio_Segura_Rueda (ssegura@us.es) from Univeristy_of_Sevilla as Collaborator
+        Jose_Antonio_Parejo (japarejo@us.es) from "Univeristy of Sevilla" as Responsible 	                                                      
+        Sergio_Segura_Rueda (ssegura@us.es) from "Univeristy of Sevilla" as Collaborator
 	Object: 'Feverish humans'                     // Definition of the experimental objects
 	Population:'Feverish humans from hospital X' // Accesible population
 Constants:

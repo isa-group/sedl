@@ -22,7 +22,7 @@
         documents.
     </description>
     <properties>
-        <antlr.version>4.5</antlr.version>
+        <antlr.version>4.8</antlr.version>
         <spring.version>4.2.0.RELEASE</spring.version>
     </properties>
     <dependencies>            

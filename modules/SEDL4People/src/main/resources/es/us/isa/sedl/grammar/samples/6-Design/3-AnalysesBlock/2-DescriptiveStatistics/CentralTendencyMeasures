@@ -1,0 +1,5 @@
+/****/
+CentralTendencyMesaures:
+    Avg(dose)
+    Median(dose)
+    Mode(dose)

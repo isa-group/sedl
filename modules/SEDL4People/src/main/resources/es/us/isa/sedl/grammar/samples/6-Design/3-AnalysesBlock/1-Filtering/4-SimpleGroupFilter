@@ -1,0 +1,4 @@
+/****/
+A1:
+    Avg(sex="men")
+    Avg(where sex="men")

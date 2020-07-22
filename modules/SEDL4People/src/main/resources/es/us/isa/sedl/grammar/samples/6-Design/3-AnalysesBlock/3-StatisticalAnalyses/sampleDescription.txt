@@ -1,0 +1,5 @@
+Regarding statistical analyses, SEDL supports the specification of Null Hypothesis Significance Tests (NHST) and Correlation coefficients.. 
+In SEDL, NHST comprise of: the name of the specific test to be performed, the dataset on which the test should be performed, and the significance level α.
+The specific methods used to compute correlation are specified by name. 
+
+The analyses supported are:

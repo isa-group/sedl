@@ -303,10 +303,10 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         e.setDesign(design);
         String expectedResult=
                   TAB+"Analyses :"+NEW_LINE
-                + TAB+TAB+"A1:"+NEW_LINE
-                + TAB+TAB+TAB+"Avg()" +NEW_LINE 		
-                + TAB+TAB+"A2:"+NEW_LINE
-                +TAB+TAB+TAB+"Median()"+NEW_LINE;               
+                + TAB+"A1:"+NEW_LINE
+                + TAB+TAB+"Avg()" +NEW_LINE 		
+                + TAB+"A2:"+NEW_LINE
+                +TAB+TAB+"Median()"+NEW_LINE;               
         //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
         //String result=st.render();
         SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
@@ -315,7 +315,8 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         assertEquals(expectedResult.trim(),result.trim());                
     }
     
-      public void testAnalysis()
+    @Test
+    public void testAnalysis()
     {
         Mean mean = new Mean();
         StatisticalAnalysisSpec a1 = new StatisticalAnalysisSpec();
@@ -323,9 +324,11 @@ public class SEDL4PeopleMarshallerTest extends AbstractMarshallingTest{
         a1.getStatistic().add(mean);
         String expectedResult=
                   "A1:"+NEW_LINE
-                  + "        Avg()" +NEW_LINE;               
-        ST st=getTemplate("analyses",a1,"a");        
-        String result=st.render();
+                  + TAB + "Avg()" +NEW_LINE;               
+        //ST st=getTemplate("FullySpecifiedExperimentalDesign",e,"e");        
+        //String result=st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printAnalysisGroup(a1,0);
         assertEquals(expectedResult.trim(),result.trim());                
     }
     

@@ -14,6 +14,8 @@ import es.us.isa.sedl.core.design.Level;
 import es.us.isa.sedl.core.design.NonControllableFactor;
 import es.us.isa.sedl.core.design.VariableValuation;
 import static junit.framework.TestCase.assertEquals;
+
+import org.junit.Test;
 import org.stringtemplate.v4.ST;
 
 /**
@@ -22,6 +24,9 @@ import org.stringtemplate.v4.ST;
  */
 public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends AbstractMarshallingTest {
 
+    private String TAB = "\t";
+
+    @Test
     public void testMean() {
         DatasetSpecification datasetSpec = new DatasetSpecification();
         ValuationFilter vf = new ValuationFilter();
@@ -47,11 +52,13 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
         dsv.setDatasetSpecification(datasetSpec);
         dsv.setId("A1");
         dsv.setValue("6.32");
-        String expectedResult = "Mean(EA,PI0): 6.32";
+        String expectedResult = "A1:"+TAB+"Mean(where Algorithm='EA',ProblemInstance='PI0' ): 6.32";
     // A1 : Avg(EA PI0 ) : 6 . 3 2 , . . . , Avg(GRASP6j P0 ) : 5 . 4 1 , . . . ,
         // (EAj PI0 ) : 6 . 3 2 , . . . , (GRASP6j PI0 ) : 5 . 4 1
-        ST st = getTemplate("exeFunction", dsv, "a");        
-        String result = st.render();
+        //ST st = getTemplate("exeFunction", dsv, "a");        
+        //String result = st.render();
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printAnalysisExecutionResult(dsv,0);
         assertEquals(expectedResult, result);
 
     }
@@ -78,7 +85,7 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
     public void rankingTest() {
     //A6 : Ranking : (GRASP+PR1 ) : 1 , (GRASP6 ) : 2 , . . . , ( TS+SA) : 5
     }
-
+    @Test
     public void testMedian() {
         // A7 : Median : 3 . 1 7 6
         DatasetSpecification datasetSpec = new DatasetSpecification();
@@ -87,9 +94,11 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
         dsv.setDatasetSpecification(datasetSpec);
         dsv.setId("A1");
         dsv.setValue("6.32");
-        String expectedResult = "Median: 6.32";
-        ST st = getTemplate("exeFunction", dsv, "a");        
-        String result = st.render();
+        String expectedResult = "A1:"+TAB+"Median(): 6.32";
+        /*ST st = getTemplate("exeFunction", dsv, "a");        
+        String result = st.render();*/
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printAnalysisExecutionResult(dsv,0);
         assertEquals(expectedResult, result);
     }
 
@@ -97,6 +106,7 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
 
     }
 
+    @Test
     public void testFriedman() {
     // A8 : Friedman : Pvalue : 0 . 0 0 0 1 7 , de s c r ipt ion : ’Chi-Squared dist.’ , freedom degrees : 2 4
         //    f(EA vs TS+SA) Pvalue : 0 . 0 6 3 Sthreshold : 0 . 0 2 g , . . . ,
@@ -106,9 +116,11 @@ public class SEDL4PeopleStatisicalAnalysisResultMarshallingTest extends Abstract
         pvalue.setDescription("no description");
         pvalue.setValue(0.03);
         pvalue.setDatasetSpecification(new DatasetSpecification());        
-        String expectedResult = "Friedman: Pvalue:0.03, description:'no description', sthreshold:0.05";
-        ST st = getTemplate("exeFunction", pvalue, "a");        
-        String result = st.render();        
+        String expectedResult = "Friedman(,0.05): 0.03";
+        /*ST st = getTemplate("exeFunction", pvalue, "a");        
+        String result = st.render();        */
+        SEDL4PeopleMarshaller marshaller=new SEDL4PeopleMarshaller();
+        String result=marshaller.printAnalysisExecutionResult(pvalue,0);
         assertEquals(expectedResult, result);
     }
 

@@ -1,0 +1,6 @@
+/****/
+VariabilityMeasures:
+    StdDev(dose)
+    Variance(dose)
+    IQR(dose)
+    Range(dose)

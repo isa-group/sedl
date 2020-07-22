@@ -1,5 +1,0 @@
-SEDL supports the specification of two types of statistical analyses on experimental datasets, descriptive statistics and statistical analyses.
-
-Regarding descriptive statistics, SEDL supports the specification of measures including mean, median, mode,
-standard deviation, range, inter-quartile range, and confi- dence intervals.
-And also rankings, which establish an order relation on the levels of a set of factors based on the value of a descriptive statistic, e.g. mean.

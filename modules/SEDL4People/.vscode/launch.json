@@ -23,9 +23,9 @@
             "type": "antlr-debug",
             "request": "launch",
             //"input": "${workspaceFolder}/${command:AskForTestInput}",
-            "input": "src/main/resources/es/us/isa/sedl/grammar/samples/1-Preamble/5-PreambleWithExperimentType",
+            "input": "src/main/resources/tests/semantics/initialsamples/simpleExperiment.sedl",
             "grammar": "src/main/antlr4/es/us/isa/sedl/grammar/SEDL4People.g4",
-            "startRule": "experimentPreamble",
+            "startRule": "document",
             "printParseTree": true,
             "visualParseTree": true
         }

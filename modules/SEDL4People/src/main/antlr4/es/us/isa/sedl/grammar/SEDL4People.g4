@@ -450,7 +450,7 @@ extensionPoint : Identifier EXTENSION_POINT_CONTENT ;
  ======================================*/
 
 EXTENSION_POINT_CONTENT: DOUBLECOLON OPEN_BRA .*? CLOSE_BRA // Multiple lines content
-                       | DOUBLECOLON .*? '\r'? '\n' // Single Line Content 
+                       | DOUBLECOLON ~[{] ~[\r\n]* // Single Line Content  
                        ;
 
 //---------------------------------------
